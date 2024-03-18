@@ -1,0 +1,7 @@
+{
+  "name": "lender",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

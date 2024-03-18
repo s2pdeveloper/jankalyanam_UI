@@ -1,0 +1,100 @@
+<div class="container-fluid animated fadeIn">
+  <div class="card shadow-sm">
+    <div class="card-header">
+      <div class="row justify-content-between align-items-center">
+        <div class="col-auto">
+          <h3 class="mb-0">Notification Form</h3>
+        </div>
+        <div class="col-auto">
+          <button type="button" class="btn btn-danger" (click)="goBack()">
+            <i class="fa fa-arrow-left me-1" aria-hidden="true"></i>
+            Back
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="notificationForm" class="form-horizontal">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="mb-3">
+              <label class="form-label">
+                Title
+                <span class="text-danger">*</span>
+              </label>
+              <input
+                formControlName="title"
+                type="text"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid':
+                    form.title.invalid &&
+                    submitted &&
+                    (form.title.errors ||
+                      form.title.touched ||
+                      form.title.dirty)
+                }"
+                placeholder="Enter Title"
+              />
+              <validation-messages [control]="form['title']">
+              </validation-messages>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="mb-3">
+              <label class="form-label">
+                Message
+                <span class="text-danger">*</span>
+              </label>
+              <input
+                formControlName="message"
+                type="text"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid':
+                    form.message.invalid &&
+                    submitted &&
+                    (form.message.errors ||
+                      form.message.touched ||
+                      form.message.dirty)
+                }"
+                placeholder="Enter Message"
+              />
+              <validation-messages [control]="form['message']">
+              </validation-messages>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="mb-3">
+              <label class="form-label">
+                Image
+                <span class="text-danger">*</span>
+              </label>
+              <input
+                (input)="fileChoosen($event)"
+                type="file"
+                class="form-control-file"
+              />
+              <validation-messages
+                [control]="notificationForm.controls['image']"
+              >
+              </validation-messages>
+            </div>
+          </div>
+          <div class="col-md-6" *ngIf="fileContent">
+            <img [src]="fileContent" height="100" />
+          </div>
+        </div>
+      </form>
+      <div class="text-center mt-3">
+        <button (click)="submit()" type="submit" class="btn btn-primary">
+          {{ form.id.value ? "Update" : "Save" }}
+        </button>
+        <button (click)="goBack()" class="btn btn-danger">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
