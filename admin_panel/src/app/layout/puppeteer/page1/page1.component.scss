@@ -1,0 +1,356 @@
+@import url("https://fonts.googleapis.com/css2?family=Gabarito:wght@500&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*  page 1 */
+.body_01 {
+  width: 100vw;
+  height: auto;
+  .page-1 {
+    background: url(../../../../assets/pdfImg/pageOneBg.jpeg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    .logo_01 {
+      height: 8rem;
+      margin: 1rem 0 0 1rem;
+    }
+    .highlight {
+      flex-direction: column;
+      align-items: end;
+
+      h1 {
+        font-size: 2.5rem;
+        color: rgb(255, 0, 0);
+        font-style: italic;
+        text-decoration: underline;
+      }
+      p {
+        font-family: "Gabarito", cursive;
+        color: #002d8b;
+        text-align: end;
+        font-size: 2rem;
+        line-height: 95%;
+        span {
+          color: rgb(255, 0, 0);
+          font-size: 2.1rem;
+        }
+      }
+    }
+    .center_part_01 {
+      height: 18rem;
+      display: flex;
+      padding: 0 1rem;
+
+      .consumer_details {
+        background: url(../../../../assets/pdfImg/blueBox.jpeg);
+        background-repeat: no-repeat;
+        background-position: center;
+        margin-left: 2rem;
+        margin-right: 2rem;
+        padding: 1.5rem;
+
+        .detail_01 p {
+          font-size: 1rem;
+          line-height: 130%;
+          color: #181818;
+          word-wrap: break-word;
+        }
+      }
+    }
+    .bottom_part_01 {
+      height: auto;
+      display: flex;
+
+      .bill_analysis {
+        height: auto;
+        background: #d6f7fe8e;
+        padding: 1.2rem;
+
+        h1 {
+          font-family: "Gabarito", cursive;
+          color: #181818;
+          text-align: center;
+        }
+        .chart-wrapper {
+          width: 100%;
+          height: auto;
+          display: flex;
+          justify-content: space-around;
+          margin-top: 0.3rem;
+          margin-bottom: 0.5rem;
+        }
+      }
+
+      .adv_02 {
+        height: 10rem;
+        background: url(../../../../assets/pdfImg/pageOneAdOne.jpeg);
+        background-position: center;
+        background-repeat: no-repeat;
+        margin-left: 2rem;
+      }
+    }
+  }
+}
+
+.bill_analysis .bill_analysis .chart-wrapper .chart {
+  width: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.bill_analysis .chart-wrapper .chart .chart-img {
+  background-color: #a0cbde;
+  margin-top: 1rem;
+}
+.bill_analysis h4 {
+  font-family: "Gabarito", cursive;
+  color: #181818;
+  text-align: center;
+}
+.bill_analysis .detail_01 p {
+  font-family: "Gabarito", cursive;
+  font-size: 1rem;
+  line-height: 130%;
+  color: #181818;
+  word-wrap: break-word;
+}
+.bottom-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.footer {
+  width: 100%;
+  height: 5rem;
+
+  .footer-strip{
+    height: 1.8rem;
+    background-color: #2f5596;
+  }
+}
+
+/*  page 2 */
+.body_02 {
+  width: 100vw;
+  height: auto;
+  background: url(../../../../assets/pdfImg/pageTwoBg.jpeg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+
+  .logo_01 {
+    height: 5rem;
+    margin: 1rem 0 0 0.5rem;
+  }
+
+  .main {
+    width: 93%;
+    height: auto;
+    margin: 1.2rem auto;
+    background: #d6f7fe8a;
+    padding: 1rem 1rem 0 1rem;
+
+    .top-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 1rem;
+
+      .text {
+        width: 15rem;
+        height: 8rem;
+
+        p {
+          color: #72b33d;
+          font-size: 2rem;
+          font-family: "Gabarito", cursive;
+          line-height: 115%;
+        }
+        .center {
+          text-align: center;
+        }
+      }
+      h2 {
+        font-size: 1rem;
+        margin-bottom: 3rem;
+        font-family: "Gabarito", cursive;
+      }
+      .observed {
+        width: 6rem;
+        height: 7rem;
+        color: #fff;
+        background-color: #2e5596;
+        clip-path: polygon(0 0, 100% 0, 100% 52%, 50% 100%, 0 52%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 1.5rem;
+      }
+      .standard {
+        width: 7rem;
+        height: 7rem;
+        color: #fff;
+        background-color: #f27f24;
+        clip-path: polygon(0 0, 100% 0, 100% 52%, 50% 100%, 0 52%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 1.5rem;
+      }
+      .remark {
+        width: 6rem;
+        height: 7rem;
+        color: #fff;
+        background-color: #72b33d;
+        clip-path: polygon(0 0, 100% 0, 100% 52%, 50% 100%, 0 52%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 1.5rem;
+      }
+    }
+    .table {
+      width: 90vw;
+      tbody {
+        tr {
+          td {
+            width: 20%;
+            line-height: 140%;
+          }
+          th {
+            background: transparent;
+            width: 30%;
+            line-height: 140%;
+          }
+        }
+      }
+    }
+    .table1 {
+      width: 90vw;
+      tbody {
+        tr {
+          td {
+            width: 21%;
+            line-height: 140%;
+          }
+          th {
+            background: transparent;
+            // width: 30%;
+            line-height: 140%;
+          }
+        }
+      }
+    }
+    .highlighted {
+      .mark {
+        color: rgb(255, 0, 0);
+      }
+    }
+  }
+  .footer {
+    width: 100%;
+    height: 1.5rem;
+    background: url(../../../../assets/pdfImg/blueStrips.jpeg);
+  }
+}
+
+.opportunity-wrapper {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+
+  .opportunity-box {
+    height: 100%;
+    width: 100%;
+    background: url(../../../../assets/pdfImg/blueBox.jpeg);
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 1.2rem 2.5rem 1.2rem;
+    h2 {
+      font-family: "Gabarito", cursive;
+      text-align: center;
+      background-color: #c1daf0;
+      color: #181818;
+      padding: 0.2rem 0;
+      font-size: 18px;
+    }
+    table {
+      width: 100%;
+    }
+    hr {
+      margin-top: 0.5rem;
+    }
+    .table-head {
+      background-color: #2f3267;
+      padding: 0 0.5rem;
+      margin-top: 0.8rem;
+      display: flex;
+      justify-content: space-between;
+
+      .oppo {
+        margin-left: 4rem;
+      }
+    }
+    .table-body {
+      padding: 0 0.5rem;
+      margin-top: 0.8rem;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
+
+.opportunity-wrapper .opportunity-box .table-body h4,h5,
+td {
+  background-color: transparent;
+  font-family: "Gabarito", cursive;
+  color: #2c3c55;
+  text-align: revert;
+}
+.opportunity-wrapper .opportunity-box .table-head td {
+  font-family: "Gabarito", cursive;
+  color: #fff;
+  background-color: #2f3267;
+}
+
+.opportunity-wrapper .adv_01 {
+  height: 100%;
+  background: url(../../../../assets/pdfImg/pageTwoAdOne.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  margin-left: 1.5rem;
+}
+.bottom {
+  height: 5rem;
+  background: url(../../../../assets/pdfImg/blueBox.jpeg);
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  label {
+    font-weight: 500;
+    font-size: 1.2rem;
+    span{
+      color: rgb(252, 8, 8);
+      text-transform:uppercase ;
+      font-weight: 500;
+      font-size: 1.2rem;
+    }
+  }
+  ul li{
+    line-height: 100%;
+  }
+}
+.Commercial{
+  margin-bottom: 150px !important;
+}

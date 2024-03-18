@@ -1,0 +1,22 @@
+
+.table-sticky>thead>tr>th,
+.table-sticky>thead>tr>td {
+  top: -2px;
+  position: sticky;
+  z-index: 9;
+}
+
+.slid-table::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.slid-table::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+.slid-table::-webkit-scrollbar-thumb {
+  background-color: #344e5f;
+  border-radius: 20px;
+}
+
