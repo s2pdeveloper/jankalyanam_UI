@@ -1,0 +1,41 @@
+.logo{
+    text-align: center;
+   img{
+    width: 30%;
+   }
+}
+
+.center-label {
+    text-align: center;
+    font-size: larger;
+    
+  }
+
+  .text{
+    font-size: larger;
+    font-weight: bold;
+    
+  }
+
+// ion-row{
+//     margin-bottom: 1rem;
+// }
+
+ion-content {
+    position: relative;
+    height: 100vh;
+  }
+  
+  ion-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%; /* Adjust width as needed */
+    max-width: 400px; /* Set a max-width for the card */
+  }
+
+
+ 
+
+  

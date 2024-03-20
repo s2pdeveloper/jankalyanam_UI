@@ -1,0 +1,20 @@
+ion-content {
+    position: relative;
+    height: 100vh;
+  }
+  
+  ion-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%; /* Adjust width as needed */
+    max-width: 400px; /* Set a max-width for the card */
+  }
+
+  .text{
+    margin-top: 1rem;
+    font-size: larger;
+    font-weight: bold;
+    
+  }

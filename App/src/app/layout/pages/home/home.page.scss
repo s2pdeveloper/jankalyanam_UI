@@ -1,0 +1,24 @@
+ion-lable{
+    font-weight: bolder;
+}
+
+ion-card-title{
+    font-size: small;
+    font-weight: bolder;
+    text-align: center;
+}
+
+.tabs{
+    ion-card {
+        height: 90%;
+      }
+      ion-card img {
+        width: 100%;
+        height: auto; 
+        align-items: center;
+      }
+      ion-card-header {
+        height: auto; 
+      }
+}
+  

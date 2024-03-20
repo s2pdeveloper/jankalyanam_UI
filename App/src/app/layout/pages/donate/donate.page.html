@@ -1,0 +1,29 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Donate Blood</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div [ngSwitch]="currentTitle">
+    <ion-item class="mt-2" lines="none" *ngSwitchCase="'Donate'">
+      <ion-segment [(ngModel)]="activeSegment" [scrollable]="true">
+        <ion-segment-button value="latest">
+          <ion-label class="ion-text-capitalize">Latest</ion-label>
+        </ion-segment-button>
+
+        <ion-segment-button value="history">
+          <ion-label class="ion-text-capitalize">History</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </ion-item>
+    <div [ngSwitch]="activeSegment">
+      <div *ngSwitchCase="'latest'">
+        <h1>Latest donations</h1>
+      </div>
+      <div *ngSwitchCase="'history'">
+        <h1>History</h1>
+      </div>
+    </div>
+  </div>
+</ion-content> 

@@ -4,22 +4,18 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { HomePageRoutingModule } from './home-routing.module';
+import { OnboardingPageRoutingModule } from './onboarding-routing.module';
 
-import { HomePage } from './home.page';
+import { OnboardingPage } from './onboarding.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule
+    OnboardingPageRoutingModule
   ],
-  declarations: [HomePage],
+  declarations: [OnboardingPage],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
-export class HomePageModule {
-
- 
-
-}
+export class OnboardingPageModule {}

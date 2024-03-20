@@ -1,13 +1,76 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>home</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons class="color-light" slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="ion-justify-content-center">Home</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">home</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<!-- <ion-content [fullscreen]="true">
+  <div [ngSwitch]="currentTitle">
+    <ion-item class="mt-2" lines="none" *ngSwitchCase="'Home'">
+      <ion-segment [(ngModel)]="activeSegment" [scrollable]="true">
+        <ion-segment-button value="donate">
+          <ion-label class="ion-text-capitalize">Donate Blood</ion-label>
+        </ion-segment-button>
+
+        <ion-segment-button value="request">
+          <ion-label class="ion-text-capitalize">Request Blood</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </ion-item>
+    <div [ngSwitch]="activeSegment">
+      <div *ngSwitchCase="'donate'">
+        <h1>donate</h1>
+      </div>
+      <div *ngSwitchCase="'request'">
+        <h1>Request</h1>
+      </div>
+    </div>
+  </div>
+</ion-content> -->
+
+
+<ion-content [fullscreen]="true" class="slider">
+  <ion-grid class="tabs">
+    <ion-row class="ion-justify-content-start">
+      <ion-col size="6">
+        <ion-card  (click)="navigateTo('/layout/donate')">
+          <img src="../../../../assets/donate.jpg" alt="donate">
+          <ion-card-header>
+            <ion-card-title>Donate Blood</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6">
+        <ion-card  (click)="navigateTo('/layout/request')">
+          <img src="../../../../assets/need.png" alt="donate">
+          <ion-card-header>
+            <ion-card-title>Request Blood</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    </ion-grid>
+    <swiper-container speed="500" loop="true">
+      <swiper-slide>
+        <img src="../../../../assets/ad1.png" alt="">
+      </swiper-slide>
+      <swiper-slide>
+        <img src="../../../../assets/ad2.png" alt="">
+      </swiper-slide>
+    </swiper-container>
+
+    <ion-card>
+      <ion-item>
+        <ion-lable>
+            Blood Donation History
+        </ion-lable>
+      </ion-item>
+      <ion-item>
+        <img src="../../../../assets/graph.png" alt="">
+      </ion-item>
+    </ion-card>
+ 
 </ion-content>

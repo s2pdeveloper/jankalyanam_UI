@@ -4,41 +4,53 @@ import { Routes, RouterModule } from '@angular/router';
 import { LayoutPage } from './layout.page';
 
 const routes: Routes = [
-  
-    // {
-    // path: '',
-    // // component: LayoutPage,
-    // redirectTo:'layout',
-    // pathMatch: 'full'
-    // },
-    {
-      path:'',
-      children:[
-        {
-          path: 'menu',
-          loadChildren: () => import('./pages/menu/menu.module').then( m => m.MenuPageModule)
-        },
-        {
-          path: 'home',
-          loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
-        },
-        {
-          path: '',
-          redirectTo: 'menu',
-          pathMatch: 'full',
-        },
-      ]
-    },
+  {
+    path: '',
+    component: LayoutPage,
+    children: [
+      {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full',
+      },
+      {
+        path: 'menu',
+        loadChildren: () => import('./pages/menu/menu.module').then(m => m.MenuPageModule)
+      },
+      {
+        path: 'home',
+        loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule)
+      },
 
-    
-  
-   
-  
- 
+    ]
+  },
+  {
+    path: 'onboarding',
+    loadChildren: () => import('./pages/onboarding/onboarding.module').then(m => m.OnboardingPageModule)
+  },  {
+    path: 'request',
+    loadChildren: () => import('./pages/request/request.module').then( m => m.RequestPageModule)
+  },
+  {
+    path: 'donate',
+    loadChildren: () => import('./pages/donate/donate.module').then( m => m.DonatePageModule)
+  },
+
+
+
+
+
+
+
+
+
+
+
+
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class LayoutPageRoutingModule {}
+export class LayoutPageRoutingModule { }

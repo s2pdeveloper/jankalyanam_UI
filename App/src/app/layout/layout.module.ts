@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { LayoutPageRoutingModule } from './layout-routing.module';
 
 import { LayoutPage } from './layout.page';
+import { MenuPageModule } from './pages/menu/menu.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    LayoutPageRoutingModule
+    LayoutPageRoutingModule,
+    MenuPageModule
   ],
   declarations: [LayoutPage]
 })
