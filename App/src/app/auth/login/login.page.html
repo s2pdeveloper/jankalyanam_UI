@@ -5,42 +5,67 @@
         <ion-grid>
           <ion-row class="ion-align-items-center ion-justify-content-center">
             <ion-col class="logo">
-              <img src="../../../assets/logo.jpeg" alt="LOGO">
+              <img src="../../../assets/logo.jpeg" alt="LOGO" />
             </ion-col>
           </ion-row>
-          <ion-row class="ion-align-items-center ion-justify-content-center ion-margin-bottom">
+          <ion-row
+            class="ion-align-items-center ion-justify-content-center ion-margin-bottom"
+          >
             <ion-label class="text">LogIn</ion-label>
           </ion-row>
           <ion-row class="ion-align-items-center ion-justify-content-center">
             <ion-col size="12">
-              <ion-item  fill="outline" class="input">
-                <ion-label position="floating" lablePlacement="stacked">Mobile Number</ion-label>
-                <ion-input placeholder="Mobile Number" formControlName="mobileNo"></ion-input>
+              <ion-item fill="outline" class="input">
+                <ion-label position="floating" lablePlacement="stacked"
+                  >Mobile Number</ion-label
+                >
+                <ion-input
+                  placeholder="Mobile Number"
+                  formControlName="mobileNo"
+                ></ion-input>
               </ion-item>
             </ion-col>
           </ion-row>
           <ion-row class="ion-align-items-center ion-justify-content-center">
             <ion-col size="12">
-              <ion-item  fill="outline" class="input">
+              <ion-item fill="outline" class="input">
                 <ion-label position="floating">Password</ion-label>
-                <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+                <ion-input
+                  type="password"
+                  placeholder="Password"
+                  formControlName="password"
+                ></ion-input>
               </ion-item>
             </ion-col>
           </ion-row>
           <ion-row class="ion-align-items-center ion-justify-content-center">
-            <ion-button fill="clear" (click)="$event.stopPropagation();navigateTo('auth/forgot-password')">Forget Password?</ion-button>
+            <ion-button
+              fill="clear"
+              (click)="$event.stopPropagation();navigateTo('auth/forgot-password')"
+              >Forget Password?</ion-button
+            >
           </ion-row>
           <ion-row class="ion-align-items-center ion-justify-content-center">
             <ion-col size="12">
-              <ion-button expand="block" shape="round" class="button ion-padding" color="primary" (click)="navigateTo('layout/home')">Sign In</ion-button>
+              <ion-button
+                expand="block"
+                shape="round"
+                class="button ion-padding"
+                color="primary"
+                (click)="login()"
+                >Sign In</ion-button
+              >
             </ion-col>
           </ion-row>
           <ion-row class="ion-align-items-center ion-justify-content-center">
-            <ion-button fill="clear" (click)="$event.stopPropagation();navigateTo('auth/register')">Not having an account? Register</ion-button>
+            <ion-button
+              fill="clear"
+              (click)="$event.stopPropagation();navigateTo('auth/register')"
+              >Not having an account? Register</ion-button
+            >
           </ion-row>
         </ion-grid>
       </ion-item>
     </form>
   </ion-card>
 </ion-content>
-

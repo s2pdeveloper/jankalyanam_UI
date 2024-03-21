@@ -1,0 +1,57 @@
+import {
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest,
+  HTTP_INTERCEPTORS,
+  HttpErrorResponse,
+} from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { environment } from '../../../environments/environment';
+import { Observable, catchError, throwError } from 'rxjs';
+import { StorageService, ToastService } from '../services';
+import { Router } from '@angular/router';
+
+@Injectable()
+export class ApiPrefixInterceptor implements HttpInterceptor {
+  constructor(
+    private storage: StorageService,
+    private router: Router,
+    private toast: ToastService
+  ) {}
+
+  intercept(
+    request: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
+    let user = this.storage.get('user');
+    if (user) {
+      request = request.clone({
+        url: environment.apiEndpoint + request.url,
+        setHeaders: {
+          authorization: `Bearer ${user.token}`,
+        },
+      });
+    } else {
+      request = request.clone({
+        url: environment.apiEndpoint + request.url,
+      });
+    }
+    return next.handle(request).pipe(
+      catchError((errorResponse) => {
+        if (errorResponse instanceof HttpErrorResponse) {
+          if (errorResponse.status == 401) {
+            this.router.navigate(['/login']);
+            this.toast.errorToast('Unauthorized request');
+          }
+        }
+        return throwError(() => errorResponse.error);
+      })
+    );
+  }
+}
+export const ApiPrefixInterceptorProvider = {
+  provide: HTTP_INTERCEPTORS,
+  useClass: ApiPrefixInterceptor,
+  multi: true,
+};
