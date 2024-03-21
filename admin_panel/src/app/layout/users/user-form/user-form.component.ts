@@ -7,44 +7,28 @@ import { ValidationService } from '../../../core/components';
 import { UserService } from '../../../services/users/user.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 
-
 @Component({
   selector: 'app-user-form',
   templateUrl: './user-form.component.html',
   styleUrls: ['./user-form.component.scss'],
 })
-
 export class UserFormComponent implements OnInit {
   submitted = false;
-  userForm = this.formBuilder.group(
-    {
-      _id: new FormControl(''),
-      firstName: new FormControl('', [Validators.required]),
-      // middleName: new FormControl('', [Validators.required]),
-      lastName: new FormControl('', [Validators.required]),
-      email: new FormControl('', [
-        Validators.required,
-        this.validationService.emailValidator,
-      ]),
-      mobile: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required]),
-      confirmPassword: new FormControl('', [Validators.required]),
-      address: new FormControl(''),
-      status: new FormControl('active'),
-      role: new FormControl({ value: 'ADMIN', disabled: true }, [
-        Validators.required,
-      ]),
-    },
-    {
-      validator: this.validationService.MustMatch(
-        'password',
-        'confirmPassword'
-      ),
-    }
-    
-  );
-  
-  
+  userForm = this.formBuilder.group({
+    _id: new FormControl(''),
+    firstName: new FormControl('', [Validators.required]),
+    lastName: new FormControl('', [Validators.required]),
+    email: new FormControl('', [
+      Validators.required,
+      this.validationService.emailValidator,
+    ]),
+    mobile: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required]),
+    role: new FormControl({ value: 'ADMIN', disabled: true }, [
+      Validators.required,
+    ]),
+  });
+
   constructor(
     private spinner: NgxSpinnerService,
     private userService: UserService,
@@ -55,16 +39,13 @@ export class UserFormComponent implements OnInit {
     private actRoutes: ActivatedRoute,
     private toastService: ToastrService
   ) {}
-  
+
   ngOnInit(): void {
     this.actRoutes.queryParams.subscribe((params) => {
       if (params._id) {
         this.getById(params._id);
       }
-      console.log("this.getById(params._id)---------> ",this.getById(params._id));
     });
-  
-    
   }
   get form() {
     return this.userForm.controls;
@@ -108,7 +89,6 @@ export class UserFormComponent implements OnInit {
       success.confirmPassword = success.password;
       this.userForm.patchValue(success);
       this.userForm.controls.role.disable();
-      
     });
   }
 

@@ -58,12 +58,7 @@ export const routes: Routes = [
       title: 'Change Password Page',
     },
   },
-  {
-    path: 'puppeteer',
-    loadChildren: () => import('./layout/puppeteer/puppeteer.module').then
-      (m => m.PuppeteerModule
-      )
-  },
+
   {
     path: '',
     component: DefaultLayoutComponent,
@@ -83,82 +78,8 @@ export const routes: Routes = [
       {
         path: 'users',
         loadChildren: () =>
-          import('./layout/users/users.module').then(
-            (m) => m.UsersModule
-          ),
+          import('./layout/users/users.module').then((m) => m.UsersModule),
       },
-      {
-        path: 'images',
-        loadChildren: () =>
-          import('./layout/images/image.module').then(
-            (m) => m.ImageModule
-          ),
-      },
-      {
-        path: 'subscription',
-        loadChildren: () =>
-          import('./layout/subscription/subscription.module').then(
-            (m) => m.SubscriptionModule
-          ),
-      },
-      {
-        path: 'customer',
-        loadChildren: () =>
-          import('./layout/customer/customer.module').then(
-            (m) => m.CustomerModule
-          ),
-      },
-      {
-        path: 'notification',
-        loadChildren: () =>
-          import('./layout/notification/notification.module').then(
-            (m) => m.NotificationModule
-          ),
-      },
-      // {
-      //   path: 'college',
-      //   loadChildren: () =>
-      //     import('./layout/college/college.module').then(
-      //       (m) => m.CollegeModule
-      //     ),
-      // },
-      // {
-      //   path: 'employee',
-      //   loadChildren: () =>
-      //     import('./layout/employee/employee.module').then(
-      //       (m) => m.EmployeeModule
-      //     ),
-      // },
-    
-    
-  
-      {
-        path: 'organization',
-        loadChildren: () =>
-          import('./layout/organization/organization.module').then(
-            (m) => m.OrganizationModule
-          ),
-      },
-      {
-        path: 'questions',
-        loadChildren: () =>
-          import('./layout/questions/questions.module').then(
-            (m) => m.QuestionsModule
-          ),
-      },
-      {
-        path: 'advertise',
-        loadChildren: () => import('./layout/advertise/advertise.module').then
-          (m => m.AdvertiseModule
-          )
-      },
-      {
-        path: 'offer',
-        loadChildren: () => import('./layout/offer/offer.module').then
-          (m => m.OfferModule
-          )
-      },
-     
     ],
   },
 
@@ -169,4 +90,4 @@ export const routes: Routes = [
   imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

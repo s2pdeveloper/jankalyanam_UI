@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.createForm();
-    localStorage.removeItem('OBUser');
+    localStorage.removeItem('user');
     // get return url from route parameters or default to "/"
     this.returnUrl =
       this.route.snapshot.queryParams[`returnUrl`] || '/dashboard';
@@ -57,32 +57,27 @@ export class LoginComponent implements OnInit {
       email: new FormControl('', [
         Validators.required,
         this.validationService.emailValidator,
-      ]),
-      // mobile: new FormControl('', [
-      //   Validators.required,
-      //    this.validationService.mobileValidator,
-      // ]),
+      ]), 
       password: ['', Validators.required],
     });
   }
 
   login() {
     this.spinner.show();
-    this.authService.login(this.loginForm.value).subscribe((success) => {
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('enerty', JSON.stringify(success));
-      }
-      console.log("this.loginForm.value------>",localStorage);
-      // console.log("localStorage------>",localStorage.getItem());
+    this.authService.login(this.loginForm.value).subscribe(
+      (success) => {
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('user', JSON.stringify(success));
+        }
 
-      
-      this.toastService.success('Login done Successfully!');
-      this.router.navigate(['./dashboard']);
-      // this.router.navigateByUrl(this.returnUrl);
-      this.spinner.hide();
-    },(error)=>{
-      this.toastService.error(error.error);
-    });
+        this.toastService.success('Login done Successfully!');
+        this.router.navigate(['./dashboard']);
+        this.spinner.hide();
+      },
+      (error) => {
+        this.toastService.error(error.error);
+      }
+    );
   }
 
   ngOnDestroy(): void {

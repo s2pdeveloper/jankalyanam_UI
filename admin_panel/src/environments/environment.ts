@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-  apiEndpoint: 'http://localhost:2000/api/v1/',
+  apiEndpoint: 'http://45.13.132.155:1996/',
   // apiEndpoint: 'https://api-dev.enerty.in/api/v1/',
 
 };

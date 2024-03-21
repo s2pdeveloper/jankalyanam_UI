@@ -38,28 +38,6 @@
               </validation-messages>
             </div>
           </div>
-          <!-- <div class="col-md-4">
-            <div class="mb-3">
-              <label class="form-label">
-                Middle Name
-                <span class="text-danger">*</span>
-              </label>
-              <input
-                formControlName="middleName"
-                type="text"
-                class="form-control"
-                [ngClass]="{
-                  'is-invalid':
-                    form.middleName.invalid &&
-                    submitted &&
-                    (form.middleName.touched || form.middleName.dirty)
-                }"
-                placeholder="Enter middleName"
-              />
-              <validation-messages [control]="form['middleName']">
-              </validation-messages>
-            </div>
-          </div> -->
           <div class="col-md-6">
             <div class="mb-3">
               <label class="form-label">
@@ -84,57 +62,8 @@
             </div>
           </div>
         </div>
-       <div class="row">
-          <div class="col-md-6">
-            <div class="mb-3">
-              <label class="form-label"
-                >Role<span class="text-danger">*</span></label
-              >
-              <select
-                formControlName="role"
-                placeholder="Select Role"
-                class="form-select"
-                [ngClass]="{
-                  'is-invalid':
-                    form.role.invalid &&
-                    submitted &&
-                    (form.role.touched || form.role.dirty)
-                }"
-              >
-                <option selected disabled [value]="null">Select Role</option>
-                <option value="ADMIN">ADMIN</option>
-                <option value="SUPER_ADMIN">SUPER_ADMIN</option>
-              </select>
-              <validation-messages [control]="form['role']">
-              </validation-messages>
-            </div>
-          </div>
-        </div> 
+
         <div class="row">
-          <div class="col-md-6">
-            <div class="mb-3">
-              <label class="form-label">
-                Email
-                <span class="text-danger">*</span>
-              </label>
-              <input
-                formControlName="email"
-                type="text"
-                id="email"
-                name="email"
-                class="form-control"
-                [ngClass]="{
-                  'is-invalid':
-                    form.email.invalid &&
-                    submitted &&
-                    (form.email.touched || form.email.dirty)
-                }"
-                placeholder="Enter Email"
-              />
-              <validation-messages [control]="form['email']">
-              </validation-messages>
-            </div>
-          </div>
           <div class="col-md-6">
             <div class="mb-3">
               <label class="form-label">
@@ -160,8 +89,6 @@
               </validation-messages>
             </div>
           </div>
-        </div>
-        <div class="row" *ngIf="!form._id.value">
           <div class="col-md-6">
             <div class="mb-3">
               <label class="form-label">
@@ -184,55 +111,40 @@
               </validation-messages>
             </div>
           </div>
+        </div>
+        <div class="row">
           <div class="col-md-6">
             <div class="mb-3">
-              <label class="form-label">
-                Confirm Password
-                <span class="text-danger">*</span>
-              </label>
-              <input
-                formControlName="confirmPassword"
-                type="password"
-                class="form-control"
+              <label class="form-label"
+                >Role<span class="text-danger">*</span></label
+              >
+              <select
+                formControlName="role"
+                placeholder="Select Role"
+                class="form-select"
                 [ngClass]="{
                   'is-invalid':
-                    form.confirmPassword.invalid &&
+                    form.role.invalid &&
                     submitted &&
-                    (form.confirmPassword.touched || form.confirmPassword.dirty)
+                    (form.role.touched || form.role.dirty)
                 }"
-                placeholder="Enter Confirm Password"
-              />
-              <validation-messages [control]="form['confirmPassword']">
+              >
+                <option selected disabled [value]="null">Select Role</option>
+                <option value="ADMIN">ADMIN</option>
+                <option value="SUPER_ADMIN">SUPER_ADMIN</option>
+              </select>
+              <validation-messages [control]="form['role']">
               </validation-messages>
             </div>
           </div>
         </div>
-         <!-- <div class="row">
-          <div class="col-md-12">
-            <div class="mb-3">
-              <label class="form-label">Address</label>
-              <textarea
-                formControlName="address"
-                rows="3"
-                type="text"
-                class="form-control"
-                [ngClass]="{
-                  'is-invalid':
-                    form.address.invalid &&
-                    submitted &&
-                    (form.address.touched || form.address.dirty)
-                }"
-                placeholder="Enter Address"
-              >
-              </textarea>
-              <validation-messages [control]="form['address']">
-              </validation-messages>
-            </div>
-          </div>
-        </div>  -->
       </form>
       <div class="text-center">
-        <button (click)="submit()" type="submit" class="btn btn-primary">
+        <button
+          (click)="submit()"
+          type="submit"
+          class="btn btn-success text-white"
+        >
           {{ form._id.value ? "Update" : "Save" }}
         </button>
         <button (click)="goBack()" class="btn btn-danger">Cancel</button>
