@@ -1,74 +1,211 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-button slot="start">
+      <ion-back-button default-href="/layout/home"></ion-back-button>
+    </ion-button>
     <ion-title>request</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div [ngSwitch]="currentTitle">
-    <ion-item class="mt-2" lines="none" *ngSwitchCase="'Request'">
-      <ion-segment [(ngModel)]="activeSegment" [scrollable]="true">
-        <ion-segment-button value="latest">
-          <ion-label class="ion-text-capitalize">Latest</ion-label>
-        </ion-segment-button>
-
-        <ion-segment-button value="history">
-          <ion-label class="ion-text-capitalize">History</ion-label>
-        </ion-segment-button>
-      </ion-segment>
-    </ion-item>
-    <div [ngSwitch]="activeSegment">
-      <div *ngSwitchCase="'latest'">
-        <ion-card>
-          <ion-card-header>
-            <ion-card-title>Card Title</ion-card-title>
-            <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-          </ion-card-header>
-        
-          <ion-card-content>
-            Here's a small text description for the card content. Nothing more, nothing less.
-          </ion-card-content>
-        </ion-card>
-        <ion-card>
-          <ion-card-header>
-            <ion-card-title>Card Title</ion-card-title>
-            <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-          </ion-card-header>
-        
-          <ion-card-content>
-            Here's a small text description for the card content. Nothing more, nothing less.
-          </ion-card-content>
-        </ion-card>
-        <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-          <ion-fab-button>
-            <ion-icon name="add"></ion-icon>
-          </ion-fab-button>
-        </ion-fab>
-      </div>
-      <div *ngSwitchCase="'history'">
-        <ion-card>
-          <ion-card-header>
-            <ion-card-title>Card Title</ion-card-title>
-            <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-          </ion-card-header>
-        
-          <ion-card-content>
-            Here's a small text description for the card content. Nothing more, nothing less.
-          </ion-card-content>
-        </ion-card>
-        <ion-card>
-          <ion-card-header>
-            <ion-card-title>Card Title</ion-card-title>
-            <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-          </ion-card-header>
-        
-          <ion-card-content>
-            Here's a small text description for the card content. Nothing more, nothing less.
-          </ion-card-content>
-        </ion-card>
-      </div>
-    </div>
-  </div>
- 
+  <form [formGroup]="bloodRequestForm">
+    <ion-item>
+      <ion-grid>
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col size="12">
+            <ion-item fill="outline" class="input">
+              <ion-label position="floating" lablePlacement="stacked"
+                >Full Name</ion-label
+              >
+              <ion-input
+                placeholder="Full Name"
+                formControlName="name"
+              ></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col size="12">
+            <ion-item fill="outline" class="input">
+              <ion-label position="floating" lablePlacement="stacked"
+                >Age</ion-label
+              >
+              <ion-input placeholder="Age" formControlName="age"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col size="12">
+            <ion-list>
+              <ion-item>
+                <ion-select
+                  aria-label="Gender"
+                  interface="popover"
+                  placeholder="Select Gender"
+                >
+                  <ion-select-option value="male">Male</ion-select-option>
+                  <ion-select-option value="female">Female</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col size="12">
+            <ion-list>
+              <ion-item>
+                <ion-select
+                  aria-label="Blood Group"
+                  interface="popover"
+                  placeholder="Select Blood Group"
+                >
+                  <ion-select-option value="bpositive">B +ve</ion-select-option>
+                  <ion-select-option value="bnegative">B -ve</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-list>
+            <ion-item fill="outline" class="input">
+              <ion-label position="floating" lablePlacement="stacked"
+                >Blood Group</ion-label
+              >
+              <ion-input
+                placeholder="Blood Group"
+                formControlName="bloodGroup"
+              ></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col size="12">
+            <ion-item fill="outline" class="input">
+              <ion-label position="floating" lablePlacement="stacked"
+                >bloodRequireDate</ion-label
+              >
+              <ion-input
+                placeholder="bloodRequireDate"
+                formControlName="bloodRequireDate"
+              ></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col size="12">
+            <ion-item fill="outline" class="input">
+              <ion-label position="floating" lablePlacement="stacked"
+                >mobileNo</ion-label
+              >
+              <ion-input
+                placeholder="mobileNo"
+                formControlName="mobileNo"
+              ></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col size="12">
+            <ion-list>
+              <ion-item>
+                <ion-select
+                  aria-label="City"
+                  interface="popover"
+                  placeholder="Select City"
+                >
+                  <ion-select-option value="nagpur">Nagpur</ion-select-option>
+                  <ion-select-option value="pune">Pune</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col size="12">
+            <ion-list>
+              <ion-item>
+                <ion-select
+                  aria-label="state"
+                  interface="popover"
+                  placeholder="Select state"
+                >
+                  <ion-select-option value="maha">Maharashtra</ion-select-option>
+                  <ion-select-option value="mp">MP</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-list>
+           
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col size="12">
+            <ion-item fill="outline" class="input">
+              <ion-label position="floating" lablePlacement="stacked"
+                >location</ion-label
+              >
+              <ion-input
+                placeholder="location"
+                formControlName="location"
+              ></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col size="12">
+            <ion-item fill="outline" class="input">
+              <ion-label position="floating" lablePlacement="stacked"
+                >hemoglobin</ion-label
+              >
+              <ion-input
+                placeholder="hemoglobin"
+                formControlName="hemoglobin"
+              ></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col size="12">
+            <ion-item fill="outline" class="input">
+              <ion-label position="floating" lablePlacement="stacked"
+                >illness</ion-label
+              >
+              <ion-input
+                placeholder="illness"
+                formControlName="illness"
+              ></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+       
+       
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col size="12">
+            <ion-item fill="outline" class="input">
+              <ion-label position="floating" lablePlacement="stacked"
+                >units</ion-label
+              >
+              <ion-input
+                placeholder="units"
+                formControlName="units"
+                type="number"
+              ></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+    
   
-</ion-content> 
+
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col size="12">
+            <ion-button
+              expand="block"
+              shape="round"
+              class="button ion-padding"
+              color="primary"
+              >Submit</ion-button
+            >
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </form>
+</ion-content>
+
+

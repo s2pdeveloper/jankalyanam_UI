@@ -22,4 +22,5 @@ export class HomePage implements OnInit {
     this.route.navigate([url])
   }
 
+
 }

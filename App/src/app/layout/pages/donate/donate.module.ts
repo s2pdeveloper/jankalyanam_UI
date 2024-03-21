@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -13,7 +14,7 @@ import { DonatePage } from './donate.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    DonatePageRoutingModule
+    DonatePageRoutingModule,ReactiveFormsModule
   ],
   declarations: [DonatePage]
 })
