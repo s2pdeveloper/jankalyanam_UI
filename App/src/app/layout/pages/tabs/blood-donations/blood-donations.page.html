@@ -1,0 +1,65 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>blood-donations</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div [ngSwitch]="currentTitle">
+    <ion-item class="mt-2" lines="none" *ngSwitchCase="'Donate'">
+      <ion-segment [(ngModel)]="activeSegment" [scrollable]="true">
+        <ion-segment-button value="latest">
+          <ion-label class="ion-text-capitalize">Latest</ion-label>
+        </ion-segment-button>
+
+        <ion-segment-button value="history">
+          <ion-label class="ion-text-capitalize">History</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </ion-item>
+    <div [ngSwitch]="activeSegment">
+      <div *ngSwitchCase="'latest'">
+        <ion-card>
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <ion-row>Anushka</ion-row>
+                  <ion-row>9075987170</ion-row>
+                  <ion-row>25Year</ion-row>
+                </ion-col>
+                <ion-col size="2" class="ion-justify-content-center">
+                  <ion-card-title>A+</ion-card-title>
+                </ion-col>
+              </ion-row>
+              <ion-row class="ion-justify-content-center">
+                Blood Donated On : 2024-03-21
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </div>
+      <div *ngSwitchCase="'history'">
+        <ion-card>
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <ion-row>Anushka</ion-row>
+                  <ion-row>9075987170</ion-row>
+                  <ion-row>25Year</ion-row>
+                </ion-col>
+                <ion-col size="2" class="ion-justify-content-center">
+                  <ion-card-title>A+</ion-card-title>
+                </ion-col>
+              </ion-row>
+              <ion-row class="ion-justify-content-center">
+                Blood Donated On : 2024-03-21
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+  </div>
+</ion-content>

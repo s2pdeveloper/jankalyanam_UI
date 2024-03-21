@@ -31,46 +31,72 @@
   </div>
 </ion-content> -->
 
-
-<ion-content [fullscreen]="true" class="slider">
-  <ion-grid class="tabs">
-    <ion-row class="ion-justify-content-start">
-      <ion-col size="6">
-        <ion-card  (click)="navigateTo('/layout/donate')">
-          <img src="../../../../assets/donate.jpg" alt="donate">
-          <ion-card-header>
-            <ion-card-title>Donate Blood</ion-card-title>
-          </ion-card-header>
-        </ion-card>
-      </ion-col>
-      <ion-col size="6">
-        <ion-card  (click)="navigateTo('/layout/request')">
-          <img src="../../../../assets/need.png" alt="donate">
-          <ion-card-header>
-            <ion-card-title>Request Blood</ion-card-title>
-          </ion-card-header>
-        </ion-card>
-      </ion-col>
-    </ion-row>
+<ion-content  [fullscreen]="true" class="slider">
+  <ion-item>
+    <ion-grid class="tabs">
+      <ion-row class="ion-justify-content-start">
+        <ion-col size="6">
+          <ion-card (click)="navigateTo('/layout/donate')">
+            <img src="../../../../assets/donate.jpg" alt="donate" />
+            <ion-card-header>
+              <ion-card-title>Donate Blood</ion-card-title>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+        <ion-col size="6">
+          <ion-card (click)="navigateTo('/layout/request')">
+            <img src="../../../../assets/need.png" alt="donate" />
+            <ion-card-header>
+              <ion-card-title>Request Blood</ion-card-title>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+      </ion-row>
     </ion-grid>
-    <swiper-container speed="500" loop="true">
-      <swiper-slide>
-        <img src="../../../../assets/ad1.png" alt="">
-      </swiper-slide>
-      <swiper-slide>
-        <img src="../../../../assets/ad2.png" alt="">
-      </swiper-slide>
-    </swiper-container>
+  </ion-item>
 
+  <swiper-container speed="500" loop="true">
+    <swiper-slide>
+      <img src="../../../../assets/ad1.png" alt="" />
+    </swiper-slide>
+    <swiper-slide>
+      <img src="../../../../assets/ad2.png" alt="" />
+    </swiper-slide>
+  </swiper-container>
+
+  <ion-item>
     <ion-card>
       <ion-item>
-        <ion-lable>
-            Blood Donation History
-        </ion-lable>
+        <ion-lable> Blood Donation History </ion-lable>
       </ion-item>
       <ion-item>
-        <img src="../../../../assets/graph.png" alt="">
+        <img src="../../../../assets/graph.png" alt="" />
       </ion-item>
     </ion-card>
- 
+  </ion-item>
+
+  
+
+
 </ion-content>
+
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs class="ion-padding-bottom">
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button tab="home" (click)="navigateTo('/layout/blood-donations')">
+          <ion-icon name="play-circle"></ion-icon>
+          Blood Donations
+        </ion-tab-button>
+        <ion-tab-button tab="radio" (click)="navigateTo('/layout/blood-requests')">
+          <ion-icon name="radio"></ion-icon>
+          Blood Requests
+        </ion-tab-button>
+       
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>
+
+
