@@ -1,11 +1,14 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-button slot="start">
+      <ion-back-button defaultHref="/layout/home"></ion-back-button>
+    </ion-button>
     <ion-title>Donate Blood</ion-title>
   </ion-toolbar>
 </ion-header>
 
 
-<ion-content [fullscreen]="true">
+<ion-content>
   <form [formGroup]="bloodDonateForm">
     <ion-item>
       <ion-grid>
@@ -29,7 +32,7 @@
           <ion-col size="12">
             <ion-item  fill="outline" class="input">
               <ion-label position="floating" lablePlacement="stacked">Blood Group</ion-label>
-              <ion-input placeholder="Blood Group" formControlName="bloodGroup"></ion-input>
+              <ion-input placeholder="Blood Group" formControlName="blood_group"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>

@@ -35,7 +35,8 @@ const routes: Routes = [
   {
     path: 'donate',
     loadChildren: () => import('./pages/donate/donate.module').then( m => m.DonatePageModule)
-  },  {
+  },
+  {
     path: 'blood-donations',
     loadChildren: () => import('./pages/tabs/blood-donations/blood-donations.module').then( m => m.BloodDonationsPageModule)
   },

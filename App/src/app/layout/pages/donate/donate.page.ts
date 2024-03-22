@@ -20,6 +20,7 @@ export class DonatePage implements OnInit {
     age : new FormControl(''), 
     city : new FormControl(''), 
     donationDate : new FormControl(''), 
+    bloodRequireDate : new FormControl(''), 
     hemoglobin : new FormControl(''),
     blood_group  : new FormControl(''), 
     location  : new FormControl(''), 
