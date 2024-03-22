@@ -1,9 +1,9 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-button slot="start">
-      <ion-back-button default-href="/layout/home"></ion-back-button>
-    </ion-button>
-    <ion-title>request</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons class="color-light" slot="start">
+      <ion-back-button>back</ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-justify-content-center">Request</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -15,7 +15,7 @@
           <ion-col size="12">
             <ion-item fill="outline" class="input">
               <ion-label position="floating" lablePlacement="stacked"
-                >Full Name</ion-label
+                >Name</ion-label
               >
               <ion-input
                 placeholder="Full Name"
@@ -34,57 +34,24 @@
             </ion-item>
           </ion-col>
         </ion-row>
-        <ion-row class="ion-align-items-center ion-justify-content-center">
-          <ion-col size="12">
-            <ion-list>
-              <ion-item>
-                <ion-select
-                  aria-label="Gender"
-                  interface="popover"
-                  placeholder="Select Gender"
-                >
-                  <ion-select-option value="male">Male</ion-select-option>
-                  <ion-select-option value="female">Female</ion-select-option>
-                </ion-select>
-              </ion-item>
-            </ion-list>
-          </ion-col>
-        </ion-row>
-        <ion-row class="ion-align-items-center ion-justify-content-center">
-          <ion-col size="12">
-            <ion-list>
-              <ion-item>
-                <ion-select
-                  aria-label="Blood Group"
-                  interface="popover"
-                  placeholder="Select Blood Group"
-                >
-                  <ion-select-option value="bpositive">B +ve</ion-select-option>
-                  <ion-select-option value="bnegative">B -ve</ion-select-option>
-                </ion-select>
-              </ion-item>
-            </ion-list>
-            <ion-item fill="outline" class="input">
-              <ion-label position="floating" lablePlacement="stacked"
-                >Blood Group</ion-label
-              >
-              <ion-input
-                placeholder="Blood Group"
-                formControlName="bloodGroup"
-              ></ion-input>
-            </ion-item>
-          </ion-col>
-        </ion-row>
+
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
             <ion-item fill="outline" class="input">
               <ion-label position="floating" lablePlacement="stacked"
-                >bloodRequireDate</ion-label
+                >Blood Require Date</ion-label
               >
-              <ion-input
-                placeholder="bloodRequireDate"
-                formControlName="bloodRequireDate"
-              ></ion-input>
+              <p class="ion-margin-end">
+                {{f['bloodRequireDate'].value | date}}
+              </p>
+              <ion-icon
+                slot="end"
+                color="primary"
+                name="calendar-outline"
+                datetime="datetime"
+                class="ion-margin-top"
+                (click)="openCalender(f['bloodRequireDate'].value)"
+              ></ion-icon>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -101,39 +68,7 @@
             </ion-item>
           </ion-col>
         </ion-row>
-        <ion-row class="ion-align-items-center ion-justify-content-center">
-          <ion-col size="12">
-            <ion-list>
-              <ion-item>
-                <ion-select
-                  aria-label="City"
-                  interface="popover"
-                  placeholder="Select City"
-                >
-                  <ion-select-option value="nagpur">Nagpur</ion-select-option>
-                  <ion-select-option value="pune">Pune</ion-select-option>
-                </ion-select>
-              </ion-item>
-            </ion-list>
-          </ion-col>
-        </ion-row>
-        <ion-row class="ion-align-items-center ion-justify-content-center">
-          <ion-col size="12">
-            <ion-list>
-              <ion-item>
-                <ion-select
-                  aria-label="state"
-                  interface="popover"
-                  placeholder="Select state"
-                >
-                  <ion-select-option value="maha">Maharashtra</ion-select-option>
-                  <ion-select-option value="mp">MP</ion-select-option>
-                </ion-select>
-              </ion-item>
-            </ion-list>
-           
-          </ion-col>
-        </ion-row>
+
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
             <ion-item fill="outline" class="input">
@@ -173,8 +108,7 @@
             </ion-item>
           </ion-col>
         </ion-row>
-       
-       
+
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
             <ion-item fill="outline" class="input">
@@ -189,8 +123,132 @@
             </ion-item>
           </ion-col>
         </ion-row>
-    
-  
+
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col size="12">
+            <ion-item fill="outline">
+              <ion-label position="floating" lablePlacement="stacked"
+                >State
+              </ion-label>
+              <ionic-selectable
+                item-content
+                class="ion-text-capilatize"
+                #selectableState
+                [items]="states"
+                itemTextField="name"
+                itemValueField="name"
+                [canSearch]="true"
+                (onChange)="getCity($event)"
+                [hasConfirmButton]="true"
+                [hasInfiniteScroll]="true"
+              >
+                <ng-template ionicSelectableHeaderTemplate>
+                  <ion-toolbar class="bg-color-2">
+                    <ion-buttons slot="start">
+                      <ion-button
+                        class="text-color-4"
+                        (click)="selectableState.close()"
+                      >
+                        <ion-icon name="arrow-back-outline"></ion-icon>
+                      </ion-button>
+                    </ion-buttons>
+                    <ion-title
+                      class="text-color-4 ion-text-capitalize ion-text-wrap"
+                    >
+                      State
+                    </ion-title>
+                  </ion-toolbar>
+                </ng-template>
+                <ng-template ionicSelectableItemTemplate let-port="item">
+                  <ion-label class="ion-text-capitalize ion-text-wrap">
+                    {{port?.name}}
+                  </ion-label>
+                </ng-template>
+              </ionic-selectable>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col size="12" class="ion-justify-content-between">
+            <ion-item fill="outline">
+              <ion-label position="floating" lablePlacement="stacked">
+                City
+              </ion-label>
+              <ionic-selectable
+                item-content
+                class="ion-text-capilatize"
+                #selectableCity
+                [items]="cities"
+                itemTextField="name"
+                itemValueField="name"
+                [canSearch]="true"
+                [hasConfirmButton]="true"
+                [hasInfiniteScroll]="true"
+                (onChange)="setCity($event)"
+              >
+                <ng-template ionicSelectableHeaderTemplate>
+                  <ion-toolbar class="bg-color-2">
+                    <ion-buttons slot="start">
+                      <ion-button
+                        class="text-color-4"
+                        (click)="selectableCity.close()"
+                      >
+                        <ion-icon name="arrow-back-outline"></ion-icon>
+                      </ion-button>
+                    </ion-buttons>
+                    <ion-title
+                      class="text-color-4 ion-text-capitalize ion-text-wrap"
+                    >
+                      City
+                    </ion-title>
+                  </ion-toolbar>
+                </ng-template>
+                <ng-template ionicSelectableItemTemplate let-port="item">
+                  <ion-label class="ion-text-capitalize ion-text-wrap">
+                    {{port?.name}}
+                  </ion-label>
+                </ng-template>
+              </ionic-selectable>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col size="12">
+            <ion-item fill="outline">
+              <ion-select
+                aria-label="Gender"
+                interface="popover"
+                placeholder="Select Gender"
+                formControlName="gender"
+              >
+                <ion-select-option value="male">Male</ion-select-option>
+                <ion-select-option value="female">Female</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col size="12">
+            <ion-item fill="outline">
+              <ion-select
+                aria-label="Fruit"
+                interface="popover"
+                placeholder="Select Blood Group"
+                formControlName="bloodGroup"
+              >
+                <ion-select-option value="A_POSITIVE">A+</ion-select-option>
+                <ion-select-option value="A_NEGATIVE">A-</ion-select-option>
+                <ion-select-option value="B_POSITIVE">B+</ion-select-option>
+                <ion-select-option value="B_NEGATIVE">B-</ion-select-option>
+                <ion-select-option value="AB_POSITIVE">AB+</ion-select-option>
+                <ion-select-option value="AB_NEGATIVE">AB+</ion-select-option>
+                <ion-select-option value="O_POSITIVE">O+</ion-select-option>
+                <ion-select-option value="O_NEGATIVE">O-</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
 
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
@@ -199,6 +257,7 @@
               shape="round"
               class="button ion-padding"
               color="primary"
+              (click)="create()"
               >Submit</ion-button
             >
           </ion-col>
@@ -207,5 +266,3 @@
     </ion-item>
   </form>
 </ion-content>
-
-

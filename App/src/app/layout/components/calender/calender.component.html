@@ -1,0 +1,28 @@
+<ion-toolbar color="primary">
+  <ion-title mode="md">Calender</ion-title>
+  <ion-buttons slot="end">
+    <ion-button (click)="dismiss()">Close</ion-button>
+  </ion-buttons>
+</ion-toolbar>
+
+<ion-content>
+  <ion-datetime
+    [(ngModel)]="date"
+    placeholder="Select Date"
+    max="2050"
+    displayFormat="D MMM YYYY"
+    presentation="date"
+  >
+  </ion-datetime>
+
+  <div class="clearfix ion-padding-top ion-padding">
+    <ion-button
+      (click)="closeModal()"
+      expand="block"
+      class="btn-color-1 btn-height-large"
+      type="submit"
+    >
+      Save
+    </ion-button>
+  </div>
+</ion-content>

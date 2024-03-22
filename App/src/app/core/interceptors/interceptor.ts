@@ -30,6 +30,9 @@ export class ApiPrefixInterceptor implements HttpInterceptor {
         url: environment.apiEndpoint + request.url,
         setHeaders: {
           authorization: `Bearer ${user.token}`,
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': "POST, GET, PATCH, DELETE, PUT",
+          "Access-Control-Allow-Headers" : '*'
         },
       });
     } else {

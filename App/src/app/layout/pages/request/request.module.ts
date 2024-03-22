@@ -5,14 +5,17 @@ import { IonicModule } from '@ionic/angular';
 import { RequestPageRoutingModule } from './request-routing.module';
 import { RequestPage } from './request.page';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../../components/shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RequestPageRoutingModule, ReactiveFormsModule
+    RequestPageRoutingModule,
+    ReactiveFormsModule,
+    SharedModule,
   ],
-  declarations: [RequestPage]
+  declarations: [RequestPage],
 })
-export class RequestPageModule { }
+export class RequestPageModule {}
