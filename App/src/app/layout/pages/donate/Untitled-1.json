@@ -1,0 +1,255 @@
+[
+  {
+    "acceptor": {
+      "city": "string",
+      "email": "string",
+      "firstName": "string",
+      "id": 0,
+      "lastName": "string",
+      "mobileNo": 0,
+      "role": "ADMIN",
+      "state": "string",
+      "status": "ACTIVE",
+      "token": "string"
+    },
+    "age": 0,
+    "attender": {
+      "city": "string",
+      "email": "string",
+      "firstName": "string",
+      "id": 0,
+      "lastName": "string",
+      "mobileNo": 0,
+      "role": "ADMIN",
+      "state": "string",
+      "status": "ACTIVE",
+      "token": "string"
+    },
+    "bloodGroup": "string",
+    "bloodRequireDate": "2024-03-22T06:17:38.357Z",
+    "city": "string",
+    "donor": {
+      "age": 0,
+      "bloodGroup": "A_POSITIVE",
+      "bloodRequest": {
+        "acceptor": {
+          "accountNonExpired": true,
+          "accountNonLocked": true,
+          "address": "string",
+          "authorities": [
+            {
+              "authority": "string"
+            }
+          ],
+          "bloodDonateList": [
+            {
+              "age": 0,
+              "bloodGroup": "A_POSITIVE",
+              "city": "string",
+              "createdAt": "2024-03-22T06:17:38.357Z",
+              "donationDate": "2024-03-22T06:17:38.357Z",
+              "gender": "MALE",
+              "hemoglobin": 0,
+              "id": 0,
+              "illness": true,
+              "location": "string",
+              "mobileNo": "string",
+              "name": "string",
+              "state": "string",
+              "status": "PENDING",
+              "updatedAt": "2024-03-22T06:17:38.357Z",
+              "userId": 0
+            }
+          ],
+          "bloodRequestList": [
+            null
+          ],
+          "city": "string",
+          "createdAt": "2024-03-22T06:17:38.357Z",
+          "credentialsNonExpired": true,
+          "email": "string",
+          "enabled": true,
+          "firstName": "string",
+          "id": 0,
+          "lastName": "string",
+          "mobileNo": "string",
+          "myList": [
+            null
+          ],
+          "password": "string",
+          "pincode": 0,
+          "role": "ADMIN",
+          "state": "string",
+          "status": "ACTIVE",
+          "updatedAt": "2024-03-22T06:17:38.357Z",
+          "username": "string"
+        },
+        "acceptorId": 0,
+        "age": 0,
+        "attender": {
+          "accountNonExpired": true,
+          "accountNonLocked": true,
+          "address": "string",
+          "authorities": [
+            {
+              "authority": "string"
+            }
+          ],
+          "bloodDonateList": [
+            {
+              "age": 0,
+              "bloodGroup": "A_POSITIVE",
+              "city": "string",
+              "createdAt": "2024-03-22T06:17:38.357Z",
+              "donationDate": "2024-03-22T06:17:38.357Z",
+              "gender": "MALE",
+              "hemoglobin": 0,
+              "id": 0,
+              "illness": true,
+              "location": "string",
+              "mobileNo": "string",
+              "name": "string",
+              "state": "string",
+              "status": "PENDING",
+              "updatedAt": "2024-03-22T06:17:38.357Z",
+              "userId": 0
+            }
+          ],
+          "bloodRequestList": [
+            null
+          ],
+          "city": "string",
+          "createdAt": "2024-03-22T06:17:38.357Z",
+          "credentialsNonExpired": true,
+          "email": "string",
+          "enabled": true,
+          "firstName": "string",
+          "id": 0,
+          "lastName": "string",
+          "mobileNo": "string",
+          "myList": [
+            null
+          ],
+          "password": "string",
+          "pincode": 0,
+          "role": "ADMIN",
+          "state": "string",
+          "status": "ACTIVE",
+          "updatedAt": "2024-03-22T06:17:38.357Z",
+          "username": "string"
+        },
+        "attenderId": 0,
+        "bloodGroup": "A_POSITIVE",
+        "bloodRequireDate": "2024-03-22T06:17:38.357Z",
+        "city": "string",
+        "createdAt": "2024-03-22T06:17:38.357Z",
+        "donor": {
+          "age": 0,
+          "bloodGroup": "A_POSITIVE",
+          "city": "string",
+          "createdAt": "2024-03-22T06:17:38.357Z",
+          "donationDate": "2024-03-22T06:17:38.357Z",
+          "gender": "MALE",
+          "hemoglobin": 0,
+          "id": 0,
+          "illness": true,
+          "location": "string",
+          "mobileNo": "string",
+          "name": "string",
+          "state": "string",
+          "status": "PENDING",
+          "updatedAt": "2024-03-22T06:17:38.357Z",
+          "userId": 0
+        },
+        "donorId": 0,
+        "fatherOrHusband": "string",
+        "gender": "MALE",
+        "hemoglobin": 0,
+        "id": 0,
+        "illness": "string",
+        "location": "string",
+        "mobileNo": 0,
+        "name": "string",
+        "provided": "DONOR",
+        "state": "string",
+        "status": "PENDING",
+        "units": 0,
+        "updatedAt": "2024-03-22T06:17:38.357Z"
+      },
+      "city": "string",
+      "donationDate": "2024-03-22T06:17:38.357Z",
+      "gender": "MALE",
+      "hemoglobin": 0,
+      "id": 0,
+      "illness": true,
+      "location": "string",
+      "mobileNo": "string",
+      "name": "string",
+      "state": "string",
+      "status": "PENDING",
+      "user": {
+        "accountNonExpired": true,
+        "accountNonLocked": true,
+        "address": "string",
+        "authorities": [
+          {
+            "authority": "string"
+          }
+        ],
+        "bloodDonateList": [
+          {
+            "age": 0,
+            "bloodGroup": "A_POSITIVE",
+            "city": "string",
+            "createdAt": "2024-03-22T06:17:38.357Z",
+            "donationDate": "2024-03-22T06:17:38.357Z",
+            "gender": "MALE",
+            "hemoglobin": 0,
+            "id": 0,
+            "illness": true,
+            "location": "string",
+            "mobileNo": "string",
+            "name": "string",
+            "state": "string",
+            "status": "PENDING",
+            "updatedAt": "2024-03-22T06:17:38.357Z",
+            "userId": 0
+          }
+        ],
+        "bloodRequestList": [
+          null
+        ],
+        "city": "string",
+        "createdAt": "2024-03-22T06:17:38.357Z",
+        "credentialsNonExpired": true,
+        "email": "string",
+        "enabled": true,
+        "firstName": "string",
+        "id": 0,
+        "lastName": "string",
+        "mobileNo": "string",
+        "myList": [
+          null
+        ],
+        "password": "string",
+        "pincode": 0,
+        "role": "ADMIN",
+        "state": "string",
+        "status": "ACTIVE",
+        "updatedAt": "2024-03-22T06:17:38.357Z",
+        "username": "string"
+      }
+    },
+    "fatherOrHusband": "string",
+    "gender": "MALE",
+    "hemoglobin": 0,
+    "illness": "string",
+    "location": "string",
+    "mobileNo": 0,
+    "name": "string",
+    "provided": "DONOR",
+    "state": "string",
+    "status": "PENDING",
+    "units": 0
+  }
+]
