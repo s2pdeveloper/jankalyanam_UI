@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ModalService } from 'src/app/service/modal.service';
+import { DonationDetailsComponent } from 'src/app/shared/models/donation-details/donation-details.component';
 
 @Component({
   selector: 'app-blood-donations',
@@ -7,10 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BloodDonationsPage implements OnInit {
 
-  constructor() { }
+  constructor(private router : Router,private modalService:ModalService) { }
 
-  ngOnInit() {
+  ngOnInit() {}
+  navigateTo(url: string) {
+    console.log(url);
+    this.router.navigate([url]);
   }
   activeSegment = 'latest';
-  currentTitle = 'Donate';
+  currentTitle = 'history';
+  openModel(){
+    this.modalService.openModal(DonationDetailsComponent,{})
+  }
 }

@@ -1,12 +1,13 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>blood-donations</ion-title>
+  <ion-toolbar color="primary">
+    <ion-back-button slot="start" default-href="/layout/home"></ion-back-button>
+    <ion-title>Blood-donations</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <div [ngSwitch]="currentTitle">
-    <ion-item class="mt-2" lines="none" *ngSwitchCase="'Donate'">
+    <ion-item class="mt-2" lines="none" *ngSwitchCase="'history'">
       <ion-segment [(ngModel)]="activeSegment" [scrollable]="true">
         <ion-segment-button value="latest">
           <ion-label class="ion-text-capitalize">Latest</ion-label>
@@ -19,21 +20,36 @@
     </ion-item>
     <div [ngSwitch]="activeSegment">
       <div *ngSwitchCase="'latest'">
-        <ion-card>
-          <ion-card-content>
+        <ion-card (click)="openModel()">
+          <ion-card-content class="ion-no-padding">
             <ion-grid>
               <ion-row>
-                <ion-col>
-                  <ion-row>Anushka</ion-row>
-                  <ion-row>9075987170</ion-row>
-                  <ion-row>25Year</ion-row>
-                </ion-col>
-                <ion-col size="2" class="ion-justify-content-center">
+                <ion-col size="3" class="drop">
+                  <img src="../../../../../assets/blood-unscreen.gif" alt="" />
                   <ion-card-title>A+</ion-card-title>
                 </ion-col>
-              </ion-row>
-              <ion-row class="ion-justify-content-center">
-                Blood Donated On : 2024-03-21
+                <ion-col size="6">
+                  <ion-label class="name">ANUSHKA KALBANDE</ion-label>
+                  <div class="ion-margin-top">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <ion-label class="donar">Nagpur</ion-label>
+                  </div>
+                  <div class="ion-margin-top donar-container">
+                    <div>
+                      <i class="fa-solid fa-landmark"></i>
+                      <ion-label class="donar">Donor Bank</ion-label>
+                    </div>
+                    <div class="ion-padding-start">
+                      <i class="fa-solid fa-person"></i>
+                      <ion-label class="donar">Donor</ion-label>
+                    </div>
+                  </div>
+                </ion-col>
+                <!-- <ion-col size="3" class="btn-col">
+                  <ion-button class="detail-btn" (click)="openModel()">
+                    View Details
+                  </ion-button>
+                </ion-col> -->
               </ion-row>
             </ion-grid>
           </ion-card-content>
@@ -45,11 +61,12 @@
             <ion-grid>
               <ion-row>
                 <ion-col>
-                  <ion-row>Anushka</ion-row>
+                  <ion-row>Ketki</ion-row>
                   <ion-row>9075987170</ion-row>
                   <ion-row>25Year</ion-row>
                 </ion-col>
-                <ion-col size="2" class="ion-justify-content-center">
+                <ion-col size="3" class="drop">
+                  <img src="../../../../../assets/blood-unscreen.gif" alt="" />
                   <ion-card-title>A+</ion-card-title>
                 </ion-col>
               </ion-row>
