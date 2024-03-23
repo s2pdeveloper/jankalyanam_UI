@@ -23,16 +23,16 @@
         <ion-card (click)="openModel()">
           <ion-card-content class="ion-no-padding">
             <ion-grid>
-              <ion-row>
+              <ion-row *ngFor="let l of latestTabDetails">
                 <ion-col size="3" class="drop">
                   <img src="../../../../../assets/blood-unscreen.gif" alt="" />
-                  <ion-card-title>A+</ion-card-title>
+                  <ion-card-title>{{l?.bloodGroup}}</ion-card-title>
                 </ion-col>
                 <ion-col size="6">
-                  <ion-label class="name">ANUSHKA KALBANDE</ion-label>
+                  <ion-label class="name">{{l?.attender?.firstName + ' '+ l?.attender?.lastName}}</ion-label>
                   <div class="ion-margin-top">
                     <i class="fa-solid fa-location-dot"></i>
-                    <ion-label class="donar">Nagpur</ion-label>
+                    <ion-label class="donar">{{l?.city}}</ion-label>
                   </div>
                   <div class="ion-margin-top donar-container">
                     <div>

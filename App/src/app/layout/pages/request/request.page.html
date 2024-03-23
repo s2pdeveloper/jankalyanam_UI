@@ -37,6 +37,37 @@
 
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
+            <ion-item fill="outline">
+              <ion-select
+                aria-label="Gender"
+                interface="action-sheet"
+                placeholder="Select Gender"
+                formControlName="gender"
+                (ionChange)="checkGender()"
+              >
+                <ion-select-option value="MALE">Male</ion-select-option>
+                <ion-select-option value="FEMALE">Female</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="isFemale" class="ion-align-items-center ion-justify-content-center">
+          <ion-col size="12">
+            <ion-item fill="outline" class="input">
+              <ion-label position="floating" lablePlacement="stacked"
+                >Father/Husband</ion-label
+              >
+              <ion-input
+                placeholder="Father/Husband"
+                formControlName="fatherOrHusband"
+              ></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col size="12">
             <ion-item fill="outline" class="input">
               <ion-label position="floating" lablePlacement="stacked"
                 >Blood Require Date</ion-label
@@ -95,19 +126,7 @@
             </ion-item>
           </ion-col>
         </ion-row>
-        <ion-row class="ion-align-items-center ion-justify-content-center">
-          <ion-col size="12">
-            <ion-item fill="outline" class="input">
-              <ion-label position="floating" lablePlacement="stacked"
-                >illness</ion-label
-              >
-              <ion-input
-                placeholder="illness"
-                formControlName="illness"
-              ></ion-input>
-            </ion-item>
-          </ion-col>
-        </ion-row>
+        
 
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
@@ -213,27 +232,13 @@
           </ion-col>
         </ion-row>
 
-        <ion-row class="ion-align-items-center ion-justify-content-center">
-          <ion-col size="12">
-            <ion-item fill="outline">
-              <ion-select
-                aria-label="Gender"
-                interface="popover"
-                placeholder="Select Gender"
-                formControlName="gender"
-              >
-                <ion-select-option value="male">Male</ion-select-option>
-                <ion-select-option value="female">Female</ion-select-option>
-              </ion-select>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-        <ion-row class="ion-align-items-center ion-justify-content-center">
+ 
+        <!-- <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
             <ion-item fill="outline">
               <ion-select
                 aria-label="Fruit"
-                interface="popover"
+                interface="action-sheet"
                 placeholder="Select Blood Group"
                 formControlName="bloodGroup"
               >
@@ -246,6 +251,19 @@
                 <ion-select-option value="O_POSITIVE">O+</ion-select-option>
                 <ion-select-option value="O_NEGATIVE">O-</ion-select-option>
               </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row> -->
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col size="12">
+            <ion-item fill="outline" class="input">
+              <ion-label position="floating" lablePlacement="stacked"
+                >illness</ion-label
+              >
+              <ion-input
+                placeholder="illness"
+                formControlName="illness"
+              ></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>

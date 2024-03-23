@@ -6,7 +6,7 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./calender.component.scss'],
 })
 export class CalenderComponent implements OnInit {
-  @Input() date: string=''; 
+  @Input() date: any=new Date; 
   constructor(private modalController: ModalController) {}
 
   ngOnInit() {}
