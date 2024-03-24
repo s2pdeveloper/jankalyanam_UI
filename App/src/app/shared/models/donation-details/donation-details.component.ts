@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { ModalController } from "@ionic/angular";
 
@@ -8,16 +8,14 @@ import { ModalController } from "@ionic/angular";
   styleUrls: ["./donation-details.component.scss"],
 })
 export class DonationDetailsComponent implements OnInit {
+  @Input() data :any;
   constructor(
     private router: Router,
     private modalController: ModalController
   ) {}
 
   ngOnInit() {}
-  // navigateTo(url: string) {
-  //   console.log(url);
-  //   this.router.navigate([url]);
-  // }
+  
   dismiss() {
     this.modalController.dismiss();
   }

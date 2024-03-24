@@ -20,7 +20,7 @@
     </ion-item>
     <div [ngSwitch]="activeSegment">
       <div *ngSwitchCase="'latest'">
-        <ion-card (click)="openModel()">
+        <ion-card (click)="openModel('latest')">
           <ion-card-content class="ion-no-padding">
             <ion-grid>
               <ion-row>
@@ -45,18 +45,16 @@
                     </div>
                   </div>
                 </ion-col>
-                <!-- <ion-col size="3" class="btn-col">
-                  <ion-button class="detail-btn" (click)="openModel()">
-                    View Details
-                  </ion-button>
-                </ion-col> -->
+                <ion-col>
+                  <ion-label class="status">Pending</ion-label>
+                </ion-col>
               </ion-row>
             </ion-grid>
           </ion-card-content>
         </ion-card>
       </div>
       <div *ngSwitchCase="'history'">
-        <ion-card (click)="openNewModel()">
+        <ion-card (click)="openModel('history')">
           <ion-card-content class="ion-no-padding">
             <ion-grid>
               <ion-row>
@@ -81,11 +79,6 @@
                     </div>
                   </div>
                 </ion-col>
-                <!-- <ion-col size="3" class="btn-col">
-                  <ion-button class="detail-btn" (click)="openModel()">
-                    View Details
-                  </ion-button>
-                </ion-col> -->
               </ion-row>
             </ion-grid>
           </ion-card-content>

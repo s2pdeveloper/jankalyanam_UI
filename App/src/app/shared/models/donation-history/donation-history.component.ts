@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from "@ionic/angular";
 
 @Component({
@@ -8,8 +8,10 @@ import { ModalController } from "@ionic/angular";
 })
 export class DonationHistoryComponent  implements OnInit {
   
-
-  constructor(private modalController: ModalController) { }
+  @Input() data :any;
+  constructor(
+    private modalController: ModalController
+  ) {}
 
   ngOnInit() {}
 

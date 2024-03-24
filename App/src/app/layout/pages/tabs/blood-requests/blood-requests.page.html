@@ -1,6 +1,7 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>blood-requests</ion-title>
+  <ion-toolbar color="primary">
+    <ion-back-button slot="start" default-href="/layout/home"></ion-back-button>
+    <ion-title>Blood-Requests</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -19,61 +20,73 @@
   </ion-item>
   <div [ngSwitch]="activeSegment">
     <div *ngSwitchCase="'active'">
-      <ion-card>
-        <ion-card-content>
+      <ion-card (click)="openModel('active')">
+        <ion-card-content class="ion-no-padding">
           <ion-grid>
             <ion-row>
-              <ion-col>
-                <ion-row>Anushka</ion-row>
-                <ion-row>9075987170</ion-row>
-                <ion-row>25Year</ion-row>
-                <ion-row>Illness</ion-row>
-                <ion-row>Unites Reruired</ion-row>
-
-              </ion-col >
-              <ion-col size="2" class="ion-justify-content-center">
+              <ion-col size="3" class="drop">
+                <img src="../../../../../assets/blood-unscreen.gif" alt="" />
                 <ion-card-title>A+</ion-card-title>
               </ion-col>
-            </ion-row>
-            <ion-row class="ion-justify-content-center">
-              <ion-col sixe="8">
-              bloodRequireDate : 2024-03-21
+              <ion-col size="6">
+                <ion-label class="name">Ketki Pande</ion-label>
+                <div class="ion-margin-top">
+                  <i class="fa-solid fa-location-dot"></i>
+                  <ion-label class="donar">Nagpur</ion-label>
+                </div>
+                <div class="ion-margin-top donar-container">
+                  <div>
+                    <i class="fa-solid fa-user"></i>
+                    <ion-label class="donar">Donor</ion-label>
+                  </div>
+                  <div class="ion-padding-start">
+                    <i class=" fa-solid fa-person-half-dress"></i>
+                    <ion-label class="donar">Gender</ion-label>
+                  </div>
+                </div>
               </ion-col>
-              <ion-col size="4">
-                Status : Active
-                </ion-col>
+              <!-- <ion-col size="3" class="btn-col">
+                <ion-button class="detail-btn" (click)="openModel()">
+                  View Details
+                </ion-button>
+              </ion-col> -->
             </ion-row>
-           
           </ion-grid>
         </ion-card-content>
       </ion-card>
     </div>
     <div *ngSwitchCase="'history'">
-      <ion-card>
-        <ion-card-content>
+      <ion-card (click)="openModel('history')">
+        <ion-card-content class="ion-no-padding">
           <ion-grid>
             <ion-row>
-              <ion-col>
-                <ion-row>Anushka</ion-row>
-                <ion-row>9075987170</ion-row>
-                <ion-row>25Year</ion-row>
-                <ion-row>Illness</ion-row>
-                <ion-row>Unites Reruired</ion-row>
-
-              </ion-col >
-              <ion-col size="2" class="ion-justify-content-center">
+              <ion-col size="3" class="drop">
+                <img src="../../../../../assets/blood-unscreen.gif" alt="" />
                 <ion-card-title>A+</ion-card-title>
               </ion-col>
-            </ion-row>
-            <ion-row class="ion-justify-content-center">
-              <ion-col sixe="8">
-              bloodRequireDate : 2024-03-21
+              <ion-col size="6">
+                <ion-label class="name">ANUSHKA KALBANDE</ion-label>
+                <div class="ion-margin-top">
+                  <i class="icons-img fa-solid fa-location-dot"></i>
+                  <ion-label class="donar">Nagpur</ion-label>
+                </div>
+                <div class="ion-margin-top donar-container">
+                  <div>
+                    <i class="fa-solid fa-user"></i>
+                    <ion-label class="donar">Donor</ion-label>
+                  </div>
+                  <div class="ion-padding-start">
+                    <i class="icons-img fa-solid fa-person-half-dress"></i>
+                    <ion-label class="donar">Gender</ion-label>
+                  </div>
+                </div>
               </ion-col>
-              <ion-col size="4">
-                Status : Active
-                </ion-col>
+              <!-- <ion-col size="3" class="btn-col">
+                <ion-button class="detail-btn" (click)="openModel()">
+                  View Details
+                </ion-button>
+              </ion-col> -->
             </ion-row>
-           
           </ion-grid>
         </ion-card-content>
       </ion-card>
