@@ -1,0 +1,28 @@
+{
+  "age": 0,
+  "bloodGroup": "string",
+  "bloodRequireDate": "2024-03-23T11:13:58.219Z",
+  "city": "string",
+  "fatherOrHusband": "string",
+  "gender": "MALE",
+  "hemoglobin": 0,
+  "illness": "string",
+  "location": "string",
+  "mobileNo": 0,
+  "name": "string",
+  "state": "string",
+  "units": 0
+},
+
+{
+  "age": 0,
+  "bloodGroup": "A_POSITIVE",
+  "city": "string",
+  "donationDate": "2024-03-23T11:14:36.397Z",
+  "gender": "MALE",
+  "hemoglobin": 0,
+  "illness": true,
+  "mobileNo": "string",
+  "name": "string",
+  "state": "string"
+}

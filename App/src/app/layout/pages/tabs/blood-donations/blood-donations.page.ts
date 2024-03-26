@@ -31,7 +31,7 @@ export class BloodDonationsPage implements OnInit {
       case "latest":
         this.modalService.openModal(DonationDetailsComponent, { data });
         break;
-
+      
       default:
         break;
     }

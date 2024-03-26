@@ -4,8 +4,9 @@ import { IonicModule } from '@ionic/angular';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DonationDetailsComponent } from './models/donation-details/donation-details.component';
 import { DonationHistoryComponent } from './models/donation-history/donation-history.component';
+import { BloodrequestMylistComponent } from './models/bloodrequest-mylist/bloodrequest-mylist.component';
 
-const models:any[]=[DonationDetailsComponent,DonationHistoryComponent];
+const models:any[]=[DonationDetailsComponent,DonationHistoryComponent,BloodrequestMylistComponent];
 const pipes:any[]=[]
 
 @NgModule({
