@@ -18,18 +18,8 @@ export class DonatePage implements OnInit {
   @ViewChild('selectableState') selectableState: any = IonicSelectableComponent;
   @ViewChild('selectableCity') selectableCity: any = IonicSelectableComponent;
   states: any = [];
-  cities: any = []; 
-  formValue: any = {
-    age: 10,
-    city: 'Nagpur',
-    donationDate: '2024-03-22T05:58:02.942Z',
-    gender: 'FEMALE',
-    hemoglobin: 5.8,
-    illness: true,
-    mobileNo: '12312345',
-    name: 'haresh',
-    state: 'Maharastra',
-  };
+  cities: any = [];
+
   constructor(
     private service: BloodDonationService,
     private router: Router,
@@ -49,11 +39,11 @@ export class DonatePage implements OnInit {
     donationDate: new FormControl('', [Validators.required]),
     gender: new FormControl('', [Validators.required]),
     hemoglobin: new FormControl('', [Validators.required]),
-    illness: new FormControl('', [Validators.required]),
+    illness: new FormControl(false, [Validators.required]),
     mobileNo: new FormControl('', [Validators.required]),
     name: new FormControl('', [Validators.required]),
     state: new FormControl('', [Validators.required]),
-    bloodGroup: new FormControl('', [Validators.required]),
+    // bloodGroup: new FormControl('', [Validators.required]),
     // location: new FormControl('', [Validators.required]),
   });
 
@@ -62,8 +52,6 @@ export class DonatePage implements OnInit {
   }
 
   async create() {
-    
-
     if (this.bloodDonateForm.invalid) {
       console.log(this.bloodDonateForm.controls);
 
@@ -71,7 +59,7 @@ export class DonatePage implements OnInit {
       return;
     }
     await this.spinner.showLoader();
-    this.service.create(this.formValue).subscribe(
+    this.service.create(this.bloodDonateForm.value).subscribe(
       async (success: any) => {
         this.toast.successToast(success.message);
         this.bloodDonateForm.reset();
