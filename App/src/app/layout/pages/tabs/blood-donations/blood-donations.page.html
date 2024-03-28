@@ -20,19 +20,19 @@
     </ion-item>
     <div [ngSwitch]="activeSegment">
       <div *ngSwitchCase="'latest'">
-        <ion-card (click)="openModel('latest')">
+        <ion-card *ngIf="latestTabDetails.length > 0" (click)="openModel('latest')">
           <ion-card-content class="ion-no-padding">
             <ion-grid>
-              <ion-row>
+              <ion-row *ngFor="let l of latestTabDetails">
                 <ion-col size="3" class="drop">
                   <img src="../../../../../assets/bloodHand.gif" alt="" />
-                  <ion-card-title>A+</ion-card-title>
+                  <ion-card-title>{{l?.bloodGroup}}</ion-card-title>
                 </ion-col>
                 <ion-col size="6">
-                  <ion-label class="name">Ketki Pande</ion-label>
+                  <ion-label class="name">{{l?.attender?.firstName + ' '+ l?.attender?.lastName}}</ion-label>
                   <div class="ion-margin-top">
                     <i class="fa-solid fa-location-dot"></i>
-                    <ion-label class="donar">Nagpur</ion-label>
+                    <ion-label class="donar">{{l?.city +', '+l?.state}}</ion-label>
                   </div>
                   <div class="ion-margin-top donar-container">
                     <div>
@@ -41,7 +41,7 @@
                     </div>
                     <div class="ion-padding-start">
                       <i class=" fa-solid fa-person-half-dress"></i>
-                      <ion-label class="donar">Gender</ion-label>
+                      <ion-label class="donar">{{l?.gender}}</ion-label>
                     </div>
                   </div>
                 </ion-col>
@@ -54,19 +54,19 @@
         </ion-card>
       </div>
       <div *ngSwitchCase="'history'">
-        <ion-card (click)="openModel('history')">
+        <ion-card *ngIf="historyTabDetails.length > 0" (click)="openModel('history')">
           <ion-card-content class="ion-no-padding">
             <ion-grid>
-              <ion-row>
+              <ion-row *ngFor="let h of historyTabDetails">
                 <ion-col size="3" class="drop">
                   <img src="../../../../../assets/bloodHand.gif" alt="" />
-                  <ion-card-title>A+</ion-card-title>
+                  <ion-card-title>{{h?.bloodGroup}}</ion-card-title>
                 </ion-col>
                 <ion-col size="6">
-                  <ion-label class="name">ANUSHKA KALBANDE</ion-label>
+                  <ion-label class="name">{{h?.attender?.firstName + ' '+ h?.attender?.lastName}}</ion-label>
                   <div class="ion-margin-top">
                     <i class="icons-img fa-solid fa-location-dot"></i>
-                    <ion-label class="donar">Nagpur</ion-label>
+                    <ion-label class="donar">{{h?.city +', '+h?.state}}</ion-label>
                   </div>
                   <div class="ion-margin-top donar-container">
                     <div>
@@ -75,7 +75,7 @@
                     </div>
                     <div class="ion-padding-start">
                       <i class="icons-img fa-solid fa-person-half-dress"></i>
-                      <ion-label class="donar">Gender</ion-label>
+                      <ion-label class="donar">{{h?.gender}}</ion-label>
                     </div>
                   </div>
                 </ion-col>
