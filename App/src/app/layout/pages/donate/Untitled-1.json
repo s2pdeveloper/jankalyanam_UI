@@ -253,3 +253,47 @@
     "units": 0
   }
 ]
+
+
+{
+  "age": 0,
+  "bloodGroup": "A_POSITIVE",
+  "bloodRequest": {
+    "age": 0,
+    "bloodGroup": "string",
+    "bloodRequireDate": "2024-03-23T06:48:44.318Z",
+    "city": "string",
+    "fatherOrHusband": "string",
+    "gender": "MALE",
+    "hemoglobin": 0,
+    "illness": "string",
+    "location": "string",
+    "mobileNo": 0,
+    "name": "string",
+    "state": "string",
+    "units": 0
+  },
+  "city": "string",
+  "donationDate": "2024-03-23T06:48:44.318Z",
+  "gender": "MALE",
+  "hemoglobin": 0,
+  "id": 0,
+  "illness": true,
+  "location": "string",
+  "mobileNo": "string",
+  "name": "string",
+  "state": "string",
+  "status": "PENDING",
+  "user": {
+    "city": "string",
+    "email": "string",
+    "firstName": "string",
+    "id": 0,
+    "lastName": "string",
+    "mobileNo": 0,
+    "role": "ADMIN",
+    "state": "string",
+    "status": "ACTIVE",
+    "token": "string"
+  }
+}

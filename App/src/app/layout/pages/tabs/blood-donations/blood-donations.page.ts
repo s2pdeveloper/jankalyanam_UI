@@ -5,6 +5,8 @@ import { DonationDetailsComponent } from 'src/app/shared/models/donation-details
 import { BloodRequestService } from 'src/app/service/request/request.service';
 import { forkJoin } from 'rxjs';
 import { StorageService } from 'src/app/core/services';
+import { DonationHistoryComponent } from 'src/app/shared/models/donation-history/donation-history.component';
+import { LoaderService } from 'src/app/core/services/loader.service';
 @Component({
   selector: 'app-blood-donations',
   templateUrl: './blood-donations.page.html',
@@ -21,35 +23,40 @@ export class BloodDonationsPage implements OnInit {
     private router: Router,
     private modalService: ModalService,
     private service: BloodRequestService,
-    private storage: StorageService
+    private storage: StorageService,
+    private spinner: LoaderService
   ) {}
 
   ngOnInit() {
     this.user = this.storage.get('user');
-    this.user.role == 'ATTENDER' ? this.getAllAttenderList() : '';
+    if (this.user.role == 'ATTENDER') {
+      this.getAllAttenderList();
+    }
   }
+
   navigateTo(url: string) {
     this.router.navigate([url]);
+  }
+
+  async getAllAttenderList() {
+    await this.spinner.showLoader();
+    forkJoin([
+      this.service.getAllAttenderList('HISTORY'),
+      this.service.getAllAttenderList('ACTIVE'),
+    ]).subscribe(async (res) => {
+      this.historyTabDetails = res[0];
+      this.latestTabDetails = res[1];
+      await this.spinner.hideLoader();
+    });
   }
 
   openModel() {
     this.modalService.openModal(DonationDetailsComponent, {});
   }
 
-  getAllAttenderList() {
-    // this.service.getAllAttenderList('HISTORY').subscribe((success: any) => {
-    //   this.historyTabDetails = success;
-    // });
-    // this.service.getAllAttenderList('ACTIVE').subscribe((success: any) => {
-    //   this.latestTabDetails = success;
-    // });
-
-    forkJoin([
-      this.service.getAllAttenderList('HISTORY'),
-      this.service.getAllAttenderList('ACTIVE'),
-    ]).subscribe((res) => {
-      this.historyTabDetails = res[0];
-      this.latestTabDetails = res[1];
-    });
+  openNewModel() {
+    this.modalService.openModal(DonationHistoryComponent, {});
   }
+
+  onSegmentChange(){}
 }
