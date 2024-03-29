@@ -54,10 +54,7 @@ export class LoginComponent implements OnInit {
 
   createForm(): void {
     this.loginForm = this.formBuilder.group({
-      email: new FormControl('', [
-        Validators.required,
-        this.validationService.emailValidator,
-      ]), 
+      mobileNo: new FormControl('', [Validators.required]),
       password: ['', Validators.required],
     });
   }
@@ -66,6 +63,8 @@ export class LoginComponent implements OnInit {
     this.spinner.show();
     this.authService.login(this.loginForm.value).subscribe(
       (success) => {
+        console.log('success', success);
+
         if (typeof window !== 'undefined') {
           localStorage.setItem('user', JSON.stringify(success));
         }

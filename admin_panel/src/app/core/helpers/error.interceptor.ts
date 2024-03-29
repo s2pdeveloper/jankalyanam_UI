@@ -47,7 +47,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                 .subscribe((event) => {
                   this.currentRoute = event['url'];
                 });
-              this.userDetails = this.storageService.get('Enerty');
+              this.userDetails = this.storageService.get('User');
               // this.router.navigate(['/login'], {
               //   queryParams: { returnUrl: this.currentRoute },
               // });

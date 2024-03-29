@@ -28,7 +28,7 @@
                             width="30%"
                             alt=""
                           /> -->
-                          <h4>Enerty</h4>
+                          <h4>User</h4>
                         </div>
                         <div class="text-left">
                           <h3 class="my-1"><b>Sign In</b></h3>
@@ -37,18 +37,19 @@
                         <div class="mb-3">
                           <div class="input-group-lg">
                             <div class="input-group-prepend">
-                              <span class="input-group-text"><i class="icon-user"></i></span>
-                               <input
-                              aria-label="Sizing example input"
-                              aria-describedby="inputGroup-sizing-lg"
-                              formControlName="email"
-                              type="email"
-                              class="form-control"
-                              placeholder="Email"
-                              autocomplete="email"
-                              required
-                            />  
-                           <!-- <input
+                              <span class="input-group-text"
+                                ><i class="icon-user"></i
+                              ></span>
+                              <input
+                                aria-label="Sizing example input"
+                                aria-describedby="inputGroup-sizing-lg"
+                                formControlName="mobileNo"
+                                type="number"
+                                class="form-control"
+                                placeholder="Mobile No"
+                                required
+                              />
+                              <!-- <input
                              
                               formControlName="mobile"
                               type="number"
@@ -58,23 +59,25 @@
                             />   -->
                             </div>
                           </div>
-                           <div class="">
-                             <validation-messages
+                          <div class="">
+                            <validation-messages
                               class="error-left"
-                              [control]="loginForm.controls['email']"
+                              [control]="loginForm.controls['mobileNo']"
                             >
-                            </validation-messages> 
-                             <!-- <validation-messages
+                            </validation-messages>
+                            <!-- <validation-messages
                               class="error-left"
                               [control]="loginForm.controls['mobile']"
                             >
                             </validation-messages>  -->
-                          </div> 
+                          </div>
                         </div>
                         <div class="mb-3">
                           <div class="input-group input-group-lg">
                             <div class="input-group-prepend">
-                              <span class="input-group-text"><i class="icon-lock"></i></span>
+                              <span class="input-group-text"
+                                ><i class="icon-lock"></i
+                              ></span>
                             </div>
                             <input
                               aria-label="Sizing example input"
@@ -111,7 +114,8 @@
                           <button
                             type="submit"
                             class="btn btn-lg shadow-sm btn-primary"
-                            [disabled]="loginForm.invalid" (click)="login()"
+                            [disabled]="loginForm.invalid"
+                            (click)="login()"
                           >
                             Login
                           </button>

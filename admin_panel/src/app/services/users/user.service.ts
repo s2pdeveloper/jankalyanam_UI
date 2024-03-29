@@ -21,9 +21,9 @@ export class UserService {
       .post(this.routes.createPath, payload)
       .pipe(map((res: any) => res));
   }
-  getAllUsers(payload) {
+  getAllUsers() {
     return this.http
-      .get(this.routes.getAllPath, payload)
+      .get(this.routes.getAllPath)
       .pipe(map((res: any) => res));
   }
   updateUser(id, payload: IUser) {

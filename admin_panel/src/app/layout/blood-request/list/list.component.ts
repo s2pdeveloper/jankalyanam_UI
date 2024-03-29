@@ -6,15 +6,14 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { StorageService } from 'src/app/core/services';
-import { UserService } from '../../../services/users/user.service';
-import { IUser } from '@interfaces/index';
+import { BloodRequestService } from '../../../services/blood-request/donate.service';
 @Component({
-  selector: 'app-user-list',
-  templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.scss'],
+  selector: 'app-list',
+  templateUrl: './list.component.html',
+  styleUrls: ['./list.component.scss']
 })
-export class UserListComponent implements OnInit {
-  selectedRow: any = {};
+export class ListComponent implements OnInit {
+
   users: any = [];
   search: any = '';
   page = 1;
@@ -23,7 +22,7 @@ export class UserListComponent implements OnInit {
   userDetails: any = {};
 
   constructor(
-    private userService: UserService,
+    private service: BloodRequestService,
     private router: Router,
     private storageService: StorageService,
     private modalService: NgbModal,
@@ -38,8 +37,8 @@ export class UserListComponent implements OnInit {
 
   getAll() {
     this.spinner.show();
-    this.userService
-      .getAllUsers()
+    this.service
+      .getAll()
       .subscribe((success) => {
         this.users = success.rows;
         this.collection = success.count;
@@ -67,23 +66,6 @@ export class UserListComponent implements OnInit {
     this.getAll();
   }
 
-  open(u, content) {
-    this.selectedRow = u;
-    this.modalService.open(content, { centered: true });
-  }
+  
 
-  deleteUser(_id) {
-    this.userService.deleteUser(_id).subscribe(
-      (success) => {
-        this.getAll();
-        this.selectedRow = {};
-        this.modalService.dismissAll();
-        this.toastService.success(success.message);
-      },
-      (error) => {
-        this.selectedRow = {};
-        this.modalService.dismissAll();
-      }
-    );
-  }
 }

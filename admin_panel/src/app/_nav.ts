@@ -11,7 +11,7 @@ export const navItems: INavData[] = [
     },
   },
   {
-    name: 'Enerty',
+    name: 'User',
     title: true,
   },
   {
@@ -19,4 +19,21 @@ export const navItems: INavData[] = [
     url: '/users/users',
     icon: 'icon-user',
   },
+  {
+    name: 'Donate',
+    url: '/donate/list',
+    icon: 'icon-user',
+  },
+  {
+    name: 'Blood Request',
+    url: '/blood-request/list',
+    icon: 'icon-user',
+  },
+  {
+    name: 'Advertise',
+    url: '/advertise/list',
+    icon: 'icon-user',
+  },
+  
+  
 ];

@@ -12,7 +12,7 @@ import { StorageService } from 'src/app/core/services';
 })
 export class DefaultLayoutComponent {
   public sidebarMinimized = false;
-  public navItems = navItems; 
+  public navItems = navItems;
   params: any;
   userDetails: any = [];
   constructor(
@@ -25,7 +25,7 @@ export class DefaultLayoutComponent {
   }
 
   ngOnInit(): void {
-    this.userDetails = this.storageService.get('enerty');
+    this.userDetails = this.storageService.get('user');
   }
 
   viewProfile() {
