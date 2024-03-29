@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'lender',
+  appId: 'com.jankalyan.app',
+  appName: 'Jankalyan',
   webDir: 'www',
   server: {
     androidScheme: 'https'
@@ -10,3 +10,5 @@ const config: CapacitorConfig = {
 };
 
 export default config;
+
+

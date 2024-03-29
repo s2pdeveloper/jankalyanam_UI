@@ -1,0 +1,40 @@
+{
+    "appId": "com.jankalyan.app",
+    "appName": "Jankalyan",
+    "webDir": "www",
+    "bundledWebRuntime": false,
+    "plugins": {
+      "SplashScreen": {
+        "launchShowDuration": 1000,
+        "launchAutoHide": true,
+        "backgroundColor": "#ffffff",
+        "androidSplashResourceName": "splash",
+        "androidScaleType": "CENTER_CROP",
+        "showSpinner": true,
+        "splashFullScreen": true,
+        "splashImmersive": true
+      },
+      "LocalNotifications": {
+        "smallIcon": "ic_launcher_rounded",
+        "icon": "ic_launcher_rounded",
+        "iconColor": "#488AFF",
+        "sound": "beep.wav"
+      },
+      "PushNotifications": {
+        "smallIcon": "ic_launcher_rounded",
+        "icon": "ic_launcher_rounded",
+        "presentationOptions": [
+          "badge",
+          "sound",
+          "alert"
+        ]
+      },
+      "Keyboard": {
+        "resize": "body",
+        "resizeOnFullScreen": true
+      }
+    },
+    "server": {
+      "cleartext": true
+    }
+  }

@@ -64,11 +64,15 @@ export class DonatePage implements OnInit {
   async create() {
     
 
-    if (this.bloodDonateForm.invalid) {
-      console.log(this.bloodDonateForm.controls);
+    // if (this.bloodDonateForm.invalid) {
+    //   console.log(this.bloodDonateForm.controls);
 
-      this.toast.successToast('Please fill required fields!');
-      return;
+    //   this.toast.successToast('Please fill required fields!');
+    //   return;
+    // }
+    this.formValue={
+"illness":false,
+"mobileNo":66898787878
     }
     await this.spinner.showLoader();
     this.service.create(this.formValue).subscribe(

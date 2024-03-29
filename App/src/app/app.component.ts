@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { register } from 'swiper/element/bundle';
+import { PushNotificationService } from './core/services/push-notification.service'
 // register Swiper custom elements
 register();
 @Component({
@@ -7,7 +8,17 @@ register();
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
 
-  constructor() {}
+  constructor(private pushNotificationService:PushNotificationService) {
+    this.initializeApp()
+  }
+
+  ngOnInit(): void {
+      
+  }
+
+  initializeApp(){
+    this.pushNotificationService.registerForPushNotification();
+  }
 }

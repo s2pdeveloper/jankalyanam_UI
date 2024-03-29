@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   apiEndpoint: 'http://45.13.132.155:1996/',
-  base_url: 'http://45.13.132.155:1996/',
+  base_url: 'http://0.0.0.0:1996/',
 };
 
 /*

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1083999122829",
+    "project_id": "jankalyan-71215",
+    "storage_bucket": "jankalyan-71215.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1083999122829:android:35b65395094bae63d339c4",
+        "android_client_info": {
+          "package_name": "com.jankalyan.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_hHr3wG3g1cq6h_8-SBAnhTo2J1uYxNc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
