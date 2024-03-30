@@ -37,7 +37,7 @@ export class AppComponent implements OnInit{
       //   }
       //   this.router.navigate([/auth/login], { replaceUrl: true });
       // }
-      this.router.navigate([`/layout/home`], { replaceUrl: true });
+      this.router.navigate([`/layout/blood-donations`], { replaceUrl: true });
     } else {
       // this.router.navigate([/auth/onboarding]);
       this.router.navigate([`/auth/login`], { replaceUrl: true });
