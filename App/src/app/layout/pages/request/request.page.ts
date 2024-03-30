@@ -18,24 +18,25 @@ export class RequestPage implements OnInit {
   @ViewChild('selectableState') selectableState: any = IonicSelectableComponent;
   @ViewChild('selectableCity') selectableCity: any = IonicSelectableComponent;
   states: any = [];
-  cities: any = []; 
+  cities: any = [];
+  isFemale: boolean = false;
+  bloodGroup:any = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
   constructor(
     private service: BloodRequestService,
     private router: Router,
     private toast: ToastService,
     private spinner: LoaderService,
-    private modalController:ModalController, 
+    private modalController: ModalController,
     private restService: RestService
   ) {}
 
   ngOnInit() {
     this.states = this.restService.getStatesOfCountry('IN');
-
   }
 
   bloodRequestForm = new FormGroup({
-    name: new FormControl('', [Validators.required]),  
-    age: new FormControl('', [Validators.required]),  
+    name: new FormControl('', [Validators.required]),
+    age: new FormControl('', [Validators.required]),
     bloodRequireDate: new FormControl('', [Validators.required]),
     mobileNo: new FormControl('', [Validators.required]),
     location: new FormControl('', [Validators.required]),
@@ -45,12 +46,12 @@ export class RequestPage implements OnInit {
     state: new FormControl('', [Validators.required]),
     city: new FormControl('', [Validators.required]),
     gender: new FormControl('', [Validators.required]),
-    bloodGroup: new FormControl('', [Validators.required]),  
+    fatherOrHusband: new FormControl(''),
+    bloodGroup: new FormControl('', [Validators.required]),
   });
 
-  
-  get f(){
-    return this.bloodRequestForm.controls
+  get f() {
+    return this.bloodRequestForm.controls;
   }
 
   async create() {
@@ -75,7 +76,7 @@ export class RequestPage implements OnInit {
     );
   }
 
-  async openCalender(date:any ) {
+  async openCalender(date: any) {
     const modal: any = await this.modalController.create({
       component: CalenderComponent,
       cssClass: 'calender-model',
@@ -83,10 +84,10 @@ export class RequestPage implements OnInit {
         date,
       },
     });
-    
+
     await modal.present();
     await modal.onWillDismiss().then((data: any) => {
-    console.log('data---',data);
+      console.log('data---', data);
 
       if (data.data && data.data.date) {
         this.f['bloodRequireDate'].setValue(data.data.date);
@@ -105,20 +106,14 @@ export class RequestPage implements OnInit {
     this.f['city'].setValue(city.value.name);
   }
 
-  // {
-  //   "age": 0,
-  //   "bloodGroup": "string",
-  //   "bloodRequireDate": "2024-03-21T07:15:41.087Z",
-  //   "city": "string",
-  //   "hemoglobin": 0,
-  //   "illness": "string",
-  //   "location": "string",
-  //   "mobileNo": 0,
-  //   "name": "string",
-  //   "state": "string",
-  //   "units": 1
-  // }
-
-  //   location
-  // Father or husband
+  checkGender() {
+    console.log('this.f[].value',this.f['gender'].value);
+    
+    if (this.f['gender'].value == 'FEMALE') {
+      this.isFemale = true;
+    }else{
+      this.isFemale = false;
+    }
+  }
+ 
 }

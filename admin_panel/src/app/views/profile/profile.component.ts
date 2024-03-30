@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.userDetails = this.storageService.get('enerty');
+    this.userDetails = this.storageService.get('user');
   }
 
   edit() {

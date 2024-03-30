@@ -10,7 +10,7 @@ export class UserService {
   routes: any = {
     createPath: `user/register`,
     getByIdPath: (id) => `user/profile/${id}`,
-    getAllPath: `user/getAll`,
+    getAllPath :(params) =>`user/admins?pageNo=${params.page}&pageSize=${params.pageSize}&search=${params.search}`,
     updatePath: (id) => `user/update/${id}`,
     deletePath: (id) => `user/delete/${id}`,
   };
@@ -21,9 +21,9 @@ export class UserService {
       .post(this.routes.createPath, payload)
       .pipe(map((res: any) => res));
   }
-  getAllUsers(payload) {
+  getAllUsers(params) {
     return this.http
-      .get(this.routes.getAllPath, payload)
+      .get(this.routes.getAllPath(params))
       .pipe(map((res: any) => res));
   }
   updateUser(id, payload: IUser) {

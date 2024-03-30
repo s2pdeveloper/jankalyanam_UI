@@ -7,7 +7,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { StorageService } from 'src/app/core/services';
 import { UserService } from '../../../services/users/user.service';
-import {IUser} from '@interfaces/index';
+import { IUser } from '@interfaces/index';
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
@@ -17,9 +17,10 @@ export class UserListComponent implements OnInit {
   selectedRow: any = {};
   users: any = [];
   search: any = '';
-  page = 1;
-  pageSize = 25;
+  page = 0;
+  pageSize = 10;
   collection: number = 0;
+  pages: number = 1;
   userDetails: any = {};
 
   constructor(
@@ -32,23 +33,31 @@ export class UserListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.userDetails = this.storageService.get('enerty');
+    this.userDetails = this.storageService.get('user');
     this.getAll();
   }
 
   getAll() {
     this.spinner.show();
+    let params ={
+      page:this.page,
+      pageSize:this.pageSize,
+      search:this.search
+    }
     this.userService
-      .getAllUsers({
-        page: this.page,
-        pageSize: this.pageSize,
-        search: this.search,
-      })
+      .getAllUsers(params)
       .subscribe((success) => {
-        this.users = success.rows;
+        this.users = success.data;
         this.collection = success.count;
+        this.pages = success.pages;
         this.spinner.hide();
-      });
+      },
+      (error) =>{
+        this.spinner.hide();
+        this.toastService.error("Something Went Wrong!");
+        
+      }
+      );
   }
 
   navigateTo(path, _id) {
@@ -63,7 +72,7 @@ export class UserListComponent implements OnInit {
     this.search = title == 'clear' ? '' : this.search;
     this.getAll();
   }
-  
+
   onChangePage(pageNo) {
     if (pageNo > 0) {
       this.page = pageNo;
@@ -71,7 +80,6 @@ export class UserListComponent implements OnInit {
     this.getAll();
   }
 
- 
   open(u, content) {
     this.selectedRow = u;
     this.modalService.open(content, { centered: true });

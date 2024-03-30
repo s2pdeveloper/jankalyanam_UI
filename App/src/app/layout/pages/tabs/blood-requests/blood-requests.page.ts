@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ModalService } from "src/app/service/modal.service";
+import { DonationDetailsComponent } from 'src/app/shared/models/donation-details/donation-details.component';
+import { DonationHistoryComponent } from 'src/app/shared/models/donation-history/donation-history.component';
+import{ BloodrequestMylistComponent} from 'src/app/shared/models/bloodrequest-mylist/bloodrequest-mylist.component';
 @Component({
   selector: 'app-blood-requests',
   templateUrl: './blood-requests.page.html',
@@ -7,14 +10,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BloodRequestsPage implements OnInit {
 
-  constructor() { }
+  constructor(private modalService: ModalService) { }
 
   ngOnInit() {
   }
 
-  activeSegment = 'active';
+  activeSegment = 'list';
   currentTitle = 'Request';
-
+  
+  openModel(key: string) {
+    let data={}
+    switch (key) {
+      case "history":
+        this.modalService.openModal(DonationHistoryComponent, {data});
+        break;
+      case "details":
+        this.modalService.openModal(DonationDetailsComponent, { data });
+        break;
+        case "list":
+          this.modalService.openModal(BloodrequestMylistComponent, { data });
+          break;
+  
+      default:
+        break;
+    }
+  }
 
   //{
     //   "age": 0,

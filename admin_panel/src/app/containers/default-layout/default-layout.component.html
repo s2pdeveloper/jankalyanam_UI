@@ -6,19 +6,19 @@
     width: 30,
     height: 30,
     class: 'nav-logo mr-2',
-    alt: 'Enerty Logo'
+    alt: 'User Logo'
   }"
   [navbarBrandMinimized]="{
     src: '../../../assets/pdfImg/logo.jpeg',
     width: 10,
     height: 10,
-    alt: 'Enerty Logo'
+    alt: 'User Logo'
   }"
   [asideMenuToggler]="false"
   sidebarToggler="lg"
   [mobileAsideMenuToggler]="false"
 >
-<!-- src: '../../../assets/hlogo.png', -->
+  <!-- src: '../../../assets/hlogo.png', -->
   <ul class="nav navbar-nav d-md-down-none">
     <li class="nav-item px-3">
       <a class="nav-link" [routerLink]="['/dashboard']">Dashboard</a>
@@ -73,7 +73,9 @@
           class="dropdown-item"
           (click)="logout()"
           *ngIf="
-            userDetails.role == 'ADMIN' || userDetails.role == 'SUPER_ADMIN' || userDetails.role == 'CUSTOMER'
+            userDetails.role == 'ADMIN' ||
+            userDetails.role == 'SUPER_ADMIN' ||
+            userDetails.role == 'CUSTOMER'
           "
         >
           <i class="fa fa-lock"></i> Logout
@@ -106,9 +108,7 @@
   </main>
 </div>
 <app-footer>
-  <span
-    ><a href="https://s2pedutech.com/">Enerty</a> &copy; 2022</span
-  >
+  <span><a href="https://s2pedutech.com/">User</a> &copy; 2022</span>
 </app-footer>
 
 <!-- <ngx-spinner
@@ -121,6 +121,12 @@
   <p style="color: var(--primary)">Loading...</p>
 </ngx-spinner> -->
 
-<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-jelly-box" [fullScreen]="true">
-  <p style="color: white"> Loading... </p>
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="square-jelly-box"
+  [fullScreen]="true"
+>
+  <p style="color: white">Loading...</p>
 </ngx-spinner>

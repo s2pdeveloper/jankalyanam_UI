@@ -71,21 +71,21 @@
                 <span class="text-danger">*</span>
               </label>
               <input
-                formControlName="mobile"
-                type="tel"
-                id="mobile"
+                formControlName="mobileNo"
+                type="number"
+                
                 class="form-control"
                 minlength="10"
                 maxlength="10"
                 [ngClass]="{
                   'is-invalid':
-                    form.mobile.invalid &&
+                    form.mobileNo.invalid &&
                     submitted &&
-                    (form.mobile.touched || form.mobile.dirty)
+                    (form.mobileNo.touched || form.mobileNo.dirty)
                 }"
                 placeholder="Enter Mobile Number"
               />
-              <validation-messages [control]="form['mobile']">
+              <validation-messages [control]="form['mobileNo']">
               </validation-messages>
             </div>
           </div>

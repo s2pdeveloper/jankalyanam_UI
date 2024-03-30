@@ -41,6 +41,9 @@ export class LoginPage implements OnInit {
       async (success: any) => {
         await this.spinner.hideLoader();
         this.loginForm.reset();
+        let user ={
+          
+        }
         this.storage.set('user', success);
         this.router.navigate(['/layout/home']);
       },

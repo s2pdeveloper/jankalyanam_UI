@@ -80,6 +80,21 @@ export const routes: Routes = [
         loadChildren: () =>
           import('./layout/users/users.module').then((m) => m.UsersModule),
       },
+      {
+        path: 'donate',
+        loadChildren: () =>
+          import('./layout/donate/donate.module').then((m) => m.DonateModule),
+      },
+      {
+        path: 'blood-request',
+        loadChildren: () =>
+          import('./layout/blood-request/blood-request.module').then((m) => m.BloodRequestModule),
+      },
+      {
+        path: 'advertise',
+        loadChildren: () =>
+          import('./layout/advertise/advertise.module').then((m) => m.AdvertiseModule),
+      },
     ],
   },
 

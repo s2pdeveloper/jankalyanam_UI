@@ -1,8 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
-    <ion-buttons class="color-light" slot="start">
-      <ion-back-button>back</ion-back-button>
-    </ion-buttons>
+    <ion-back-button slot="start" default-href="/layout/home"></ion-back-button>
     <ion-title class="ion-justify-content-center">Donate</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -30,7 +28,7 @@
               <ion-label position="floating" lablePlacement="stacked"
                 >Age</ion-label
               >
-              <ion-input placeholder="Age" formControlName="age"></ion-input>
+              <ion-input placeholder="Age" label-placement="floating" formControlName="age"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -56,6 +54,22 @@
 
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
+            <ion-item fill="outline">
+              <ion-select
+                aria-label="Fruit"
+                interface="action-sheet"
+                placeholder="Select Blood Group"
+                formControlName="bloodGroup"
+              >
+              
+                <ion-select-option *ngFor="let item of bloodGroup" value="{{item}}">{{item}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col size="12">
             <ion-item fill="outline" class="input">
               <ion-label position="floating" lablePlacement="stacked"
                 >hemoglobin</ion-label
@@ -67,19 +81,7 @@
             </ion-item>
           </ion-col>
         </ion-row>
-        <ion-row class="ion-align-items-center ion-justify-content-center">
-          <ion-col size="12">
-            <ion-item fill="outline" class="input">
-              <ion-label position="floating" lablePlacement="stacked"
-                >illness</ion-label
-              >
-              <ion-input
-                placeholder="illness"
-                formControlName="illness"
-              ></ion-input>
-            </ion-item>
-          </ion-col>
-        </ion-row>
+
         <!-- <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
             <ion-item fill="outline" class="input">
@@ -151,27 +153,7 @@
             </ion-item>
           </ion-col>
         </ion-row>
-        <!-- <ion-row class="ion-align-items-center ion-justify-content-center">
-          <ion-col size="12">
-            <ion-item fill="outline" class="input">
-              <ion-label position="floating">state</ion-label>
-              <ion-input
-                placeholder="state"
-                formControlName="state"
-              ></ion-input>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-        <ion-row class="ion-align-items-center ion-justify-content-center">
-          <ion-col size="12">
-            <ion-item fill="outline" class="input">
-              <ion-label position="floating" lablePlacement="stacked"
-                >City</ion-label
-              >
-              <ion-input placeholder="City" formControlName="city"></ion-input>
-            </ion-item>
-          </ion-col>
-        </ion-row> -->
+        
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12" class="ion-justify-content-between">
             <ion-item fill="outline">
@@ -216,7 +198,7 @@
             </ion-item>
           </ion-col>
         </ion-row>
-        <ion-row class="ion-align-items-center ion-justify-content-center">
+        <!-- <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
             <ion-item fill="outline">
               <ion-select
@@ -236,7 +218,7 @@
               </ion-select>
             </ion-item>
           </ion-col>
-        </ion-row>
+        </ion-row> -->
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
             <ion-item fill="outline">
@@ -246,10 +228,20 @@
                 placeholder="Select Gender"
                 formControlName="gender"
               >
-                <ion-select-option value="male">Male</ion-select-option>
-                <ion-select-option value="female">Female</ion-select-option>
+                <ion-select-option value="MALE">Male</ion-select-option>
+                <ion-select-option value="FEMALE">Female</ion-select-option>
               </ion-select>
             </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col size="12">
+            
+              <ion-checkbox formControlName="illness" justify="start"
+                >Do you have any type of illness</ion-checkbox
+              >
+            
           </ion-col>
         </ion-row>
         <ion-row class="ion-align-items-center ion-justify-content-center">

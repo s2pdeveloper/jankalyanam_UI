@@ -18,11 +18,11 @@ export class UserFormComponent implements OnInit {
     _id: new FormControl(''),
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
-    email: new FormControl('', [
-      Validators.required,
-      this.validationService.emailValidator,
-    ]),
-    mobile: new FormControl('', [Validators.required]),
+    // email: new FormControl('', [
+    //   Validators.required,
+    //   this.validationService.emailValidator,
+    // ]),
+    mobileNo: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
     role: new FormControl({ value: 'ADMIN', disabled: true }, [
       Validators.required,

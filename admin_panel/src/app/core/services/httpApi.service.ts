@@ -27,27 +27,27 @@ export class ApiService {
     params: HttpParams = new HttpParams()
   ): Observable<any> {
     return this.httpClient.get(path, { params }).pipe(
-      map((res: any) => res.result),
+      map((res: any) => res),
       catchError(this.handleErrorObservable)
     );
   }
 
   public put(path: string, body: object = {}): Observable<any> {
     return this.httpClient.put(path, body).pipe(
-      map((res: any) => res.result),
+      map((res: any) => res),
       catchError(this.handleErrorObservable)
     );
   }
   
   public post(path: string, body: object = {}): Observable<any> {
     return this.httpClient.post(path, body).pipe(
-      map((res: any) => res.result),
+      map((res: any) => res),
       catchError(this.handleErrorObservable)
     );
   }
 
   public delete(path: string): Observable<any> {
-    return this.httpClient.delete(path).pipe(map((res: any) => res.result),catchError(this.handleErrorObservable));
+    return this.httpClient.delete(path).pipe(map((res: any) => res),catchError(this.handleErrorObservable));
   }
 
   public getFile(path: string) {

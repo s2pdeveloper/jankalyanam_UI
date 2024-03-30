@@ -1,0 +1,49 @@
+ion-card {
+  border-radius: 15px;
+  box-shadow: 2px 4px 9px #7e2212;
+}
+
+.drop {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  ion-card-title {
+    position: absolute;
+    top: 50%;
+    left: 43%;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    transform: translateY(-50%);
+  }
+}
+.name {
+  font-weight: 800;
+}
+.btn-col {
+  display: flex;
+  align-items: end;
+  .detail-btn {
+    font-size: 0.5rem;
+    background-color: #c56959 !important;
+  }
+}
+
+.donar-container {
+  display: flex;
+ 
+}
+.donar{
+  padding-left: 10px;
+}
+i{
+  color: #c56959 !important;
+  height: 10px !important;
+}
+
+.status{
+  font-weight: 700;
+  color: #75c752;
+
+}
