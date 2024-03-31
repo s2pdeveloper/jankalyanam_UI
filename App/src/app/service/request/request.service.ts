@@ -10,6 +10,8 @@ export class BloodRequestService {
   routes: any = {
     create: 'blood-request',
     getAttenderListPath: (params: any) => `blood-request/attender-list?pageNo=${params.pageNo}&pageSize=${params.pageSize}&sortBy=${params.sortBy}&search=${params.search}&type=${params.type}`,
+    getAdminListPath: (params: any) => `blood-request/admin-list?pageNo=${params.pageNo}&pageSize=${params.pageSize}&sortBy=${params.sortBy}&search=${params.search}&type=${params.type}`,
+    
   };
   constructor(private http: ApiService) {}
 
@@ -19,5 +21,10 @@ export class BloodRequestService {
   getAllAttenderList(params:any,type: any) {
     params.type = type;
     return this.http.get(this.routes.getAttenderListPath(params));
+  }
+
+  getAllAdminList(params:any,type: any) {
+  params.type = type;
+  return this.http.get(this.routes.getAdminListPath(params));
   }
 }

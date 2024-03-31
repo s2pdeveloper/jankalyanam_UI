@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 @Injectable()
 export class ApiPrefixInterceptor implements HttpInterceptor {
   constructor(
-    private storage: StorageService,
+    private localStorage: StorageService,
     private router: Router,
     private toast: ToastService
   ) {}
@@ -24,7 +24,7 @@ export class ApiPrefixInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    let user = this.storage.get('user');
+    let user = this.localStorage.get('user');
     if (user) {
       request = request.clone({
         url: environment.apiEndpoint + request.url,
@@ -42,10 +42,13 @@ export class ApiPrefixInterceptor implements HttpInterceptor {
     }
     return next.handle(request).pipe(
       catchError((errorResponse) => {
+        console.log("errorResponse----",errorResponse);
+        
         if (errorResponse instanceof HttpErrorResponse) {
           if (errorResponse.status == 401) {
-            this.router.navigate(['/login']);
+            this.router.navigate(['/auth/login']);
             this.toast.errorToast('Unauthorized request');
+            this.localStorage.remove;
           }
         }
         return throwError(() => errorResponse.error);

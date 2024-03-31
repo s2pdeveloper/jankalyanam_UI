@@ -2,8 +2,11 @@ import { Component, Input, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { ModalController } from "@ionic/angular";
+import { LoaderService } from "src/app/core/services/loader.service";
 import { StorageService } from "src/app/core/services/local-storage.service";
+import { ToastService } from "src/app/core/services/toast.service";
 import { CalenderComponent } from "src/app/layout/components/calender/calender.component";
+import { BloodDonationService } from "src/app/service/donation/donation.service";
 
 @Component({
   selector: "app-donation-details",
@@ -11,18 +14,23 @@ import { CalenderComponent } from "src/app/layout/components/calender/calender.c
   styleUrls: ["./donation-details.component.scss"],
 })
 export class DonationDetailsComponent implements OnInit {
-  @Input() data :any;
-  user:any={};
+  @Input() data: any;
+  user: any = {};
+  edit: boolean = false;
   constructor(
     private router: Router,
     private modalController: ModalController,
     private localStorage: StorageService,
-  ) {}
+    private service: BloodDonationService,
+    private toast: ToastService,
+    private spinner: LoaderService,
+  ) { }
 
   ngOnInit() {
     this.user = this.localStorage.get("user");
-    console.log("data----",this.data);
-    
+    console.log("data----", this.data);
+    this.bloodDonateForm.controls.donationDate.setValue(this.data.donationDate);
+
   }
   bloodDonateForm = new FormGroup({
     location: new FormControl('', [Validators.required]),
@@ -30,11 +38,11 @@ export class DonationDetailsComponent implements OnInit {
     bloodBankName: new FormControl('', [Validators.required]),
     donationDate: new FormControl('', [Validators.required]),
   });
-   get f(){
+  get f() {
     return this.bloodDonateForm.controls;
-   }
-  
-    dismiss() {
+  }
+
+  dismiss() {
     this.modalController.dismiss();
   }
 
@@ -56,4 +64,49 @@ export class DonationDetailsComponent implements OnInit {
       }
     });
   }
+
+  async allocate() {
+
+    if (this.bloodDonateForm.invalid) {
+      console.log(this.bloodDonateForm.controls);
+
+      this.toast.successToast('Please fill required fields!');
+      return;
+    }
+    this.edit = !this.edit;
+    await this.spinner.showLoader();
+    this.bloodDonateForm.value.status = 'ALLOCATED';
+    this.data.location = this.bloodDonateForm.value.location;
+    this.data.bloodBankName = this.bloodDonateForm.value.bloodBankName;
+    this.data.donationDate =this.bloodDonateForm.value.donationDate;
+    this.data.status = 'ALLOCATED';
+    this.service.allocate(this.data.id, this.bloodDonateForm.value).subscribe(async (success) => {
+      this.toast.successToast(success.message);
+      this.bloodDonateForm.reset();
+      await this.spinner.hideLoader();
+    }, async (error: any) => {
+      await this.spinner.hideLoader();
+      this.toast.errorToast(error.error);
+    })
+  }
+
+  // status update by attender
+  async statusUpdate(status:any) {
+
+    await this.spinner.showLoader();
+    this.data.status = status;
+    this.service.statusUpdate(this.data.id,this.data.status).subscribe(async (success) => {
+      this.toast.successToast(success.message);
+      await this.spinner.hideLoader();
+    }, async (error: any) => {
+      await this.spinner.hideLoader();
+      this.toast.errorToast(error.error);
+    })
+  }
+
+  // handleRefresh(event:any){
+
+  // }
+
+
 }

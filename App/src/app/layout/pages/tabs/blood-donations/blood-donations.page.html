@@ -8,7 +8,7 @@
 <ion-content [fullscreen]="true">
   <div [ngSwitch]="currentTitle">
     <ion-item class="mt-2" lines="none" *ngSwitchCase="'history'">
-      <ion-segment  [(ngModel)]="activeSegment" [scrollable]="true">
+      <ion-segment  [(ngModel)]="activeSegment" [scrollable]="true" (ionChange)="segmentChange($event)">
         <ion-segment-button value="latest">
           <ion-label class="ion-text-capitalize">Latest</ion-label>
         </ion-segment-button>
@@ -91,4 +91,7 @@
       </div>
     </div>
   </div>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

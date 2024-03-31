@@ -10,7 +10,9 @@ export class BloodDonationService {
     create: `donate`,
     getAttenderListPath: (params: any) => `donate/attender-list?pageNo=${params.pageNo}&pageSize=${params.pageSize}&sortBy=${params.sortBy}&search=${params.search}&type=${params.type}`,
     getAdminListPath: (params: any) => `donate/admin-list?pageNo=${params.pageNo}&pageSize=${params.pageSize}&sortBy=${params.sortBy}&search=${params.search}&type=${params.type}`,
-
+    allocatePath:(id:any) => `donate/update/${id}`,
+    statusUpdatePath:(id:any,status:any) => `donate/updateStatus?id=${id}&status=${status}`
+    
   };
   constructor(private http: ApiService) {}
 
@@ -26,4 +28,12 @@ export class BloodDonationService {
   params.type = type;
   return this.http.get(this.routes.getAdminListPath(params));
   }
+
+  allocate(id:any,body:any){
+    return this.http.put(this.routes.allocatePath(id),body);
+  }
+
+  statusUpdate(id:any,status:any){
+    return this.http.put(this.routes.statusUpdatePath(id,status));
+  }
 }
