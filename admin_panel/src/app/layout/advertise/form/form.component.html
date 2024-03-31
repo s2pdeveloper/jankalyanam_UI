@@ -1,1 +1,154 @@
-<p>form works!</p>
+<div class="container-fluid animated fadeIn">
+    <div class="card">
+      <div class="card-header">
+        <div class="row justify-content-between align-items-center">
+          <div class="col-auto">
+            <h3 class="mb-0">Admin Form</h3>
+          </div>
+          <div class="col-auto">
+            <button type="button" class="btn btn-danger" (click)="goBack()">
+              <i class="fa fa-arrow-left me-1" aria-hidden="true"></i>
+              Back
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="userForm" class="form-horizontal">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label class="form-label">
+                  First Name
+                  <span class="text-danger">*</span>
+                </label>
+                <input
+                  formControlName="firstName"
+                  type="text"
+                  class="form-control"
+                  [ngClass]="{
+                    'is-invalid':
+                      form.firstName.invalid &&
+                      submitted &&
+                      (form.firstName.touched || form.firstName.dirty)
+                  }"
+                  placeholder="Enter First Name"
+                />
+                <validation-messages [control]="form['firstName']">
+                </validation-messages>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label class="form-label">
+                  Last Name
+                  <span class="text-danger">*</span>
+                </label>
+                <input
+                  formControlName="lastName"
+                  type="text"
+                  class="form-control"
+                  [ngClass]="{
+                    'is-invalid':
+                      form.lastName.invalid &&
+                      submitted &&
+                      form.lastName.touched &&
+                      form.lastName.dirty
+                  }"
+                  placeholder="Enter Last Name"
+                />
+                <validation-messages [control]="form['lastName']">
+                </validation-messages>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label class="form-label">
+                  Mobile Number
+                  <span class="text-danger">*</span>
+                </label>
+                <input
+                  formControlName="mobileNo"
+                  type="number"
+
+                  class="form-control"
+                  minlength="10"
+                  maxlength="10"
+                  [ngClass]="{
+                    'is-invalid':
+                      form.mobileNo.invalid &&
+                      submitted &&
+                      (form.mobileNo.touched || form.mobileNo.dirty)
+                  }"
+                  placeholder="Enter Mobile Number"
+                />
+                <validation-messages [control]="form['mobileNo']">
+                </validation-messages>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label class="form-label">
+                  Password
+                  <span class="text-danger">*</span>
+                </label>
+                <input
+                  formControlName="password"
+                  type="password"
+                  class="form-control"
+                  [ngClass]="{
+                    'is-invalid':
+                      form.password.invalid &&
+                      submitted &&
+                      (form.password.touched || form.password.dirty)
+                  }"
+                  placeholder="Enter Password"
+                />
+                <validation-messages [control]="form['password']">
+                </validation-messages>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label class="form-label"
+                  >Role<span class="text-danger">*</span></label
+                >
+                <select
+                  formControlName="role"
+                  placeholder="Select Role"
+                  class="form-select"
+                  [ngClass]="{
+                    'is-invalid':
+                      form.role.invalid &&
+                      submitted &&
+                      (form.role.touched || form.role.dirty)
+                  }"
+                >
+                  <option selected disabled [value]="null">Select Role</option>
+                  <option value="ADMIN">ADMIN</option>
+                  <option value="SUPER_ADMIN">SUPER_ADMIN</option>
+                </select>
+                <validation-messages [control]="form['role']">
+                </validation-messages>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="text-center">
+          <button
+            (click)="submit()"
+            type="submit"
+            class="btn btn-success text-white"
+          >
+            {{ form._id.value ? "Update" : "Save" }}
+          </button>
+          <button (click)="goBack()" class="btn btn-danger">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
