@@ -1,13 +1,13 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
 
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from "@ionic/angular";
 
-import { LayoutPageRoutingModule } from './layout-routing.module';
+import { LayoutPageRoutingModule } from "./layout-routing.module";
 
-import { LayoutPage } from './layout.page';
-import { MenuPageModule } from './pages/menu/menu.module';
+import { LayoutPage } from "./layout.page";
+import { MenuPageModule } from "./pages/menu/menu.module";
 
 @NgModule({
   imports: [
@@ -15,8 +15,8 @@ import { MenuPageModule } from './pages/menu/menu.module';
     FormsModule,
     IonicModule,
     LayoutPageRoutingModule,
-    MenuPageModule
+    MenuPageModule,
   ],
-  declarations: [LayoutPage]
+  declarations: [LayoutPage],
 })
 export class LayoutPageModule {}

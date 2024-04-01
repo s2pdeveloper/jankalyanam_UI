@@ -39,6 +39,5 @@ export class LoaderService {
       this.loader = null;
       console.log('hideLoader');
     }
-    console.log('hideLoader', this.loader);
   }
 }

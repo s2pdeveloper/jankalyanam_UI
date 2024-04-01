@@ -7,12 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuPage implements OnInit {
   public appPages = [
-    { title: 'Inbox', url: '/folder/inbox', icon: 'mail' },
-    { title: 'Outbox', url: '/folder/outbox', icon: 'paper-plane' },
-    { title: 'Favorites', url: '/folder/favorites', icon: 'heart' },
-    { title: 'Archived', url: '/folder/archived', icon: 'archive' },
-    { title: 'Trash', url: '/folder/trash', icon: 'trash' },
-    { title: 'Spam', url: '/folder/spam', icon: 'warning' },
+    { title: 'Profile', url: '/folder/inbox', icon: 'person-circle' },
+    { title: 'About', url: '/folder/outbox', icon: 'information-circle' },
+    { title: 'Language', url: '/folder/favorites', icon: 'language' },
+    { title: 'Change Password', url: '/folder/archived', icon: 'key' },
+    { title: 'Logout', url: '/auth/login', icon: 'log-out' },
+    
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
   constructor() { }

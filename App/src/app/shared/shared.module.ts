@@ -5,8 +5,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DonationDetailsComponent } from './models/donation-details/donation-details.component';
 import { DonationHistoryComponent } from './models/donation-history/donation-history.component';
 import { BloodrequestMylistComponent } from './models/bloodrequest-mylist/bloodrequest-mylist.component';
+import { AdminRequestActiveComponent } from './models/admin-request-active/admin-request-active.component';
+import { AdminRequestMylistComponent } from './models/admin-request-mylist/admin-request-mylist.component';
 
-const models:any[]=[DonationDetailsComponent,DonationHistoryComponent,BloodrequestMylistComponent];
+const models:any[]=[DonationDetailsComponent,DonationHistoryComponent,BloodrequestMylistComponent,AdminRequestActiveComponent,AdminRequestMylistComponent];
 const pipes:any[]=[]
 
 @NgModule({
