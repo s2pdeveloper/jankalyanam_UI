@@ -15,46 +15,35 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 justify-content-end">
           <li class="nav-item">
-            <a class="nav-link" href="#home" (click)="toggleCollapse()" id="home1"
+            <a class="nav-link" href="#home" (click)="toggleCollapse()"
               >Home</a
             >
           </li>
           <li class="nav-item">
-            <a
-              class="nav-link"
-              href="#about"
-              (click)="toggleCollapse()"
-              id="about1"
+            <a class="nav-link" (click)="routeTo('about')" (click)="toggleCollapse()"
               >About</a
             >
           </li>
   
          
           <li class="nav-item">
-            <a
-              class="nav-link"
-              href="#gallery"
-              (click)="toggleCollapse()"
-              id="about1"
+            <a class="nav-link" (click)="routeTo('gallery')" (click)="toggleCollapse()"
               >Gallery</a
             >
           </li>
          
           <li class="nav-item">
-            <a
-              class="nav-link"
-              href="#skills"
-              (click)="toggleCollapse()"
-              id="interest1"
-              >Services</a
+            <a class="nav-link"  (click)="navigateTo('/terms')" (click)="toggleCollapse()" 
+              >Terms & Conditions</a
             >
           </li>
           <li class="nav-item">
-            <a
-              class="nav-link"
-              href="#contacts"
-              (click)="toggleCollapse()"
-              id="contact1"
+            <a class="nav-link" (click)="navigateTo('/privacy')" (click)="toggleCollapse()"
+              >Privacy</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contacts" (click)="toggleCollapse()" id="contact1"
               >Contact</a
             >
           </li>

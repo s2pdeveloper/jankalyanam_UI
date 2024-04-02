@@ -1,0 +1,46 @@
+// Footer
+.container-fluid {
+  color: #ccc;
+//   background-color: #002b51;
+  background-color: #010101;
+  .container {
+    padding: 20px;
+    .head {
+      padding-bottom: 10px;
+      font-family: Champion Gothic;
+      font-size: 40px;
+    }
+    .subhead {
+      padding-bottom: 10px;
+      font-family: Helvetica;
+      font-size: 18px;
+    }
+    .midhead {
+      padding-bottom: 10px;
+      font-family: Helvetica;
+      font-size: 15px;
+    }
+  }
+  .horizontal-line {
+    background-color: #454242;
+    height: 2px;
+  }
+  .bottom {
+    text-align: center;
+    font-family: Helvetica;
+    .media-icon {
+      text-decoration: none;
+      color: #fff;
+      font-size: 24px;
+      margin: 0 10px;
+      :hover {
+        color: #f2221e;
+      }
+    }
+  }
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
