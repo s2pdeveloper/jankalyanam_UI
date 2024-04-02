@@ -6,7 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { StorageService } from 'src/app/core/services';
-import { BloodRequestService } from '../../../services/blood-request/donate.service';
+import { BloodRequestService } from '../../../services/blood-request/blood-request.service';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -20,6 +20,9 @@ export class ListComponent implements OnInit {
   pageSize = 25;
   collection: number = 0;
   userDetails: any = {};
+  startDate: any = '';
+  endDate: any = '';
+  status: any = '';
 
   constructor(
     private service: BloodRequestService,
@@ -38,9 +41,16 @@ export class ListComponent implements OnInit {
   getAll() {
     this.spinner.show();
     this.service
-      .getAll()
+      .getAll({
+        pageNo: this.page - 1,
+        pageSize: this.pageSize,
+        type: 'HISTORY',
+        startDate: this.startDate,
+        endDate: this.endDate,
+        status: this.status,
+      })
       .subscribe((success) => {
-        this.users = success.rows;
+        this.users = success.data;
         this.collection = success.count;
         this.spinner.hide();
       });
@@ -66,6 +76,17 @@ export class ListComponent implements OnInit {
     this.getAll();
   }
 
+  onDateChange() {
+    if (this.startDate == '') {
+      this.toastService.warning('Please select start date');
+      return;
+    }
+    this.getAll();
+  }
+
+  onStatusChange() {
+    this.getAll();
+  }
   
 
 }

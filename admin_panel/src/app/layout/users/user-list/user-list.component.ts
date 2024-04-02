@@ -17,10 +17,10 @@ export class UserListComponent implements OnInit {
   selectedRow: any = {};
   users: any = [];
   search: any = '';
-  page = 0;
+  page =1;
   pageSize = 10;
   collection: number = 0;
-  pages: number = 1;
+  // pages: number = 1;
   userDetails: any = {};
 
   constructor(
@@ -40,7 +40,7 @@ export class UserListComponent implements OnInit {
   getAll() {
     this.spinner.show();
     let params ={
-      page:this.page,
+      page:this.page-1,
       pageSize:this.pageSize,
       search:this.search
     }
@@ -48,8 +48,7 @@ export class UserListComponent implements OnInit {
       .getAllUsers(params)
       .subscribe((success) => {
         this.users = success.data;
-        this.collection = success.count;
-        this.pages = success.pages;
+        this.collection = success.count; 
         this.spinner.hide();
       },
       (error) =>{
@@ -60,9 +59,9 @@ export class UserListComponent implements OnInit {
       );
   }
 
-  navigateTo(path, _id) {
-    if (_id) {
-      this.router.navigate([path], { queryParams: { _id } });
+  navigateTo(path, id) {
+    if (id) {
+      this.router.navigate([path], { queryParams: { id } });
     } else {
       this.router.navigate([path]);
     }
@@ -85,8 +84,8 @@ export class UserListComponent implements OnInit {
     this.modalService.open(content, { centered: true });
   }
 
-  deleteUser(_id) {
-    this.userService.deleteUser(_id).subscribe(
+  deleteUser(id) {
+    this.userService.deleteUser(id).subscribe(
       (success) => {
         this.getAll();
         this.selectedRow = {};

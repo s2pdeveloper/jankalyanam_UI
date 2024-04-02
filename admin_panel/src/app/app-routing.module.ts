@@ -95,6 +95,11 @@ export const routes: Routes = [
         loadChildren: () =>
           import('./layout/advertise/advertise.module').then((m) => m.AdvertiseModule),
       },
+      {
+        path: 'attender',
+        loadChildren: () =>
+          import('./layout/attender/attender.module').then((m) => m.AttenderModule),
+      },
     ],
   },
 

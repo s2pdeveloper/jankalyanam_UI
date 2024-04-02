@@ -9,10 +9,12 @@ import { IUser } from 'src/app/interfaces/user';
 export class UserService {
   routes: any = {
     createPath: `user/register`,
-    getByIdPath: (id) => `user/profile/${id}`,
+    getByIdPath: (id) => `user/${id}`,
     getAllPath :(params) =>`user/admins?pageNo=${params.page}&pageSize=${params.pageSize}&search=${params.search}`,
-    updatePath: (id) => `user/update/${id}`,
-    deletePath: (id) => `user/delete/${id}`,
+    updatePath: (id) => `user/${id}`,
+    deletePath: (id) => `user/${id}`, 
+    getAttenderPath :(params) =>`user/attenders?pageNo=${params.page}&pageSize=${params.pageSize}&search=${params.search}`,
+   
   };
   constructor(private http: ApiService) {}
 
@@ -39,6 +41,11 @@ export class UserService {
   deleteUser(id) {
     return this.http
       .delete(this.routes.deletePath(id))
+      .pipe(map((res: any) => res));
+  }
+  getAllAttenderUsers(params) {
+    return this.http
+      .get(this.routes.getAttenderPath(params))
       .pipe(map((res: any) => res));
   }
 }

@@ -5,11 +5,11 @@ import { ApiService } from 'src/app/core/services';
 })
 export class DonateService {
   routes: any = {
-    getAllDonate: `/donate/admin-list`,
+    getAllDonate: `donate/all`,
   };
 
   constructor(private http: ApiService) {}
-  getAll() {
-    return this.http.get(this.routes.getAllDonate);
+  getAll(payload:any) {
+    return this.http.get(this.routes.getAllDonate,payload);
   }
 }
