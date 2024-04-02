@@ -9,6 +9,8 @@ import { StorageService } from 'src/app/core/services/local-storage.service';
 import { LoaderService } from 'src/app/core/services/loader.service';
 import { ToastService } from 'src/app/core/services/toast.service';
 import { forkJoin } from 'rxjs/internal/observable/forkJoin';
+import { AdminRequestMylistComponent } from 'src/app/shared/models/admin-request-mylist/admin-request-mylist.component';
+import { AdminRequestActiveComponent } from 'src/app/shared/models/admin-request-active/admin-request-active.component';
 @Component({
   selector: 'app-blood-requests',
   templateUrl: './blood-requests.page.html',
@@ -90,12 +92,18 @@ export class BloodRequestsPage implements OnInit {
       case "history":
         this.modalService.openModal(DonationHistoryComponent, {data});
         break;
-      case "details":
-        this.modalService.openModal(DonationDetailsComponent, { data });
-        break;
-        case "list":
-          this.modalService.openModal(BloodrequestMylistComponent, { data });
-          break;
+      // case "details":
+      //   this.modalService.openModal(DonationDetailsComponent, { data });
+      //   break;
+      //   case "list":
+      //     this.modalService.openModal(BloodrequestMylistComponent, { data });
+      //     break;
+          case "list":
+            this.modalService.openModal(AdminRequestMylistComponent, {data});
+            break;
+          case "details":
+            this.modalService.openModal(AdminRequestActiveComponent, { data });
+            break;
   
       default:
         break;

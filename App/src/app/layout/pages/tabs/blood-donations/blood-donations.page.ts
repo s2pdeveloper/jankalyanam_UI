@@ -40,11 +40,11 @@ export class BloodDonationsPage implements OnInit {
     this.user = this.localStorage.get("user");
     if (this.user.role == "ATTENDER") {
       this.getAllAttenderList("ACTIVE");
-      // this.getAllAttenderList("HISTORY");
+      this.getAllAttenderList("HISTORY");
     }
     else if (this.user.role == "ADMIN") {
       this.getAllAdminList("ACTIVE");
-      // this.getAllAdminList("HISTORY");
+      this.getAllAdminList("HISTORY");
     }
 
   }
@@ -54,46 +54,50 @@ export class BloodDonationsPage implements OnInit {
   }
 
 
-  async getAllAttenderList(status:any,event=null){
-    await this.spinner.showLoader();
-    let params ={
-      pageNo:this.page,
-      pageSize:this.pageSize,
-      search: this.search,
-      sortBy: this.sortBy
+  async getAllAttenderList(status: any, event = null) {
+    try {
+        // await this.spinner.showLoader();
+        let params = {
+            pageNo: this.page,
+            pageSize: this.pageSize,
+            search: this.search,
+            sortBy: this.sortBy
+        };
+
+        this.service.getAllAttenderList(params, status)
+            .subscribe(async (res) => {
+                if (status === 'HISTORY') {
+                    if (event) {
+                        this.historyTabDetails = [...this.historyTabDetails, ...res.data];
+                    } else {
+                        this.historyTabDetails = res.data;
+                    }
+                } else {
+                    if (event) {
+                        this.latestTabDetails = [...this.latestTabDetails, ...res.data];
+                    } else {
+                        this.latestTabDetails = res.data;
+                        console.log("this.latestTabDetails", this.latestTabDetails);
+                    }
+                }
+                this.count = res.count;
+
+                if (res?.data.length === 0 && event) {
+                    event.target.disabled = true;
+                }
+
+                // await this.spinner.hideLoader();
+            }, async (error) => {
+                await this.spinner.hideLoader();
+                this.toast.errorToast("Something went wrong!");
+            });
+    } catch (error) {
+        console.error("Error occurred:", error);
+        await this.spinner.hideLoader(); // Make sure to hide the loader in case of an error
+        this.toast.errorToast("Something went wrong!");
     }
-    this.service.getAllAttenderList(params,status)
-    .subscribe(async (res) => {
-      if(status == 'HISTORY'){
-        if (event) {
-          this.historyTabDetails = [...this.historyTabDetails, ...res]
-        } else {
-          this.historyTabDetails = res;
-        }
-      }else{
-        if (event) {
-          this.latestTabDetails = [...this.latestTabDetails, ...res]
-        } else {
-          this.latestTabDetails = res;
-          this.latestTabDetails = [...this.latestTabDetails, ...res]
-          this.latestTabDetails = [...this.latestTabDetails, ...res]
-          this.latestTabDetails = [...this.latestTabDetails, ...res]
-          console.log("this.latestTabDetails",this.latestTabDetails);
-          
-        }
-      }
-      // this.count = res.count;
-    
-      if (res?.data.length === 0 && event) {
-        event.target.disabled = true;
-      }
-    
-      await this.spinner.hideLoader();
-    },async (error) =>{
-      await this.spinner.hideLoader();
-      this.toast.errorToast("Something went wrong!");
-    });
-  }
+}
+
   async getAllAdminList(status:any,event=null){
     await this.spinner.showLoader();
     let params ={
@@ -106,27 +110,24 @@ export class BloodDonationsPage implements OnInit {
     .subscribe(async (res) => {
       if(status == 'HISTORY'){
         if (event) {
-          this.historyTabDetails = [...this.historyTabDetails, ...res]
+          this.historyTabDetails = [...this.historyTabDetails, ...res.data]
         } else {
-          this.historyTabDetails = res;
+          this.historyTabDetails = res.data;
         }
       }else{
         if (event) {
-          this.latestTabDetails = [...this.latestTabDetails, ...res]
+          this.latestTabDetails = [...this.latestTabDetails, ...res.data]
         } else {
-          this.latestTabDetails = res;
-          this.latestTabDetails = [...this.latestTabDetails, ...res]
-          this.latestTabDetails = [...this.latestTabDetails, ...res]
-          this.latestTabDetails = [...this.latestTabDetails, ...res]
+          this.latestTabDetails = res.data;
           console.log("this.latestTabDetails",this.latestTabDetails);
           
         }
       }
-      // this.count = res.count;
+      this.count = res.count;
     
-      // if (res?.data.length === 0 && event) {
-      //   event.target.disabled = true;
-      // }
+      if (res?.data.length === 0 && event) {
+        event.target.disabled = true;
+      }
     
       await this.spinner.hideLoader();
     },async (error) =>{
@@ -177,14 +178,25 @@ export class BloodDonationsPage implements OnInit {
         event.target.complete();
         return
       }
-      this.getAllAttenderList('ACTIVE',event)
+      if(this.user.role == 'ADMIN'){
+        this.getAllAdminList('ACTIVE',event)
+      }else{
+        this.getAllAttenderList('ACTIVE',event)
+      }
+
 
     }else{
       if (this.count == this.historyTabDetails.length) {
         event.target.complete();
         return
       }
-      this.getAllAttenderList('HISTORY',event)
+
+      if(this.user.role == 'ADMIN'){
+        this.getAllAdminList('HISTORY',event)
+      }else{
+        this.getAllAttenderList('HISTORY',event)
+      }
+     
     }
     this.page++;
     event.target.complete();
@@ -196,10 +208,20 @@ export class BloodDonationsPage implements OnInit {
     this.page=1;
 
     if(this.activeSegment=='latest'){
-      
-      this.getAllAttenderList('ACTIVE')
+
+      if(this.user.role == 'ADMIN'){
+        this.getAllAdminList('ACTIVE');
+      }else{
+        this.getAllAttenderList('ACTIVE');
+      }
+    
     }else{
-      this.getAllAttenderList('HISTORY')
+      if(this.user.role == 'ADMIN'){
+        this.getAllAdminList('HISTORY');
+      }else{
+        this.getAllAttenderList('HISTORY');
+      }
+     
     }
 
 

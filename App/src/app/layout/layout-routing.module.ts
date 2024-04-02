@@ -40,10 +40,16 @@ const routes: Routes = [
       {
         path: 'blood-requests',
         loadChildren: () => import('./pages/tabs/blood-requests/blood-requests.module').then( m => m.BloodRequestsPageModule)
-      }
+      },
+      {
+        path: 'admin-request',
+        loadChildren: () => import('./pages/tabs/admin-request/admin-request.module').then( m => m.AdminRequestPageModule)
+      },
 
     ]
   },
+  
+
   
 
 
