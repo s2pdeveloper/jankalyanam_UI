@@ -5,11 +5,11 @@ import { ApiService } from 'src/app/core/services';
 })
 export class BloodRequestService {
   routes: any = {
-    getAllBloodRequest: `/blood-request/admin-list`,
+    getAllBloodRequest: `blood-request/all`,
   };
 
   constructor(private http: ApiService) {}
-  getAll() {
-    return this.http.get(this.routes.getAllBloodRequest);
+  getAll(payload:any) {
+    return this.http.get(this.routes.getAllBloodRequest,payload);
   }
 }

@@ -8,11 +8,11 @@ export class AdvertiseService {
 
   routes: any = {
 
-    createPath: `user/register`,
-    getByIdPath: (id) => `user/profile/${id}`,
-    getAllPath: (params) => `user/admins?pageNo=${params.page}&pageSize=${params.pageSize}&search=${params.search}`,
-    updatePath: (id) => `user/update/${id}`,
-    deletePath: (id) => `user/delete/${id}`,
+    createPath: `advertise`,
+    getByIdPath: (id) => `advertise/${id}`,
+    getAllPath: (params) => `advertise/all?pageNo=${params.page}&pageSize=${params.pageSize}&search=${params.search}`,
+    updatePath: (id) => `advertise/update/${id}`,
+    deletePath: (id) => `advertise/delete/${id}`,
   };
 
   constructor(private http: ApiService) { }
