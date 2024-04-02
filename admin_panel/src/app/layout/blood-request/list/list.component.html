@@ -11,7 +11,9 @@
   
       <div class="card-body">
         <div class="row mb-2">
-          <div class="col-md-5">
+          <div class="col-md-3">
+          <label for="" class="form-label">Search</label>
+
             <form class="d-flex">
               <input
                 class="form-control"
@@ -32,6 +34,34 @@
               </button>
             </form>
           </div>
+          <div class="col-3">
+            <label for="" class="form-label">Start date</label>
+            <input type="date" class="form-control" [(ngModel)]="startDate" />
+          </div>
+          <div class="col-3">
+            <label for="" class="form-label">End date</label>
+            <input
+              type="date"
+              class="form-control"
+              [(ngModel)]="endDate"
+              (change)="onDateChange()"
+            />
+          </div>
+          <div class="col-3">
+            <label for="" class="form-label">Select Type</label>
+            <select
+              class="form-select"
+              [(ngModel)]="status"
+              (change)="onStatusChange()"
+            >
+              <option value="" disabled selected>Select Type</option>
+              <option value="PENDING">PENDING</option>
+              <option value="ACCEPTED">ACCEPTED</option>
+              <option value="ALLOCATED">ALLOCATED</option>
+              <option value="RECEIVED">RECEIVED</option>
+              <option value="DONE">DONE</option> 
+            </select>
+          </div>
         </div>
         <div class="table-responsive text-nowrap">
           <table
@@ -41,27 +71,22 @@
               <tr>
                 <th>Sr.No</th>
                 <th>Name</th>
-                <th>Email</th>
+                <th>Blood Group</th>
                 <th>Mobile No.</th>
-                <th>Role</th>
+                <th>Status</th>
+                <th>Action</th>
+
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let u of users; let i = index">
                 <td>{{ pageSize * (page - 1) + (i + 1) }}</td>
-                <td>{{ u.fullName }}</td>
-                <td>
-                  <span
-                    class="action-span"
-                    placement="left"
-                    ngbTooltip="{{ u.email }}"
-                  >
-                    {{ u.email }}
-                  </span>
-                </td>
-                <td>{{ u.mobile }}</td>
-                <td>{{ u.role }}</td>
-                
+                <td>{{ u.name }}</td>
+                <td>{{ u.bloodGroup }}</td>
+
+                <td>{{ u.mobileNo }}</td>
+                <td>{{ u.status }}</td>
+                <td></td>
               </tr>
             </tbody>
           </table>

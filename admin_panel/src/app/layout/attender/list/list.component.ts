@@ -7,9 +7,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { StorageService } from 'src/app/core/services';
 import { UserService } from '../../../services/users/user.service';
-import { AdvertiseService} from '../../../services/advertise/advertise.service'
-
-
+import { IUser } from '@interfaces/index';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -17,12 +15,12 @@ import { AdvertiseService} from '../../../services/advertise/advertise.service'
 })
 export class ListComponent implements OnInit {
   selectedRow: any = {};
-  tableData: any = [];
+  users: any = [];
   search: any = '';
-  page = 0;
+  page =1;
   pageSize = 10;
   collection: number = 0;
-  pages: number = 1;
+  // pages: number = 1;
   userDetails: any = {};
 
   constructor(
@@ -31,8 +29,7 @@ export class ListComponent implements OnInit {
     private storageService: StorageService,
     private modalService: NgbModal,
     private toastService: ToastrService,
-    private spinner: NgxSpinnerService,
-    private service: AdvertiseService
+    private spinner: NgxSpinnerService
   ) {}
 
   ngOnInit(): void {
@@ -43,29 +40,28 @@ export class ListComponent implements OnInit {
   getAll() {
     this.spinner.show();
     let params ={
-      page:this.page,
+      page:this.page-1,
       pageSize:this.pageSize,
       search:this.search
     }
-    this.service
-      .getAll(params)
+    this.userService
+      .getAllAttenderUsers(params)
       .subscribe((success) => {
-        this.tableData = success;
-        // this.collection = success.count;
-        this.pages = success.pages;
+        this.users = success.data;
+        this.collection = success.count; 
         this.spinner.hide();
       },
       (error) =>{
         this.spinner.hide();
         this.toastService.error("Something Went Wrong!");
-
+        
       }
       );
   }
 
   navigateTo(path, id) {
     if (id) {
-      this.router.navigate([path], { queryParams: { id:id } });
+      this.router.navigate([path], { queryParams: { id } });
     } else {
       this.router.navigate([path]);
     }
@@ -89,7 +85,7 @@ export class ListComponent implements OnInit {
   }
 
   deleteUser(id) {
-    this.service.delete(id).subscribe(
+    this.userService.deleteUser(id).subscribe(
       (success) => {
         this.getAll();
         this.selectedRow = {};
@@ -102,4 +98,5 @@ export class ListComponent implements OnInit {
       }
     );
   }
+
 }

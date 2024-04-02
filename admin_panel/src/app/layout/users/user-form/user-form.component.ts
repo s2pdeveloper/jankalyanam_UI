@@ -15,7 +15,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class UserFormComponent implements OnInit {
   submitted = false;
   userForm = this.formBuilder.group({
-    _id: new FormControl(''),
+    id: new FormControl(''),
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
     // email: new FormControl('', [
@@ -42,8 +42,8 @@ export class UserFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.actRoutes.queryParams.subscribe((params) => {
-      if (params._id) {
-        this.getById(params._id);
+      if (params.id) {
+        this.getById(params.id);
       }
     });
   }
@@ -58,10 +58,10 @@ export class UserFormComponent implements OnInit {
       return;
     }
     let formData = this.userForm.value;
-    if (formData._id) {
+    if (formData.id) {
       this.update(formData);
     } else {
-      delete formData._id;
+      delete formData.id;
       this.create(formData);
     }
   }
@@ -76,7 +76,7 @@ export class UserFormComponent implements OnInit {
 
   update(formData) {
     this.spinner.show();
-    this.userService.updateUser(formData._id, formData).subscribe((success) => {
+    this.userService.updateUser(formData.id, formData).subscribe((success) => {
       this.submitted = false;
       this.spinner.hide();
       this.toastService.success(success.message);
@@ -84,8 +84,8 @@ export class UserFormComponent implements OnInit {
     });
   }
 
-  getById(_id) {
-    this.userService.profile(_id).subscribe((success) => {
+  getById(id) {
+    this.userService.profile(id).subscribe((success) => {
       success.confirmPassword = success.password;
       this.userForm.patchValue(success);
       this.userForm.controls.role.disable();
