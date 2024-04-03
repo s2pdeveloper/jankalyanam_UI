@@ -35,3 +35,18 @@ i{
 ion-icon{
     color: var(--ion-color-primary);
 }
+.ionic-selectable-icon {
+    top: -13px !important;
+  }
+  .donar{
+    padding-left: 7px;
+  }
+  .pending {
+    color: red;
+  }
+  .status{
+    font-weight: 700;
+    color: #75c752;
+    padding: 10px;
+  
+  }

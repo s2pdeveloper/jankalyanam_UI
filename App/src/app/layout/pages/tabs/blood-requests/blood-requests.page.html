@@ -10,14 +10,14 @@
     <app-skeleton></app-skeleton>
   </div>
   <ng-template #otherContent>
-  <div [ngSwitch]="currentTitle">
-    <ion-item class="mt-2" lines="none" *ngSwitchCase="'Request'">
+  <div>
+    <ion-item class="mt-2" lines="none">
       <ion-segment [(ngModel)]="activeSegment" [scrollable]="true">
         <ion-segment-button value="list" *ngIf="user.role == 'ADMIN'">
           <ion-label class="ion-text-capitalize">My List</ion-label>
         </ion-segment-button>
 
-        <ion-segment-button value="details">
+        <ion-segment-button value="latest">
           <ion-label class="ion-text-capitalize">Active</ion-label>
         </ion-segment-button>
         <!-- Define Role Below -->
@@ -47,10 +47,15 @@
                     <ion-label class="donar">{{i?.city +', '+i?.state}}</ion-label>
                   </div>
                   <div class="ion-margin-top donar-container">
-                    <div>
+                    <div *ngIf="!!i.donar">
                       <i class="fa-solid fa-user"></i>
                       <ion-label class="donar">Donor</ion-label>
                     </div>
+                    <div *ngIf="!i.donar">
+                      <i class="fa-solid fa-building-columns"></i>
+                      <ion-label class="donar">Blood Bank</ion-label>
+                    </div>
+                  
                     <div class="ion-padding-start">
                       <i class="fa-solid fa-person-half-dress"></i>
                       <ion-label class="donar">{{i?.gender}}</ion-label>
@@ -58,7 +63,7 @@
                   </div>
                 </ion-col>
                 <ion-col>
-                  <ion-label class="status">{{i?.status}}</ion-label>
+                  <ion-label class="status" [ngClass]="{'pending': i?.status === 'PENDING'}">{{i?.status}}</ion-label>
                 </ion-col>
               </ion-row>
             </ion-grid>
@@ -69,6 +74,7 @@
       <div *ngSwitchCase="'latest'">
         <ng-container *ngIf="latestTabDetails.length > 0">
         <ion-card *ngFor="let l of latestTabDetails" (click)="openModel('latest',l)">
+      
           <ion-card-content class="ion-no-padding">
             <ion-grid>
               <ion-row>
@@ -83,9 +89,13 @@
                     <ion-label class="donar">{{l?.city +', '+l?.state}}</ion-label>
                   </div>
                   <div class="ion-margin-top donar-container">
-                    <div>
+                    <div *ngIf="!!l.donar">
                       <i class="fa-solid fa-user"></i>
                       <ion-label class="donar">Donor</ion-label>
+                    </div>
+                    <div *ngIf="!l.donar">
+                      <i class="fa-solid fa-building-columns"></i>
+                      <ion-label class="donar">Blood Bank</ion-label>
                     </div>
                     <div class="ion-padding-start">
                       <i class="icons-img fa-solid fa-person-half-dress"></i>
@@ -101,8 +111,8 @@
                 <ion-col size="auto" class="admin" *ngIf="!!user.acceptor">
                   <ion-label class="status">{{user?.acceptor?.firstName}} {{user?.acceptor?.lastName}}</ion-label>
                 </ion-col>
-                <ion-col  class="ion-text-end" *ngIf="user.role == 'ADMIN' && !user.acceptor">
-                  <ion-button>
+                <ion-col  class="ion-text-end" *ngIf="user.role == 'ADMIN' &&  l.status != 'ACCEPTED'">
+                  <ion-button (click)="accept(l,'ACCEPTED')">
                     Accept
                   </ion-button>
                 </ion-col>

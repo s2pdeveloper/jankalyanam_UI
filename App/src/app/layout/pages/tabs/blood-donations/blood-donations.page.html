@@ -10,8 +10,8 @@
     <app-skeleton></app-skeleton>
   </div>
   <ng-template #otherContent>
-    <div [ngSwitch]="currentTitle">
-      <ion-item class="mt-2" lines="none" *ngSwitchCase="'history'">
+    <div>
+      <ion-item class="mt-2" lines="none" >
         <ion-segment
           [(ngModel)]="activeSegment"
           [scrollable]="true"
@@ -59,7 +59,7 @@
                       </div>
                     </ion-col>
                     <ion-col>
-                      <ion-label *ngIf="!(user.role=='ADMIN' && l.status=='DONE')" class="status">{{l?.status}}</ion-label>
+                      <ion-label *ngIf="!(user.role=='ADMIN' && l.status=='DONE')"   [ngClass]="{'pending': l?.status == 'PENDING','status' : l?.status == 'DONE'}">{{l?.status}}</ion-label>
                       <button *ngIf="user.role=='ADMIN' && l.status=='DONE'" (click)="close(l.id)">Close</button>
                     </ion-col>
                   </ion-row>

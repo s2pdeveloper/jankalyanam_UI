@@ -24,8 +24,8 @@ export class BloodRequestsPage implements OnInit {
   search:any=''
   type:any='';
   sortBy:any='';
-  activeSegment = 'list';
-  currentTitle = 'Request';
+  activeSegment =null;
+  currentTitle = 'history';
   historyTabDetails: any = [];
   latestTabDetails: any = [];
   myListTabDetails: any = [];
@@ -43,11 +43,14 @@ export class BloodRequestsPage implements OnInit {
   }
 
   ionViewWillEnter() {
+
     this.user = this.localStorage.get("user");
     if (this.user.role == "ATTENDER") {
+      this.activeSegment = 'latest';
       this.getAllAttenderList("ACTIVE");
       this.getAllAttenderList("HISTORY");
     } else if (this.user.role == "ADMIN") {
+      this.activeSegment = 'list';
       this.getAllAdminList("MYLIST");
       this.getAllAdminList("ACTIVE");
       this.getAllAdminList("HISTORY");
@@ -59,7 +62,17 @@ export class BloodRequestsPage implements OnInit {
     this.router.navigate([url]);
   }
 
-
+  async accept(data:any,status:any){
+    this.loader = true;
+    this.service.statusUpdate(data.id, status).subscribe(  (res) => {
+      data.status = status;
+      this.getAllAdminList("MYLIST");
+      this.loader = false;
+    }, (error) =>{
+      this.loader = false;
+      this.toast.errorToast("Something went wrong!");
+    });
+  }
   async getAllAttenderList(status: any, event = null) {
 
     this.loader = true;
@@ -163,10 +176,18 @@ async getAllAdminList(status: any, event = null) {
         this.modalService.openModal(DonationHistoryComponent, {data});
         break;
       case "latest":
-        this.modalService.openModal(DonationDetailsComponent, { data });
+        if(this.user.role == 'ADMIN'){
+          this.modalService.openModal(AdminRequestActiveComponent, { data });
+        }else{
+          this.modalService.openModal(BloodrequestMylistComponent, { data });
+        }
+       
         break;
         case "list":
-          this.modalService.openModal(BloodrequestMylistComponent, { data });
+          if(this.user.role == 'ADMIN'){
+            this.modalService.openModal(AdminRequestMylistComponent, { data });
+          }
+         
           break;
           // case "list":
           //   this.modalService.openModal(AdminRequestMylistComponent, {data});
