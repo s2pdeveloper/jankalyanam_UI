@@ -58,7 +58,7 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
   }
 
   async getAllAttenderList(status: any, event = null) {
-    try {
+
       this.loader = true;
       let params = {
         pageNo: this.page,
@@ -101,11 +101,7 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
         
       );
      
-    } catch (error) {
-      console.error("Error occurred:", error);
-      this.loader = false;
-      this.toast.errorToast("Something went wrong!");
-    }
+    
   }
 
   async getAllAdminList(status: any, event = null) {
