@@ -27,6 +27,7 @@ export class AdminRequestMylistComponent  implements OnInit {
   page:number = 0;
   pageSize:number =10;
   sortBy:any='';
+  donor:any =null;
   constructor(
     private router: Router,
     private localStorage: StorageService,
@@ -84,7 +85,7 @@ this.donorService.getDonorList(params).subscribe({
 
   async selectDonor(donor:any){
     console.log("donor----",donor.value);
-    
+    this.donor = donor.value;
     this.f["donorId"].setValue(donor.value.id);
   }
   async editData(){
@@ -95,7 +96,9 @@ this.donorService.getDonorList(params).subscribe({
     console.log('in naviatge');
     this.modalController.dismiss()
     
-    this.router.navigate(['/layout/donate'])
+    this.router.navigate(['/layout/donate',{
+    
+      value:true}])
   }
   async allocate() {
     // this.bloodDonateForm.value.status = 'ALLOCATED';

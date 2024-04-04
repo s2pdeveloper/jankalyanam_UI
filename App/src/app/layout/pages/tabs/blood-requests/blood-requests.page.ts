@@ -183,7 +183,7 @@ async getAllAdminList(status: any, event = null) {
         }
        
         break;
-        case "list":
+      case "list":
           if(this.user.role == 'ADMIN'){
             this.modalService.openModal(AdminRequestMylistComponent, { data });
           }

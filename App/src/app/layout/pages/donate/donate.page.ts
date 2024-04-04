@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { ToastService } from 'src/app/core/services';
 import { LoaderService } from 'src/app/core/services/loader.service';
@@ -8,6 +8,8 @@ import { BloodDonationService } from 'src/app/service/donation/donation.service'
 import { CalenderComponent } from '../../components/calender/calender.component';
 import { IonicSelectableComponent } from 'ionic-selectable';
 import { RestService } from 'src/app/core/services/rest.service';
+import { AdminRequestActiveComponent } from 'src/app/shared/models/admin-request-active/admin-request-active.component';
+import { ModalService } from 'src/app/service/modal.service';
 
 @Component({
   selector: 'app-donate',
@@ -20,17 +22,23 @@ export class DonatePage implements OnInit {
   states: any = [];
   cities: any = [];
   bloodGroup:any = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
-
+  bloodRequest:Boolean = false;
   constructor(
     private service: BloodDonationService,
     private router: Router,
+    private activatedRoute:ActivatedRoute,
     private toast: ToastService,
     private spinner: LoaderService,
     private modalController: ModalController,
-    private restService: RestService
+    private restService: RestService,
+    private modalService: ModalService
   ) {}
+  ngOnInit(){
 
-  ngOnInit() {
+  }
+  ionViewWillEnter() {
+  
+    this.bloodRequest = this.activatedRoute.snapshot.paramMap.get("value") == 'true';
     this.states = this.restService.getStatesOfCountry('IN');
   }
 
@@ -53,7 +61,6 @@ export class DonatePage implements OnInit {
   }
 
   async create() {
-    
 
     if (this.bloodDonateForm.invalid) {
       console.log(this.bloodDonateForm.controls);
@@ -106,4 +113,14 @@ export class DonatePage implements OnInit {
   setCity(city: any) {
     this.f['city'].setValue(city.value.name);
   }
+  navigate(){
+    if(this.bloodRequest){
+      this.router.navigate(['/layout/blood-requests']);
+      // this.modalService.openModal(AdminRequestActiveComponent, {});
+    }else{
+      this.router.navigate(['"/layout/home"']);
+    }
+    
+  }
+  
 }
