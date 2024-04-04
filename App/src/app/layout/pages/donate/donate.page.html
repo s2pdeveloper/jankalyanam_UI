@@ -36,7 +36,7 @@
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
             <ion-item fill="outline">
-              <ion-label position="floating" lablePlacement="stacked"
+              <ion-label *ngIf="!f['donationDate'].value" position="floating" lablePlacement="stacked"
                 >Donation Date</ion-label
               >
               <p class="ion-margin-end">{{f['donationDate'].value | date}}</p>
@@ -46,7 +46,7 @@
                 name="calendar-outline"
                 datetime="datetime"
                 class="ion-margin-top"
-                (click)="openCalender(f['donationDate'].value)"
+                (click)="openCalender('donationDate')"
               ></ion-icon>
             </ion-item>
           </ion-col>
@@ -171,6 +171,7 @@
                 [hasConfirmButton]="true"
                 [hasInfiniteScroll]="true"
                 (onChange)="setCity($event)"
+                disabled="disabledCity"
               >
                 <ng-template ionicSelectableHeaderTemplate>
                   <ion-toolbar class="bg-color-2">

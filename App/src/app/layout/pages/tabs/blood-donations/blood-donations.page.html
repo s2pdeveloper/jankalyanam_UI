@@ -11,11 +11,8 @@
   </div>
   <ng-template #otherContent>
     <div>
-      <ion-item class="mt-2" lines="none" >
-        <ion-segment
-          [(ngModel)]="activeSegment"
-          [scrollable]="true"
-        >
+      <ion-item class="mt-2" lines="none">
+        <ion-segment [(ngModel)]="activeSegment" [scrollable]="true">
           <ion-segment-button value="latest">
             <ion-label class="ion-text-capitalize">Latest</ion-label>
           </ion-segment-button>
@@ -58,9 +55,20 @@
                         </div>
                       </div>
                     </ion-col>
-                    <ion-col>
-                      <ion-label *ngIf="!(user.role=='ADMIN' && l.status=='DONE')"   [ngClass]="{'pending': l?.status == 'PENDING','status' : l?.status == 'DONE'}">{{l?.status}}</ion-label>
-                      <button *ngIf="user.role=='ADMIN' && l.status=='DONE'" (click)="close(l.id)">Close</button>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col class="ion-text-end">
+                      <ion-label
+                        *ngIf="!(user.role=='ADMIN' && l.status=='DONE')"
+                        [ngClass]="{'status-pending': l?.status == 'PENDING','status-allocated ' : l?.status == 'ALLOCATED','status-received': l.status== 'RECEIVED','status-done' : l?.status == 'DONE','status-accepted' : l.status == 'ACCEPTED' ,'status-close': l.status=='CLOSE'}"
+                        >{{l?.status}}</ion-label
+                      >
+                      <button
+                        *ngIf="user.role=='ADMIN' && l.status=='DONE'"
+                        (click)="close(l.id)"
+                      >
+                        Close
+                      </button>
                     </ion-col>
                   </ion-row>
                 </ion-grid>
@@ -82,10 +90,7 @@
                       <ion-card-title>{{h?.bloodGroup}}</ion-card-title>
                     </ion-col>
                     <ion-col size="6">
-                      <ion-label class="name"
-                        >{{h?.name 
-                       }}</ion-label
-                      >
+                      <ion-label class="name">{{h?.name }}</ion-label>
                       <div class="ion-margin-top">
                         <i class="icons-img fa-solid fa-location-dot"></i>
                         <ion-label class="donar"

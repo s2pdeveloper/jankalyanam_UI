@@ -25,28 +25,68 @@
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
+ion-content {
+  --keyboard-offset: 0px !important;
+}
+i {
+  color: var(--ion-color-primary);
+}
+ion-icon {
+  color: var(--ion-color-primary);
+}
 
-ion-content{
-    --keyboard-offset: 0px !important
-}
-i{
-    color: var(--ion-color-primary);
-}
-ion-icon{
-    color: var(--ion-color-primary);
-}
 .ionic-selectable-icon {
-    top: -13px !important;
-  }
-  .donar{
-    padding-left: 7px;
-  }
-  .pending {
-    color: red;
-  }
-  .status{
-    font-weight: 700;
-    color: #75c752;
-    padding: 10px;
+  top: -13px !important;
+}
+.donar {
+  padding-left: 7px;
+}
+
+.status-pending {
+  color: #ffd700 !important ;
+  font-weight: 600;
+}
+
+.status-allocated {
+  color: #4169e1 !important;
+  font-weight: 600;
+}
+
+.status-accepted {
+  color: #008000 !important;
+  font-weight: 600;
+}
+
+.status-done {
+  color: #800080;
+  font-weight: 600;
+}
+
+.status-close {
+  color: #ff0000 !important;
+  font-weight: 600;
+}
+
+.status-received {
+  color: #ffa500 !important;
+  font-weight: 600;
+}
+ion-toast.custom-error {
+  --background: #9a381f;
+  --box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.2);
+  --color: white;
+ 
+}
+ion-toast.custom-warning {
+  --background: #9a381f;
+  --box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.2);
+  --color: white;
   
-  }
+}
+ion-toast.custom-success {
+  --background: #2ab92f;
+  --box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.2);
+  --color: white;
+ 
+}
+

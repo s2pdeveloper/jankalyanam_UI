@@ -23,6 +23,8 @@ export class DonatePage implements OnInit {
   cities: any = [];
   bloodGroup:any = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
   bloodRequest:Boolean = false;
+  donationDateSelected : Boolean = false;
+  disabledCity:Boolean = true;
   constructor(
     private service: BloodDonationService,
     private router: Router,
@@ -53,7 +55,7 @@ export class DonatePage implements OnInit {
     name: new FormControl('', [Validators.required]),
     state: new FormControl('', [Validators.required]),
     bloodGroup: new FormControl('', [Validators.required]),
-    // location: new FormControl('', [Validators.required]),
+    
   });
 
   get f() {
@@ -72,10 +74,15 @@ export class DonatePage implements OnInit {
     await this.spinner.showLoader();
     this.service.create(this.bloodDonateForm.value).subscribe(
       async (success: any) => {
-        this.toast.successToast(success.message);
+        this.toast.successToast("Donar Created Successfully!");
         this.bloodDonateForm.reset();
         await this.spinner.hideLoader();
-        this.router.navigate(['/layout/home']);
+        if(this.bloodRequest){
+          this.router.navigate(['/layout/request-mylist-detail'],
+          { state: { success} } );
+        }else{
+          this.router.navigate(['"/layout/home"']);
+        }
       },
       async (error: any) => {
         await this.spinner.hideLoader();
@@ -84,7 +91,8 @@ export class DonatePage implements OnInit {
     );
   }
 
-  async openCalender(date: any) {
+  async openCalender(field: any) {
+    let date =this.f[field].value ? new Date(this.f[field].value).toISOString() : new Date().toISOString()
     const modal: any = await this.modalController.create({
       component: CalenderComponent,
       cssClass: 'calender-model',
@@ -98,13 +106,15 @@ export class DonatePage implements OnInit {
       console.log('data---', data);
 
       if (data.data && data.data.date) {
-        this.f['donationDate'].setValue(data.data.date);
+        this.f[field].setValue(data.data.date);
+       
       }
     });
   }
 
   getCity(state: any) {
     this.f['state'].setValue(state.value.name);
+    this.disabledCity = false;
     this.cities = this.restService.getCitiesOfState(
       state.value.countryCode,
       state.value.isoCode
@@ -115,8 +125,7 @@ export class DonatePage implements OnInit {
   }
   navigate(){
     if(this.bloodRequest){
-      this.router.navigate(['/layout/blood-requests']);
-      // this.modalService.openModal(AdminRequestActiveComponent, {});
+      this.router.navigate(['/layout/request-mylist-detail'],{});
     }else{
       this.router.navigate(['"/layout/home"']);
     }
