@@ -73,6 +73,7 @@
               <th>Blood Group</th>
               <th>Mobile No.</th>
               <th>Status</th>
+              <th>Created At</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -83,7 +84,16 @@
               <td>{{ u.bloodGroup }}</td>
               <td>{{ u.mobileNo }}</td>
               <td>{{ u.status }}</td>
-              <td></td>
+              <td>{{ u.createdAt }}</td>
+              <td>
+                <button
+                    (click)="navigateTo('/donate/donate-form', u.id)"
+                    class="btn btn-sm btn-outline-success me-1"
+                    ngbTooltip="View Donate"
+                  >
+                    <i class="fa fa-eye"></i>
+                  </button>
+              </td>
             </tr>
           </tbody>
         </table>

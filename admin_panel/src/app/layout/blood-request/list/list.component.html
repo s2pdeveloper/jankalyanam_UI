@@ -74,6 +74,7 @@
                 <th>Blood Group</th>
                 <th>Mobile No.</th>
                 <th>Status</th>
+                <th>Created At</th>
                 <th>Action</th>
 
               </tr>
@@ -86,7 +87,25 @@
 
                 <td>{{ u.mobileNo }}</td>
                 <td>{{ u.status }}</td>
-                <td></td>
+                <td>{{ u.createdAt }}</td>
+                <td>
+                    <button
+                      (click)="navigateTo('/blood-request/blood-request-form', u.id)"
+                      class="btn btn-sm btn-outline-success me-1"
+                      ngbTooltip="View-request"
+                    >
+                      <i class="fa fa-eye"></i>
+                    </button>
+                    <!-- <button
+                      class="btn btn-sm btn-outline-danger"
+                      data-toggle="modal"
+                      [disabled]="u.role == 'SUPER_ADMIN'"
+                      (click)="open(u, alertMsg)"
+                      ngbTooltip="Delete User"
+                    >
+                      <i class="fa fa-trash me-1"></i> delete
+                    </button> -->
+                </td>
               </tr>
             </tbody>
           </table>

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ListComponent } from './list/list.component';
 import { Routes, RouterModule } from '@angular/router';
+import { BloodRequestFormComponent } from './blood-request-form/blood-request-form.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,13 @@ const routes: Routes = [
       {
         path: 'list',
         component: ListComponent,
+        data: {
+          title: 'Blood Request List',
+        },
+      },
+      {
+        path: 'blood-request-form',
+        component: BloodRequestFormComponent,
         data: {
           title: 'Blood Request List',
         },
