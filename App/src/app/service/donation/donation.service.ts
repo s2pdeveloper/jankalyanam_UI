@@ -11,7 +11,9 @@ export class BloodDonationService {
     getAttenderListPath: (params: any) => `donate/attender-list?pageNo=${params.pageNo}&pageSize=${params.pageSize}&sortBy=${params.sortBy}&search=${params.search}&type=${params.type}`,
     getAdminListPath: (params: any) => `donate/admin-list?pageNo=${params.pageNo}&pageSize=${params.pageSize}&sortBy=${params.sortBy}&search=${params.search}&type=${params.type}`,
     allocatePath:(id:any) => `donate/update/${id}`,
-    statusUpdatePath:(id:any,status:any) => `donate/updateStatus?id=${id}&status=${status}`
+    statusUpdatePath:(id:any,status:any) => `donate/updateStatus?id=${id}&status=${status}`,
+    getDonorListPath: (params: any) => `donate/blood-donor?pageNo=${params.pageNo}&pageSize=${params.pageSize}&sortBy=${params.sortBy}&group=${params.group}`,
+
     
   };
   constructor(private http: ApiService) {}
@@ -35,5 +37,9 @@ export class BloodDonationService {
 
   statusUpdate(id:any,status:any){
     return this.http.put(this.routes.statusUpdatePath(id,status));
+  }
+
+  getDonorList(params){
+    return this.http.get(this.routes.getDonorListPath(params));
   }
 }

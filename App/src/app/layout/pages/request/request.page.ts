@@ -76,7 +76,8 @@ export class RequestPage implements OnInit {
     );
   }
 
-  async openCalender(date: any) {
+  async openCalender(field: any) {
+    let date = this.f[field].value ? new Date (this.f[field].value).toISOString() : new Date().toISOString
     const modal: any = await this.modalController.create({
       component: CalenderComponent,
       cssClass: 'calender-model',
@@ -90,7 +91,7 @@ export class RequestPage implements OnInit {
       console.log('data---', data);
 
       if (data.data && data.data.date) {
-        this.f['bloodRequireDate'].setValue(data.data.date);
+        this.f['field'].setValue(data.data.date);
       }
     });
   }

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { ToastService } from 'src/app/core/services';
 import { LoaderService } from 'src/app/core/services/loader.service';
@@ -8,6 +8,8 @@ import { BloodDonationService } from 'src/app/service/donation/donation.service'
 import { CalenderComponent } from '../../components/calender/calender.component';
 import { IonicSelectableComponent } from 'ionic-selectable';
 import { RestService } from 'src/app/core/services/rest.service';
+import { AdminRequestActiveComponent } from 'src/app/shared/models/admin-request-active/admin-request-active.component';
+import { ModalService } from 'src/app/service/modal.service';
 
 @Component({
   selector: 'app-donate',
@@ -20,18 +22,29 @@ export class DonatePage implements OnInit {
   states: any = [];
   cities: any = [];
   bloodGroup:any = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
+  bloodRequest:Boolean = false;
+  donationDateSelected : Boolean = false;
+  disabledCity:Boolean = true;
 
   constructor(
     private service: BloodDonationService,
     private router: Router,
+    private activatedRoute:ActivatedRoute,
     private toast: ToastService,
     private spinner: LoaderService,
     private modalController: ModalController,
-    private restService: RestService
+    private restService: RestService,
+    private modalService: ModalService
   ) {}
+  ngOnInit(){
 
-  ngOnInit() {
+  }
+  ionViewWillEnter() {
+  
+    this.bloodRequest = this.activatedRoute.snapshot.paramMap.get("value") == 'true';
     this.states = this.restService.getStatesOfCountry('IN');
+    console.log("this.states-----",this.states);
+    
   }
 
   bloodDonateForm = new FormGroup({
@@ -45,7 +58,7 @@ export class DonatePage implements OnInit {
     name: new FormControl('', [Validators.required]),
     state: new FormControl('', [Validators.required]),
     bloodGroup: new FormControl('', [Validators.required]),
-    // location: new FormControl('', [Validators.required]),
+    
   });
 
   get f() {
@@ -53,7 +66,6 @@ export class DonatePage implements OnInit {
   }
 
   async create() {
-    
 
     if (this.bloodDonateForm.invalid) {
       console.log(this.bloodDonateForm.controls);
@@ -65,10 +77,15 @@ export class DonatePage implements OnInit {
     await this.spinner.showLoader();
     this.service.create(this.bloodDonateForm.value).subscribe(
       async (success: any) => {
-        this.toast.successToast(success.message);
+        this.toast.successToast("Donar Created Successfully!");
         this.bloodDonateForm.reset();
         await this.spinner.hideLoader();
-        this.router.navigate(['/layout/home']);
+        if(this.bloodRequest){
+          this.router.navigate(['/layout/request-mylist-detail'],
+          { state: { success} } );
+        }else{
+          this.router.navigate(['"/layout/home"']);
+        }
       },
       async (error: any) => {
         await this.spinner.hideLoader();
@@ -77,7 +94,8 @@ export class DonatePage implements OnInit {
     );
   }
 
-  async openCalender(date: any) {
+  async openCalender(field: any) {
+    let date =this.f[field].value ? new Date(this.f[field].value).toISOString() : new Date().toISOString()
     const modal: any = await this.modalController.create({
       component: CalenderComponent,
       cssClass: 'calender-model',
@@ -91,13 +109,15 @@ export class DonatePage implements OnInit {
       console.log('data---', data);
 
       if (data.data && data.data.date) {
-        this.f['donationDate'].setValue(data.data.date);
+        this.f[field].setValue(data.data.date);
+       
       }
     });
   }
 
   getCity(state: any) {
     this.f['state'].setValue(state.value.name);
+    this.disabledCity = false;
     this.cities = this.restService.getCitiesOfState(
       state.value.countryCode,
       state.value.isoCode
@@ -106,4 +126,13 @@ export class DonatePage implements OnInit {
   setCity(city: any) {
     this.f['city'].setValue(city.value.name);
   }
+  navigate(){
+    if(this.bloodRequest){
+      this.router.navigate(['/layout/request-mylist-detail'],{});
+    }else{
+      this.router.navigate(['"/layout/home"']);
+    }
+    
+  }
+  
 }

@@ -10,7 +10,7 @@
 </ion-header>
 <ion-content>
   <ion-accordion-group value="first" class="ion-padding">
-    <ion-accordion value="first">
+    <ion-accordion value="first" *ngIf="!data.bloodRequest">
       <ion-item slot="header" color="light">
         <i class="fa-solid fa-file-lines"></i>
         <ion-label class="ion-padding-horizontal">Blood Bank Details</ion-label>
@@ -22,25 +22,19 @@
               <ion-row>
                 <ion-col size="12">
                   <ion-label class="head">Blood Bank Name </ion-label>
-                  <ion-label> : ABC BANK</ion-label>
+                  <ion-label> : {{data?.bloodBankName}}</ion-label>
                 </ion-col>
               </ion-row>
               <ion-row>
                 <ion-col size="12">
                   <ion-label class="head">Location </ion-label>
-                  <ion-label> : ABC BANK , nagpur</ion-label>
+                  <ion-label> : {{data?.location}}</ion-label>
                 </ion-col>
               </ion-row>
               <ion-row>
                 <ion-col size="12">
-                  <ion-label class="head">Date </ion-label>
-                  <ion-label> : 25 March 2024</ion-label>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col size="12">
-                  <ion-label class="head">Time </ion-label>
-                  <ion-label> : 8AM to 5PM</ion-label>
+                  <ion-label class="head">Donation Date </ion-label>
+                  <ion-label> : {{data?.donationDate}}</ion-label>
                 </ion-col>
               </ion-row>
              
@@ -49,10 +43,10 @@
         </ion-card>
       </div>
     </ion-accordion>
-    <ion-accordion value="second">
+    <ion-accordion value="second" *ngIf="!!data.bloodRequest">
       <ion-item slot="header" color="light">
         <i class="fa-solid fa-droplet"></i>
-        <ion-label  class="ion-padding-horizontal">Blood Donar</ion-label>
+        <ion-label  class="ion-padding-horizontal">Beneficiary</ion-label>
       </ion-item>
       <div class="ion-padding" slot="content">
         <ion-card>
@@ -61,79 +55,79 @@
               <ion-row>
                 <ion-col size="12">
                   <ion-label class="head">Name</ion-label>
-                  <ion-label>: string</ion-label>
+                  <ion-label>: {{data?.bloodRequest?.name}}</ion-label>
                 </ion-col>
               </ion-row>
               <ion-row>
                 <ion-col size="12">
                   <ion-label class="head">Age</ion-label>
-                  <ion-label>: 0</ion-label>
+                  <ion-label>: {{data?.bloodRequest?.age}}</ion-label>
                 </ion-col>
               </ion-row>
               <ion-row>
                 <ion-col size="12">
                   <ion-label class="head">Gender</ion-label>
-                  <ion-label>: MALE</ion-label>
+                  <ion-label>: {{data?.bloodRequest?.gender}}</ion-label>
                 </ion-col>
               </ion-row>
               <ion-row>
                 <ion-col size="12">
                   <ion-label class="head">Blood Group</ion-label>
-                  <ion-label>: string</ion-label>
+                  <ion-label>: {{data?.bloodRequest?.bloodGroup}}</ion-label>
                 </ion-col>
               </ion-row>
               <ion-row>
                 <ion-col size="12">
                   <ion-label class="head">Blood Require Date</ion-label>
-                  <ion-label>: 23 March 2024, 9:26 AM</ion-label>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col size="12">
-                  <ion-label class="head">City</ion-label>
-                  <ion-label>: string</ion-label>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col size="12">
-                  <ion-label class="head">Father or Husband</ion-label>
-                  <ion-label>: string</ion-label>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col size="12">
-                  <ion-label class="head">Hemoglobin</ion-label>
-                  <ion-label>: 0</ion-label>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col size="12">
-                  <ion-label class="head">Illness</ion-label>
-                  <ion-label>: string</ion-label>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col size="12">
-                  <ion-label class="head">Location</ion-label>
-                  <ion-label>: string</ion-label>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col size="12">
-                  <ion-label class="head">Mobile Number</ion-label>
-                  <ion-label>: 0</ion-label>
+                  <ion-label>: {{data?.bloodRequest?.bloodRequireDate}}</ion-label>
                 </ion-col>
               </ion-row>
               <ion-row>
                 <ion-col size="12">
                   <ion-label class="head">State</ion-label>
-                  <ion-label>: string</ion-label>
+                  <ion-label>: {{data?.bloodRequest?.state}}</ion-label>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="12">
+                  <ion-label class="head">City</ion-label>
+                  <ion-label>: {{data?.bloodRequest?.city}}</ion-label>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="12">
+                  <ion-label class="head">Father/Husband</ion-label>
+                  <ion-label>: {{data?.bloodRequest?.fatherOrHusband}}</ion-label>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="12">
+                  <ion-label class="head">Hemoglobin</ion-label>
+                  <ion-label>: {{data?.bloodRequest?.hemoglobin}}</ion-label>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="12">
+                  <ion-label class="head">Illness</ion-label>
+                  <ion-label>: {{data?.bloodRequest?.illness}}</ion-label>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="12">
+                  <ion-label class="head">Location</ion-label>
+                  <ion-label>: {{data?.bloodRequest?.location}}</ion-label>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="12">
+                  <ion-label class="head">Mobile Number</ion-label>
+                  <ion-label>: {{data?.bloodRequest?.mobileNo}}</ion-label>
                 </ion-col>
               </ion-row>
               <ion-row>
                 <ion-col size="12">
                   <ion-label class="head">Units</ion-label>
-                  <ion-label>: 0</ion-label>
+                  <ion-label>: {{data?.bloodRequest?.units}}</ion-label>
                 </ion-col>
               </ion-row>
             
@@ -154,103 +148,59 @@
               <ion-row>
                 <ion-col size="12">
                   <ion-label class="head">First Name</ion-label>
-                  <ion-label> : Anushka Kalbande</ion-label>
+                  <ion-label> : {{data?.name}}</ion-label>
                 </ion-col>
 
                 <ion-col size="6">
                   <ion-label class="head">Gender</ion-label>
-                  <ion-label> : Female</ion-label>
+                  <ion-label> : {{data?.gender}}</ion-label>
                 </ion-col>
 
                 <ion-col size="6">
                   <ion-label class="head">Age</ion-label>
-                  <ion-label> : 0</ion-label>
+                  <ion-label> : {{data?.age}}</ion-label>
                 </ion-col>
 
                 <ion-col size="6">
                   <ion-label class="head">State</ion-label>
-                  <ion-label> : string</ion-label>
+                  <ion-label> : {{data?.state}}</ion-label>
                 </ion-col>
 
                 <ion-col size="6">
                   <ion-label class="head">City</ion-label>
-                  <ion-label> : string</ion-label>
+                  <ion-label> : {{data?.city}}</ion-label>
                 </ion-col>
 
                 <ion-col size="6">
                   <ion-label class="head">Blood Group</ion-label>
-                  <ion-label> : A_POSITIVE</ion-label>
+                  <ion-label> : {{data?.bloodGroup}}</ion-label>
                 </ion-col>
 
                 <ion-col size="6">
                   <ion-label class="head">Hemoglobin</ion-label>
-                  <ion-label> : 0</ion-label>
+                  <ion-label> : {{data?.hemoglobin}}</ion-label>
                 </ion-col>
 
                 <ion-col size="12">
                   <ion-label class="head">Illness</ion-label>
-                  <ion-label> : string</ion-label>
+                  <ion-label> : {{data?.illness}}</ion-label>
                 </ion-col>
 
                 <ion-col size="12">
                   <ion-label class="head">Mobile No</ion-label>
-                  <ion-label> : string</ion-label>
-                </ion-col>
-
-                <ion-col size="6">
-                  <ion-label class="head">Units</ion-label>
-                  <ion-label> : 0</ion-label>
+                  <ion-label> : {{data?.mobileNo}}</ion-label>
                 </ion-col>
 
                 <ion-col size="12">
                   <ion-label class="head">Donation Date</ion-label>
-                  <ion-label> : 2024-03-23T06:48:44.318Z</ion-label>
+                  <ion-label> : {{data?.donationDate}}</ion-label>
                 </ion-col>
 
                 <ion-col size="12">
                   <ion-label class="head">Location</ion-label>
-                  <ion-label> : string</ion-label>
+                  <ion-label> : {{data?.location}}</ion-label>
                 </ion-col>
 
-                <ion-col size="6">
-                  <ion-label class="head">Gender</ion-label>
-                  <ion-label> : MALE</ion-label>
-                </ion-col>
-
-                <ion-col size="12">
-                  <ion-label class="head">Illness</ion-label>
-                  <ion-label> : true</ion-label>
-                </ion-col>
-
-                <ion-col size="12">
-                  <ion-label class="head">User</ion-label>
-                  <ion-label> :</ion-label>
-                </ion-col>
-
-                <ion-col size="12">
-                  <ion-label class="head">Email</ion-label>
-                  <ion-label> : string</ion-label>
-                </ion-col>
-
-                <ion-col size="12">
-                  <ion-label class="head">Last Name</ion-label>
-                  <ion-label> : string</ion-label>
-                </ion-col>
-
-                <ion-col size="6">
-                  <ion-label class="head">Role</ion-label>
-                  <ion-label> : ADMIN</ion-label>
-                </ion-col>
-
-                <ion-col size="6">
-                  <ion-label class="head">Status</ion-label>
-                  <ion-label> : ACTIVE</ion-label>
-                </ion-col>
-
-                <ion-col size="12">
-                  <ion-label class="head">Token</ion-label>
-                  <ion-label> : string</ion-label>
-                </ion-col>
               </ion-row>
             </ion-grid>
           </ion-card-content>

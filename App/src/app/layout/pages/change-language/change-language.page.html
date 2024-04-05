@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-back-button
+      slot="start"
+      default-href="/layout/home"
+      (click)="dismiss()"
+    ></ion-back-button>
+    <ion-title>Change Language</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-radio-group value="strawberries">
+    <ion-card>
+      <ion-card-content>
+        <ion-item lines="none">
+          <ion-radio checked value="english"></ion-radio>
+          <ion-label class="ion-padding-horizontal">English</ion-label>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-radio value="hindi"></ion-radio>
+          <ion-label class="ion-padding-horizontal">Hindi</ion-label>
+        </ion-item>
+       
+      </ion-card-content>
+    </ion-card>
+  </ion-radio-group>
+</ion-content>

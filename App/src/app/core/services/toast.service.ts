@@ -12,7 +12,7 @@ export class ToastService {
       message: msg,
       duration: 4000,
       position: 'bottom',
-      cssClass: 'toast-success',
+      cssClass: 'custom-success',
       buttons: [
         {
           icon: 'close-outline',
@@ -30,7 +30,7 @@ export class ToastService {
       message: msg,
       duration: 4000,
       position: 'bottom',
-      cssClass: 'toast-error',
+      cssClass: 'custom-error',
       buttons: [
         {
           icon: 'close-outline',
@@ -48,7 +48,7 @@ export class ToastService {
       message: msg,
       duration: 4000,
       position: 'bottom',
-      cssClass: 'toast-warning',
+      cssClass: 'custom-warning',
       // buttons: [
       //   {
       //     icon: 'close-outline',

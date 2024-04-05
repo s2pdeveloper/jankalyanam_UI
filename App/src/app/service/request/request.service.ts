@@ -11,7 +11,8 @@ export class BloodRequestService {
     create: 'blood-request',
     getAttenderListPath: (params: any) => `blood-request/attender-list?pageNo=${params.pageNo}&pageSize=${params.pageSize}&sortBy=${params.sortBy}&search=${params.search}&type=${params.type}`,
     getAdminListPath: (params: any) => `blood-request/admin-list?pageNo=${params.pageNo}&pageSize=${params.pageSize}&sortBy=${params.sortBy}&search=${params.search}&type=${params.type}`,
-    
+    statusUpdatePath:(id:any,status:any) => `blood-request/update?id=${id}&status=${status}`,
+    allocatePath:(id:any) => `blood-request/update/${id}`,
   };
   constructor(private http: ApiService) {}
 
@@ -27,4 +28,11 @@ export class BloodRequestService {
   params.type = type;
   return this.http.get(this.routes.getAdminListPath(params));
   }
+
+  statusUpdate(id:any,status:any){
+  return this.http.put(this.routes.statusUpdatePath(id,status));
+}
+allocate(id:any,body:any){
+  return this.http.put(this.routes.allocatePath(id),body);
+}
 }
