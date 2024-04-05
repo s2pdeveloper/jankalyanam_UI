@@ -1,0 +1,162 @@
+<section>
+  <div class="container">
+    <div class="head">Request For Blood</div>
+    <div class="row">
+      <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-4 col-sm-12 col-xs-12">
+        <img
+          src="../../../assets/gallery/requestblood.png"
+          alt=""
+          class="img-fluid"
+        />
+      </div>
+
+      <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-8 col-sm-12 col-xs-12">
+        <form [formGroup]="requestForm">
+          <div class="container">
+            <div class="row">
+              <div class="col-6">
+                <div class="mb-3">
+                  <div class="inputBox">
+                    <input
+                      type="text"
+                      required="required"
+                      formControlName="name"
+                    />
+                    <span class="user">Name</span>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="inputBox">
+                    <input
+                      type="text"
+                      required="required"
+                      formControlName="bloodGroup"
+                    />
+                    <span class="user">Blood Group</span>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="inputBox">
+                    <input
+                      type="text"
+                      required="required"
+                      formControlName="gender"
+                    />
+                    <span class="user">Gender</span>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="inputBox">
+                    <input
+                      type="number"
+                      required="required"
+                      formControlName="mobileNo"
+                    />
+                    <span class="user">Mobile No.</span>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="inputBox">
+                    <input
+                      type="text"
+                      required="required"
+                      formControlName="illness"
+                    />
+                    <span class="user">Illness</span>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="inputBox">
+                    <input
+                      type="text"
+                      required="required"
+                      formControlName="city"
+                    />
+                    <span class="user">City</span>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="inputBox">
+                    <input
+                      type="number"
+                      required="required"
+                      formControlName="units"
+                    />
+                    <span class="user">Unit</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="inputBox mb-3">
+                  <div class="inputBox">
+                    <input
+                      type="number"
+                      required="required"
+                      formControlName="age"
+                    />
+                    <span class="user">Age</span>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="inputBox">
+                    <input
+                      type="date"
+                      required="required"
+                      formControlName="bloodRequireDate"
+                    />
+                    <span class="user">Require Date</span>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="inputBox">
+                    <input
+                      type="text"
+                      required="required"
+                      formControlName="hemoglobin"
+                    />
+                    <span class="user">Hemoglobin</span>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="inputBox">
+                    <input
+                      type="text"
+                      required="required"
+                      formControlName="fatherOrHusband"
+                    />
+                    <span class="user">Father/Husband Name</span>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="inputBox">
+                    <input
+                      type="text"
+                      required="required"
+                      formControlName="location"
+                    />
+                    <span class="user">Location</span>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="inputBox">
+                    <input
+                      type="text"
+                      required="required"
+                      formControlName="state"
+                    />
+                    <span class="user">State</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="submit">
+                <button class="button" (click)="submit()">Submit</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
