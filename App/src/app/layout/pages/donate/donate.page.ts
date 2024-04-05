@@ -25,6 +25,7 @@ export class DonatePage implements OnInit {
   bloodRequest:Boolean = false;
   donationDateSelected : Boolean = false;
   disabledCity:Boolean = true;
+
   constructor(
     private service: BloodDonationService,
     private router: Router,
@@ -42,6 +43,8 @@ export class DonatePage implements OnInit {
   
     this.bloodRequest = this.activatedRoute.snapshot.paramMap.get("value") == 'true';
     this.states = this.restService.getStatesOfCountry('IN');
+    console.log("this.states-----",this.states);
+    
   }
 
   bloodDonateForm = new FormGroup({
