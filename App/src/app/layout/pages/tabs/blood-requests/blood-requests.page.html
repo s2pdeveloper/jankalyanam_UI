@@ -142,6 +142,14 @@
                         Accept
                       </ion-button>
                     </ion-col>
+                    <ion-col
+                    class="ion-text-end"
+                    *ngIf="user.role == 'ADMIN' &&  l.status == 'ACCEPTED'"
+                  >
+                  <ion-label class="name" (click)="accept(l,'ACCEPTED')">
+                    {{l.acceptor.firstName}}  {{l.acceptor.lastName}} </ion-label>
+                   
+                  </ion-col>
                   </ion-row>
                 </ion-grid>
               </ion-card-content>

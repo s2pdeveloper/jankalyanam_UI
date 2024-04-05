@@ -7,7 +7,7 @@ import { ToastService } from "src/app/core/services/toast.service";
 import { BloodRequestService } from "src/app/service/request/request.service";
 import { RestService } from "src/app/core/services/rest.service";
 import { BloodDonationService } from "src/app/service/donation/donation.service";
-import { Location } from '@angular/common';
+import { Location } from "@angular/common";
 import { SessionStorageService } from "src/app/core/services/session-storage.service";
 @Component({
   selector: "app-request-mylist-detail",
@@ -32,11 +32,11 @@ export class RequestMylistDetailPage implements OnInit {
   pageSize: number = 10;
   sortBy: any = "";
   donor: any = null;
-  selectTable={
-    state:{name:null},
-    city:{name:null},
-    donor:{id:null,name:null}
-  }
+  selectTable = {
+    state: { name: null },
+    city: { name: null },
+    donor: { id: null, name: null },
+  };
   constructor(
     private router: Router,
     private localStorage: StorageService,
@@ -46,10 +46,8 @@ export class RequestMylistDetailPage implements OnInit {
     private donorService: BloodDonationService,
     private toast: ToastService,
     private restService: RestService,
-    private location:Location
-  ) {
-
-  }
+    private location: Location
+  ) {}
 
   bloodRequestAllocateForm = new FormGroup({
     bankCity: new FormControl("", [Validators.required]),
@@ -62,16 +60,18 @@ export class RequestMylistDetailPage implements OnInit {
   ngOnInit() {}
 
   ionViewWillEnter() {
-    let state:any=this.location?.getState();
-    console.log("state------",state);
+    console.log(this.providedBy);
+    
+    let state: any = this.location?.getState();
+    console.log("state------", state);
 
     this.user = this.localStorage.get("user");
-    this.data = this.sessionStorage.get('request');
+    this.data = this.sessionStorage.get("request");
     console.log("data----", this.data);
     this.providedBy = this.data.provided ? this.data.provided : null;
     this.edit = this.data.bloodBankName == null ? true : false;
     this.donorEdit = this.data.donor == null ? true : false;
-    this.donor= this.data.donor ? this.data.donor  : null;
+    this.donor = this.data.donor ? this.data.donor : null;
     console.log("this.edit ----", this.edit);
     console.log("this.donor----", this.donor);
     this.states = this.restService.getStatesOfCountry("IN");
@@ -79,13 +79,13 @@ export class RequestMylistDetailPage implements OnInit {
     this.isDisabled =
       this.data.status == "DONE" || this.data.status == "RECEIVED";
     this.donorList();
-    if(state.success){
+    if (state.success) {
       this.donor = state?.success || null;
       this.donorData.push(this.donor);
       this.f["donorId"].setValue(this.donor.id);
-      console.log("donorData",this.donorData);
-      this.providedBy = 'DONOR';
-      this.data.provided = 'DONOR';
+      console.log("donorData", this.donorData);
+      this.providedBy = "DONOR";
+      this.data.provided = "DONOR";
       this.selectTable.donor.id = state.success.id;
       this.selectTable.donor.name = state.success.name;
     }
@@ -101,14 +101,19 @@ export class RequestMylistDetailPage implements OnInit {
       pageSize: this.pageSize,
       sortBy: this.sortBy,
       // group:'A%2B' || 'A%20-'
-      group:this.data.bloodGroup.trim().replace(/\+/g, '%2B').replace(/-/g, '%20-')
-
+      group: this.data.bloodGroup
+        .trim()
+        .replace(/\+/g, "%2B")
+        .replace(/-/g, "%20-"),
     };
     this.donorService.getDonorList(params).subscribe({
       next: (res) => {
-       
         this.donorData = res.data;
-        console.log("this.donorData-----",this.donorData,this.donorData.length);
+        console.log(
+          "this.donorData-----",
+          this.donorData,
+          this.donorData.length
+        );
         this.loader = false;
       },
       error: (err) => {
@@ -143,17 +148,15 @@ export class RequestMylistDetailPage implements OnInit {
   }
   async allocate() {
     // this.bloodDonateForm.value.status = 'ALLOCATED';
-  
+
     this.f["provided"].setValue(this.providedBy);
 
-   
-    if (this.providedBy != 'DONOR' && this.bloodRequestAllocateForm.invalid) {
+    if (this.providedBy != "DONOR" && this.bloodRequestAllocateForm.invalid) {
       this.toast.successToast("Please fill required fields!");
       return;
     }
     this.edit = !this.edit;
     this.donorEdit = !this.donorEdit;
-    // await this.spinner.showLoader();
     this.loader = true;
 
     this.service
@@ -161,13 +164,12 @@ export class RequestMylistDetailPage implements OnInit {
       .subscribe({
         next: (success) => {
           this.toast.successToast(success.message);
-          if(this.providedBy != 'DONOR'){
+          if (this.providedBy != "DONOR") {
             this.data.bloodBankName = this.bloodRequestAllocateForm.value.bloodBankName;
             this.data.bankState = this.bloodRequestAllocateForm.value.bankState;
             this.data.bankCity = this.bloodRequestAllocateForm.value.bankCity;
-  
           }
-    
+
           this.bloodRequestAllocateForm.reset();
 
           this.loader = false;
@@ -178,21 +180,17 @@ export class RequestMylistDetailPage implements OnInit {
         },
       });
   }
-  dismiss() {
-    this.modalController.dismiss();
-  }
 
   getCity(bankState: any) {
-    console.log("bankState",bankState);
-    
+    console.log("bankState", bankState);
+
     this.f["bankState"].setValue(bankState.value.name);
-    if(bankState){
+    if (bankState) {
       this.cities = this.restService.getCitiesOfState(
         bankState.value.countryCode,
         bankState.value.isoCode
       );
     }
-    
   }
   setCity(bankCity: any) {
     this.f["bankCity"].setValue(bankCity.value.name);
@@ -200,4 +198,10 @@ export class RequestMylistDetailPage implements OnInit {
   // ionViewWillLeave(){
   //   this.sessionStorage.remove('request');
   // }
+
+  back() {
+    this.sessionStorage.remove("request");
+    this.router.navigate(["/layout/blood-requests"]);
+   
+  }
 }

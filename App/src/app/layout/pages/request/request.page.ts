@@ -91,7 +91,7 @@ export class RequestPage implements OnInit {
       console.log('data---', data);
 
       if (data.data && data.data.date) {
-        this.f['field'].setValue(data.data.date);
+        this.f[field].setValue(data.data.date);
       }
     });
   }

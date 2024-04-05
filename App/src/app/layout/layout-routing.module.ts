@@ -61,10 +61,15 @@ const routes: Routes = [
         path: 'request-mylist-detail',
         loadChildren: () => import('./pages/admin/mylist-details/request-mylist-detail/request-mylist-detail.module').then( m => m.RequestMylistDetailPageModule)
       },
+      {
+        path: 'history',
+        loadChildren: () => import('./pages/admin/history/history/history.module').then( m => m.HistoryPageModule)
+      },
     
 
     ]
   },
+  
  
 
  

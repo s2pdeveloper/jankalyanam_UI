@@ -63,12 +63,17 @@
                         [ngClass]="{'status-pending': l?.status == 'PENDING','status-allocated ' : l?.status == 'ALLOCATED','status-received': l.status== 'RECEIVED','status-done' : l?.status == 'DONE','status-accepted' : l.status == 'ACCEPTED' ,'status-close': l.status=='CLOSE'}"
                         >{{l?.status}}</ion-label
                       >
-                      <button
+                      <!-- <ng-container *ngIf="user.role == 'ADMIN' && l.status == 'DONE'">
+                        <ion-label>{{ l?.acceptor?.firstName }}</ion-label>
+                        <button (click)="close(l.id)">Close</button>
+                      </ng-container> -->
+
+                      <ion-button
                         *ngIf="user.role=='ADMIN' && l.status=='DONE'"
                         (click)="close(l.id)"
                       >
-                        Close
-                      </button>
+                        Close</ion-button
+                      >
                     </ion-col>
                   </ion-row>
                 </ion-grid>

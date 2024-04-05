@@ -53,7 +53,7 @@ export class DonatePage implements OnInit {
     donationDate: new FormControl('', [Validators.required]),
     gender: new FormControl('', [Validators.required]),
     hemoglobin: new FormControl('', [Validators.required]),
-    illness: new FormControl(false, [Validators.required]),
+    illness: new FormControl(false, []),
     mobileNo: new FormControl('', [Validators.required]),
     name: new FormControl('', [Validators.required]),
     state: new FormControl('', [Validators.required]),
