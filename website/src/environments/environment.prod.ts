@@ -1,5 +1,8 @@
-// export const environment = {
-//     production: true,
-//     apiEndPoint : 'http://45.13.132.155:1996/' 
-//   };
+export const environment = {
+    production: true,
+    apiEndPoint : 'https://api-dev.jankalyan.life/' 
+  };
   
+
+
+//   apiEndpoint: 'https://api-dev.jankalyan.life/',
