@@ -2,11 +2,11 @@
   <div class="row my-3 justify-content-center">
     <div class="col-sm-2 ">
         <button type="button" class="btn btn-primary colored-button btn-block"
-            (click)="populateUserButton1('tab1')">Request</button>
+            (click)="populateUserButton1('tab1')">Beneficiary Details</button>
     </div>
     <div class="col-sm-2">
         <button type="button" class="btn btn-secondary colored-button btn-block"
-            (click)="populateUserButton1('tab2')">Acceptor</button>
+            (click)="populateUserButton1('tab2')">Admin</button>
     </div>
     <div class="col-sm-2">
         <button type="button" class="btn btn-success colored-button btn-block"
@@ -37,25 +37,8 @@
   </div>
   <div class="card-body" *ngIf="tabCondition=='tab1'">
     <form [formGroup]='bloodReq' class="form-horizontal">
-      <div class="row">
-        <div class="col-6">
-          <div class="mb-3">
-            <label for="" class="form-label">
-              Age
-            </label>
-            <input type="text" class="form-control" formControlName="age">
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="mb-3">
-            <label for="" class="form-label">
-              Bank City
-            </label>
-            <input type="text" class="form-control" formControlName="bankCity">
-          </div>
-        </div>
-      </div>
-      <div class="row">
+
+      <!-- <div class="row">
         <div class="col-6">
           <div class="mb-3">
             <label for="" class="form-label">
@@ -72,11 +55,11 @@
             <input type="text" class="form-control" formControlName="bloodBankName">
           </div>
         </div>
-      </div>
+      </div> -->
       <div class="row">
         <div class="col-6">
           <div class="mb-3">
-            <label for="" class="form-label">
+            <label for="" class="form-label">2
               Blood Group
             </label>
             <input type="text" class="form-control" formControlName="bloodGroup">
@@ -181,6 +164,24 @@
         <input type="text" class="form-control" formControlName="state">
       </div>
     </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <div class="mb-3">
+        <label for="" class="form-label">
+          Age
+        </label>
+        <input type="text" class="form-control" formControlName="age">
+      </div>
+    </div>
+    <!-- <div class="col-6">
+      <div class="mb-3">
+        <label for="" class="form-label">
+          Bank City
+        </label>
+        <input type="text" class="form-control" formControlName="bankCity">
+      </div>
+    </div> -->
   </div>
   <div class="col-6 mt-2">
     <div class="mb-3 form-check">

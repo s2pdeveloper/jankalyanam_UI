@@ -7,6 +7,7 @@ export class DonateService {
   routes: any = {
     getAllDonate: `donate/all`,
     getByIdPath:(id:any)=>`donate/${id}`
+    
   };
 
   constructor(private http: ApiService) {}
