@@ -24,5 +24,15 @@ export class HomePage implements OnInit {
     this.route.navigate([url])
   }
 
+  Option = { 
+    slidesPerView: 1, 
+    loop: true ,
+    autoplay: {
+      delay: 5000,
+    },
+  
+  
+  }
+
 
 }
