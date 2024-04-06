@@ -1,0 +1,136 @@
+<section>
+  <div class="container">
+    <div class="head">Donate Blood</div>
+    <div class="row">
+      <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-4 col-sm-12 col-xs-12">
+        <img
+          src="../../../assets/gallery/donate.png"
+          alt=""
+          class="img-fluid"
+        />
+      </div>
+      <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-8 col-sm-12 col-xs-12">
+        <form [formGroup]="donateForm">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6 col-sm-12">
+                <div class="mb-3">
+                  <div class="inputBox">
+                    <input
+                      type="text"
+                      required="required"
+                      formControlName="name"
+                    />
+                    <span class="user">Name</span>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="inputBox">
+                    <input
+                      type="number"
+                      required="required"
+                      formControlName="mobileNo"
+                    />
+                    <span class="user">Mobile No.</span>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="selectBox" >
+                    <select  class="form-select"  required="required" (change)="getCity($event)" formControlName="state">
+                      <option aria-placeholder=true selected disabled >State</option>
+                      <option *ngFor="let s of states" [value]="s.isoCode">{{s.name}}</option>
+                     </select>
+                     <span class="user">State</span>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="selectBox">
+                    <select class="form-select" required="required"  formControlName="bloodGroup">
+                      <option aria-placeholder=true selected disabled >Blood Group</option>
+                      <option *ngFor="let group of bloodGroup" [value]="group.name">{{group.name}}</option>
+                    </select>
+                    <span class="user">Blood Group</span>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="inputBox">
+                    <input
+                      type="text"
+                      required="required"
+                      formControlName="hemoglobin"/>
+                    <span class="user">Hemoglobin</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-sm-12">
+                <div class="mb-3">
+                  <div class="inputBox">
+                    <input
+                      type="number"
+                      required="required"
+                      formControlName="age"
+                    />
+                    <span class="user">Age</span>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="selectBox" >
+                   <select class="form-select" required="required" formControlName="gender">
+                      <option aria-placeholder="true" selected disabled> Gender</option>
+                      <option *ngFor="let group of gender" [value]="group.type"> {{group.type}} </option>
+                    </select>
+                    <span class="user">Gender</span>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="selectBox" >
+                    <select  class="form-select" required="required" formControlName="city">
+                      <option aria-placeholder=true selected disabled >City</option>
+                      <option *ngFor="let c of cities" [value]="c.name">{{c.name}}</option>
+                     </select>
+                     <span class="user">City</span>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="inputBox">
+                    <input
+                      type="date"
+                      required="required"
+                      formControlName="donationDate"
+                    />
+                    <span class="user">Donation Date</span>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="inputBox">
+                    <label>Illness</label>
+                    <input
+                      type="checkbox"
+                      formControlName="illness"
+                      [value]="false"
+                    />
+                  </div>
+                </div>
+
+
+
+
+
+                
+              </div>
+
+
+
+
+
+              <div class="submit">
+                <button class="button" (click)="submit()">Submit</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ListComponent } from './list/list.component';
 import { Routes, RouterModule } from '@angular/router';
+import { DonateFormComponent } from './donate-form/donate-form.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,13 @@ const routes: Routes = [
       {
         path: 'list',
         component: ListComponent,
+        data: {
+          title: 'Donate List',
+        },
+      },
+      {
+        path: 'donate-form',
+        component: DonateFormComponent,
         data: {
           title: 'Donate List',
         },

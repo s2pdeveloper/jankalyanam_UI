@@ -20,6 +20,11 @@ export const navItems: INavData[] = [
     icon: 'icon-user',
   },
   {
+    name: 'Attender',
+    url: '/attender/list',
+    icon: 'icon-user',
+  },
+  {
     name: 'Donate',
     url: '/donate/list',
     icon: 'icon-user',
@@ -34,11 +39,7 @@ export const navItems: INavData[] = [
     url: '/advertise/list',
     icon: 'icon-user',
   },
-  {
-    name: 'Attender',
-    url: '/attender/list',
-    icon: 'icon-user',
-  },
+ 
   
   
   

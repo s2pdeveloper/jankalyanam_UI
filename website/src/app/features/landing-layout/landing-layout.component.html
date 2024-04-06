@@ -1,59 +1,179 @@
-<app-header></app-header>
 <section>
   <div class="container-fluid">
     <div class="row">
-        <div class="col-12">
-            <img class="img-fluid" src="../../../assets/landing.png" alt="" />
-
-        </div>
+      <div class="col-12">
+        <img
+          class="img-fluid"
+          src="../../../assets/gallery/landing.jpg"
+          alt=""
+          class="landing-img w-100"
+        />
+      </div>
     </div>
   </div>
 </section>
+
 <section class="count">
-    <div class="container mx-5">
-        <div class="row ">
-          <div class="col-4">
-            <div class="card border-0">
-              <div class="card-body">
-                <h4 class="card-title h4 programme-degree"><u>MA</u></h4>
-                <p class="card-text font-weight-bold programme-title lead">
-                  International Relations
-                </p>
-                <p class="card-text programme-summary">
-                  Some quick example text to build on the card title and make up the
-                  bulk of the card's content.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-4">
-            <div class="card border-0">
-              <div class="card-body">
-                <h4 class="card-title h4 programme-degree"><u>MA</u></h4>
-                <p class="card-text font-weight-bold programme-title lead">
-                  International Relations
-                </p>
-                <p class="card-text programme-summary">
-                  Some quick example text to build on the card title and make up the
-                  bulk of the card's content.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-4">
-            <div class="card border-0">
-              <div class="card-body">
-                <h4 class="card-title h4 programme-degree"><u>MA</u></h4>
-                <p class="card-text font-weight-bold programme-title lead">
-                  International Relations
-                </p>
-                <p class="card-text programme-summary">
-                  Some quick example text to build on the card title and make up the
-                  bulk of the card's content.
-                </p>
-              </div>
-            </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="card-head">{{ bloodcollectnumber }}+</div>
+            <div class="card-title">Blood unit collected</div>
           </div>
         </div>
+      </div>
+
+      <div class="col-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="card-head">{{ bloodIssueNumber }}+</div>
+            <div class="card-title">Blood unit issued</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="card-head">{{ campNumber }} +</div>
+            <div class="card-title">Camps Held</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="card-head">{{ campNumber }} +</div>
+            <div class="card-title">Camps Held</div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-12 text ">
+        <div class="head text-center">About Us</div>
+        <div class="body-text">
+          Our member organizations operate more than 600 blood collection sites
+          providing close to 60 percent of the U.S., and a quarter of the
+          Canadian, blood supply. These blood centers serve more than 150
+          million people and provide blood products and services to more than
+          3,500 hospitals and healthcare facilities across North America. All
+          ABC U.S. members are licensed and regulated by the U.S. Food and Drug
+          Administration.Blood is essential for transporting oxygen, nutrients,
+          and other substances to tissues throughout the body. Donated blood can
+          be lifesaving for individuals who have lost blood because of accidents
+          or surgery,
+        </div>
+      </div>
+      <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 ">
+        <img src="../../../assets/gallery/aboutclip-removebg-preview.png" class="img" />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 order-xs-2">
+        <img src="../../../assets/gallery/requestclip-removebg-preview.png" class="img2" />
+      </div>
+
+      <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-12  order-xs-1 text">
+        <div class="head text-center">Why Should Donate Blood ?</div>
+        <div class="body-text">
+          Blood is the most precious gift that anyone can give to another person
+          the gift of life. A decision to donate your blood can save a life, or
+          even several if your blood is separated into its components red cells,
+          platelets and plasma which can be used individually for patients with
+          specific conditions.
+          <br />
+          <i class="fa-solid fa-heart fa-lg" style="color: #f70202"></i>
+          <span class="title">BE A DONOR</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="chart">
+    <img src="../../../assets/gallery/chart.jpg" alt="" class="chartimg">
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="text-center">Gallery</div>
+    </div>
+    <div class="row">
+      <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6 img">
+        <img
+          src="../../../assets/gallery/1jpeg.jpeg"
+          class="img-fluid w-100"
+          alt=""
+        />
+      </div>
+      <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6 img">
+        <img
+          src="../../../assets/gallery/2jpeg.jpeg"
+          class="img-fluid w-100"
+          alt=""
+        />
+      </div>
+      <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6 img">
+        <img
+          src="../../../assets/gallery/3jpeg.jpeg"
+          class="img-fluid w-100"
+          alt=""
+        />
+      </div>
+      <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6 img">
+        <img
+          src="../../../assets/gallery/4jpeg.jpeg"
+          class="img-fluid w-100"
+          alt=""
+        />
+      </div>
+    </div>
+    <!-- <div class="row">
+    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6 img">
+        <img
+          src="../../../assets/gallery/1jpeg.jpeg"
+          class="img-fluid w-100"
+          alt=""
+        />
+      </div>
+    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6 img">
+        <img
+          src="../../../assets/gallery/1jpeg.jpeg"
+          class="img-fluid w-100"
+          alt=""
+        />
+      </div>
+    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6 img">
+        <img
+          src="../../../assets/gallery/1jpeg.jpeg"
+          class="img-fluid w-100"
+          alt=""
+        />
+      </div>
+    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-6 img">
+        <img
+          src="../../../assets/gallery/1jpeg.jpeg"
+          class="img-fluid w-100"
+          alt=""
+        />
+      </div>
+    </div> -->
+  </div>
+</section>
+
+<section id="footer">
+
 </section>
