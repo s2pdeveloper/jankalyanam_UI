@@ -14,7 +14,7 @@
         <form [formGroup]="requestForm">
           <div class="container">
             <div class="row">
-              <div class="col-6">
+              <div class="col-md-6 col-sm-12">
                 <div class="mb-3">
                   <div class="inputBox">
                     <input
@@ -23,26 +23,6 @@
                       formControlName="name"
                     />
                     <span class="user">Name</span>
-                  </div>
-                </div>
-                <div class="mb-3">
-                  <div class="inputBox">
-                    <input
-                      type="text"
-                      required="required"
-                      formControlName="bloodGroup"
-                    />
-                    <span class="user">Blood Group</span>
-                  </div>
-                </div>
-                <div class="mb-3">
-                  <div class="inputBox">
-                    <input
-                      type="text"
-                      required="required"
-                      formControlName="gender"
-                    />
-                    <span class="user">Gender</span>
                   </div>
                 </div>
                 <div class="mb-3">
@@ -60,9 +40,27 @@
                     <input
                       type="text"
                       required="required"
-                      formControlName="illness"
+                      formControlName="fatherOrHusband"
                     />
-                    <span class="user">Illness</span>
+                    <span class="user">Father/Husband Name</span>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="selectBox" >
+                    <select  class="form-select" required="required" formControlName="city">
+                      <option aria-placeholder=true selected disabled >City</option>
+                      <option *ngFor="let c of cities" [value]="c.name">{{c.name}}</option>
+                     </select>
+                     <span class="user">City</span>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="selectBox">
+                    <select class="form-select" required="required"  formControlName="bloodGroup">
+                      <option aria-placeholder=true selected disabled >Blood Group</option>
+                      <option *ngFor="let group of bloodGroup" [value]="group.name">{{group.name}}</option>
+                    </select>
+                    <span class="user">Blood Group</span>
                   </div>
                 </div>
                 <div class="mb-3">
@@ -70,32 +68,9 @@
                     <input
                       type="text"
                       required="required"
-                      formControlName="city"
+                      formControlName="illness"
                     />
-                    <span class="user">City</span>
-                  </div>
-                </div>
-                <div class="mb-3">
-                  <div class="inputBox">
-                    <input
-                      type="number"
-                      required="required"
-                      formControlName="units"
-                    />
-                    <span class="user">Unit</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-6">
-                <div class="inputBox mb-3">
-                  <div class="inputBox">
-                    <input
-                      type="number"
-                      required="required"
-                      formControlName="age"
-                    />
-                    <span class="user">Age</span>
+                    <span class="user">Illness</span>
                   </div>
                 </div>
                 <div class="mb-3">
@@ -108,24 +83,35 @@
                     <span class="user">Require Date</span>
                   </div>
                 </div>
+              </div>
+
+              <div class="col-md-6 col-sm-12">
                 <div class="mb-3">
                   <div class="inputBox">
                     <input
-                      type="text"
+                      type="number"
                       required="required"
-                      formControlName="hemoglobin"
+                      formControlName="age"
                     />
-                    <span class="user">Hemoglobin</span>
+                    <span class="user">Age</span>
                   </div>
                 </div>
                 <div class="mb-3">
-                  <div class="inputBox">
-                    <input
-                      type="text"
-                      required="required"
-                      formControlName="fatherOrHusband"
-                    />
-                    <span class="user">Father/Husband Name</span>
+                  <div class="selectBox" >
+                   <select class="form-select" required="required" formControlName="gender">
+                      <option aria-placeholder="true" selected disabled> Gender</option>
+                      <option *ngFor="let group of gender" [value]="group.type"> {{group.type}} </option>
+                    </select>
+                    <span class="user">Gender</span>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="selectBox" >
+                    <select  class="form-select"  required="required" (change)="getCity($event)" formControlName="state">
+                      <option aria-placeholder=true selected disabled >State</option>
+                      <option *ngFor="let s of states" [value]="s.isoCode">{{s.name}}</option>
+                     </select>
+                     <span class="user">State</span>
                   </div>
                 </div>
                 <div class="mb-3">
@@ -143,9 +129,19 @@
                     <input
                       type="text"
                       required="required"
-                      formControlName="state"
+                      formControlName="hemoglobin"
                     />
-                    <span class="user">State</span>
+                    <span class="user">Hemoglobin</span>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="inputBox">
+                    <input
+                      type="number"
+                      required="required"
+                      formControlName="units"
+                    />
+                    <span class="user">Unit</span>
                   </div>
                 </div>
               </div>

@@ -1,6 +1,7 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-light">
     <div class="container-fluid p-0">
-      <img class="navbar-brand" src="" alt="Jankalyan" />
+      <!-- <img class="navbar-brand" src="" alt="Jankalyan" /> -->
+      <h3 class="ms-5">Jankalyan</h3>
       <button
         class="navbar-toggler border border-0"
         type="button"
@@ -40,7 +41,7 @@
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#contacts" (click)="toggleCollapse()" id="contact1"
+            <a class="nav-link" routerLink="/home"  (click)="toggleCollapse()" id="contact1" (click)="routeTo('footer')"
               >Contact</a
             >
           </li>
