@@ -55,10 +55,9 @@ export class ListComponent implements OnInit {
         this.spinner.hide();
       });
   }
-
-  navigateTo(path, _id) {
-    if (_id) {
-      this.router.navigate([path], { queryParams: { _id } });
+  navigateTo(path, id) {
+    if (id) {
+      this.router.navigate([path], { queryParams: { id } });
     } else {
       this.router.navigate([path]);
     }

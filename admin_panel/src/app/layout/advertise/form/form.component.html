@@ -3,7 +3,7 @@
     <div class="card-header">
       <div class="row justify-content-between align-items-center">
         <div class="col-auto">
-          <h3 class="mb-0">Admin Form</h3>
+          <h3 class="mb-0">Advertise Form</h3>
         </div>
         <div class="col-auto">
           <button type="button" class="btn btn-danger" (click)="goBack()">
@@ -31,7 +31,7 @@
                 Status
               </label>
               <select class="form-select" formControlName="status">
-                <option value="" disabled selected> Status</option>
+                <option value="" disabled selected>Status</option>
                 <option value="ACTIVE">ACTIVE</option>
                 <option value="INACTIVE">INACTIVE</option>
  
@@ -39,19 +39,41 @@
               
             </div>
           </div>
+          <div class="col-6">
+            <div class="mb-3">
+              <label for="" class="form-label">
+                Type
+              </label>
+              <select class="form-select" formControlName="type">
+                <option value="" disabled selected>Type</option>
+                <option value="SLIDE">SLIDE</option>
+              </select>
+            </div>
+          </div>
         </div>
-        <div class="row justify-content-center">
-          <div class="col-10">
-          
+        <div class="row justify-content-center ">
+          <div class="col-6">
               <label for="images" class="drop-container" id="dropcontainer">
                 <span class="drop-title">Drop files here</span>
                 or
                 <input (change)="fileBrowseHandler($event)" type="file" id="images" accept="image/*" required>
               </label>
-           
           </div>
-        
+          <div class="col-6" id="img">
+          <img *ngIf="previewImage ||form.file.value" [src]="previewImage|| form.file.value" alt="Image">
         </div>
+        </div>
+        <!-- <div class="col-6">
+          <div class="mb-3">
+            <label for="" class="form-label">
+              Type
+            </label>
+            <select class="form-select" formControlName="type">
+              <option value="" disabled selected> Type</option>
+              <option value="SLIDE">SLIDE</option>
+            </select>
+          </div>
+        </div> -->
       </form>
       <div class="text-center">
         <button
