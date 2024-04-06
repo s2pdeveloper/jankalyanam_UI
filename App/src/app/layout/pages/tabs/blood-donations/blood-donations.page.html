@@ -24,9 +24,9 @@
       </ion-item>
       <div [ngSwitch]="activeSegment">
         <div *ngSwitchCase="'latest'">
-          <ng-container *ngIf="latestTabDetails.length > 0">
+          <ng-container *ngIf="latestTabDetails.length > 0 ">
             <ion-card
-              *ngFor="let l of latestTabDetails"
+              *ngFor="let l of latestTabDetails ; let i = index"
               (click)="openModel('latest',l)"
             >
               <ion-card-content class="ion-no-padding">
@@ -70,7 +70,7 @@
 
                       <ion-button
                         *ngIf="user.role=='ADMIN' && l.status=='DONE'"
-                        (click)="close(l.id)"
+                        (click)="close(l.id,i)"
                       >
                         Close</ion-button
                       >

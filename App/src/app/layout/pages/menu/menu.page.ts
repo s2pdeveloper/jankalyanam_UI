@@ -29,7 +29,7 @@ export class MenuPage implements OnInit {
   async logoutAlert() {
     const alert = await this.alertController.create({
       header: "Logout",
-      message: "Are u want to logout",
+      message: "Are you sure to logout",
       mode: "ios",
       buttons: [
         {
@@ -51,6 +51,8 @@ export class MenuPage implements OnInit {
     // this.loca
     console.log("remove logout");
     this.storageService.remove("user");
-    this.router.navigate(["/auth/login"]);
+    // this.router.navigate(["/auth/login"]);
+    this.router.navigate(["/auth/on-boarding"]);
+
   }
 }

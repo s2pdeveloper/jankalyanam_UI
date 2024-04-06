@@ -231,12 +231,18 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
   //   console.log("ev--------------------- destroy blood donation");
   // }
 
-  close(id){
+  close(id : any,index : number){
     this.loader = true;
     // await this.spinner.showLoader();
     this.service.statusUpdate(id, 'CLOSE').subscribe(
       async (success) => {
         this.toast.successToast(success.message);
+
+       let data =  this.latestTabDetails(index);
+       this.latestTabDetails.splice(index,1);
+       this.historyTabDetails.unshift(data);
+      
+        
         // await this.spinner.hideLoader();
         this.loader = false;
       },

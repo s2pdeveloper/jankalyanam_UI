@@ -12,4 +12,22 @@ export class OnboardingPage implements OnInit {
   ngOnInit() {
   }
 
+  dataList=[
+    {
+      
+    }
+  ]
+
+  eventSlideOpts = {
+    slidesPerView: 1,
+    slideShadows: true,
+    initialSlide: 0,
+    speed: 400,
+    loop: true,
+    autoplay: {
+      delay: 5000,
+    },
+    spaceBetween: 3,
+  }
+
 }

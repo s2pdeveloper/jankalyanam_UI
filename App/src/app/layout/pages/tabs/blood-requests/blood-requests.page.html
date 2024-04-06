@@ -22,7 +22,8 @@
           </ion-segment-button>
           <!-- Define Role Below -->
           <ion-segment-button value="history">
-            <ion-label class="ion-text-capitalize">History of admin</ion-label>
+            <ion-label *ngIf="user.role != 'ADMIN'" class="ion-text-capitalize">History</ion-label>
+            <ion-label *ngIf="user.role == 'ADMIN'" class="ion-text-capitalize">History Admin</ion-label>
           </ion-segment-button>
         </ion-segment>
       </ion-item>

@@ -34,13 +34,13 @@ export class BloodRequestsPage implements OnInit {
 
   constructor(
     private router: Router,
-    private activateRoute : ActivatedRoute,
+    private activateRoute: ActivatedRoute,
     private modalService: ModalService,
     private service: BloodRequestService,
     private localStorage: StorageService,
     private spinner: LoaderService,
     private toast: ToastService,
-    private sessionStorage: SessionStorageService,
+    private sessionStorage: SessionStorageService
   ) {}
 
   ngOnInit() {}
@@ -170,7 +170,12 @@ export class BloodRequestsPage implements OnInit {
   openModel(key: string, data: any) {
     switch (key) {
       case "history":
-        this.modalService.openModal(DonationHistoryComponent, { data });
+        if (this.user.role == "ADMIN") {
+          this.router.navigate(["/layout/history"])
+        } else {
+          this.modalService.openModal(DonationHistoryComponent, { data });
+        }
+        // this.router.navigate(["/layout/history"])
         break;
       case "latest":
         if (this.user.role == "ADMIN") {
@@ -182,9 +187,8 @@ export class BloodRequestsPage implements OnInit {
         break;
       case "list":
         if (this.user.role == "ADMIN") {
-          // this.modalService.openModal(AdminRequestMylistComponent, { data });
-          this.sessionStorage.set('request',data);
-          this.router.navigate(['/layout/request-mylist-detail'])
+          this.sessionStorage.set("request", data);
+          this.router.navigate(["/layout/request-mylist-detail"]);
         }
 
         break;

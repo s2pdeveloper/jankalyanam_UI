@@ -130,7 +130,7 @@ export class DonatePage implements OnInit {
     if(this.bloodRequest){
       this.router.navigate(['/layout/request-mylist-detail'],{});
     }else{
-      this.router.navigate(['"/layout/home"']);
+      this.router.navigate(['/layout/home']);
     }
     
   }
