@@ -170,12 +170,8 @@ export class BloodRequestsPage implements OnInit {
   openModel(key: string, data: any) {
     switch (key) {
       case "history":
-        if (this.user.role == "ADMIN") {
-          this.router.navigate(["/layout/history"])
-        } else {
-          this.modalService.openModal(DonationHistoryComponent, { data });
-        }
-        // this.router.navigate(["/layout/history"])
+       
+        this.router.navigate(["/layout/history"],{state:{data}});
         break;
       case "latest":
         if (this.user.role == "ADMIN") {

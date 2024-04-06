@@ -29,7 +29,9 @@ export class DonationDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.localStorage.get("user");
+
     console.log("data----", this.data, this.data.bloodBankName);
+    this.f['donationDate'].setValue( this.data.donationDate);
     this.edit = this.data.bloodBankName == null ? true : false;
     console.log("this.edit ----", this.edit);
     this.bloodDonateForm.controls.donationDate.setValue(this.data.donationDate);
@@ -49,11 +51,17 @@ export class DonationDetailsComponent implements OnInit {
   }
 
   async openCalender(date: any) {
+    console.log("date",date);
+    // date = date ? date.split('-').join('-').reverse() : new Date()
+    console.log("date22",date);
+
+    console.log("new Date(date).toISOString()",new Date(date));
+    
     const modal: any = await this.modalController.create({
       component: CalenderComponent,
       cssClass: "calender-model",
       componentProps: {
-        date,
+      // date:new Date(date).toISOString() ,
       },
     });
 
@@ -74,7 +82,7 @@ export class DonationDetailsComponent implements OnInit {
     if (this.bloodDonateForm.invalid) {
       console.log(this.bloodDonateForm.controls);
 
-      this.toast.successToast("Please fill required fields!");
+      this.toast.errorToast("Please fill required fields!");
       return;
     }
     this.edit = !this.edit;

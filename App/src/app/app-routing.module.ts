@@ -12,7 +12,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'on-boarding',
+        redirectTo: 'login',
         pathMatch: 'full',
       },
       {

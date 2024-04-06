@@ -9,3 +9,42 @@
         right: 16px;
       }
 }
+
+
+ion-toolbar {
+    --background: #ffffff !important;
+}
+
+ion-slides {
+
+    padding-bottom: 2.8em;
+    --bullet-background-active: var(--ion-color-primary);
+
+}
+
+#slides {
+    .slide-image {
+        height: 60vh;
+        // width: 70%;
+        margin: 0px 4px;
+        pointer-events: none;
+    }
+    ion-note {
+        font-size: 0.8em;
+        line-height: 1.5;
+        color: var(--ion-color-step-600, #60646b);
+        padding-bottom: .6rem;
+    }
+
+}
+
+.swiper-slide {
+    display: block;
+}
+
+.slide-title {
+    margin-top: 0;
+    font-size: 1.5em;
+    font-weight: bolder;
+    color: var(--ion-color-primary);
+}

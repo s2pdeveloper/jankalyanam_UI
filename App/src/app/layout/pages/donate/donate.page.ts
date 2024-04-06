@@ -84,7 +84,7 @@ export class DonatePage implements OnInit {
           this.router.navigate(['/layout/request-mylist-detail'],
           { state: { success} } );
         }else{
-          this.router.navigate(['"/layout/home"']);
+          this.router.navigate(['/layout/home']);
         }
       },
       async (error: any) => {

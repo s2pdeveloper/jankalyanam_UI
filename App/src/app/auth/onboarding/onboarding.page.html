@@ -34,11 +34,53 @@
   </ion-slides>
   </div> -->
 
-<!-- <div class="ion-padding ion-margin-bottom">
-  <ion-slides #slider [options]="eventSlideOpts" [pager]="true">
-    <ion-slide *ngFor="let item of dataList" (click)="navigateTo(item.event?._id)">
-      <img class="horizontal-event-img" [src]="item.event?.eventMedia[0]?.image" />
-    </ion-slide>
-  </ion-slides>
-  </div> -->
+
 <!-- http://localhost:8100/layout/onboarding -->
+
+
+<!-- <ion-toolbar>
+  <ion-buttons slot="end">
+    <ion-button
+      *ngIf="!showSkip"
+      type="button"
+      color="primary"
+      routerDirection="root"
+      (click)="navigateTo()"
+      fill="clear"
+      size="large"
+      slot="end"
+    >
+      <b>SKIP</b>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
+
+<ion-content class="ion-no-padding">
+  <ion-slides
+    #slides
+    id="slides"
+    (ionSlideWillChange)="onSlideChangeStart($event)"
+    pager="true"
+    [options]="slideOpts"
+    autplay="true"
+  >
+    <ion-slide>
+      <img src="./assets/onboard/1.svg" class="slide-image" />
+      <ion-note>
+      </ion-note>
+    </ion-slide>
+    <ion-slide>
+      <img src="./assets/onboard/2.svg" class="slide-image" />
+      <ion-note>
+      </ion-note>
+    </ion-slide>
+    <ion-slide>
+      <img src="./assets/onboard/2.jpg" class="slide-image" />
+      <ion-note>
+      </ion-note>
+    </ion-slide>
+ </ion-slides>
+  <ion-title class="slide-title ion-text-center">
+    ENERTY <sup>TM</sup>
+  </ion-title>
+</ion-content> -->

@@ -18,6 +18,7 @@ export class AuthService {
     createAndUpdateUserDevice: 'user/createAndUpdateUserDevice',
     emailVerifyPath: 'user/email-verify',
     resetPinVerifyPath: 'user/resetPinVerify',
+    deviceIdPath: (deviceId: string) => `UserDeviceId?deviceId=${deviceId}`
   };
 
   constructor(
@@ -66,5 +67,9 @@ export class AuthService {
   }
   resetPinVerify(userPayload: any) {
     return this.http.post(this.routes.resetPinVerifyPath, userPayload);
+  }
+
+  addDeviceId(deviceId:string) {
+    return this.http.post(this.routes.deviceIdPath(deviceId));
   }
 }

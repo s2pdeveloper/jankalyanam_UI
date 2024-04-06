@@ -1,213 +1,264 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
-    <ion-back-button
-      slot="start"
-      defaultHref=""
-    ></ion-back-button>
+    <ion-back-button slot="start" defaultHref="/layout/blood-requests">
+
+    </ion-back-button>
     <ion-title>History</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
   <ion-accordion-group value="first" class="ion-padding">
-    <ion-accordion value="first" *ngIf="!!data.bloodRequest">
-      <ion-item slot="header" color="light">
-        <i class="fa-solid fa-droplet"></i>
-        <ion-label  class="ion-padding-horizontal">Request Details</ion-label>
-      </ion-item>
-      <div class="ion-padding" slot="content">
-        <ion-card>
-          <ion-card-content>
-            <ion-grid>
-              <ion-row>
-                <ion-col size="12">
-                  <ion-label class="head">Name</ion-label>
-                  <ion-label>: {{data?.bloodRequest?.name}}</ion-label>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col size="12">
-                  <ion-label class="head">Age</ion-label>
-                  <ion-label>: {{data?.bloodRequest?.age}}</ion-label>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col size="12">
-                  <ion-label class="head">Gender</ion-label>
-                  <ion-label>: {{data?.bloodRequest?.gender}}</ion-label>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col size="12">
-                  <ion-label class="head">Blood Group</ion-label>
-                  <ion-label>: {{data?.bloodRequest?.bloodGroup}}</ion-label>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col size="12">
-                  <ion-label class="head">Blood Require Date</ion-label>
-                  <ion-label>: {{data?.bloodRequest?.bloodRequireDate}}</ion-label>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col size="12">
-                  <ion-label class="head">State</ion-label>
-                  <ion-label>: {{data?.bloodRequest?.state}}</ion-label>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col size="12">
-                  <ion-label class="head">City</ion-label>
-                  <ion-label>: {{data?.bloodRequest?.city}}</ion-label>
-                </ion-col>
-              </ion-row>
-              <ion-row *ngIf="data.gender =='FEMALE'">
-                <ion-col size="12">
-                  <ion-label class="head">Father/Husband</ion-label>
-                  <ion-label>: {{data?.bloodRequest?.fatherOrHusband}}</ion-label>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col size="12">
-                  <ion-label class="head">Hemoglobin</ion-label>
-                  <ion-label>: {{data?.bloodRequest?.hemoglobin}}</ion-label>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col size="12">
-                  <ion-label class="head">Illness</ion-label>
-                  <ion-label>: {{data?.bloodRequest?.illness}}</ion-label>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col size="12">
-                  <ion-label class="head">Location</ion-label>
-                  <ion-label>: {{data?.bloodRequest?.location}}</ion-label>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col size="12">
-                  <ion-label class="head">Mobile Number</ion-label>
-                  <ion-label>: {{data?.bloodRequest?.mobileNo}}</ion-label>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col size="12">
-                  <ion-label class="head">Units</ion-label>
-                  <ion-label>: {{data?.bloodRequest?.units}}</ion-label>
-                </ion-col>
-              </ion-row>
-            
-            </ion-grid>
-          </ion-card-content>
-        </ion-card>
-      </div>
-    </ion-accordion>
+    <ng-container *ngIf="!!data">
+      <ion-accordion value="first">
+        <ion-item slot="header" color="light">
+          <i class="fa-solid fa-file-lines"></i>
+          
+          <ion-label class="ion-padding-horizontal">Request Details</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">
+          <ion-card>
+            <ion-card-content>
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="12">
+                    <ion-label class="head">Name</ion-label>
+                    <ion-label>: {{data?.name}}</ion-label>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="12">
+                    <ion-label class="head">Age</ion-label>
+                    <ion-label>: {{data?.age}}</ion-label>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="12">
+                    <ion-label class="head">Gender</ion-label>
+                    <ion-label>: {{data?.gender}}</ion-label>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="12">
+                    <ion-label class="head">Blood Group</ion-label>
+                    <ion-label>: {{data?.bloodGroup}}</ion-label>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="12">
+                    <ion-label class="head">Blood Require Date</ion-label>
+                    <ion-label>: {{data?.bloodRequireDate}}</ion-label>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="12">
+                    <ion-label class="head">State</ion-label>
+                    <ion-label>: {{data?.state}}</ion-label>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="12">
+                    <ion-label class="head">City</ion-label>
+                    <ion-label>: {{data?.city}}</ion-label>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="12">
+                    <ion-label class="head">Illness</ion-label>
+                    <ion-label>: {{data?.illness}}</ion-label>
+                  </ion-col>
+                </ion-row>
+                <ion-row *ngIf="data.gender =='FEMALE'">
+                  <ion-col size="12">
+                    <ion-label class="head">Father/Husband</ion-label>
+                    <ion-label>: {{data?.fatherOrHusband}}</ion-label>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="12">
+                    <ion-label class="head">Hemoglobin</ion-label>
+                    <ion-label>: {{data?.hemoglobin}}</ion-label>
+                  </ion-col>
+                </ion-row>
+               
+                <ion-row>
+                  <ion-col size="12">
+                    <ion-label class="head">Location</ion-label>
+                    <ion-label>: {{data?.location}}</ion-label>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="12">
+                    <ion-label class="head">Mobile Number</ion-label>
+                    <ion-label>: {{data?.mobileNo}}</ion-label>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="12">
+                    <ion-label class="head">Units</ion-label>
+                    <ion-label>: {{data?.units}}</ion-label>
+                  </ion-col>
+                </ion-row>
+               
+              </ion-grid>
+            </ion-card-content>
+          </ion-card>
+        </div>
+      </ion-accordion>
 
-    <ion-accordion value="second" *ngIf="!data.bloodRequest">
-      <ion-item slot="header" color="light">
-        <i class="fa-solid fa-file-lines"></i>
-        <ion-label class="ion-padding-horizontal">Request Details</ion-label>
-      </ion-item>
-      <div class="ion-padding accordion-collapsed" slot="content">
-        <ion-card>
-          <ion-card-content>
-            <ion-grid>
-              <ion-row>
+      <ion-accordion value="second">
+        <ion-item slot="header" color="light">
+          <i class="fa-solid fa-user"></i>
+          <ion-label class="ion-padding-horizontal">Acceptor Details</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">
+          <ion-card>
+            <ion-card-content>
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="12">
+                    <ion-label class="head"> Name</ion-label>
+                    <ion-label>
+                      : {{data?.acceptor?.firstName}}
+                      {{data?.acceptor?.lastName}}</ion-label
+                    >
+                  </ion-col>
+
+                  <ion-col size="6" *ngIf="!!data?.acceptor?.email">
+                    <ion-label class="head">Email</ion-label>
+                    <ion-label> : {{data?.acceptor?.email}}</ion-label>
+                  </ion-col>
+
+                  <ion-col size="6" *ngIf="!!data?.acceptor?.state">
+                    <ion-label class="head">State</ion-label>
+                    <ion-label> : {{data?.acceptor?.state}}</ion-label>
+                  </ion-col>
+
+                  <ion-col size="6" *ngIf="!!data?.acceptor?.city">
+                    <ion-label class="head">City</ion-label>
+                    <ion-label> : {{data?.acceptor?.city}}</ion-label>
+                  </ion-col>
+
+                  <ion-col size="12">
+                    <ion-label class="head">Mobile No</ion-label>
+                    <ion-label> : {{data?.acceptor?.mobileNo}}</ion-label>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-card-content>
+          </ion-card>
+        </div>
+      </ion-accordion>
+      <ion-accordion value="third" *ngIf="data.provided != 'DONOR'">
+        <ion-item slot="header" color="light">
+          <i class="fa-solid fa-building-columns"></i>
+          <ion-label class="ion-padding-horizontal"
+            >Blood Bank Details</ion-label
+          >
+        </ion-item>
+        <div class="ion-padding accordion-collapsed" slot="content">
+          <ion-card>
+            <ion-card-content>
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="12">
+                    <ion-label class="head">Blood Bank Name </ion-label>
+                    <ion-label> : {{data?.bloodBankName}}</ion-label>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="12">
+                    <ion-label class="head">State </ion-label>
+                    <ion-label> : {{data?.bankState}}</ion-label>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="12">
+                    <ion-label class="head">City </ion-label>
+                    <ion-label> : {{data?.bankCity}}</ion-label>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-card-content>
+          </ion-card>
+        </div>
+      </ion-accordion>
+
+      <ion-accordion value="fourth" *ngIf="data.provided == 'DONOR'">
+        <ion-item slot="header" color="light">
+          
+          <i class="fa-solid fa-droplet"></i>
+          <ion-label class="ion-padding-horizontal">Donor Details</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">
+          <ion-card>
+            <ion-card-content>
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="12">
+                    <ion-label class="head">Name</ion-label>
+                    <ion-label> : {{data?.donor?.name}}</ion-label>
+                  </ion-col>
+
+                  <ion-col size="6">
+                    <ion-label class="head">Gender</ion-label>
+                    <ion-label> : {{data?.donor?.gender}}</ion-label>
+                  </ion-col>
+
+                  <ion-col size="6">
+                    <ion-label class="head">Age</ion-label>
+                    <ion-label> : {{data?.donor?.age}}</ion-label>
+                  </ion-col>
+
+                  <ion-col size="6">
+                    <ion-label class="head">State</ion-label>
+                    <ion-label> : {{data?.donor?.state}}</ion-label>
+                  </ion-col>
+
+                  <ion-col size="6">
+                    <ion-label class="head">City</ion-label>
+                    <ion-label> : {{data?.donor?.city}}</ion-label>
+                  </ion-col>
+
+                  <ion-col size="6">
+                    <ion-label class="head">Blood Group</ion-label>
+                    <ion-label> : {{data?.donor?.bloodGroup}}</ion-label>
+                  </ion-col>
+
+                  <ion-col size="6">
+                    <ion-label class="head">Hemoglobin</ion-label>
+                    <ion-label> : {{data?.donor?.hemoglobin}}</ion-label>
+                  </ion-col>
+
+                 
+
+                  <ion-col size="12">
+                    <ion-label class="head">Mobile No</ion-label>
+                    <ion-label> : {{data?.donor?.mobileNo}}</ion-label>
+                  </ion-col>
+
+                  <ion-col size="12">
+                    <ion-label class="head">Donation Date</ion-label>
+                    <ion-label> : {{data?.donor?.donationDate}}</ion-label>
+                  </ion-col>
+                </ion-row>
                 <ion-col size="12">
-                  <ion-label class="head">Blood Bank Name </ion-label>
-                  <ion-label> : {{data?.bloodBankName}}</ion-label>
+                  <ion-icon
+                    *ngIf="data?.donor?.illness"
+                    name="checkbox"
+                  ></ion-icon>
+                  <ion-icon
+                    *ngIf="!data?.donor?.illness"
+                    name="close"
+                  ></ion-icon>
+                  <ion-label class="head donor-illness">Illness</ion-label>
                 </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col size="12">
-                  <ion-label class="head">Location </ion-label>
-                  <ion-label> : {{data?.location}}</ion-label>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col size="12">
-                  <ion-label class="head">Donation Date </ion-label>
-                  <ion-label> : {{data?.donationDate}}</ion-label>
-                </ion-col>
-              </ion-row>
-             
-            </ion-grid>
-          </ion-card-content>
-        </ion-card>
-      </div>
-    </ion-accordion>
-   
-    <ion-accordion value="third">
-      <ion-item slot="header" color="light">
-        <i class="fa-solid fa-user"></i>
-        <ion-label  class="ion-padding-horizontal">Personal Details</ion-label>
-      </ion-item>
-      <div class="ion-padding" slot="content">
-        <ion-card>
-          <ion-card-content>
-            <ion-grid>
-              <ion-row>
-                <ion-col size="12">
-                  <ion-label class="head">First Name</ion-label>
-                  <ion-label> : {{data?.name}}</ion-label>
-                </ion-col>
-
-                <ion-col size="6">
-                  <ion-label class="head">Gender</ion-label>
-                  <ion-label> : {{data?.gender}}</ion-label>
-                </ion-col>
-
-                <ion-col size="6">
-                  <ion-label class="head">Age</ion-label>
-                  <ion-label> : {{data?.age}}</ion-label>
-                </ion-col>
-
-                <ion-col size="6">
-                  <ion-label class="head">State</ion-label>
-                  <ion-label> : {{data?.state}}</ion-label>
-                </ion-col>
-
-                <ion-col size="6">
-                  <ion-label class="head">City</ion-label>
-                  <ion-label> : {{data?.city}}</ion-label>
-                </ion-col>
-
-                <ion-col size="6">
-                  <ion-label class="head">Blood Group</ion-label>
-                  <ion-label> : {{data?.bloodGroup}}</ion-label>
-                </ion-col>
-
-                <ion-col size="6">
-                  <ion-label class="head">Hemoglobin</ion-label>
-                  <ion-label> : {{data?.hemoglobin}}</ion-label>
-                </ion-col>
-
-                <ion-col size="12">
-                  <ion-label class="head">Illness</ion-label>
-                  <ion-label> : {{data?.illness}}</ion-label>
-                </ion-col>
-
-                <ion-col size="12">
-                  <ion-label class="head">Mobile No</ion-label>
-                  <ion-label> : {{data?.mobileNo}}</ion-label>
-                </ion-col>
-
-                <ion-col size="12">
-                  <ion-label class="head">Donation Date</ion-label>
-                  <ion-label> : {{data?.donationDate}}</ion-label>
-                </ion-col>
-
-                <ion-col size="12">
-                  <ion-label class="head">Location</ion-label>
-                  <ion-label> : {{data?.location}}</ion-label>
-                </ion-col>
-
-              </ion-row>
-            </ion-grid>
-          </ion-card-content>
-        </ion-card>
-      </div>
-    </ion-accordion>
+              </ion-grid>
+            </ion-card-content>
+          </ion-card>
+        </div>
+      </ion-accordion>
+    
+    </ng-container>
   </ion-accordion-group>
 
   <!-- <ion-card>
