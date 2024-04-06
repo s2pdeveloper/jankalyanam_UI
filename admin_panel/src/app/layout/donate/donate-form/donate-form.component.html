@@ -1,0 +1,521 @@
+<!-- <div class="row donate">
+        <div class="col-6">
+            <div class="card">
+                <div class="row">
+                    <div class="col-6">
+                        <h6 class="name">Name: {{Blood.name}}</h6>
+                       
+                    </div>
+                    <div class="col-6">
+                        <img src="../../../../assets/blood.png" class="img-fluid" alt="">
+                        <h6 class="blood">{{Blood.bloodGroup}} </h6>  
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <h6 class="detail">City: {{Blood.city}}</h6>
+                    </div>
+                    <div class="col-6">
+                        <h6 class="detail">State: {{Blood.state}}</h6> 
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                       <h6 class="detail">Gender:{{Blood.gender}} </h6> 
+                    </div>
+                    <div class="col-6">
+                       <h6 class="detail">Mobile No:{{Blood.mobileNo}}</h6>  
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                       <h6 class="detail">Status: {{Blood.status}} </h6> 
+                    </div>
+                    <div class="col-6">
+                       <h6 class="detail">Hemoglobin: {{Blood.hemoglobin}} </h6> 
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="create text-center">
+                            Created By
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="row">
+                        <div class="col-6">
+                            <h6 class="detail">Name:- {{Blood.user.firstName}} {{Blood.user.lastName}}</h6>
+                        </div>
+                        <div class="col-6">
+                            <h6 class="detail">Mobile: {{Blood.user.mobileNo}}</h6> 
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                           <h6 class="detail">Status:{{Blood.user.status}} </h6> 
+                        </div>
+                        <div class="col-6">
+                           <h6 class="detail">Role:{{Blood.user.role}}</h6>  
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+<!-- <div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <button type="button" class="btn btn-primary colored-button btn-block"
+                (click)="populateUserButton1('tab1')">Attendy</button>
+        </div>
+        <div class="col-sm-3">
+            <button type="button" class="btn btn-secondary colored-button btn-block"
+                (click)="populateUserButton1('tab2')">Button 2</button>
+        </div>
+        <div class="col-sm-3">
+            <button type="button" class="btn btn-success colored-button btn-block"
+                (click)="populateUserButton1('tab3')">Button 3</button>
+        </div>
+        <div class="col-sm-3">
+            <button type="button" class="btn btn-danger colored-button btn-block"
+                (click)="populateUserButton1('tab4')">Button 4</button>
+        </div>
+    </div>
+</div> -->
+
+<!-- <div class="container" *ngIf="tabCondition=='tab1'">
+    <div class="row" [formGroup]='bloodForm'>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" placeholder="Name" formControlName="name">
+        </div>
+    </div>
+</div>
+<div class="container" [formGroup]='bloodForm' *ngIf="tabCondition=='tab2'">
+    <div class="row"formGroupName='user' >
+        <div class="col-sm-6">
+            <input type="text" class="form-control" placeholder="first Name" formControlName="firstName">
+        </div>
+    </div>
+</div> -->
+<div class="container-fluid animated fadeIn">
+  <div class="row my-2 d-flex justify-content-center">
+    <div class="col-sm-3">
+        <button type="button" class="btn btn-primary colored-button btn-block"
+            (click)="populateUserButton1('tab1')">Donate</button>
+    </div>
+    <div class="col-sm-3">
+        <button type="button" class="btn btn-secondary colored-button btn-block"
+            (click)="populateUserButton1('tab2')">Attender</button>
+    </div>
+    <div class="col-sm-3"*ngIf="isBloodBankData">
+        <button type="button" class="btn btn-success colored-button btn-block"
+            (click)="populateUserButton1('tab3')">Blood Bank</button>
+    </div>
+    <div class="col-sm-3" *ngIf="isPatientData">
+        <button type="button" class="btn btn-danger colored-button btn-block"
+            (click)="populateUserButton1('tab4')">Patient</button>
+    </div>
+</div>
+    <div class="card">
+      <div class="card-header">
+        <div class="row justify-content-between align-items-center">
+          <div class="col-auto">
+            <h3 class="mb-0">Donate Form</h3>
+          </div>
+          <div class="col-auto">
+            <button type="button" class="btn btn-danger" (click)="goBack()">
+              <i class="fa fa-arrow-left me-1" aria-hidden="true"></i>
+              Back
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="card-body" *ngIf="tabCondition=='tab1'">
+        <form [formGroup]='bloodForm' class="form-horizontal">
+          <div class="row">
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="" class="form-label">
+                  Name
+                </label>
+                <input type="text" class="form-control" formControlName="name">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="" class="form-label">
+                  Age
+                </label>
+                <input type="text" class="form-control" formControlName="age">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="" class="form-label">
+                    State
+                </label>
+                <input type="text" class="form-control" formControlName="state">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="" class="form-label">
+                    City
+                </label>
+                <input type="text" class="form-control" formControlName="city">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="" class="form-label">
+                    Mobile No
+                </label>
+                <input type="text" class="form-control" formControlName="mobileNo">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="" class="form-label">
+                   Hemoglobin
+                </label>
+                <input type="text" class="form-control" formControlName="hemoglobin">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+          
+
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="" class="form-label">
+                    Gender
+                </label>
+                <input type="text" class="form-control" formControlName="gender">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="" class="form-label">
+                    Blood Group
+                </label>
+                <input type="text" class="form-control" formControlName="bloodGroup">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <!-- <div class="mb-3">
+                <label for="" class="form-label">
+                    Donate Date
+                </label>
+                <input type="text" class="form-control" formControlName="donationDate">
+              </div> -->
+            </div>
+            <!-- <div class="col-6">
+              <div class="mb-3">
+                <label for="" class="form-label">
+                    Gender
+                </label>
+                <input type="text" class="form-control" formControlName="gender">
+              </div>
+            </div> -->
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="" class="form-label">
+                    Status
+                </label>
+                <input type="text" class="form-control" formControlName="status">
+              </div>
+            </div>
+            <!-- <div class="col-6">
+              <div class="mb-3">
+                <label for="" class="form-label">
+                    Location
+                </label>
+                <input type="text" class="form-control" formControlName="location">
+              </div>
+            </div> -->
+           
+          </div>
+          <div class="row">
+            <div class="col-6 mt-2">
+              <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="illnessCheckbox" formControlName="illness">
+                <label class="form-check-label" for="illnessCheckbox">Illness</label>
+              </div>
+            </div>
+          </div>
+        </form>
+        <!-- <div class="text-center">
+          <button
+            (click)="submit()"
+            type="submit"
+            class="btn btn-success text-white"
+          >
+            {{ form.id.value ? "Update" : "Save" }}
+          </button>
+          <button (click)="goBack()" class="btn btn-danger">Cancel</button>
+        </div> -->
+      </div>
+      <div class="card-body" [formGroup]='bloodForm' *ngIf="tabCondition=='tab2'">
+        <form formGroupName='user' class="form-horizontal">
+          <div class="row">
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="" class="form-label">
+                  Name
+                </label>
+                <input type="text" class="form-control" formControlName="firstName">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="" class="form-label">
+                  Last Name
+                </label>
+                <input type="text" class="form-control" formControlName="lastName">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="" class="form-label">
+                  Email
+                </label>
+                <input type="text" class="form-control" formControlName="email">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="" class="form-label">
+                  Mobile
+                </label>
+                <input type="text" class="form-control" formControlName="mobileNo">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="" class="form-label">
+                  Status
+                </label>
+                <input type="text" class="form-control" formControlName="status">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="" class="form-label">
+                  Role
+                </label>
+                <input type="text" class="form-control" formControlName="role">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="" class="form-label">
+                  City
+                </label>
+                <input type="text" class="form-control" formControlName="city">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="" class="form-label">
+                  State
+                </label>
+                <input type="text" class="form-control" formControlName="state">
+              </div>
+            </div>
+          </div>
+        </form>
+        <!-- <div class="text-center">
+          <button
+            (click)="submit()"
+            type="submit"
+            class="btn btn-success text-white"
+          >
+            {{ form.id.value ? "Update" : "Save" }}
+          </button>
+          <button (click)="goBack()" class="btn btn-danger">Cancel</button>
+        </div> -->
+      </div>
+      <div class="card-body" *ngIf="tabCondition=='tab3'">
+        <form [formGroup]='bloodForm' class="form-horizontal">
+          <div class="row">
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="" class="form-label">
+                    Location
+                </label>
+                <input type="text" class="form-control" formControlName="location">
+              </div>
+            </div>
+           
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="" class="form-label">
+                  Blood Bank Name
+                </label>
+                <input type="text" class="form-control" formControlName="bloodBankName">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="" class="form-label">
+                  Donation Date
+                </label>
+                <input type="text" class="form-control" formControlName="donationDate">
+              </div>
+            </div>
+          </div>
+        </form>
+        <!-- <div class="text-center">
+          <button
+            (click)="submit()"
+            type="submit"
+            class="btn btn-success text-white"
+          >
+            {{ form.id.value ? "Update" : "Save" }}
+          </button>
+          <button (click)="goBack()" class="btn btn-danger">Cancel</button>
+        </div> -->
+      </div>
+      <div class="card-body" [formGroup]='bloodForm' *ngIf="tabCondition=='tab4'">
+        <form formGroupName='bloodRequest' class="form-horizontal">
+          <div class="row">
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="" class="form-label">
+                  AGE
+                </label>
+                <input type="text" class="form-control" formControlName="age">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="" class="form-label">
+                  Blood Group
+                </label>
+                <input type="text" class="form-control" formControlName="bloodGroup">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="" class="form-label">
+                  Blood Required Date
+                </label>
+                <input type="text" class="form-control" formControlName="bloodRequireDate">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="" class="form-label">
+                  City
+                </label>
+                <input type="text" class="form-control" formControlName="city">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="" class="form-label">
+                  Father of Husband
+                </label>
+                <input type="text" class="form-control" formControlName="fatherOrHusband">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="" class="form-label">
+                  Gender
+                </label>
+                <input type="text" class="form-control" formControlName="gender">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="" class="form-label">
+                  Hemoglobin
+                </label>
+                <input type="text" class="form-control" formControlName="hemoglobin">
+              </div>
+            </div>
+            <div class="col-6 mt-2">
+              <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="illnessCheckbox" formControlName="illness">
+                <label class="form-check-label" for="illnessCheckbox">Illness</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="" class="form-label">
+                  Location
+                </label>
+                <input type="text" class="form-control" formControlName="location">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="" class="form-label">
+                  Mobile NO
+                </label>
+                <input type="text" class="form-control" formControlName="mobileNo">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="" class="form-label">
+                  State
+                </label>
+                <input type="text" class="form-control" formControlName="state">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="" class="form-label">
+                  Units
+                </label>
+                <input type="text" class="form-control" formControlName="units">
+              </div>
+            </div>
+          </div>
+        </form>
+        <!-- <div class="text-center">
+          <button
+            (click)="submit()"
+            type="submit"
+            class="btn btn-success text-white"
+          >
+            {{ form.id.value ? "Update" : "Save" }}
+          </button>
+          <button (click)="goBack()" class="btn btn-danger">Cancel</button>
+        </div> -->
+      </div>
+    </div>
+  </div>

@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+
+@font-face {
+    font-family: 'Champion Gothic';
+    src: url('../src/assets/font/ChampionGothic-Featherweight.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('../src/assets/fontSs/Helvetica.woff');
+    font-weight: normal;
+    font-style: normal;
+}

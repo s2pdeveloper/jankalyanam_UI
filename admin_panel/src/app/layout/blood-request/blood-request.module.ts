@@ -5,11 +5,13 @@ import { CoreModule } from '../../core/core.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
 import { BloodRequestRoutingModule } from './blood-request-routing.module';
+import { BloodRequestFormComponent } from './blood-request-form/blood-request-form.component';
 
 
 @NgModule({
   declarations: [
-    ListComponent
+    ListComponent,
+    BloodRequestFormComponent
   ],
   imports: [
     CommonModule, 
