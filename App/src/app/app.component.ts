@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { register } from 'swiper/element/bundle';
 import { PushNotificationService } from './core/services/push-notification.service'
-
 import { Router } from '@angular/router';
 import { StorageService } from './core/services/local-storage.service';
+
 // register Swiper custom elements
 register();
 @Component({

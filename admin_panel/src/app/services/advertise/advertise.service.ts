@@ -11,8 +11,8 @@ export class AdvertiseService {
     createPath: `advertise`,
     getByIdPath: (id) => `advertise/${id}`,
     getAllPath: (params) => `advertise/all?pageNo=${params.page}&pageSize=${params.pageSize}&search=${params.search}`,
-    updatePath: (id) => `advertise/update/${id}`,
-    deletePath: (id) => `advertise/delete/${id}`,
+    updatePath: (id) => `advertise/${id}`,
+    deletePath: (id) => `advertise/${id}`,
   };
 
   constructor(private http: ApiService) { }

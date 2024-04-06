@@ -1,86 +1,15 @@
-<!-- <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>onboarding</ion-title>
-  </ion-toolbar>
-</ion-header> -->
-
-<!-- <ion-content [fullscreen]="true" class="slider">
-  <swiper-container speed="500" loop="true">
+<ion-content [fullscreen]="true" class="slider">
+  <swiper-container [slidesPerView]="1" [Option]="Option" [speed]="400" [loop]="true" [pagination]="true">
     <swiper-slide>
-      <img src="../../../../assets/onbording/1.png" alt="">
+      <img src="../../../../assets/onbording/1.png" alt="" />
     </swiper-slide>
     <swiper-slide>
-      <img src="../../../../assets/onbording/2.png" alt="">
+      <img src="../../../../assets/onbording/2.png" alt="" />
     </swiper-slide>
     <swiper-slide>
-      <img src="../../../../assets/onbording/3.png" alt="">
-      <ion-button class="top-right" routerLink="/auth/login"> SKIP</ion-button>
+      <img src="../../../../assets/onbording/3.png" alt="" />
+      <ion-button class="bottom-right" routerLink="/auth/login"> SKIP</ion-button>
     </swiper-slide>
   </swiper-container>
-</ion-content> -->
+</ion-content>
 
-
-<!-- <div class="ion-padding ion-margin-bottom">
-  <ion-slides #slider [options]="eventSlideOpts" [pager]="true">
-    <ion-slide>
-      <img src="../../../../assets/onbording/1.png" alt="">
-    </ion-slide>
-    <ion-slide>
-      <img src="../../../../assets/onbording/2.png" alt="">
-    </ion-slide>
-    <ion-slide>
-      <img src="../../../../assets/onbording/3.png" alt="">
-    </ion-slide>
-  </ion-slides>
-  </div> -->
-
-
-<!-- http://localhost:8100/layout/onboarding -->
-
-
-<!-- <ion-toolbar>
-  <ion-buttons slot="end">
-    <ion-button
-      *ngIf="!showSkip"
-      type="button"
-      color="primary"
-      routerDirection="root"
-      (click)="navigateTo()"
-      fill="clear"
-      size="large"
-      slot="end"
-    >
-      <b>SKIP</b>
-    </ion-button>
-  </ion-buttons>
-</ion-toolbar>
-
-<ion-content class="ion-no-padding">
-  <ion-slides
-    #slides
-    id="slides"
-    (ionSlideWillChange)="onSlideChangeStart($event)"
-    pager="true"
-    [options]="slideOpts"
-    autplay="true"
-  >
-    <ion-slide>
-      <img src="./assets/onboard/1.svg" class="slide-image" />
-      <ion-note>
-      </ion-note>
-    </ion-slide>
-    <ion-slide>
-      <img src="./assets/onboard/2.svg" class="slide-image" />
-      <ion-note>
-      </ion-note>
-    </ion-slide>
-    <ion-slide>
-      <img src="./assets/onboard/2.jpg" class="slide-image" />
-      <ion-note>
-      </ion-note>
-    </ion-slide>
- </ion-slides>
-  <ion-title class="slide-title ion-text-center">
-    ENERTY <sup>TM</sup>
-  </ion-title>
-</ion-content> -->

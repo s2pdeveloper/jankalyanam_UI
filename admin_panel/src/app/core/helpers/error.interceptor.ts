@@ -51,7 +51,6 @@ export class ErrorInterceptor implements HttpInterceptor {
               // this.router.navigate(['/login'], {
               //   queryParams: { returnUrl: this.currentRoute },
               // });
-
               break;
             case 400: // forbidden
               // // show server bad request message

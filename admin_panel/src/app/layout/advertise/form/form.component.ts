@@ -21,7 +21,9 @@ export class FormComponent implements OnInit {
     name: new FormControl('', [Validators.required]),
     status: new FormControl('ACTIVE', [Validators.required]),
     file: new FormControl(''),
+    type: new FormControl('SLIDE', [Validators.required]),
   });
+  previewImage: any;
 
   get form() {
     return this.advertiseForm.controls;
@@ -36,7 +38,7 @@ export class FormComponent implements OnInit {
     private actRoutes: ActivatedRoute,
     private toastService: ToastrService,
     private service: AdvertiseService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.actRoutes.queryParams.subscribe((params) => {
@@ -65,6 +67,7 @@ export class FormComponent implements OnInit {
       fd.append('name', this.form['name'].value);
       fd.append('file', this.file, this.file.name);
       fd.append('status', this.form['status'].value);
+      fd.append('type',this.form['type'].value);
     }
     if (formData.id) {
       this.update(formData.id, fd);
@@ -93,11 +96,18 @@ export class FormComponent implements OnInit {
     });
   }
 
-  getById(_id) {
-    this.service.getById(_id).subscribe((success) => {
+  getById(id) {
+    this.service.getById(id).subscribe((success) => {
       this.advertiseForm.patchValue(success);
+      console.log("advertiseForm", this.advertiseForm.value);
+
+      // if (success.url) {
+      //   this.advertiseForm.get('url').setValue(success.url);
+      // }
     });
   }
+
+
 
   goBack() {
     this.location.back();
@@ -113,8 +123,12 @@ export class FormComponent implements OnInit {
       }
       this.file = <File>event.target.files[0];
       const reader = new FileReader();
+      reader.onload = (event: any) => {
+        this.previewImage = event.target.result;
+      }
       reader.readAsDataURL(this.file);
-      reader.onerror = (error) => {};
+      console.log(reader);
+      reader.onerror = (error) => { };
     }
   }
 }

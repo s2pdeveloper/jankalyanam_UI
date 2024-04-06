@@ -1,0 +1,40 @@
+* {
+  background: #f5ebeb;
+}
+.container {
+  margin-top: 4.4rem;
+  .row {
+    .headcard {
+      background-color: #ecb3b9;
+      margin: 2rem 0rem;
+      .head {
+        text-align: center;
+        font-family: Champion Gothic;
+        font-size: 40px;
+        margin-bottom: -2px;
+        background-color: #ecb3b9;
+      }
+    }
+  }
+  .row {
+    .termcard {
+      padding: 20px;
+      margin-bottom: 2rem;
+      background-color: #fff;
+
+      .subhead {
+        font-family: Champion Gothic;
+        font-size: 30px;
+        padding: 5px;
+        background-color: #fff;
+      }
+      .body {
+        font-family: Helvetica;
+        font-size: 18px;
+        padding: 5px;
+        text-align: justify;
+        background-color: #fff;
+      }
+    }
+  }
+}
