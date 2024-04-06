@@ -7,11 +7,17 @@
         <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
           <ion-icon aria-hidden="true" slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
           <ion-label>{{ p.title }}</ion-label>
+        </ion-item>  
+      </ion-menu-toggle>
+
+
+      <ion-menu-toggle>
+        <ion-item lines="none" (click)="logoutAlert()">
+          <ion-icon name="exit-outline" slot="start"></ion-icon>
+          <ion-label>Logout</ion-label>
         </ion-item>
       </ion-menu-toggle>
     </ion-list>
-
-    
   </ion-content>
 </ion-menu>
 <div id="main-content">
@@ -20,9 +26,8 @@
       <ion-buttons slot="start">
         <ion-menu-button menu="main-content1"></ion-menu-button>
       </ion-buttons>
-      <ion-title class="text-bold welcome-text" class="color-primary">
-        
-      </ion-title>
+      <!-- <ion-title class="text-bold welcome-text" class="color-primary">
+      </ion-title> -->
       <ion-buttons slot="end">
         <ion-button class="shadow-none" shape="round">
           <ion-icon name="person-circle-outline" size="large"></ion-icon>

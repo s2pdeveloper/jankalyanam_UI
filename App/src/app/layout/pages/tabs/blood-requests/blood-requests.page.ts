@@ -1,127 +1,240 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { ModalService } from "src/app/service/modal.service";
-import { DonationDetailsComponent } from 'src/app/shared/models/donation-details/donation-details.component';
-import { DonationHistoryComponent } from 'src/app/shared/models/donation-history/donation-history.component';
-import{ BloodrequestMylistComponent} from 'src/app/shared/models/bloodrequest-mylist/bloodrequest-mylist.component';
-import { Router } from '@angular/router';
-import { BloodRequestService } from 'src/app/service/request/request.service';
-import { StorageService } from 'src/app/core/services/local-storage.service';
-import { LoaderService } from 'src/app/core/services/loader.service';
-import { ToastService } from 'src/app/core/services/toast.service';
-import { forkJoin } from 'rxjs/internal/observable/forkJoin';
-import { AdminRequestMylistComponent } from 'src/app/shared/models/admin-request-mylist/admin-request-mylist.component';
-import { AdminRequestActiveComponent } from 'src/app/shared/models/admin-request-active/admin-request-active.component';
+import { DonationDetailsComponent } from "src/app/shared/models/donation-details/donation-details.component";
+import { DonationHistoryComponent } from "src/app/shared/models/donation-history/donation-history.component";
+import { BloodrequestMylistComponent } from "src/app/shared/models/bloodrequest-mylist/bloodrequest-mylist.component";
+import { ActivatedRoute, Router } from "@angular/router";
+import { BloodRequestService } from "src/app/service/request/request.service";
+import { StorageService } from "src/app/core/services/local-storage.service";
+import { LoaderService } from "src/app/core/services/loader.service";
+import { ToastService } from "src/app/core/services/toast.service";
+import { forkJoin } from "rxjs/internal/observable/forkJoin";
+import { AdminRequestMylistComponent } from "src/app/shared/models/admin-request-mylist/admin-request-mylist.component";
+import { AdminRequestActiveComponent } from "src/app/shared/models/admin-request-active/admin-request-active.component";
+import { SessionStorageService } from "src/app/core/services/session-storage.service";
 @Component({
-  selector: 'app-blood-requests',
-  templateUrl: './blood-requests.page.html',
-  styleUrls: ['./blood-requests.page.scss'],
+  selector: "app-blood-requests",
+  templateUrl: "./blood-requests.page.html",
+  styleUrls: ["./blood-requests.page.scss"],
 })
 export class BloodRequestsPage implements OnInit {
-
   user: any = {};
-  page:number = 0;
-  pageSize:number =10;
-  search:any=''
-  type:any='';
-  sortBy:any='';
-  activeSegment = 'list';
-  currentTitle = 'Request';
+  page: number = 0;
+  pageSize: number = 10;
+  search: any = "";
+  type: any = "";
+  sortBy: any = "";
+  activeSegment = null;
+  currentTitle = "history";
   historyTabDetails: any = [];
   latestTabDetails: any = [];
   myListTabDetails: any = [];
+  count: number = 0;
+  loader = true;
 
-  constructor(  private router: Router,
+  constructor(
+    private router: Router,
+    private activateRoute : ActivatedRoute,
     private modalService: ModalService,
     private service: BloodRequestService,
     private localStorage: StorageService,
     private spinner: LoaderService,
-    private toast: ToastService,) { }
+    private toast: ToastService,
+    private sessionStorage: SessionStorageService,
+  ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-
-
-  async getAllAttenderList() {
-    await this.spinner.showLoader();
-    let params ={
-      pageNo:this.page,
-      pageSize:this.pageSize,
-      search: this.search,
-      sortBy: this.sortBy
+  ionViewWillEnter() {
+    this.user = this.localStorage.get("user");
+    if (this.user.role == "ATTENDER") {
+      this.activeSegment = "latest";
+      this.getAllAttenderList("ACTIVE");
+      this.getAllAttenderList("HISTORY");
+    } else if (this.user.role == "ADMIN") {
+      this.activeSegment = "list";
+      this.getAllAdminList("MYLIST");
+      this.getAllAdminList("ACTIVE");
+      this.getAllAdminList("HISTORY");
     }
-    forkJoin([
-      this.service.getAllAttenderList(params,"HISTORY"),
-      this.service.getAllAttenderList(params,"ACTIVE"),
-    ]).subscribe(async (res) => {
-      this.historyTabDetails = res[0];
-      this.latestTabDetails = res[1];
-      await this.spinner.hideLoader();
-    },async (error) =>{
-      await this.spinner.hideLoader();
-      this.toast.errorToast("Something went wrong!");
-    });
   }
 
-  async getAllAdminList() {
-    await this.spinner.showLoader();
-    let params ={
-      pageNo:this.page,
-      pageSize:this.pageSize,
-      search: this.search,
-      sortBy: this.sortBy
-    }
-    forkJoin([
-      this.service.getAllAdminList(params,"HISTORY"),
-      this.service.getAllAdminList(params,"ACTIVE"),
-      this.service.getAllAdminList(params,"MYLIST")
-    ]).subscribe(async (res) => {
-      this.historyTabDetails = res[0];
-      this.latestTabDetails = res[1];
-      this.myListTabDetails = res[1];
-      await this.spinner.hideLoader();
-    },async (error) =>{
-      await this.spinner.hideLoader();
-      this.toast.errorToast("Something went wrong!");
-    });
+  navigateTo(url: string) {
+    console.log(url);
+    this.router.navigate([url]);
   }
-  
-  openModel(key: string) {
-    let data={}
+
+  async accept(data: any, status: any) {
+    this.loader = true;
+    this.service.statusUpdate(data.id, status).subscribe(
+      (res) => {
+        data.status = status;
+        this.getAllAdminList("MYLIST");
+        this.loader = false;
+      },
+      (error) => {
+        this.loader = false;
+        this.toast.errorToast("Something went wrong!");
+      }
+    );
+  }
+  async getAllAttenderList(status: any, event = null) {
+    this.loader = true;
+    let params = {
+      pageNo: this.page,
+      pageSize: this.pageSize,
+      search: this.search,
+      sortBy: this.sortBy,
+    };
+
+    this.service.getAllAttenderList(params, status).subscribe(
+      async (res) => {
+        if (status === "HISTORY") {
+          if (event) {
+            this.historyTabDetails = [...this.historyTabDetails, ...res.data];
+          } else {
+            this.historyTabDetails = res.data;
+            console.log("-------", this.historyTabDetails);
+          }
+        } else {
+          if (event) {
+            this.latestTabDetails = [...this.latestTabDetails, ...res.data];
+          } else {
+            this.latestTabDetails = res.data;
+            console.log("this.latestTabDetails", this.latestTabDetails);
+          }
+        }
+        this.count = res.count;
+
+        if (res?.data.length === 0 && event) {
+          event.target.disabled = true;
+        }
+        this.loader = false;
+      },
+
+      async (error) => {
+        this.loader = false;
+        this.toast.errorToast("Something went wrong!");
+      }
+    );
+  }
+
+  async getAllAdminList(status: any, event = null) {
+    this.loader = true;
+    let params = {
+      pageNo: this.page,
+      pageSize: this.pageSize,
+      search: this.search,
+      sortBy: this.sortBy,
+    };
+    this.service.getAllAdminList(params, status).subscribe(
+      async (res) => {
+        if (status == "HISTORY") {
+          if (event) {
+            this.historyTabDetails = [...this.historyTabDetails, ...res.data];
+          } else {
+            this.historyTabDetails = res.data;
+            console.log("Admin", this.historyTabDetails);
+          }
+        } else if (status == "ACTIVE") {
+          if (event) {
+            this.latestTabDetails = [...this.latestTabDetails, ...res.data];
+          } else {
+            this.latestTabDetails = res.data;
+            console.log("this.latestTabDetails", this.latestTabDetails);
+          }
+        } else {
+          if (event) {
+            this.myListTabDetails = [...this.myListTabDetails, ...res.data];
+          } else {
+            this.myListTabDetails = res.data;
+            console.log("this.myListTabDetails", this.myListTabDetails);
+          }
+        }
+        this.count = res.count;
+
+        if (res?.data.length === 0 && event) {
+          event.target.disabled = true;
+        }
+
+        // await this.spinner.hideLoader();
+        this.loader = false;
+      },
+      async (error) => {
+        // await this.spinner.hideLoader();
+        this.loader = false;
+        this.toast.errorToast("Something went wrong!");
+      }
+    );
+  }
+  openModel(key: string, data: any) {
     switch (key) {
       case "history":
-        this.modalService.openModal(DonationHistoryComponent, {data});
+        this.modalService.openModal(DonationHistoryComponent, { data });
         break;
-      // case "details":
-      //   this.modalService.openModal(DonationDetailsComponent, { data });
+      case "latest":
+        if (this.user.role == "ADMIN") {
+          this.modalService.openModal(AdminRequestActiveComponent, { data });
+        } else {
+          this.modalService.openModal(BloodrequestMylistComponent, { data });
+        }
+
+        break;
+      case "list":
+        if (this.user.role == "ADMIN") {
+          // this.modalService.openModal(AdminRequestMylistComponent, { data });
+          this.sessionStorage.set('request',data);
+          this.router.navigate(['/layout/request-mylist-detail'])
+        }
+
+        break;
+      // case "list":
+      //   this.modalService.openModal(AdminRequestMylistComponent, {data});
       //   break;
-      //   case "list":
-      //     this.modalService.openModal(BloodrequestMylistComponent, { data });
-      //     break;
-          case "list":
-            this.modalService.openModal(AdminRequestMylistComponent, {data});
-            break;
-          case "details":
-            this.modalService.openModal(AdminRequestActiveComponent, { data });
-            break;
-  
+      // case "details":
+      //   this.modalService.openModal(AdminRequestActiveComponent, { data });
+      //   break;
+
       default:
         break;
     }
   }
 
-  //{
-    //   "age": 0,
-    //   "bloodGroup": "string",
-    //   "bloodRequireDate": "2024-03-21T07:15:41.087Z",
-    //   "city": "string",
-    //   "hemoglobin": 0,
-    //   "illness": "string",
-    //   "location": "string",
-    //   "mobileNo": 0,
-    //   "name": "string",
-    //   "state": "string",
-    //   "units": 1
-    // }
+  doInfinite(event) {
+    console.log("doInfinite", event);
 
+    if (this.activeSegment == "latest") {
+      if (this.count == this.latestTabDetails.length) {
+        event.target.complete();
+        return;
+      }
+      if (this.user.role == "ADMIN") {
+        this.getAllAdminList("ACTIVE", event);
+      } else {
+        this.getAllAttenderList("ACTIVE", event);
+      }
+    } else if (this.activeSegment == "history") {
+      if (this.count == this.historyTabDetails.length) {
+        event.target.complete();
+        return;
+      }
+
+      if (this.user.role == "ADMIN") {
+        this.getAllAdminList("HISTORY", event);
+      } else {
+        this.getAllAttenderList("HISTORY", event);
+      }
+    } else {
+      if (this.count == this.myListTabDetails.length) {
+        event.target.complete();
+        return;
+      }
+
+      if (this.user.role == "ADMIN") {
+        this.getAllAdminList("MYLIST", event);
+      }
+    }
+    this.page++;
+    event.target.complete();
+  }
 }

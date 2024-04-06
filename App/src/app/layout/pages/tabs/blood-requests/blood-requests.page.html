@@ -6,151 +6,200 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div [ngSwitch]="currentTitle">
-    <ion-item class="mt-2" lines="none" *ngSwitchCase="'Request'">
-      <ion-segment [(ngModel)]="activeSegment" [scrollable]="true">
-        <ion-segment-button value="list">
-          <ion-label class="ion-text-capitalize">My List</ion-label>
-        </ion-segment-button>
+  <div *ngIf="loader; else otherContent">
+    <app-skeleton></app-skeleton>
+  </div>
+  <ng-template #otherContent>
+    <div>
+      <ion-item class="mt-2" lines="none">
+        <ion-segment [(ngModel)]="activeSegment" [scrollable]="true">
+          <ion-segment-button value="list" *ngIf="user.role == 'ADMIN'">
+            <ion-label class="ion-text-capitalize">My List</ion-label>
+          </ion-segment-button>
 
-        <ion-segment-button value="details">
-          <ion-label class="ion-text-capitalize">Active</ion-label>
-        </ion-segment-button>
-        <!-- Define Role Below -->
-        <ion-segment-button value="history">
-          <ion-label class="ion-text-capitalize">History</ion-label>
-        </ion-segment-button>
-      </ion-segment>
-    </ion-item>
-    <div [ngSwitch]="activeSegment">
+          <ion-segment-button value="latest">
+            <ion-label class="ion-text-capitalize">Active</ion-label>
+          </ion-segment-button>
+          <!-- Define Role Below -->
+          <ion-segment-button value="history">
+            <ion-label class="ion-text-capitalize">History of admin</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-item>
+      <div [ngSwitch]="activeSegment">
+        <!-- Define Role -->
+        <div *ngSwitchCase="'list'">
+          <ng-container *ngIf="myListTabDetails.length > 0">
+            <ion-card
+              *ngFor="let i of myListTabDetails"
+              (click)="openModel('list',i)"
+            >
+              <ion-card-content class="ion-no-padding">
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size="3" class="drop">
+                      <img
+                        src="../../../../../assets/blood-unscreen.gif"
+                        alt=""
+                      />
+                      <ion-card-title>{{i?.bloodGroup}}</ion-card-title>
+                    </ion-col>
+                    <ion-col size="6">
+                      <ion-label class="name">{{i?.name }}</ion-label>
+                      <div class="ion-margin-top">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <ion-label class="donar"
+                          >{{i?.city +', '+i?.state}}</ion-label
+                        >
+                      </div>
+                      <div class="ion-margin-top donar-container">
+                        <div *ngIf="!!i.donar">
+                          <i class="fa-solid fa-user"></i>
+                          <ion-label class="donar">Donor</ion-label>
+                        </div>
+                        <div *ngIf="!i.donar">
+                          <i class="fa-solid fa-building-columns"></i>
+                          <ion-label class="donar">Blood Bank</ion-label>
+                        </div>
 
-       <!-- Define Role -->
-       <div *ngSwitchCase="'list'">
-        <ion-card (click)="openModel('list')">
-          <ion-card-content class="ion-no-padding">
-            <ion-grid>
-              <ion-row>
-                <ion-col size="3" class="drop">
-                  <img src="../../../../../assets/blood-unscreen.gif" alt="" />
-                  <ion-card-title>A+</ion-card-title>
-                </ion-col>
-                <ion-col size="6">
-                  <ion-label class="name">Ketki Pande</ion-label>
-                  <div class="ion-margin-top">
-                    <i class="fa-solid fa-location-dot"></i>
-                    <ion-label class="donar">Nagpur</ion-label>
-                  </div>
-                  <div class="ion-margin-top donar-container">
-                    <div>
-                      <i class="fa-solid fa-user"></i>
-                      <ion-label class="donar">Donor</ion-label>
-                    </div>
-                    <div class="ion-padding-start">
-                      <i class="fa-solid fa-person-half-dress"></i>
-                      <ion-label class="donar">Gender</ion-label>
-                    </div>
-                  </div>
-                </ion-col>
-                <ion-col>
-                  <ion-label class="status">Pending</ion-label>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </ion-card-content>
-        </ion-card>
-      </div>
-      <div *ngSwitchCase="'details'">
-        <ion-card (click)="openModel('details')">
-          <ion-card-content class="ion-no-padding">
-            <ion-grid>
-              <ion-row>
-                <ion-col size="3" class="drop">
-                  <img src="../../../../../assets/blood-unscreen.gif" alt="" />
-                  <ion-card-title>A+</ion-card-title>
-                </ion-col>
-                <ion-col size="6">
-                  <ion-label class="name">ANUSHKA</ion-label>
-                  <div class="ion-margin-top">
-                    <i class="icons-img fa-solid fa-location-dot"></i>
-                    <ion-label class="donar">Nagpur</ion-label>
-                  </div>
-                  <div class="ion-margin-top donar-container">
-                    <div>
-                      <i class="fa-solid fa-user"></i>
-                      <ion-label class="donar">Donor</ion-label>
-                    </div>
-                    <div class="ion-padding-start">
-                      <i class="icons-img fa-solid fa-person-half-dress"></i>
-                      <ion-label class="donar">Gender</ion-label>
-                    </div>
-                  </div>
-                </ion-col>
-                <ion-col>
-                  <ion-label class="status">Pending</ion-label>
-                </ion-col>
-              </ion-row>
-              <ion-row class="ion-justify-content-center">
-                <ion-col size="auto" class="admin">
-                  <ion-label class="status">FirstName MiddleName LastName</ion-label>
-                </ion-col>
-                <ion-col  class="ion-text-end">
-                  <ion-button>
-                    Accept
-                  </ion-button>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </ion-card-content>
-
-
-
-
-
-
-
-
-
-
-
-        </ion-card>
-      </div>
-      <div *ngSwitchCase="'history'">
-        <ion-card (click)="openModel('history')">
-          <ion-card-content class="ion-no-padding">
-            <ion-grid>
-              <ion-row>
-                <ion-col size="3" class="drop">
-                  <img src="../../../../../assets/blood-unscreen.gif" alt="" />
-                  <ion-card-title>A+</ion-card-title>
-                </ion-col>
-                <ion-col size="6">
-                  <ion-label class="name">ANUSHKA KALBANDE</ion-label>
-                  <div class="ion-margin-top">
-                    <i class="icons-img fa-solid fa-location-dot"></i>
-                    <ion-label class="donar">Nagpur</ion-label>
-                  </div>
-                  <div class="ion-margin-top donar-container">
-                    <div>
-                      <i class="fa-solid fa-user"></i>
-                      <ion-label class="donar">Donor</ion-label>
-                    </div>
-                    <div class="ion-padding-start">
-                      <i class="icons-img fa-solid fa-person-half-dress"></i>
-                      <ion-label class="donar">Gender</ion-label>
-                    </div>
-                  </div>
-                </ion-col>
-                <!-- <ion-col size="3" class="btn-col">
+                        <div class="ion-padding-start">
+                          <i class="fa-solid fa-person-half-dress"></i>
+                          <ion-label class="donar">{{i?.gender}}</ion-label>
+                        </div>
+                      </div>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col class="ion-text-end">
+                      <ion-label
+                        [ngClass]="{'status-pending': i?.status == 'PENDING','status-allocated' : i?.status == 'ALLOCATED','status-received': i.status== 'RECEIVED','status-done' : i?.status == 'DONE','status-accepted' : i.status == 'ACCEPTED' ,'statusdoclose': i.status=='CLOSE'}"
+                        >{{i?.status}}</ion-label
+                      >
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-card-content>
+            </ion-card>
+          </ng-container>
+        </div>
+        <div *ngSwitchCase="'latest'">
+          <ng-container *ngIf="latestTabDetails.length > 0">
+            <ion-card
+              *ngFor="let l of latestTabDetails"
+              (click)="openModel('latest',l)"
+            >
+              <ion-card-content class="ion-no-padding">
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size="3" class="drop">
+                      <img
+                        src="../../../../../assets/blood-unscreen.gif"
+                        alt=""
+                      />
+                      <ion-card-title>{{l?.bloodGroup}}</ion-card-title>
+                    </ion-col>
+                    <ion-col size="6">
+                      <ion-label class="name">{{l?.name}}</ion-label>
+                      <div class="ion-margin-top">
+                        <i class="icons-img fa-solid fa-location-dot"></i>
+                        <ion-label class="donar"
+                          >{{l?.city +', '+l?.state}}</ion-label
+                        >
+                      </div>
+                      <div class="ion-margin-top donar-container">
+                        <div *ngIf="!!l.donar">
+                          <i class="fa-solid fa-user"></i>
+                          <ion-label class="donar">Donor</ion-label>
+                        </div>
+                        <div *ngIf="!l.donar">
+                          <i class="fa-solid fa-building-columns"></i>
+                          <ion-label class="donar">Blood Bank</ion-label>
+                        </div>
+                        <div class="ion-padding-start">
+                          <i
+                            class="icons-img fa-solid fa-person-half-dress"
+                          ></i>
+                          <ion-label class="donar">{{l?.gender}}</ion-label>
+                        </div>
+                      </div>
+                    </ion-col>
+                    <ion-col  [ngClass]="{'status-pending': l?.status == 'PENDING','status-allocated' : l?.status == 'ALLOCATED','status-received': l.status== 'RECEIVED','status-done' : l?.status == 'DONE','status-accepted' : l.status == 'ACCEPTED' ,'statusdoclose': l.status=='CLOSE'}">
+                      <ion-label class="status">{{l?.status}}</ion-label>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row class="ion-justify-content-center">
+                    <ion-col size="auto" class="admin" *ngIf="!!user.acceptor">
+                      <ion-label class="status"
+                        >{{user?.acceptor?.firstName}}
+                        {{user?.acceptor?.lastName}}</ion-label
+                      >
+                    </ion-col>
+                    <ion-col
+                      class="ion-text-end"
+                      *ngIf="user.role == 'ADMIN' &&  l.status != 'ACCEPTED'"
+                    >
+                      <ion-button (click)="accept(l,'ACCEPTED')">
+                        Accept
+                      </ion-button>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-card-content>
+            </ion-card>
+          </ng-container>
+        </div>
+        <div *ngSwitchCase="'history'">
+          <ng-container *ngIf="historyTabDetails.length > 0">
+            <ion-card
+              *ngFor="let h of historyTabDetails"
+              (click)="openModel('history',h)"
+            >
+              <ion-card-content class="ion-no-padding">
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size="3" class="drop">
+                      <img
+                        src="../../../../../assets/blood-unscreen.gif"
+                        alt=""
+                      />
+                      <ion-card-title>{{h?.bloodGroup}}</ion-card-title>
+                    </ion-col>
+                    <ion-col size="6">
+                      <ion-label class="name">{{h?.name }}</ion-label>
+                      <div class="ion-margin-top">
+                        <i class="icons-img fa-solid fa-location-dot"></i>
+                        <ion-label class="donar"
+                          >{{h?.city +', '+h?.state}}</ion-label
+                        >
+                      </div>
+                      <div class="ion-margin-top donar-container">
+                        <div>
+                          <i class="fa-solid fa-user"></i>
+                          <ion-label class="donar">Donor</ion-label>
+                        </div>
+                        <div class="ion-padding-start">
+                          <i
+                            class="icons-img fa-solid fa-person-half-dress"
+                          ></i>
+                          <ion-label class="donar">{{h?.gender}}</ion-label>
+                        </div>
+                      </div>
+                    </ion-col>
+                    <!-- <ion-col size="3" class="btn-col">
                 <ion-button class="detail-btn" (click)="openModel()">
                   View Details
                 </ion-button>
               </ion-col> -->
-              </ion-row>
-            </ion-grid>
-          </ion-card-content>
-        </ion-card>
+                  </ion-row>
+                </ion-grid>
+              </ion-card-content>
+            </ion-card>
+          </ng-container>
+        </div>
       </div>
-     
     </div>
-  </div>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ng-template>
 </ion-content>

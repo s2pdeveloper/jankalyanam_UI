@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { ModalService } from "src/app/service/modal.service";
 import { DonationDetailsComponent } from "src/app/shared/models/donation-details/donation-details.component";
@@ -14,126 +14,137 @@ import { DATE_PIPE_DEFAULT_OPTIONS } from "@angular/common";
   templateUrl: "./blood-donations.page.html",
   styleUrls: ["./blood-donations.page.scss"],
 })
-export class BloodDonationsPage implements OnInit {
+export class BloodDonationsPage implements OnInit, OnDestroy {
   activeSegment = "latest";
   currentTitle = "history";
   historyTabDetails: any = [];
   latestTabDetails: any = [];
   user: any = {};
-  page:number = 0;
-  pageSize:number =10;
-  search:any=''
-  type:any='';
-  sortBy:any='';
-  count:number=0;
-
+  page: number = 0;
+  pageSize: number = 10;
+  search: any = "";
+  type: any = "";
+  sortBy: any = "";
+  count: number = 0;
+  loader = true;
   constructor(
     private router: Router,
     private modalService: ModalService,
     private service: BloodDonationService,
     private localStorage: StorageService,
     private spinner: LoaderService,
-    private toast: ToastService,
+    private toast: ToastService
   ) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+
+  ionViewWillEnter() {
     this.user = this.localStorage.get("user");
     if (this.user.role == "ATTENDER") {
       this.getAllAttenderList("ACTIVE");
       this.getAllAttenderList("HISTORY");
-    }
-    else if (this.user.role == "ADMIN") {
+    } else if (this.user.role == "ADMIN") {
       this.getAllAdminList("ACTIVE");
       this.getAllAdminList("HISTORY");
     }
-
   }
   navigateTo(url: string) {
     console.log(url);
     this.router.navigate([url]);
   }
-
+  ngOnDestroy(): void {
+    console.log("destroy------------1");
+  }
 
   async getAllAttenderList(status: any, event = null) {
-    try {
-        // await this.spinner.showLoader();
-        let params = {
-            pageNo: this.page,
-            pageSize: this.pageSize,
-            search: this.search,
-            sortBy: this.sortBy
-        };
 
-        this.service.getAllAttenderList(params, status)
-            .subscribe(async (res) => {
-                if (status === 'HISTORY') {
-                    if (event) {
-                        this.historyTabDetails = [...this.historyTabDetails, ...res.data];
-                    } else {
-                        this.historyTabDetails = res.data;
-                    }
-                } else {
-                    if (event) {
-                        this.latestTabDetails = [...this.latestTabDetails, ...res.data];
-                    } else {
-                        this.latestTabDetails = res.data;
-                        console.log("this.latestTabDetails", this.latestTabDetails);
-                    }
-                }
-                this.count = res.count;
+      this.loader = true;
+      let params = {
+        pageNo: this.page,
+        pageSize: this.pageSize,
+        search: this.search,
+        sortBy: this.sortBy,
+      };
 
-                if (res?.data.length === 0 && event) {
-                    event.target.disabled = true;
-                }
-
-                // await this.spinner.hideLoader();
-            }, async (error) => {
-                await this.spinner.hideLoader();
-                this.toast.errorToast("Something went wrong!");
-            });
-    } catch (error) {
-        console.error("Error occurred:", error);
-        await this.spinner.hideLoader(); // Make sure to hide the loader in case of an error
-        this.toast.errorToast("Something went wrong!");
-    }
-}
-
-  async getAllAdminList(status:any,event=null){
-    await this.spinner.showLoader();
-    let params ={
-      pageNo:this.page,
-      pageSize:this.pageSize,
-      search: this.search,
-      sortBy: this.sortBy
-    }
-    this.service.getAllAdminList(params,status)
-    .subscribe(async (res) => {
-      if(status == 'HISTORY'){
-        if (event) {
-          this.historyTabDetails = [...this.historyTabDetails, ...res.data]
-        } else {
-          this.historyTabDetails = res.data;
-        }
-      }else{
-        if (event) {
-          this.latestTabDetails = [...this.latestTabDetails, ...res.data]
-        } else {
-          this.latestTabDetails = res.data;
-          console.log("this.latestTabDetails",this.latestTabDetails);
+      this.service.getAllAttenderList(params, status).subscribe(
+        
+        async (res) => {
+          if (status === "HISTORY") {
+            if (event) {
+              this.historyTabDetails = [...this.historyTabDetails, ...res.data];
+            } else {
+              this.historyTabDetails = res.data;
+              console.log("-------", this.historyTabDetails)
+            }
+          } else {
+            if (event) {
+              this.latestTabDetails = [...this.latestTabDetails, ...res.data];
+            } else {
+              this.latestTabDetails = res.data;
+              console.log("this.latestTabDetails", this.latestTabDetails);
+            }
+          }
+          this.count = res.count;
+       
+          if (res?.data.length === 0 && event) {
+            event.target.disabled = true;
+          }
+          this.loader = false;
           
+        },
+        
+        async (error) => {
+          this.loader = false;
+          this.toast.errorToast("Something went wrong!");
         }
-      }
-      this.count = res.count;
+        
+      );
+     
     
-      if (res?.data.length === 0 && event) {
-        event.target.disabled = true;
+  }
+
+  async getAllAdminList(status: any, event = null) {
+   
+    this.loader = true;
+    let params = {
+      pageNo: this.page,
+      pageSize: this.pageSize,
+      search: this.search,
+      sortBy: this.sortBy,
+    };
+    this.service.getAllAdminList(params, status).subscribe(
+      async (res) => {
+        if (status == "HISTORY") {
+          if (event) {
+            this.historyTabDetails = [...this.historyTabDetails, ...res.data];
+          } else {
+            this.historyTabDetails = res.data;
+            console.log("Admin", this.historyTabDetails)
+          }
+        } else {
+          if (event) {
+            this.latestTabDetails = [...this.latestTabDetails, ...res.data];
+          } else {
+            this.latestTabDetails = res.data;
+            console.log("this.latestTabDetails", this.latestTabDetails);
+          }
+        }
+        this.count = res.count;
+
+        if (res?.data.length === 0 && event) {
+          event.target.disabled = true;
+        }
+
+        // await this.spinner.hideLoader();
+        this.loader = false;
+      },
+      async (error) => {
+        // await this.spinner.hideLoader();
+        this.loader = false;
+        this.toast.errorToast("Something went wrong!");
       }
-    
-      await this.spinner.hideLoader();
-    },async (error) =>{
-      await this.spinner.hideLoader();
-      this.toast.errorToast("Something went wrong!");
-    });
+    );
   }
   // async getAllAdminList() {
   //   await this.spinner.showLoader();
@@ -155,76 +166,86 @@ export class BloodDonationsPage implements OnInit {
   //     this.toast.errorToast("Something went wrong!");
   //   });
   // }
-  openModel(key: string,data:any) {
- 
-  
+  openModel(key: string, data: any) {
     switch (key) {
       case "history":
-        this.modalService.openModal(DonationHistoryComponent, { data :data });
+        this.modalService.openModal(DonationHistoryComponent, { data: data });
         break;
       case "latest":
-        this.modalService.openModal(DonationDetailsComponent, { data : data});
+        this.modalService.openModal(DonationDetailsComponent, { data: data });
         break;
       default:
         break;
     }
   }
- 
+
   doInfinite(event) {
-    console.log("doInfinite",event);
-    
-    if(this.activeSegment=='latest'){
+    console.log("doInfinite", event);
+
+    if (this.activeSegment == "latest") {
       if (this.count == this.latestTabDetails.length) {
         event.target.complete();
-        return
+        return;
       }
-      if(this.user.role == 'ADMIN'){
-        this.getAllAdminList('ACTIVE',event)
-      }else{
-        this.getAllAttenderList('ACTIVE',event)
+      if (this.user.role == "ADMIN") {
+        this.getAllAdminList("ACTIVE", event);
+      } else {
+        this.getAllAttenderList("ACTIVE", event);
       }
-
-
-    }else{
+    } else {
       if (this.count == this.historyTabDetails.length) {
         event.target.complete();
-        return
+        return;
       }
 
-      if(this.user.role == 'ADMIN'){
-        this.getAllAdminList('HISTORY',event)
-      }else{
-        this.getAllAttenderList('HISTORY',event)
+      if (this.user.role == "ADMIN") {
+        this.getAllAdminList("HISTORY", event);
+      } else {
+        this.getAllAttenderList("HISTORY", event);
       }
-     
     }
     this.page++;
     event.target.complete();
   }
-  segmentChange(ev){
-    console.log("ev",ev);
-    
-
-    this.page=1;
-
-    if(this.activeSegment=='latest'){
-
-      if(this.user.role == 'ADMIN'){
-        this.getAllAdminList('ACTIVE');
-      }else{
-        this.getAllAttenderList('ACTIVE');
-      }
-    
-    }else{
-      if(this.user.role == 'ADMIN'){
-        this.getAllAdminList('HISTORY');
-      }else{
-        this.getAllAttenderList('HISTORY');
-      }
-     
-    }
-
-
+  segmentChange(ev) {
+    // console.log("ev",ev);
+    // this.page=1;
+    // if(this.activeSegment=='latest'){
+    //   if(this.user.role == 'ADMIN'){
+    //     this.getAllAdminList('ACTIVE');
+    //   }else{
+    //     this.getAllAttenderList('ACTIVE');
+    //   }
+    // }else{
+    //   if(this.user.role == 'ADMIN'){
+    //     this.getAllAdminList('HISTORY');
+    //   }else{
+    //     this.getAllAttenderList('HISTORY');
+    //   }
+    // }
   }
+  // ionViewWillLeave() {
+  //   console.log("ev--------------------- destroy blood donation");
+  // }
+  // ionViewDidLeave() {
+  //   console.log("ev--------------------- destroy blood donation");
+  // }
+
+  close(id){
+    this.loader = true;
+    // await this.spinner.showLoader();
+    this.service.statusUpdate(id, 'CLOSE').subscribe(
+      async (success) => {
+        this.toast.successToast(success.message);
+        // await this.spinner.hideLoader();
+        this.loader = false;
+      },
+      async (error: any) => {
+        this.loader = false;
+        // await this.spinner.hideLoader();
+        this.toast.errorToast(error.error);
+      }
+    );
   
+  }
 }

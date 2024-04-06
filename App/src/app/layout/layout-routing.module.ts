@@ -45,9 +45,32 @@ const routes: Routes = [
         path: 'admin-request',
         loadChildren: () => import('./pages/tabs/admin-request/admin-request.module').then( m => m.AdminRequestPageModule)
       },
+      {
+        path: 'change-language',
+        loadChildren: () => import('./pages/change-language/change-language.module').then( m => m.ChangeLanguagePageModule)
+      },
+      {
+        path: 'change-password',
+        loadChildren: () => import('./pages/change-password/change-password.module').then( m => m.ChangePasswordPageModule)
+      },
+      {
+        path: 'profile',
+        loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
+      },
+      {
+        path: 'request-mylist-detail',
+        loadChildren: () => import('./pages/admin/mylist-details/request-mylist-detail/request-mylist-detail.module').then( m => m.RequestMylistDetailPageModule)
+      },
+    
 
     ]
   },
+ 
+
+ 
+
+  
+
   
 
   
