@@ -15,7 +15,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     SharedModule,
     FormsModule,
     IonicModule,
-    BloodRequestsPageRoutingModule
+    BloodRequestsPageRoutingModule,
+    SharedModule
   ],
   declarations: [BloodRequestsPage]
 })

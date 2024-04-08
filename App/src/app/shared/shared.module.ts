@@ -9,6 +9,7 @@ import { AdminRequestActiveComponent } from "./models/admin-request-active/admin
 import { AdminRequestMylistComponent } from "./models/admin-request-mylist/admin-request-mylist.component";
 import { SkeletonComponent } from "./models/skeleton/skeleton.component";
 import { IonicSelectableComponent } from "ionic-selectable";
+import { NoDataComponent } from "./models/no-data/no-data.component";
 
 const models: any[] = [
   DonationDetailsComponent,
@@ -17,6 +18,7 @@ const models: any[] = [
   AdminRequestActiveComponent,
   AdminRequestMylistComponent,
   SkeletonComponent,
+  NoDataComponent
 ];
 const pipes: any[] = [];
 

@@ -136,11 +136,11 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
           event.target.disabled = true;
         }
 
-        // await this.spinner.hideLoader();
+       
         this.loader = false;
       },
       async (error) => {
-        // await this.spinner.hideLoader();
+       
         this.loader = false;
         this.toast.errorToast("Something went wrong!");
       }
@@ -224,16 +224,9 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
     //   }
     // }
   }
-  // ionViewWillLeave() {
-  //   console.log("ev--------------------- destroy blood donation");
-  // }
-  // ionViewDidLeave() {
-  //   console.log("ev--------------------- destroy blood donation");
-  // }
-
+  
   close(id : any,index : number){
     this.loader = true;
-    // await this.spinner.showLoader();
     this.service.statusUpdate(id, 'CLOSE').subscribe(
       async (success) => {
         this.toast.successToast(success.message);
@@ -241,14 +234,10 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
        let data =  this.latestTabDetails(index);
        this.latestTabDetails.splice(index,1);
        this.historyTabDetails.unshift(data);
-      
-        
-        // await this.spinner.hideLoader();
         this.loader = false;
       },
       async (error: any) => {
         this.loader = false;
-        // await this.spinner.hideLoader();
         this.toast.errorToast(error.error);
       }
     );

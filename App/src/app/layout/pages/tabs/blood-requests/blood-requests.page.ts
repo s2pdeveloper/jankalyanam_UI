@@ -12,6 +12,7 @@ import { forkJoin } from "rxjs/internal/observable/forkJoin";
 import { AdminRequestMylistComponent } from "src/app/shared/models/admin-request-mylist/admin-request-mylist.component";
 import { AdminRequestActiveComponent } from "src/app/shared/models/admin-request-active/admin-request-active.component";
 import { SessionStorageService } from "src/app/core/services/session-storage.service";
+import { NoDataComponent } from "src/app/shared/models/no-data/no-data.component";
 @Component({
   selector: "app-blood-requests",
   templateUrl: "./blood-requests.page.html",
@@ -24,13 +25,13 @@ export class BloodRequestsPage implements OnInit {
   search: any = "";
   type: any = "";
   sortBy: any = "";
-  activeSegment = null;
+  activeSegment = 'list';
   currentTitle = "history";
   historyTabDetails: any = [];
   latestTabDetails: any = [];
   myListTabDetails: any = [];
   count: number = 0;
-  loader = true;
+  loader = false;
 
   constructor(
     private router: Router,
@@ -57,6 +58,12 @@ export class BloodRequestsPage implements OnInit {
       this.getAllAdminList("ACTIVE");
       this.getAllAdminList("HISTORY");
     }
+
+    this.activateRoute.queryParams.subscribe((params: any) => {
+      if (params?.segment) {
+        this.activeSegment = params.segment; 
+      }
+    });
   }
 
   navigateTo(url: string) {
@@ -119,6 +126,7 @@ export class BloodRequestsPage implements OnInit {
     );
   }
 
+ 
   async getAllAdminList(status: any, event = null) {
     this.loader = true;
     let params = {
@@ -156,22 +164,28 @@ export class BloodRequestsPage implements OnInit {
         if (res?.data.length === 0 && event) {
           event.target.disabled = true;
         }
-
-        // await this.spinner.hideLoader();
         this.loader = false;
       },
       async (error) => {
-        // await this.spinner.hideLoader();
+        
         this.loader = false;
         this.toast.errorToast("Something went wrong!");
       }
     );
   }
   openModel(key: string, data: any) {
+    console.log("11111", this.activeSegment);
+
     switch (key) {
       case "history":
+        this.router.navigate(["/layout/history"], {
+          state: {
+            segment: this.activeSegment,
+            data: data,
+          },
+        });
        
-        this.router.navigate(["/layout/history"],{state:{data}});
+
         break;
       case "latest":
         if (this.user.role == "ADMIN") {
@@ -188,13 +202,7 @@ export class BloodRequestsPage implements OnInit {
         }
 
         break;
-      // case "list":
-      //   this.modalService.openModal(AdminRequestMylistComponent, {data});
-      //   break;
-      // case "details":
-      //   this.modalService.openModal(AdminRequestActiveComponent, { data });
-      //   break;
-
+      
       default:
         break;
     }
