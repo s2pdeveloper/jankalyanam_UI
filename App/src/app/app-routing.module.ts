@@ -16,6 +16,18 @@ const routes: Routes = [
         pathMatch: 'full',
       },
       {
+        path: 'on-boarding',
+        loadChildren: () => import('./auth/onboarding/onboarding.module').then(m => m.OnboardingPageModule)
+      },
+      {
+        path: 'change-password',
+        loadChildren: () => import('./auth/change-password/change-password.module').then(m => m.ChangePasswordPageModule)
+      },
+      {
+        path: 'profile',
+        loadChildren: () => import('./auth/profile/profile.module').then(m => m.ProfilePageModule)
+      },
+      {
         path: 'login',
         loadChildren: () => import('./auth/login/login.module').then(m => m.LoginPageModule)
       },

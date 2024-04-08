@@ -41,16 +41,35 @@ export class LoginPage implements OnInit {
       async (success: any) => {
         await this.spinner.hideLoader();
         this.loginForm.reset();
-        let user ={
-          
-        }
         this.storage.set('user', success);
+        this.deviceToken();
         this.router.navigate(['/layout/home']);
       },
       async (error: any) => {
         await this.spinner.hideLoader();
-        this.toast.errorToast(error.error);
+        this.toast.errorToast(error.message);
       }
     );
   }
+
+  async deviceToken() {
+    if(this.storage.get('deviceToken')){
+      this.service.addDeviceId(this.storage.get('deviceToken')).subscribe(
+        { 
+          next:(success: any) => {
+          // await this.spinner.hideLoader();
+          this.loginForm.reset();
+          this.storage.set('user', success);
+          
+          this.router.navigate(['/layout/home']);
+        },
+       error:  (error: any) => {
+          // await this.spinner.hideLoader();
+          this.toast.errorToast(error.message);
+        }
+      }
+      );
+    }
+    }
+  
 }

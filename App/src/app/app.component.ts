@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { register } from 'swiper/element/bundle';
 import { PushNotificationService } from './core/services/push-notification.service'
-
 import { Router } from '@angular/router';
 import { StorageService } from './core/services/local-storage.service';
+
 // register Swiper custom elements
 register();
 @Component({
@@ -41,7 +41,7 @@ export class AppComponent implements OnInit{
       this.router.navigate([`/layout/request-mylist-detail`], { replaceUrl: true });
     } else {
       // this.router.navigate([/auth/onboarding]);
-      this.router.navigate([`/auth/login`], { replaceUrl: true });
+      this.router.navigate([`/auth/on-boarding`], { replaceUrl: true });
     }
       
   }

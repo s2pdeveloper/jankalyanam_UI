@@ -24,9 +24,9 @@
       </ion-item>
       <div [ngSwitch]="activeSegment">
         <div *ngSwitchCase="'latest'">
-          <ng-container *ngIf="latestTabDetails.length > 0">
+          <ng-container *ngIf="latestTabDetails.length > 0;else noDataLatest ">
             <ion-card
-              *ngFor="let l of latestTabDetails"
+              *ngFor="let l of latestTabDetails ; let i = index"
               (click)="openModel('latest',l)"
             >
               <ion-card-content class="ion-no-padding">
@@ -70,7 +70,7 @@
 
                       <ion-button
                         *ngIf="user.role=='ADMIN' && l.status=='DONE'"
-                        (click)="close(l.id)"
+                        (click)="close(l.id,i)"
                       >
                         Close</ion-button
                       >
@@ -80,9 +80,12 @@
               </ion-card-content>
             </ion-card>
           </ng-container>
+          <ng-template #noDataLatest>
+            <app-no-data></app-no-data>
+          </ng-template>
         </div>
         <div *ngSwitchCase="'history'">
-          <ng-container *ngIf="historyTabDetails.length > 0">
+          <ng-container *ngIf="historyTabDetails.length > 0 ;else noDataHistory">
             <ion-card
               *ngFor="let h of historyTabDetails"
               (click)="openModel('history',h)"
@@ -120,6 +123,9 @@
               </ion-card-content>
             </ion-card>
           </ng-container>
+          <ng-template #noDataHistory>
+            <app-no-data></app-no-data>
+          </ng-template>
         </div>
       </div>
     </div>

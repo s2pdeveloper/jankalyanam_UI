@@ -6,15 +6,18 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./calender.component.scss'],
 })
 export class CalenderComponent implements OnInit {
-  @Input() date: any=new Date; 
+  @Input() date: any
   constructor(private modalController: ModalController) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log('1111111', this.date);
+    
+  }
 
   async closeModal() {
     await this.modalController.dismiss({
       dismissed: false,
-      date: this.date,
+      date: this.date.split('T')[0],
     });
   }
 

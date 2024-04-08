@@ -1,0 +1,21 @@
+.slider{
+    img{
+        width: 100vw;
+        height: 100vh;
+    }
+    .bottom-right {
+        position: absolute;
+        bottom: 8px;
+        right: 16px;
+        font-weight: 700;
+      }
+    
+}
+ion-button{
+    --background : white;
+    --color : var(--ion-color-primary);
+
+}
+
+
+

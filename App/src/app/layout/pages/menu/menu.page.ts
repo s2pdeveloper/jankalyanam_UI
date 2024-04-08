@@ -10,9 +10,9 @@ import { StorageService } from "src/app/core/services";
 })
 export class MenuPage implements OnInit {
   public appPages = [
-    { title: "Profile", url: "/layout/profile", icon: "person-circle" },
+    { title: "Profile", url: "/auth/profile", icon: "person-circle" },
     { title: "Change Language", url: "/layout/change-language", icon: "language" },
-    { title: "Change Password", url: "/layout/change-password", icon: "key" },
+    { title: "Change Password", url: "/auth/change-password", icon: "key" },
     { title: "About", url: "/folder/outbox", icon: "information-circle" },
     // { title: 'Logout', url: '/auth/login', icon: 'log-out' },
   ];
@@ -29,7 +29,7 @@ export class MenuPage implements OnInit {
   async logoutAlert() {
     const alert = await this.alertController.create({
       header: "Logout",
-      message: "Are u want to logout",
+      message: "Are you sure to logout",
       mode: "ios",
       buttons: [
         {
@@ -51,6 +51,8 @@ export class MenuPage implements OnInit {
     // this.loca
     console.log("remove logout");
     this.storageService.remove("user");
+    // this.router.navigate(["/auth/login"]);
     this.router.navigate(["/auth/login"]);
+
   }
 }

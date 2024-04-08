@@ -12,4 +12,18 @@ export class OnboardingPage implements OnInit {
   ngOnInit() {
   }
 
+ 
+
+ 
+  Option = { 
+    slidesPerView: 1, 
+    loop: true ,
+    autoplay: {
+      delay: 5000,
+    },
+  
+  
+  }
+
 }
+
