@@ -10,15 +10,111 @@
     <ion-card-header>
       <ion-card-title></ion-card-title>
     </ion-card-header>
-
     <ion-card-content>
-      <ion-item lines="none">
-       <img src="../../../../assets/icon/73-730477_first-name-profile-image-placeholder-png.png" alt="">
-      </ion-item>
-      <ion-item lines="none"><ion-label>Full Name </ion-label> </ion-item>
-      <ion-item lines="none">
-        <ion-label>Mobile Number</ion-label>
-      </ion-item>
+      <form [formGroup]="registrationForm">
+        <ion-item lines="none">
+          <img src="../../../../assets/icon/73-730477_first-name-profile-image-placeholder-png.png" alt="">
+        </ion-item>
+        <ion-item>
+          <ion-grid>
+            <ion-row class="ion-align-items-center ion-justify-content-center">
+              <ion-col size="12">
+                <ion-item fill="outline" class="input">
+                  <ion-label position="floating" lablePlacement="stacked"
+                    >First Name</ion-label
+                  >
+                  <ion-input
+                    placeholder="First Name"
+                    formControlName="firstName"
+                  ></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-align-items-center ion-justify-content-center">
+              <ion-col size="12">
+                <ion-item fill="outline" class="input">
+                  <ion-label position="floating" lablePlacement="stacked"
+                    >Last Name</ion-label
+                  >
+                  <ion-input placeholder="Last Name" formControlName="lastName"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-align-items-center ion-justify-content-center">
+              <ion-col size="12">
+                <ion-item fill="outline" class="input">
+                  <ion-label position="floating" lablePlacement="stacked"
+                    >Email</ion-label
+                  >
+                  <ion-input placeholder="Email" formControlName="email"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-align-items-center ion-justify-content-center">
+              <ion-col size="12">
+                <ion-item fill="outline" class="input">
+                  <ion-label position="floating" lablePlacement="stacked"
+                    >Mobile No</ion-label
+                  >
+                  <ion-input placeholder="Mobile No" formControlName="mobileNo"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-align-items-center ion-justify-content-center">
+              <ion-col size="12">
+                <ion-item fill="outline" class="input">
+                  <ion-label position="floating" lablePlacement="stacked"
+                    >state</ion-label
+                  >
+                  <ion-input placeholder="state" formControlName="state"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-align-items-center ion-justify-content-center">
+              <ion-col size="12">
+                <ion-item fill="outline" class="input">
+                  <ion-label position="floating" lablePlacement="stacked"
+                    >city</ion-label
+                  >
+                  <ion-input placeholder="city" formControlName="city"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-align-items-center ion-justify-content-center">
+              <ion-col size="12">
+                <ion-item fill="outline" class="input">
+                  <ion-label position="floating" lablePlacement="stacked"
+                    >Role</ion-label
+                  >
+                  <ion-input placeholder="Role" formControlName="role"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-align-items-center ion-justify-content-center">
+              <ion-col size="12">
+                <ion-item fill="outline" class="input">
+                  <ion-label position="floating" lablePlacement="stacked"
+                    >Status</ion-label
+                  >
+                  <ion-input placeholder="Status" formControlName="status"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-align-items-center ion-justify-content-center">
+              <ion-col size="12">
+                <ion-button
+                  expand="block"
+                  shape="round"
+                  class="button ion-padding"
+                  color="primary"
+                  (click)="update()"
+                  >Update</ion-button
+                >
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+      </form>
     </ion-card-content>
   </ion-card>
 </ion-content>
