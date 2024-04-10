@@ -30,7 +30,10 @@ export class BloodRequestsPage implements OnInit {
   historyTabDetails: any = [];
   latestTabDetails: any = [];
   myListTabDetails: any = [];
-  count: number = 0;
+  historyCount: number = 0;
+  latestCount: number = 0;
+  myListCount: number = 0;
+  // count: number = 0;
   loader = false;
 
   constructor(
@@ -103,6 +106,7 @@ export class BloodRequestsPage implements OnInit {
             this.historyTabDetails = res.data;
             console.log("-------", this.historyTabDetails);
           }
+          this.historyCount = res.count;
         } else {
           if (event) {
             this.latestTabDetails = [...this.latestTabDetails, ...res.data];
@@ -110,8 +114,9 @@ export class BloodRequestsPage implements OnInit {
             this.latestTabDetails = res.data;
             console.log("this.latestTabDetails", this.latestTabDetails);
           }
+          this.latestCount = res.count;
         }
-        this.count = res.count;
+        
 
         if (res?.data.length === 0 && event) {
           event.target.disabled = true;
@@ -144,6 +149,7 @@ export class BloodRequestsPage implements OnInit {
             this.historyTabDetails = res.data;
             console.log("Admin", this.historyTabDetails);
           }
+          this.historyCount = res.count;
         } else if (status == "ACTIVE") {
           if (event) {
             this.latestTabDetails = [...this.latestTabDetails, ...res.data];
@@ -151,6 +157,7 @@ export class BloodRequestsPage implements OnInit {
             this.latestTabDetails = res.data;
             console.log("this.latestTabDetails", this.latestTabDetails);
           }
+          this.latestCount = res.count;
         } else {
           if (event) {
             this.myListTabDetails = [...this.myListTabDetails, ...res.data];
@@ -158,8 +165,9 @@ export class BloodRequestsPage implements OnInit {
             this.myListTabDetails = res.data;
             console.log("this.myListTabDetails", this.myListTabDetails);
           }
+          this.myListCount = res.count;
         }
-        this.count = res.count;
+       
 
         if (res?.data.length === 0 && event) {
           event.target.disabled = true;
@@ -209,10 +217,10 @@ export class BloodRequestsPage implements OnInit {
   }
 
   doInfinite(event) {
-    console.log("doInfinite", event);
+    console.log("doInfinite", this.activeSegment,);
 
     if (this.activeSegment == "latest") {
-      if (this.count == this.latestTabDetails.length) {
+      if (this.latestCount == this.latestTabDetails.length) {
         event.target.complete();
         return;
       }
@@ -222,7 +230,7 @@ export class BloodRequestsPage implements OnInit {
         this.getAllAttenderList("ACTIVE", event);
       }
     } else if (this.activeSegment == "history") {
-      if (this.count == this.historyTabDetails.length) {
+      if (this.historyCount == this.historyTabDetails.length) {
         event.target.complete();
         return;
       }
@@ -233,7 +241,8 @@ export class BloodRequestsPage implements OnInit {
         this.getAllAttenderList("HISTORY", event);
       }
     } else {
-      if (this.count == this.myListTabDetails.length) {
+      console.log("this.myListCount----",this.myListCount,this.page,this.myListTabDetails.length);
+      if (this.myListCount == this.myListTabDetails.length) {
         event.target.complete();
         return;
       }
