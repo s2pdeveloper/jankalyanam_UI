@@ -53,19 +53,16 @@ export class LoginPage implements OnInit {
   }
 
   async deviceToken() {
-    if(this.storage.get('deviceToken')){
-      this.service.addDeviceId(this.storage.get('deviceToken')).subscribe(
+console.log("this.storage.get('deviceToken')===",localStorage.getItem('deviceToken'));
+
+    if(localStorage.getItem('deviceToken')){
+      this.service.addDeviceId(localStorage.getItem('deviceToken')).subscribe(
         { 
           next:(success: any) => {
-          // await this.spinner.hideLoader();
-          this.loginForm.reset();
-          this.storage.set('user', success);
-          
-          this.router.navigate(['/layout/home']);
         },
        error:  (error: any) => {
           // await this.spinner.hideLoader();
-          this.toast.errorToast(error.message);
+          // this.toast.errorToast(error.message);
         }
       }
       );

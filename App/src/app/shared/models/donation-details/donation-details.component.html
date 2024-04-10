@@ -13,7 +13,7 @@
     <app-skeleton></app-skeleton>
   </div>
   <ng-template #otherContent> -->
-    <ion-accordion-group value="first" class="ion-padding">
+    <ion-accordion-group [value]=this.openAccordion class="ion-padding">
       <ng-container *ngIf="user.role == 'ATTENDER' && !!data.location">
         <ion-accordion value="first" *ngIf="!!data.location">
           <ion-item slot="header" color="light">
@@ -269,12 +269,12 @@
                   </ion-col>
                 </ion-row>
                 <ion-row>
-                  <ion-col *ngIf="data.status == 'ALLOCATED'">
+                  <ion-col *ngIf="data?.user?.id == user.id && data.status == 'ALLOCATED'">
                     <ion-button (click)="statusUpdate('ACCEPTED')"
                       >Accept</ion-button
                     >
                   </ion-col>
-                  <ion-col *ngIf="data.status == 'ACCEPTED'">
+                  <ion-col *ngIf="data?.user?.id == user.id  && data.status == 'ACCEPTED'">
                     <ion-button (click)="statusUpdate('DONE')">Done</ion-button>
                   </ion-col>
                 </ion-row>

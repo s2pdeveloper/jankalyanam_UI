@@ -20,7 +20,8 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
   historyTabDetails: any = [];
   latestTabDetails: any = [];
   user: any = {};
-  page: number = 0;
+  historyPage: number = 0;
+  latestPage: number = 0;
   pageSize: number = 10;
   search: any = "";
   type: any = "";
@@ -41,6 +42,8 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
 
 
   ionViewWillEnter() {
+    this.historyPage = 0;
+    this.latestPage = 0;
     this.user = this.localStorage.get("user");
     if (this.user.role == "ATTENDER") {
       this.getAllAttenderList("ACTIVE");
@@ -62,7 +65,7 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
 
       this.loader = true;
       let params = {
-        pageNo: this.page,
+        pageNo: status === "HISTORY" ? this.historyPage : this.latestPage,
         pageSize: this.pageSize,
         search: this.search,
         sortBy: this.sortBy,
@@ -79,6 +82,7 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
               console.log("-------", this.historyTabDetails)
             }
             this.historyCount = res.count;
+            this.historyPage++;
           } else {
             if (event) {
               this.latestTabDetails = [...this.latestTabDetails, ...res.data];
@@ -87,6 +91,7 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
               console.log("this.latestTabDetails", this.latestTabDetails);
             }
             this.latestCount = res.count;
+            this.latestPage++;
           }
        
        
@@ -111,7 +116,7 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
    
     this.loader = true;
     let params = {
-      pageNo: this.page,
+      pageNo: status === "HISTORY" ? this.historyPage : this.latestPage,
       pageSize: this.pageSize,
       search: this.search,
       sortBy: this.sortBy,
@@ -126,6 +131,7 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
             console.log("Admin", this.historyTabDetails)
           }
           this.historyCount = res.count;
+          this.historyPage++;
         } else {
           if (event) {
             this.latestTabDetails = [...this.latestTabDetails, ...res.data];
@@ -134,6 +140,7 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
             console.log("this.latestTabDetails", this.latestTabDetails);
           }
           this.latestCount = res.count;
+          this.latestPage++;
         }
        
 
@@ -209,17 +216,20 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
         this.getAllAttenderList("HISTORY", event);
       }
     }
-    this.page++;
+
     event.target.complete();
   }
   
   close(id : any,index : number){
     this.loader = true;
+    console.log("index",index);
+    console.log("latestTabDetails",this.latestTabDetails);
+    console.log("this.historyTabDetails",this.historyTabDetails);
     this.service.statusUpdate(id, 'CLOSE').subscribe(
       async (success) => {
         this.toast.successToast(success.message);
 
-       let data =  this.latestTabDetails(index);
+       let data =  this.latestTabDetails[index];
        this.latestTabDetails.splice(index,1);
        this.historyTabDetails.unshift(data);
         this.loader = false;

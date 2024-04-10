@@ -33,15 +33,16 @@ export class AuthService {
       .pipe(map((res: any) => res));
   }
   get isLoggedIn(): boolean {
-    const user = JSON.parse(localStorage.getItem('OBUser'));
+    const user = JSON.parse(localStorage.getItem('user'));
     return user !== null;
   }
 
   logout(): void {
     // remove user from local storage to log user out
     if (typeof window !== 'undefined') {
+      localStorage.clear();
       this.router.navigateByUrl('login');
-      localStorage.removeItem('OBUser');
+      
     }
   }
   forgetPassword(payload: any) {

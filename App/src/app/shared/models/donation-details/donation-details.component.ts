@@ -17,6 +17,7 @@ export class DonationDetailsComponent implements OnInit {
   @Input() data: any;
   user: any = {};
   edit: boolean = false;
+  openAccordion = '';
   loader = true;
   constructor(
     private router: Router,
@@ -30,15 +31,22 @@ export class DonationDetailsComponent implements OnInit {
 
   ngOnInit() {
     // this.f['donationDate'].setValue( this.data.donationDate);
-    this.edit = this.data.bloodBankName == null ? true : false;
-    console.log("this.edit ----", this.edit);
-    this.bloodDonateForm.controls.donationDate.setValue(new Date(this.data.donationDate.split('-').reverse().join('-')).toISOString());
-    
+
   }
   
   ionViewWillEnter() {
-    this.user = this.localStorage.get("user");
    
+    this.user = this.localStorage.get("user");
+    this.edit = this.data.bloodBankName == null ? true : false;
+    if(this.user.role == 'ADMIN'){
+      this.openAccordion = !!this.data.bloodRequest ? 'second' : 'first';
+    }else{
+      this.openAccordion = !!this.data.bloodRequest ? 'second' : (!!this.data.location ?'first' : 'third');
+    }
+  
+    console.log("this.edit ----", this.edit,this.openAccordion,this.data);
+    this.bloodDonateForm.controls.donationDate.setValue(new Date(this.data.donationDate.split('-').reverse().join('-')).toISOString());
+    
   }
   bloodDonateForm = new FormGroup({
     location: new FormControl("", [Validators.required]),

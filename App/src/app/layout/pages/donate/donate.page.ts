@@ -25,7 +25,7 @@ export class DonatePage implements OnInit {
   bloodRequest: Boolean = false;
   donationDateSelected: Boolean = false;
   disabledCity: Boolean = true;
-
+  isCity: boolean = false;
   constructor(
     private service: BloodDonationService,
     private router: Router,
@@ -115,6 +115,7 @@ export class DonatePage implements OnInit {
   getCity(state: any) {
     if (state && state.value && state.value.name) {
       this.f["state"].setValue(state.value.name);
+      this.isCity = true;
       this.disabledCity = false;
       this.cities = this.restService.getCitiesOfState(
         state.value.countryCode,

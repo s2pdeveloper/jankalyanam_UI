@@ -30,13 +30,13 @@ export class HomePage implements OnInit {
     this.route.navigate([url]);
   }
 
-  Option = {
-    slidesPerView: 1,
-    loop: true, 
-    autoplay: {
-      delay: 1000,
-    },
-  };
+  // Option = {
+  //   // slidesPerView: 1,
+  //   loop: true, 
+  //   autoplay: {
+  //     delay: 1000,
+  //   },
+  // };
 
   async getAllAdvertisement() {
     this.advertiseService.getAllAdvertisemnt().subscribe((res) => {

@@ -72,6 +72,7 @@ export class RequestMylistDetailPage implements OnInit {
     this.edit = this.data.bloodBankName == null ? true : false;
     this.donorEdit = this.data.donor == null ? true : false;
     this.donor = this.data.donor ? this.data.donor : null;
+    console.log("this.donorEdit ----", this.donorEdit);
     console.log("this.edit ----", this.edit);
     console.log("this.donor----", this.donor);
     this.states = this.restService.getStatesOfCountry("IN");
@@ -88,6 +89,7 @@ export class RequestMylistDetailPage implements OnInit {
       this.data.provided = "DONOR";
       this.selectTable.donor.id = state.success.id;
       this.selectTable.donor.name = state.success.name;
+      this.donorEdit = true;
     }
   }
   get f() {
@@ -155,8 +157,7 @@ export class RequestMylistDetailPage implements OnInit {
       this.toast.successToast("Please fill required fields!");
       return;
     }
-    this.edit = !this.edit;
-    this.donorEdit = !this.donorEdit;
+ 
     this.loader = true;
 
     this.service
@@ -168,15 +169,18 @@ export class RequestMylistDetailPage implements OnInit {
             this.data.bloodBankName = this.bloodRequestAllocateForm.value.bloodBankName;
             this.data.bankState = this.bloodRequestAllocateForm.value.bankState;
             this.data.bankCity = this.bloodRequestAllocateForm.value.bankCity;
+            this.edit = !this.edit;
+          }else{
+            this.donorEdit = !this.donorEdit;
           }
-
+     
           this.bloodRequestAllocateForm.reset();
 
           this.loader = false;
         },
         error: (err) => {
           this.loader = false;
-          this.toast.errorToast(err.error);
+          this.toast.errorToast(err.message);
         },
       });
   }

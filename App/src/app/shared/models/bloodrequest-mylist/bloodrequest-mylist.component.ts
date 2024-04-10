@@ -14,6 +14,7 @@ export class BloodrequestMylistComponent  implements OnInit {
   @Input() data :any;
   user : any = {};
   loader = false;
+  providedBy: any = "";
   constructor(
     private router: Router,
     private modalController: ModalController,
@@ -24,6 +25,7 @@ export class BloodrequestMylistComponent  implements OnInit {
 
   ngOnInit() {
     this.user = this.localStorage.get("user");
+    this.providedBy = this.data.provided ? this.data.provided : null;
     console.log("data----", this.data, this.data.bloodBankName);
   }
   

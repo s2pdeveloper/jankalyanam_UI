@@ -55,7 +55,7 @@
     </ion-grid>
   </ion-item>
 
-  <swiper-container [Option]="Option" [pagination]="true">
+  <swiper-container [loop]="true" [speed]="100" [autoplay]="{enable:true,slidesPerView:1}">
     <swiper-slide *ngFor="let imgFile of advertisementArray ">
       <img class="slide-img" [src]=imgFile.file alt="Advertisement" />
     </swiper-slide>

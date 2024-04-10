@@ -20,7 +20,9 @@ import { NoDataComponent } from "src/app/shared/models/no-data/no-data.component
 })
 export class BloodRequestsPage implements OnInit {
   user: any = {};
-  page: number = 0;
+  historyPage: number = 0;
+  latestPage: number = 0;
+  mylistPage: number = 0;
   pageSize: number = 10;
   search: any = "";
   type: any = "";
@@ -50,6 +52,10 @@ export class BloodRequestsPage implements OnInit {
   ngOnInit() {}
 
   ionViewWillEnter() {
+    console.log("myListCount--",this.myListCount,this.latestPage);
+    this.latestPage = 0;
+    this.historyPage = 0;
+    this.mylistPage = 0;
     this.user = this.localStorage.get("user");
     if (this.user.role == "ATTENDER") {
       this.activeSegment = "latest";
@@ -79,7 +85,11 @@ export class BloodRequestsPage implements OnInit {
     this.service.statusUpdate(data.id, status).subscribe(
       (res) => {
         data.status = status;
+        data.acceptor.firstName = this.user.firstName;
+        data.acceptor.lastName = this.user.lastName;
         this.getAllAdminList("MYLIST");
+        console.log("Accepted");
+        
         this.loader = false;
       },
       (error) => {
@@ -91,7 +101,7 @@ export class BloodRequestsPage implements OnInit {
   async getAllAttenderList(status: any, event = null) {
     this.loader = true;
     let params = {
-      pageNo: this.page,
+      pageNo: status === "HISTORY" ? this.historyPage : this.latestPage,
       pageSize: this.pageSize,
       search: this.search,
       sortBy: this.sortBy,
@@ -107,6 +117,7 @@ export class BloodRequestsPage implements OnInit {
             console.log("-------", this.historyTabDetails);
           }
           this.historyCount = res.count;
+          this.historyPage++;
         } else {
           if (event) {
             this.latestTabDetails = [...this.latestTabDetails, ...res.data];
@@ -115,12 +126,14 @@ export class BloodRequestsPage implements OnInit {
             console.log("this.latestTabDetails", this.latestTabDetails);
           }
           this.latestCount = res.count;
+          this.latestPage++;
         }
         
 
         if (res?.data.length === 0 && event) {
           event.target.disabled = true;
         }
+      
         this.loader = false;
       },
 
@@ -135,7 +148,7 @@ export class BloodRequestsPage implements OnInit {
   async getAllAdminList(status: any, event = null) {
     this.loader = true;
     let params = {
-      pageNo: this.page,
+      pageNo: status === "HISTORY" ? this.historyPage : (status == "ACTIVE" ? this.latestPage : this.mylistPage) ,
       pageSize: this.pageSize,
       search: this.search,
       sortBy: this.sortBy,
@@ -150,6 +163,7 @@ export class BloodRequestsPage implements OnInit {
             console.log("Admin", this.historyTabDetails);
           }
           this.historyCount = res.count;
+          this.historyPage++;
         } else if (status == "ACTIVE") {
           if (event) {
             this.latestTabDetails = [...this.latestTabDetails, ...res.data];
@@ -158,6 +172,7 @@ export class BloodRequestsPage implements OnInit {
             console.log("this.latestTabDetails", this.latestTabDetails);
           }
           this.latestCount = res.count;
+          this.latestPage++;
         } else {
           if (event) {
             this.myListTabDetails = [...this.myListTabDetails, ...res.data];
@@ -166,12 +181,14 @@ export class BloodRequestsPage implements OnInit {
             console.log("this.myListTabDetails", this.myListTabDetails);
           }
           this.myListCount = res.count;
+          this.mylistPage++;
         }
        
 
         if (res?.data.length === 0 && event) {
           event.target.disabled = true;
         }
+  
         this.loader = false;
       },
       async (error) => {
@@ -218,7 +235,7 @@ export class BloodRequestsPage implements OnInit {
 
   doInfinite(event) {
     console.log("doInfinite", this.activeSegment,);
-
+    
     if (this.activeSegment == "latest") {
       if (this.latestCount == this.latestTabDetails.length) {
         event.target.complete();
@@ -241,7 +258,7 @@ export class BloodRequestsPage implements OnInit {
         this.getAllAttenderList("HISTORY", event);
       }
     } else {
-      console.log("this.myListCount----",this.myListCount,this.page,this.myListTabDetails.length);
+      console.log("this.myListCount----",this.myListCount,this.latestPage,this.myListTabDetails.length);
       if (this.myListCount == this.myListTabDetails.length) {
         event.target.complete();
         return;
@@ -251,7 +268,29 @@ export class BloodRequestsPage implements OnInit {
         this.getAllAdminList("MYLIST", event);
       }
     }
-    this.page++;
+   
     event.target.complete();
+  }
+
+  done(data : any,index : number){
+    this.loader = true;
+    console.log("index----",index);
+    console.log("myListTabDetails----",this.myListTabDetails);
+    console.log("historyTabDetails----",this.historyTabDetails);
+    this.service.statusUpdate(data.id, 'DONE').subscribe(
+      async (success) => {
+        this.toast.successToast(success.message);
+
+       let data =  this.myListTabDetails[index];
+       this.myListTabDetails.splice(index,1);
+       this.historyTabDetails.unshift(data);
+        this.loader = false;
+      },
+      async (error: any) => {
+        this.loader = false;
+        this.toast.errorToast(error.message);
+      }
+    );
+  
   }
 }

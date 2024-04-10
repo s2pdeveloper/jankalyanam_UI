@@ -36,7 +36,7 @@
         <div *ngSwitchCase="'list'">
           <ng-container *ngIf="myListTabDetails.length > 0;else noDataList">
             <ion-card
-              *ngFor="let i of myListTabDetails"
+              *ngFor="let i of myListTabDetails; let j = index"
               (click)="openModel('list',i)"
             >
               <ion-card-content class="ion-no-padding">
@@ -76,10 +76,14 @@
                   </ion-row>
                   <ion-row>
                     <ion-col class="ion-text-end">
-                      <ion-label
+                      <ion-label *ngIf="i?.status != 'RECEIVED'"
                         [ngClass]="{'status-pending': i?.status == 'PENDING','status-allocated' : i?.status == 'ALLOCATED','status-received': i.status== 'RECEIVED','status-done' : i?.status == 'DONE','status-accepted' : i.status == 'ACCEPTED' ,'statusdoclose': i.status=='CLOSE'}"
-                        >{{i?.status}}</ion-label
-                      >
+                        >{{i?.status}}</ion-label>
+                      <ion-button
+                      *ngIf="i.status == 'RECEIVED'"
+                      (click)="done(i,j)"
+                    >
+                      Done</ion-button>
                     </ion-col>
                   </ion-row>
                 </ion-grid>
