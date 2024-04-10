@@ -18,7 +18,7 @@ export class AuthService {
     createAndUpdateUserDevice: 'user/createAndUpdateUserDevice',
     emailVerifyPath: 'user/email-verify',
     resetPinVerifyPath: 'user/resetPinVerify',
-    deviceIdPath: (deviceId: string) => `UserDeviceId?deviceId=${deviceId}`
+    deviceIdPath: (deviceId: string) => `user-device?deviceId=${deviceId}`
   };
 
   constructor(

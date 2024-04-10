@@ -25,7 +25,8 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
   search: any = "";
   type: any = "";
   sortBy: any = "";
-  count: number = 0;
+  historyCount: number = 0;
+  latestCount: number = 0;
   loader = true;
   constructor(
     private router: Router,
@@ -77,6 +78,7 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
               this.historyTabDetails = res.data;
               console.log("-------", this.historyTabDetails)
             }
+            this.historyCount = res.count;
           } else {
             if (event) {
               this.latestTabDetails = [...this.latestTabDetails, ...res.data];
@@ -84,8 +86,9 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
               this.latestTabDetails = res.data;
               console.log("this.latestTabDetails", this.latestTabDetails);
             }
+            this.latestCount = res.count;
           }
-          this.count = res.count;
+       
        
           if (res?.data.length === 0 && event) {
             event.target.disabled = true;
@@ -122,6 +125,7 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
             this.historyTabDetails = res.data;
             console.log("Admin", this.historyTabDetails)
           }
+          this.historyCount = res.count;
         } else {
           if (event) {
             this.latestTabDetails = [...this.latestTabDetails, ...res.data];
@@ -129,8 +133,9 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
             this.latestTabDetails = res.data;
             console.log("this.latestTabDetails", this.latestTabDetails);
           }
+          this.latestCount = res.count;
         }
-        this.count = res.count;
+       
 
         if (res?.data.length === 0 && event) {
           event.target.disabled = true;
@@ -183,7 +188,7 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
     console.log("doInfinite", event);
 
     if (this.activeSegment == "latest") {
-      if (this.count == this.latestTabDetails.length) {
+      if (this.latestCount == this.latestTabDetails.length) {
         event.target.complete();
         return;
       }
@@ -193,7 +198,7 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
         this.getAllAttenderList("ACTIVE", event);
       }
     } else {
-      if (this.count == this.historyTabDetails.length) {
+      if (this.historyCount == this.historyTabDetails.length) {
         event.target.complete();
         return;
       }
@@ -206,23 +211,6 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
     }
     this.page++;
     event.target.complete();
-  }
-  segmentChange(ev) {
-    // console.log("ev",ev);
-    // this.page=1;
-    // if(this.activeSegment=='latest'){
-    //   if(this.user.role == 'ADMIN'){
-    //     this.getAllAdminList('ACTIVE');
-    //   }else{
-    //     this.getAllAttenderList('ACTIVE');
-    //   }
-    // }else{
-    //   if(this.user.role == 'ADMIN'){
-    //     this.getAllAdminList('HISTORY');
-    //   }else{
-    //     this.getAllAttenderList('HISTORY');
-    //   }
-    // }
   }
   
   close(id : any,index : number){

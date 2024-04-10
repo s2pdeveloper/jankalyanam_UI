@@ -38,7 +38,7 @@ export class AppComponent implements OnInit{
       //   }
       //   this.router.navigate([/auth/login], { replaceUrl: true });
       // }
-      this.router.navigate([`/layout/request-mylist-detail`], { replaceUrl: true });
+      this.router.navigate([`/layout/home`], { replaceUrl: true });
     } else {
       // this.router.navigate([/auth/onboarding]);
       this.router.navigate([`/auth/on-boarding`], { replaceUrl: true });

@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiEndpoint: 'https://api-dev.user.in/api/v1/',
+  apiEndpoint: 'https://api-dev.jankalyan.life/',
   // apiEndpoint: './api/v1/',
 };

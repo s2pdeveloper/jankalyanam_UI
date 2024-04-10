@@ -11,9 +11,9 @@
 <ion-content>
   <!-- <ion-accordion-group value="first" class="ion-padding"> -->
   <ion-accordion-group
-  [value]="providedBy ? (providedBy == 'DONOR' ? 'third' : 'second') : 'first'"
+  [value]="!!providedBy ? (providedBy == 'DONOR' ? 'third' : 'second') : 'first'"
   >
-    <ion-accordion value="first" *ngIf="!providedBy">
+    <ion-accordion value="first">
       <ion-item slot="header" color="light">
         <i class="fa-solid fa-file-lines"></i>
         <ion-label class="ion-padding-horizontal"
