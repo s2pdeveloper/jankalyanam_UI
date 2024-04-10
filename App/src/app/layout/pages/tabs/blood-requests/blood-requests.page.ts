@@ -80,6 +80,8 @@ export class BloodRequestsPage implements OnInit {
       (res) => {
         data.status = status;
         this.getAllAdminList("MYLIST");
+        console.log("Accepted");
+        
         this.loader = false;
       },
       (error) => {

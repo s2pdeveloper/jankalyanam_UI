@@ -9,7 +9,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-accordion-group value="first" class="ion-padding">
+  <ion-accordion-group  [value]="!!providedBy ? (providedBy == 'DONOR' ? 'third' : 'second') : 'first'" class="ion-padding">
     <ion-accordion value="first">
       <ion-item slot="header" color="light">
         <i class="fa-solid fa-file-lines"></i>
@@ -104,7 +104,7 @@
         </ion-card>
       </div>
     </ion-accordion>
-    <ion-accordion value="second" *ngIf="!data.donor">
+    <ion-accordion value="second" *ngIf="providedBy == 'BLOOD_BANK'">
       <ion-item slot="header" color="light">
         <i class="fa-solid fa-building-columns"></i>
         <ion-label class="ion-padding-horizontal">Blood Bank </ion-label>
@@ -141,7 +141,7 @@
         </ion-card>
       </div>
     </ion-accordion>
-    <ion-accordion value="third" *ngIf="!!data.donor">
+    <ion-accordion value="third" *ngIf="providedBy == 'DONOR'">
       <ion-item slot="header" color="light">
         <i class="fa-solid fa-droplet"></i>
         <ion-label class="ion-padding-horizontal">Blood Donar</ion-label>
