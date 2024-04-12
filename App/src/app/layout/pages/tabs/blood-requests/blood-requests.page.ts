@@ -235,6 +235,7 @@ export class BloodRequestsPage implements OnInit {
 
   doInfinite(event) {
     console.log("doInfinite", this.activeSegment,);
+
     
     if (this.activeSegment == "latest") {
       if (this.latestCount == this.latestTabDetails.length) {

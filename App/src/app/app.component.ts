@@ -3,6 +3,7 @@ import { register } from 'swiper/element/bundle';
 import { PushNotificationService } from './core/services/push-notification.service'
 import { Router } from '@angular/router';
 import { StorageService } from './core/services/local-storage.service';
+import { StatusBarService } from './core/services/status-bar-service.service';
 
 // register Swiper custom elements
 register();
@@ -15,6 +16,7 @@ export class AppComponent implements OnInit{
 
   constructor(private pushNotificationService:PushNotificationService,
     private localStorage: StorageService,
+    private statusBarService: StatusBarService,
     private router: Router) {
     this.initializeApp()
   }
@@ -47,6 +49,7 @@ export class AppComponent implements OnInit{
   }
 
   initializeApp(){
+    this.statusBarService.changeColor('#7e2212');
     this.pushNotificationService.registerForPushNotification();
   }
 }

@@ -29,6 +29,7 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
   historyCount: number = 0;
   latestCount: number = 0;
   loader = true;
+  loaderDisabled = false;
   constructor(
     private router: Router,
     private modalService: ModalService,
@@ -63,7 +64,9 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
 
   async getAllAttenderList(status: any, event = null) {
 
-      this.loader = true;
+      if(!event){
+        this.loader = true;
+      }
       let params = {
         pageNo: status === "HISTORY" ? this.historyPage : this.latestPage,
         pageSize: this.pageSize,
@@ -98,12 +101,20 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
           if (res?.data.length === 0 && event) {
             event.target.disabled = true;
           }
-          this.loader = false;
+          if(event){
+            event.target.complete();
+            }else{
+              this.loader = false;
+            }
           
         },
         
         async (error) => {
-          this.loader = false;
+          if(event){
+            event.target.complete();
+            }else{
+              this.loader = false;
+            }
           this.toast.errorToast("Something went wrong!");
         }
         
@@ -113,8 +124,12 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
   }
 
   async getAllAdminList(status: any, event = null) {
+   console.log("event-----",event);
    
-    this.loader = true;
+    if(!event){
+      this.loader = true;
+    }
+   
     let params = {
       pageNo: status === "HISTORY" ? this.historyPage : this.latestPage,
       pageSize: this.pageSize,
@@ -149,11 +164,19 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
         }
 
        
-        this.loader = false;
+        if(event){
+          event.target.complete();
+          }else{
+            this.loader = false;
+          }
       },
       async (error) => {
        
-        this.loader = false;
+        if(event){
+          event.target.complete();
+          }else{
+            this.loader = false;
+          }
         this.toast.errorToast("Something went wrong!");
       }
     );
@@ -193,6 +216,7 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
 
   doInfinite(event) {
     console.log("doInfinite", event);
+  
 
     if (this.activeSegment == "latest") {
       if (this.latestCount == this.latestTabDetails.length) {
@@ -217,7 +241,7 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
       }
     }
 
-    event.target.complete();
+    // event.target.complete();
   }
   
   close(id : any,index : number){
