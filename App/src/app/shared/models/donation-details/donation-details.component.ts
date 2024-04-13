@@ -92,6 +92,7 @@ export class DonationDetailsComponent implements OnInit {
       console.log(this.bloodDonateForm.controls);
 
       this.toast.errorToast("Please fill required fields!");
+      
       return;
     }
     this.edit = !this.edit;
@@ -111,7 +112,8 @@ export class DonationDetailsComponent implements OnInit {
       },
       async (error: any) => {
         this.loader = false;
-        this.toast.errorToast(error.error);
+        // this.toast.errorToast(error.error);
+        this.toast.errorToast(error.message);
       }
     );
   }
@@ -136,7 +138,8 @@ this.bloodDonateForm.patchValue(this.data);
       async (error: any) => {
         this.loader = false;
         // await this.spinner.hideLoader();
-        this.toast.errorToast(error.error);
+        // this.toast.errorToast(error.error);
+        this.toast.errorToast(error.message);
       }
     );
   }

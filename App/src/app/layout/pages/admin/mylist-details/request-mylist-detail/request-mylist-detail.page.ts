@@ -32,6 +32,7 @@ export class RequestMylistDetailPage implements OnInit {
   pageSize: number = 10;
   sortBy: any = "";
   donor: any = null;
+  isCity: Boolean = false;
   selectTable = {
     state: { name: null },
     city: { name: null },
@@ -61,20 +62,15 @@ export class RequestMylistDetailPage implements OnInit {
 
   ionViewWillEnter() {
     console.log(this.providedBy);
-    
-    let state: any = this.location?.getState();
-    console.log("state------", state);
 
+    let state: any = this.location?.getState();
+   
     this.user = this.localStorage.get("user");
     this.data = this.sessionStorage.get("request");
-    console.log("data----", this.data);
     this.providedBy = this.data.provided ? this.data.provided : null;
     this.edit = this.data.bloodBankName == null ? true : false;
     this.donorEdit = this.data.donor == null ? true : false;
     this.donor = this.data.donor ? this.data.donor : null;
-    console.log("this.donorEdit ----", this.donorEdit);
-    console.log("this.edit ----", this.edit);
-    console.log("this.donor----", this.donor);
     this.states = this.restService.getStatesOfCountry("IN");
 
     this.isDisabled =
@@ -119,14 +115,13 @@ export class RequestMylistDetailPage implements OnInit {
         this.loader = false;
       },
       error: (err) => {
-        console.error(err);
         this.loader = false;
+        this.toast.errorToast(err.message);
       },
     });
   }
 
   async selectDonor(donor: any) {
-    console.log("donor----", donor.value);
     this.donor = donor.value;
     this.f["donorId"].setValue(donor.value.id);
   }
@@ -157,7 +152,7 @@ export class RequestMylistDetailPage implements OnInit {
       this.toast.successToast("Please fill required fields!");
       return;
     }
- 
+
     this.loader = true;
 
     this.service
@@ -170,10 +165,10 @@ export class RequestMylistDetailPage implements OnInit {
             this.data.bankState = this.bloodRequestAllocateForm.value.bankState;
             this.data.bankCity = this.bloodRequestAllocateForm.value.bankCity;
             this.edit = !this.edit;
-          }else{
+          } else {
             this.donorEdit = !this.donorEdit;
           }
-     
+
           this.bloodRequestAllocateForm.reset();
 
           this.loader = false;
@@ -186,8 +181,6 @@ export class RequestMylistDetailPage implements OnInit {
   }
 
   getCity(bankState: any) {
-    console.log("bankState", bankState);
-
     this.f["bankState"].setValue(bankState.value.name);
     if (bankState) {
       this.cities = this.restService.getCitiesOfState(
@@ -206,6 +199,5 @@ export class RequestMylistDetailPage implements OnInit {
   back() {
     this.sessionStorage.remove("request");
     this.router.navigate(["/layout/blood-requests"]);
-   
   }
 }

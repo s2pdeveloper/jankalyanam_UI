@@ -10,6 +10,7 @@ import { AdminRequestMylistComponent } from "./models/admin-request-mylist/admin
 import { SkeletonComponent } from "./models/skeleton/skeleton.component";
 import { IonicSelectableComponent } from "ionic-selectable";
 import { NoDataComponent } from "./models/no-data/no-data.component";
+import { TranslatePipe } from './pipes/translate.pipe';
 
 const models: any[] = [
   DonationDetailsComponent,
@@ -20,7 +21,7 @@ const models: any[] = [
   SkeletonComponent,
   NoDataComponent
 ];
-const pipes: any[] = [];
+const pipes: any[] = [TranslatePipe];
 
 @NgModule({
   declarations: [...models, ...pipes],

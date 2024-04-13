@@ -1,30 +1,33 @@
-import { Component, OnInit } from '@angular/core';
-import { register } from 'swiper/element/bundle';
-import { PushNotificationService } from './core/services/push-notification.service'
-import { Router } from '@angular/router';
-import { StorageService } from './core/services/local-storage.service';
-import { StatusBarService } from './core/services/status-bar-service.service';
+import { Component, OnInit } from "@angular/core";
+import { register } from "swiper/element/bundle";
+import { PushNotificationService } from "./core/services/push-notification.service";
+import { Router } from "@angular/router";
+import { StorageService } from "./core/services/local-storage.service";
+import { StatusBarService } from "./core/services/status-bar-service.service";
+import { CameraService } from "./service/camera.service";
 
 // register Swiper custom elements
 register();
-@Component({
-  selector: 'app-root',
-  templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss'],
-})
-export class AppComponent implements OnInit{
 
-  constructor(private pushNotificationService:PushNotificationService,
-    private localStorage: StorageService,
+@Component({
+  selector: "app-root",
+  templateUrl: "app.component.html",
+  styleUrls: ["app.component.scss"],
+})
+export class AppComponent implements OnInit {
+  constructor(
+    private pushNotificationService: PushNotificationService,
+    private storageService: StorageService,
     private statusBarService: StatusBarService,
-    private router: Router) {
-    this.initializeApp()
+    private cameraService: CameraService,
+    private router: Router,
+  ) {
+   
+    this.initializeApp();
   }
 
   ngOnInit(): void {
-    if (
-      localStorage.getItem('user')
-    ) {
+    if (localStorage.getItem("user")) {
       // if (this.jwtService.getToken() && localStorage.getItem("firstName") && localStorage.getItem('lastName')) {
       //   if (localStorage.getItem("role") === ROLES.EMPLOYEE) {
       //     console.log("ROLES.EMPLOYEE", localStorage.getItem("role") === ROLES.EMPLOYEE);
@@ -45,11 +48,14 @@ export class AppComponent implements OnInit{
       // this.router.navigate([/auth/onboarding]);
       this.router.navigate([`/auth/on-boarding`], { replaceUrl: true });
     }
-      
   }
 
-  initializeApp(){
-    this.statusBarService.changeColor('#7e2212');
+  initializeApp() {
+    if(localStorage.getItem('language')){
+      localStorage.setItem('language','en');
+    }
+    this.statusBarService.changeColor("#7e2212");
     this.pushNotificationService.registerForPushNotification();
+    this.cameraService.requestPermission();
   }
 }

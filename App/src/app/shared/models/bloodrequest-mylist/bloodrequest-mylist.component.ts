@@ -4,6 +4,7 @@ import { ModalController } from "@ionic/angular";
 import { StorageService } from 'src/app/core/services/local-storage.service';
 import { ToastService } from "src/app/core/services/toast.service";
 import { BloodRequestService } from "src/app/service/request/request.service";
+import { LoaderService } from "src/app/service/loader.service";
 @Component({
   selector: 'app-bloodrequest-mylist',
   templateUrl: './bloodrequest-mylist.component.html',
@@ -20,6 +21,7 @@ export class BloodrequestMylistComponent  implements OnInit {
     private modalController: ModalController,
     private localStorage: StorageService,
     private service: BloodRequestService,
+    private spinner: LoaderService,
     private toast: ToastService,
   ) {}
 
@@ -40,14 +42,18 @@ export class BloodrequestMylistComponent  implements OnInit {
   }
 
   async receive(){
-    this.loader = true;
+    // this.loader = true;
+    this.spinner.show();
     this.service.statusUpdate(this.data.id, 'RECEIVED').subscribe(  (res) => {
       this.data.status = 'RECEIVED';
     
-      this.loader = false;
+      // this.loader = false;
+      this.spinner.hide();
     }, (error) =>{
-      this.loader = false;
-      this.toast.errorToast("Something went wrong!");
+      // this.loader = false;
+      // this.toast.errorToast("Something went wrong!");
+      this.toast.errorToast(error.message);
+      this.spinner.hide();
     });
   }
 }

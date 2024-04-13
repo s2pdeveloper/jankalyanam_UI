@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ModalController } from "@ionic/angular";
 
 @Component({
@@ -7,13 +8,23 @@ import { ModalController } from "@ionic/angular";
   styleUrls: ['./admin-request-active.component.scss'],
 })
 export class AdminRequestActiveComponent  implements OnInit {
-
+  @Input() data :any;
+  providedBy:string = null;
   constructor(
-    private modalController: ModalController
+    private modalController: ModalController,
+    private router: Router,
   ) {}
 
-  ngOnInit() {}
-  dismiss() {
+  ngOnInit() {
+    console.log("data----------------",this.data);
+    
+    this.providedBy = !!this.data.provided ? this.data.provided : null;
+  }
+  goBack() {
     this.modalController.dismiss();
   }
+  // goBack(){
+  //   //  this.location.back()
+  //     this.router.navigate(['/layout/blood-requests']);
+  //   }
 }
