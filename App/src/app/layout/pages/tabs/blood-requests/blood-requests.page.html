@@ -73,15 +73,23 @@
                         </div>
                       </div>
                     </ion-col>
+                   
                   </ion-row>
                   <ion-row>
-                    <ion-col class="ion-text-end">
-                      <ion-label *ngIf="i?.status != 'RECEIVED'"
+                    <ion-col size="6" class="ion-text-start ion-align-items-center">
+                      <ion-button
+                      *ngIf="i.status == 'ACCEPTED'"
+                      (click)="statusChange($event,i,j,'PENDING')"
+                    >
+                      Revert</ion-button>
+                    </ion-col>
+                    <ion-col size="6" class="ion-text-end ion-align-items-center">
+                      <ion-label class="align-status" *ngIf="i?.status != 'RECEIVED'"
                         [ngClass]="{'status-pending': i?.status == 'PENDING','status-allocated' : i?.status == 'ALLOCATED','status-received': i.status== 'RECEIVED','status-done' : i?.status == 'DONE','status-accepted' : i.status == 'ACCEPTED' ,'statusdoclose': i.status=='CLOSE'}"
                         >{{i?.status}}</ion-label>
                       <ion-button
                       *ngIf="i.status == 'RECEIVED'"
-                      (click)="done(i,j)"
+                      (click)="statusChange($event,i,j,'DONE')"
                     >
                       Done</ion-button>
                     </ion-col>

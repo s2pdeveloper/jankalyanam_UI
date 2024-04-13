@@ -38,6 +38,10 @@ const routes: Routes = [
       {
         path: 'forgot-password',
         loadChildren: () => import('./auth/forgot-password/forgot-password.module').then(m => m.ForgotPasswordPageModule)
+      },
+      {
+        path: 'edit-profile',
+        loadChildren: () => import('./auth/edit-profile/edit-profile/edit-profile.module').then( m => m.EditProfilePageModule)
       }
  
     ]
@@ -47,7 +51,9 @@ const routes: Routes = [
     path: 'layout',
     loadChildren: () => import('./layout/layout.module').then(m => m.LayoutPageModule)
 
-  }
+  },
+  
+
 
 
 ];

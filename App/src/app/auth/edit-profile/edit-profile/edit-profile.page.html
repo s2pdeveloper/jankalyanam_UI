@@ -1,32 +1,14 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
     <ion-back-button slot="start" default-href="/layout/home"></ion-back-button>
-    <ion-title>Profile</ion-title>
+    <ion-title>Edit-Profile</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-card>
     <ion-card-content>
-      <form [formGroup]="registrationForm">
-        <ion-item lines="none">
-          <img
-            src="../../../../assets/icon/73-730477_first-name-profile-image-placeholder-png.png"
-            alt=""
-          />
-        </ion-item>
-        <!-- <ion-text class="change-profile" (click)="uploadFile()">
-          <img class="edit" src="../../../assets/edit.png" alt="">
-          <ion-badge color="primary">
-            {{'changeProfile' | translate}}
-          </ion-badge>
-        </ion-text> 
-         -->
-        <ion-row class="ion-justify-content-end">
-          <ion-item lines="none" (click)="uploadFile()">
-            <ion-icon name="create"></ion-icon>
-          </ion-item>
-        </ion-row>
+      <form [formGroup]="editRegistrationForm">
         <ion-item>
           <ion-grid>
             <ion-row class="ion-justify-content-center">
@@ -34,7 +16,7 @@
                 <ion-item class="input-class">
                   <i class="ion-padding-horizontal fa-solid fa-circle-user"></i>
                   <ion-input
-                    [readonly]="!isEditable"
+                    
                     formControlName="firstName"
                   >
                   </ion-input>
@@ -48,7 +30,7 @@
                   <i class="ion-padding-horizontal fa-solid fa-user"></i>
                   <ion-input
                     labelPlacement="stacked"
-                    [readonly]="!isEditable"
+                    
                     formControlName="lastName"
                   >
                   </ion-input>
@@ -57,14 +39,14 @@
             </ion-row>
             <ion-row
               class="ion-align-items-center ion-justify-content-center"
-              *ngIf="!!user?.email"
+              
             >
               <ion-col size="11">
                 <ion-item class="input-class">
                   <i class="ion-padding-horizontal fa-solid fa-envelope"></i>
                   <ion-input
                     labelPlacement="stacked"
-                    [readonly]="!isEditable"
+                  
                     formControlName="email"
                   >
                   </ion-input>
@@ -73,7 +55,7 @@
             </ion-row>
             <ion-row
               class="ion-align-items-center ion-justify-content-center"
-              *ngIf="!!user?.mobileNo"
+              
             >
               <ion-col size="11">
                 <ion-item class="input-class">
@@ -82,7 +64,7 @@
                   ></i>
                   <ion-input
                     labelPlacement="stacked"
-                    [readonly]="!isEditable"
+                  
                     formControlName="mobileNo"
                   >
                   </ion-input>
@@ -91,14 +73,14 @@
             </ion-row>
             <ion-row
               class="ion-align-items-center ion-justify-content-center"
-              *ngIf="!!user?.state"
+              
             >
               <ion-col size="11">
                 <ion-item class="input-class">
                   <ion-input
                     label="State"
                     labelPlacement="stacked"
-                    [readonly]="!isEditable"
+                   
                     placeholder="state"
                     formControlName="state"
                   >
@@ -108,14 +90,14 @@
             </ion-row>
             <ion-row
               class="ion-align-items-center ion-justify-content-center"
-              *ngIf="!!user?.city"
+             
             >
               <ion-col size="11">
                 <ion-item class="input-class">
                   <ion-input
                     label="City"
                     labelPlacement="stacked"
-                    [readonly]="!isEditable"
+                 
                     placeholder="city"
                     formControlName="city"
                   >
@@ -129,8 +111,8 @@
                   expand="block"
                   class="button ion-justify-content-end ion-padding"
                   color="primary"
-                  (click)="navigate()"
-                  >Edit
+                  (click)="update()"
+                  >Save
 
                   <!-- <img class="editForm" src="../../../assets/edit (1).png" alt=""> -->
                 </ion-button>
