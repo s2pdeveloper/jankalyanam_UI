@@ -6,7 +6,6 @@ import { StorageService } from "./core/services/local-storage.service";
 import { StatusBarService } from "./core/services/status-bar-service.service";
 import { CameraService } from "./service/camera.service";
 
-import { LanguageService } from "./service/language/language.service";
 // register Swiper custom elements
 register();
 
@@ -18,12 +17,10 @@ register();
 export class AppComponent implements OnInit {
   constructor(
     private pushNotificationService: PushNotificationService,
-    private localStorage: StorageService,
+    private storageService: StorageService,
     private statusBarService: StatusBarService,
     private cameraService: CameraService,
     private router: Router,
-   
-    private language: LanguageService
   ) {
    
     this.initializeApp();
@@ -54,7 +51,9 @@ export class AppComponent implements OnInit {
   }
 
   initializeApp() {
-    this.language.getLang();
+    if(localStorage.getItem('language')){
+      localStorage.setItem('language','en');
+    }
     this.statusBarService.changeColor("#7e2212");
     this.pushNotificationService.registerForPushNotification();
     this.cameraService.requestPermission();

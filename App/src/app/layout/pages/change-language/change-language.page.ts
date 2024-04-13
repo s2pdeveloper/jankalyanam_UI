@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from "@ionic/angular";
-import { LanguageService } from 'src/app/service/language/language.service';
+import { StorageService } from 'src/app/core/services';
+
 @Component({
   selector: 'app-change-language',
   templateUrl: './change-language.page.html',
@@ -9,19 +10,23 @@ import { LanguageService } from 'src/app/service/language/language.service';
 export class ChangeLanguagePage implements OnInit {
 currentLanguage : string;
   constructor(private modalController: ModalController,
-    private languageService : LanguageService
+    private storageService:StorageService
   ) { }
 
   ngOnInit() {
-    this.currentLanguage = this.languageService.getLang();
+    this.currentLanguage=localStorage.getItem('language')
+    if(!this.currentLanguage){
+      localStorage.setItem('language','en');
+      this.currentLanguage='en'
+    }
+
   }
   dismiss() {
     this.modalController.dismiss();
   }
   change(language: string){
     this.currentLanguage = language; 
-    this.languageService.setLang(language);
-    
+    localStorage.setItem('language',language);
   }
  
   
