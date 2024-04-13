@@ -13,6 +13,9 @@
       <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-8 col-sm-12 col-xs-12">
         <form [formGroup]="requestForm">
           <div class="container">
+            <div *ngIf="formSubmitted && requestForm.invalid" class="error-message">
+              Form is invalid. Please fill in all required fields.
+            </div>
             <div class="row">
               <div class="col-md-6 col-sm-12">
                 <div class="mb-3">

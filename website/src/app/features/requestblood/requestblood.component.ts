@@ -11,6 +11,7 @@ import { RestService } from 'src/app/service/res.service';
 export class RequestbloodComponent implements OnInit{
   states: any = [];
   cities: any = [];
+  formSubmitted: boolean = false;
   constructor(private request : RequestService,  private rest: RestService){}
 
   ngOnInit(): void {
@@ -64,6 +65,11 @@ export class RequestbloodComponent implements OnInit{
   });
 
   submit(){
+    this.formSubmitted = true;
+    if (this.requestForm.invalid) {
+      console.log('Form is invalid. Cannot submit.');
+      return; 
+    }
     console.log("this.requestForm.value",this.requestForm.value);
     this.request.post(this.requestForm.value).subscribe(success => {
       console.log("success of donate ",success);

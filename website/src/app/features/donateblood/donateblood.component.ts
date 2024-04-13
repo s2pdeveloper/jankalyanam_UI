@@ -11,6 +11,7 @@ import { RestService } from 'src/app/service/res.service';
 export class DonatebloodComponent implements OnInit {
   states: any = [];
   cities: any = [];
+  formSubmitted: boolean = false;
 
   constructor(private donate: DonateService, private rest: RestService) {}
 
@@ -58,7 +59,11 @@ export class DonatebloodComponent implements OnInit {
   });
 
   submit() {
-    console.log('this.donateForm.value', this.donateForm.value);
+    this.formSubmitted = true;
+    if (this.donateForm.invalid) {
+      console.log('Form is invalid. Cannot submit.');
+      return; 
+    }
     this.donate.post(this.donateForm.value).subscribe((success) => {
       console.log('success of donate ', success);
       this.donateForm.reset();
