@@ -5,7 +5,7 @@ import { Router } from "@angular/router";
 import { StorageService } from "./core/services/local-storage.service";
 import { StatusBarService } from "./core/services/status-bar-service.service";
 import { CameraService } from "./service/camera.service";
-import { TranslateService } from "@ngx-translate/core";
+
 import { LanguageService } from "./service/language/language.service";
 // register Swiper custom elements
 register();
@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
     private statusBarService: StatusBarService,
     private cameraService: CameraService,
     private router: Router,
-    private translate: TranslateService,
+   
     private language: LanguageService
   ) {
    
