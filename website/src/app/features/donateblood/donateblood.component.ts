@@ -16,9 +16,6 @@ export class DonatebloodComponent implements OnInit {
 
   ngOnInit(): void {
     this.states = this.rest.getStatesOfCountry('IN');
-
-    console.log(this.states);
-    
   }
   bloodGroup = [
     {"name":"A+"},

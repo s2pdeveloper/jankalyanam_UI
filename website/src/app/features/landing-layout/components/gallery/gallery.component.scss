@@ -1,0 +1,57 @@
+.gallery {
+  background-color: #f5ebeb;
+  .container-fluid {
+    .row {
+      .text-center {
+        margin-top: 5rem;
+        font-family: Champion Gothic;
+        font-size: 50px;
+        color: #aa0806;
+        background-color: #ecb3b9;
+      }
+    }
+    .imgrow {
+        background-color: #ecb3b9;
+      .img-fluid {
+        height: 20rem;
+        padding: 10px;
+      }
+    }
+  }
+}
+
+@media (max-width: 1050px) {
+  .gallery {
+    .container-fluid {
+      .row {
+        .text-center {
+          font-size: 45px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 865px) {
+  .gallery {
+    .container-fluid {
+      .row {
+        .text-center {
+          font-size: 40px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 760px) {
+  .gallery {
+    .container-fluid {
+      .row {
+        .text-center {
+          font-size: 35px;
+        }
+      }
+    }
+  }
+}

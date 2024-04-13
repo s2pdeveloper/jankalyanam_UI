@@ -10,12 +10,18 @@ export class FooterComponent {
   constructor(private router: Router) {}
   lastScrollTop = 0;
 
-  scrollToTop(section: any) {
-    var element: any = document.getElementById(section);
-    element.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
-      inline: 'nearest',
+  // scrollToTop(section: any) {
+  //   var element: any = document.getElementById(section);
+  //   element.scrollIntoView({
+  //     behavior: 'smooth',
+  //     block: 'start',
+  //     inline: 'nearest',
+  //   });
+  // }
+  scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
     });
   }
   navigateTo(path: any) {

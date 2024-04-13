@@ -1,0 +1,219 @@
+.about {
+  background-color: #ffffff;
+  .container-fluid {
+    background-color: #ecb3b9;
+    .row {
+      .text {
+        margin-top: 5rem;
+        .head {
+          font-family: Champion Gothic;
+          font-size: 50px;
+          color: #aa0806;
+        }
+        .body-text {
+          padding: 1rem 2rem;
+          text-align: justify;
+          font-family: "Helvetica";
+          font-size: 18px;
+          .title {
+            font-family: "Helvetica";
+            font-size: 20px;
+            margin-left: 10px;
+          }
+        }
+      }
+      .img {
+        margin-top: 5rem;
+        height: 20rem;
+        width: 30rem;
+        padding: 2rem 0rem;
+      }
+      .img2 {
+        margin-top: 3rem;
+        height: 20rem;
+        width: 30rem;
+        padding: 2rem 0rem;
+        margin-left: 2rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 1050px) {
+  .about {
+    .container-fluid {
+      .row {
+        .text {
+          margin-top: 5rem;
+          .head {
+            font-size: 45px;
+          }
+          .body-text {
+            padding: 1rem 2rem;
+            font-size: 16px;
+            .title {
+              font-size: 18px;
+              margin-left: 10px;
+            }
+          }
+        }
+        .img {
+          margin-top: 7rem;
+          height: 18rem;
+          width: 20rem;
+          padding: 2rem 0rem;
+        }
+        .img2 {
+          margin-top: 3rem;
+          height: 18rem;
+          width: 20rem;
+          padding: 2rem 0rem;
+          margin-left: 2rem;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 955px) {
+  .about {
+    .container-fluid {
+      .row {
+        .img {
+          margin-top: 7rem;
+          height: 18rem;
+          width: 18rem;
+          padding: 2rem 0rem;
+        }
+        .img2 {
+          margin-top: 3rem;
+          height: 18rem;
+          width: 18rem;
+          padding: 2rem 0rem;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 865px) {
+  .about {
+    .container-fluid {
+      .row {
+        .text {
+          margin-top: 5rem;
+          .head {
+            font-size: 40px;
+          }
+          .body-text {
+            padding: 0rem 1rem;
+            font-size: 15px;
+            .title {
+              font-size: 16px;
+            }
+          }
+        }
+        .img {
+          margin-top: 7rem;
+          height: 16rem;
+          width: 15rem;
+          padding: 2rem 0rem;
+        }
+        .img2 {
+          margin-top: 3rem;
+          height: 16rem;
+          width: 15rem;
+          padding: 2rem 0rem;
+          margin-left: 1rem;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 760px) {
+  .about {
+    .container-fluid {
+      .row {
+        .text {
+          margin-top: 5rem;
+          .head {
+            font-size: 35px;
+          }
+          .body-text {
+            padding: 0rem 1rem;
+            font-size: 14px;
+            margin-bottom: 1rem;
+            .title {
+              font-size: 15px;
+            }
+          }
+        }
+        .img {
+          margin-top: 0rem;
+          height: 12rem;
+          width: 18rem;
+          padding: 1rem 2rem;
+        }
+        .img2 {
+          margin-top: 0rem;
+          height: 12rem;
+          width: 18rem;
+          padding: 1rem 2rem;
+          margin-left: 0rem;
+          margin-bottom: -3rem;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 556px) {
+  .about {
+    .container-fluid {
+      .row {
+        .img {
+          margin-top: 0rem;
+          height: 12rem;
+          width: 18rem;
+          margin-left: 4.5rem;
+          padding: 1rem 2rem;
+          margin-bottom: -5rem;
+
+        }
+        .img2 {
+          margin-top: 0rem;
+          height: 12rem;
+          width: 18rem;
+          padding: 1rem 2rem;
+          margin-left: 4.5rem;
+          margin-bottom: 1rem;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 376px) {
+  .about {
+    .container-fluid {
+      .row {
+        .img {
+          margin-left: 2rem;
+        }
+        .img2 {
+          margin-left: 2rem;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 325px) {
+  .about {
+    .container-fluid {
+      .row {
+        .img {
+          margin-left: 1rem;
+        }
+        .img2 {
+          margin-left: 1rem;
+        }
+      }
+    }
+  }
+}
