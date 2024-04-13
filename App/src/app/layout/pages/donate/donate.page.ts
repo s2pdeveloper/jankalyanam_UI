@@ -65,7 +65,7 @@ export class DonatePage implements OnInit {
     if (this.bloodDonateForm.invalid) {
       console.log(this.bloodDonateForm.controls);
 
-      this.toast.successToast("Please fill required fields!");
+      this.toast.errorToast("Please fill required fields!");
       return;
     }
 
@@ -85,7 +85,7 @@ export class DonatePage implements OnInit {
       },
       async (error: any) => {
         await this.spinner.hideLoader();
-        this.toast.errorToast(error.error);
+        this.toast.errorToast(error.message);
       }
     );
   }

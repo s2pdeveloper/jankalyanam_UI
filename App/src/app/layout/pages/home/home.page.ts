@@ -30,13 +30,13 @@ export class HomePage implements OnInit {
     this.route.navigate([url]);
   }
 
-  // Option = {
-  //   // slidesPerView: 1,
-  //   loop: true, 
-  //   autoplay: {
-  //     delay: 1000,
-  //   },
-  // };
+  Option = {
+    // slidesPerView: 1,
+    loop: true, 
+    autoplay: {
+      delay: 1000,
+    },
+  };
 
   async getAllAdvertisement() {
     this.advertiseService.getAllAdvertisemnt().subscribe((res) => {
@@ -47,7 +47,8 @@ export class HomePage implements OnInit {
     },
   (err) =>{
     this.loader = false;
-    this.toast.errorToast("Advertisement not found!");
+    // this.toast.errorToast("Advertisement not found!");
+    this.toast.errorToast(err.message);
   })
   }
   

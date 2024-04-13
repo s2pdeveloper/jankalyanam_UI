@@ -77,6 +77,7 @@ this.donorService.getDonorList(params).subscribe({
   }, error: (err) => {
       console.error(err);
   this.loader = false;
+  this.toast.errorToast(err.message);
 
   }
 });
@@ -126,7 +127,8 @@ this.donorService.getDonorList(params).subscribe({
       
     },error:(err)=>{
       this.loader = false;
-      this.toast.errorToast(err.error);
+      // this.toast.errorToast(err.error);
+      this.toast.errorToast(err.message);
     }})
 
   }

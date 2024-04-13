@@ -1,9 +1,21 @@
 img{
 width: 50%;
+margin: auto;
 }
 
 ion-card{
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 6rem;
 }
+
+.edit{
+    width: 20px;
+}
+.editForm{
+    width: 15px;
+}
+// ion-button{
+//     --background 
+// }

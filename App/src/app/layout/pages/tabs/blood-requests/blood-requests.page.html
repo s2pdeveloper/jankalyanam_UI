@@ -211,6 +211,9 @@
                 </ion-button>
               </ion-col> -->
                   </ion-row>
+                  <ion-row class="ion-justify-content-end">
+                    <ion-label>{{h?.bloodRequireDate}}</ion-label>
+                  </ion-row>
                 </ion-grid>
               </ion-card-content>
             </ion-card>
@@ -223,7 +226,7 @@
       </div>
     </div>
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+      <ion-infinite-scroll-content loadingText="Please wait..." loadingSpinner="bubbles"></ion-infinite-scroll-content>
     </ion-infinite-scroll>
   </ng-template>
 </ion-content>

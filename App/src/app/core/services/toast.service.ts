@@ -13,6 +13,7 @@ export class ToastService {
       duration: 4000,
       position: 'bottom',
       cssClass: 'custom-success',
+      color:'dark',
       buttons: [
         {
           icon: 'close-outline',
@@ -31,6 +32,7 @@ export class ToastService {
       duration: 4000,
       position: 'bottom',
       cssClass: 'custom-error',
+      color:'dark',
       buttons: [
         {
           icon: 'close-outline',

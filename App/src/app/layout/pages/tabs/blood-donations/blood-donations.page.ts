@@ -6,9 +6,9 @@ import { BloodRequestService } from "src/app/service/request/request.service";
 import { forkJoin } from "rxjs";
 import { StorageService, ToastService } from "src/app/core/services";
 import { DonationHistoryComponent } from "src/app/shared/models/donation-history/donation-history.component";
-import { LoaderService } from "src/app/core/services/loader.service";
 import { BloodDonationService } from "src/app/service/donation/donation.service";
 import { DATE_PIPE_DEFAULT_OPTIONS } from "@angular/common";
+import { LoaderService } from "src/app/service/loader.service";
 @Component({
   selector: "app-blood-donations",
   templateUrl: "./blood-donations.page.html",
@@ -115,7 +115,8 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
             }else{
               this.loader = false;
             }
-          this.toast.errorToast("Something went wrong!");
+          // this.toast.errorToast("Something went wrong!");
+          this.toast.errorToast(error.message);
         }
         
       );
@@ -177,7 +178,8 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
           }else{
             this.loader = false;
           }
-        this.toast.errorToast("Something went wrong!");
+        // this.toast.errorToast("Something went wrong!");
+        this.toast.errorToast(error.message);
       }
     );
   }
@@ -245,10 +247,7 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
   }
   
   close(id : any,index : number){
-    this.loader = true;
-    console.log("index",index);
-    console.log("latestTabDetails",this.latestTabDetails);
-    console.log("this.historyTabDetails",this.historyTabDetails);
+    this.spinner.show();
     this.service.statusUpdate(id, 'CLOSE').subscribe(
       async (success) => {
         this.toast.successToast(success.message);
@@ -256,11 +255,13 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
        let data =  this.latestTabDetails[index];
        this.latestTabDetails.splice(index,1);
        this.historyTabDetails.unshift(data);
-        this.loader = false;
+       this.spinner.hide()
       },
       async (error: any) => {
-        this.loader = false;
-        this.toast.errorToast(error.error);
+        // this.loader = false;
+        this.toast.errorToast(error.message);
+       this.spinner.hide()
+
       }
     );
   

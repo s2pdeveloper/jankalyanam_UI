@@ -72,7 +72,8 @@ export class RequestPage implements OnInit {
       },
       async (error: any) => {
         await this.spinner.hideLoader();
-        this.toast.errorToast(error.error);
+        // this.toast.errorToast(error.error);
+        this.toast.errorToast(error.message);
       }
     );
   }

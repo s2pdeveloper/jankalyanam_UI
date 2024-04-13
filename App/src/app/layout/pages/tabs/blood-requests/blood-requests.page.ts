@@ -6,7 +6,7 @@ import { BloodrequestMylistComponent } from "src/app/shared/models/bloodrequest-
 import { ActivatedRoute, Router } from "@angular/router";
 import { BloodRequestService } from "src/app/service/request/request.service";
 import { StorageService } from "src/app/core/services/local-storage.service";
-import { LoaderService } from "src/app/core/services/loader.service";
+import { LoaderService } from "src/app/service/loader.service";
 import { ToastService } from "src/app/core/services/toast.service";
 import { forkJoin } from "rxjs/internal/observable/forkJoin";
 import { AdminRequestMylistComponent } from "src/app/shared/models/admin-request-mylist/admin-request-mylist.component";
@@ -81,7 +81,8 @@ export class BloodRequestsPage implements OnInit {
   }
 
   async accept(data: any, status: any) {
-    this.loader = true;
+    // this.loader = true;
+    this.spinner.show();
     this.service.statusUpdate(data.id, status).subscribe(
       (res) => {
         data.status = status;
@@ -90,16 +91,22 @@ export class BloodRequestsPage implements OnInit {
         this.getAllAdminList("MYLIST");
         console.log("Accepted");
         
-        this.loader = false;
+        // this.loader = false;
+        this.spinner.hide();
       },
       (error) => {
-        this.loader = false;
-        this.toast.errorToast("Something went wrong!");
+        // this.loader = false;
+        // this.toast.errorToast("Something went wrong!");
+        this.toast.errorToast(error.message);
+        this.spinner.hide();
       }
     );
   }
   async getAllAttenderList(status: any, event = null) {
-    this.loader = true;
+    // this.loader = true;
+    if(!event){
+      this.loader = true;
+    }
     let params = {
       pageNo: status === "HISTORY" ? this.historyPage : this.latestPage,
       pageSize: this.pageSize,
@@ -134,19 +141,34 @@ export class BloodRequestsPage implements OnInit {
           event.target.disabled = true;
         }
       
-        this.loader = false;
+        // this.loader = false;
+        if(event){
+          event.target.complete();
+          }else{
+            this.loader = false;
+          }
       },
 
       async (error) => {
-        this.loader = false;
-        this.toast.errorToast("Something went wrong!");
+        // this.loader = false;
+        // this.toast.errorToast("Something went wrong!");
+        if(event){
+          event.target.complete();
+          }else{
+            this.loader = false;
+          }
+        this.toast.errorToast(error.message);
       }
     );
   }
 
  
   async getAllAdminList(status: any, event = null) {
-    this.loader = true;
+    // this.loader = true;
+    if(!event){
+      this.loader = true;
+    }
+
     let params = {
       pageNo: status === "HISTORY" ? this.historyPage : (status == "ACTIVE" ? this.latestPage : this.mylistPage) ,
       pageSize: this.pageSize,
@@ -189,12 +211,22 @@ export class BloodRequestsPage implements OnInit {
           event.target.disabled = true;
         }
   
-        this.loader = false;
+        // this.loader = false;
+        if(event){
+          event.target.complete();
+          }else{
+            this.loader = false;
+          }
       },
       async (error) => {
-        
-        this.loader = false;
-        this.toast.errorToast("Something went wrong!");
+        if(event){
+          event.target.complete();
+          }else{
+            this.loader = false;
+          }
+        // this.loader = false;
+        // this.toast.errorToast("Something went wrong!");
+        this.toast.errorToast(error.message);
       }
     );
   }
@@ -270,14 +302,12 @@ export class BloodRequestsPage implements OnInit {
       }
     }
    
-    event.target.complete();
+    // event.target.complete(); 
   }
 
   done(data : any,index : number){
-    this.loader = true;
-    console.log("index----",index);
-    console.log("myListTabDetails----",this.myListTabDetails);
-    console.log("historyTabDetails----",this.historyTabDetails);
+    // this.loader = true;
+    this.spinner.show();
     this.service.statusUpdate(data.id, 'DONE').subscribe(
       async (success) => {
         this.toast.successToast(success.message);
@@ -285,11 +315,13 @@ export class BloodRequestsPage implements OnInit {
        let data =  this.myListTabDetails[index];
        this.myListTabDetails.splice(index,1);
        this.historyTabDetails.unshift(data);
-        this.loader = false;
+        // this.loader = false;
+        this.spinner.hide();
       },
       async (error: any) => {
-        this.loader = false;
+        // this.loader = false;
         this.toast.errorToast(error.message);
+        this.spinner.hide();
       }
     );
   
