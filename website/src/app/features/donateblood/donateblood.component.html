@@ -22,7 +22,15 @@
                       formControlName="name"
                     />
                     <span class="user">Name</span>
+                    <div
+                    *ngIf="donateForm.get('name')!.invalid && (donateForm.get('name')!.dirty || donateForm.get('name')!.touched)"
+                    style="color: red;">
+                    <div *ngIf="donateForm.get('name')!.errors?.['required']">
+                      Name is required.
+                    </div>
                   </div>
+                  </div>
+                 
                 </div>
                 <div class="mb-3">
                   <div class="inputBox">
@@ -32,6 +40,21 @@
                       formControlName="mobileNo"
                     />
                     <span class="user">Mobile No.</span>
+                    <div
+                    *ngIf="
+                      donateForm.get('mobileNo')!.invalid &&
+                      (donateForm.get('mobileNo')!.dirty ||
+                      donateForm.get('mobileNo')!.touched)
+                    "
+                    style="color: red"
+                  >
+                    <div *ngIf="donateForm.get('mobileNo')!.errors?.['required']">
+                      Mobile number is required.
+                    </div>
+                    <div *ngIf="donateForm.get('mobileNo')!.errors?.['pattern']" >
+                      Please enter a valid 10-digit mobile number.
+                    </div>
+                  </div>
                   </div>
                 </div>
                 <div class="mb-3">
@@ -41,6 +64,13 @@
                       <option *ngFor="let s of states" [value]="s.isoCode">{{s.name}}</option>
                      </select>
                      <span class="user">State</span>
+                     <div
+                    *ngIf="donateForm.get('state')!.invalid && (donateForm.get('state')!.dirty || donateForm.get('state')!.touched)"
+                    style="color: red;">
+                    <div *ngIf="donateForm.get('state')!.errors?.['required']">
+                     Please select state.
+                    </div>
+                  </div>
                   </div>
                 </div>
                 <div class="mb-3">
@@ -50,6 +80,13 @@
                       <option *ngFor="let group of bloodGroup" [value]="group.name">{{group.name}}</option>
                     </select>
                     <span class="user">Blood Group</span>
+                    <div
+                    *ngIf="donateForm.get('bloodGroup')!.invalid && (donateForm.get('bloodGroup')!.dirty || donateForm.get('bloodGroup')!.touched)"
+                    style="color: red;">
+                    <div *ngIf="donateForm.get('bloodGroup')!.errors?.['required']">
+                     Please select Blood Group.
+                    </div>
+                  </div>
                   </div>
                 </div>
                 <div class="mb-3">
@@ -59,9 +96,18 @@
                       required="required"
                       formControlName="hemoglobin"/>
                     <span class="user">Hemoglobin</span>
+                    <div
+                    *ngIf="donateForm.get('hemoglobin')!.invalid && (donateForm.get('hemoglobin')!.dirty || donateForm.get('hemoglobin')!.touched)"
+                    style="color: red;">
+                    <div *ngIf="donateForm.get('hemoglobin')!.errors?.['required']">
+                     Please Add Hemoglobin.
+                    </div>
                   </div>
+                    
                 </div>
               </div>
+            </div>
+
 
               <div class="col-md-6 col-sm-12">
                 <div class="mb-3">
@@ -72,6 +118,18 @@
                       formControlName="age"
                     />
                     <span class="user">Age</span>
+                    <div
+                    *ngIf="
+                      donateForm.get('age')!.invalid &&
+                      (donateForm.get('age')!.dirty ||
+                      donateForm.get('age')!.touched)
+                    "
+                    style="color: red"
+                  >
+                    <div *ngIf="donateForm.get('age')!.errors?.['required']">
+                      Age is required.
+                    </div>
+                  </div>
                   </div>
                 </div>
                 <div class="mb-3">
@@ -81,6 +139,13 @@
                       <option *ngFor="let group of gender" [value]="group.type"> {{group.type}} </option>
                     </select>
                     <span class="user">Gender</span>
+                    <div
+                    *ngIf="donateForm.get('gender')!.invalid && (donateForm.get('gender')!.dirty || donateForm.get('gender')!.touched)"
+                    style="color: red;">
+                    <div *ngIf="donateForm.get('gender')!.errors?.['required']">
+                     Please select gender.
+                    </div>
+                  </div>
                   </div>
                 </div>
                 <div class="mb-3">
@@ -90,6 +155,13 @@
                       <option *ngFor="let c of cities" [value]="c.name">{{c.name}}</option>
                      </select>
                      <span class="user">City</span>
+                     <div
+                    *ngIf="donateForm.get('city')!.invalid && (donateForm.get('city')!.dirty || donateForm.get('city')!.touched)"
+                    style="color: red;">
+                    <div *ngIf="donateForm.get('city')!.errors?.['required']">
+                     Please select city.
+                    </div>
+                  </div>
                   </div>
                 </div>
                 <div class="mb-3">
@@ -100,6 +172,13 @@
                       formControlName="donationDate"
                     />
                     <span class="user">Donation Date</span>
+                    <div
+                    *ngIf="donateForm.get('donationDate')!.invalid && (donateForm.get('donationDate')!.dirty || donateForm.get('donationDate')!.touched)"
+                    style="color: red;">
+                    <div *ngIf="donateForm.get('donationDate')!.errors?.['required']">
+                     Please select Donation Date.
+                    </div>
+                  </div>
                   </div>
                 </div>
                 <div class="mb-3">

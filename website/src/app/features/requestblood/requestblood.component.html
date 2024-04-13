@@ -23,6 +23,13 @@
                       formControlName="name"
                     />
                     <span class="user">Name</span>
+                    <div
+                    *ngIf="requestForm.get('name')!.invalid && (requestForm.get('name')!.dirty || requestForm.get('name')!.touched)"
+                    style="color: red;">
+                    <div *ngIf="requestForm.get('name')!.errors?.['required']">
+                      Name is required.
+                    </div>
+                  </div>
                   </div>
                 </div>
                 <div class="mb-3">
@@ -33,6 +40,21 @@
                       formControlName="mobileNo"
                     />
                     <span class="user">Mobile No.</span>
+                    <div
+                    *ngIf="
+                      requestForm.get('mobileNo')!.invalid &&
+                      (requestForm.get('mobileNo')!.dirty ||
+                      requestForm.get('mobileNo')!.touched)
+                    "
+                    style="color: red"
+                  >
+                    <div *ngIf="requestForm.get('mobileNo')!.errors?.['required']">
+                      Mobile number is required.
+                    </div>
+                    <div *ngIf="requestForm.get('mobileNo')!.errors?.['pattern']" >
+                      Please enter a valid 10-digit mobile number.
+                    </div>
+                  </div>
                   </div>
                 </div>
                 <div class="mb-3">
@@ -43,6 +65,13 @@
                       formControlName="fatherOrHusband"
                     />
                     <span class="user">Father/Husband Name</span>
+                    <div
+                    *ngIf="requestForm.get('fatherOrHusband')!.invalid && (requestForm.get('fatherOrHusband')!.dirty || requestForm.get('fatherOrHusband')!.touched)"
+                    style="color: red;">
+                    <div *ngIf="requestForm.get('fatherOrHusband')!.errors?.['required']">
+                      field is required.
+                    </div>
+                  </div>
                   </div>
                 </div>
                 <div class="mb-3">
@@ -52,6 +81,13 @@
                       <option *ngFor="let c of cities" [value]="c.name">{{c.name}}</option>
                      </select>
                      <span class="user">City</span>
+                     <div
+                    *ngIf="requestForm.get('city')!.invalid && (requestForm.get('city')!.dirty || requestForm.get('city')!.touched)"
+                    style="color: red;">
+                    <div *ngIf="requestForm.get('city')!.errors?.['required']">
+                     Please select city.
+                    </div>
+                  </div>
                   </div>
                 </div>
                 <div class="mb-3">
@@ -61,6 +97,13 @@
                       <option *ngFor="let group of bloodGroup" [value]="group.name">{{group.name}}</option>
                     </select>
                     <span class="user">Blood Group</span>
+                    <div
+                    *ngIf="requestForm.get('bloodGroup')!.invalid && (requestForm.get('bloodGroup')!.dirty || requestForm.get('bloodGroup')!.touched)"
+                    style="color: red;">
+                    <div *ngIf="requestForm.get('bloodGroup')!.errors?.['required']">
+                     Please select Blood Group.
+                    </div>
+                  </div>
                   </div>
                 </div>
                 <div class="mb-3">
@@ -81,6 +124,13 @@
                       formControlName="bloodRequireDate"
                     />
                     <span class="user">Require Date</span>
+                    <div
+                    *ngIf="requestForm.get('bloodRequireDate')!.invalid && (requestForm.get('bloodRequireDate')!.dirty || requestForm.get('bloodRequireDate')!.touched)"
+                    style="color: red;">
+                    <div *ngIf="requestForm.get('bloodRequireDate')!.errors?.['required']">
+                     Please select Date.
+                    </div>
+                  </div>
                   </div>
                 </div>
               </div>
@@ -94,6 +144,18 @@
                       formControlName="age"
                     />
                     <span class="user">Age</span>
+                    <div
+                    *ngIf="
+                      requestForm.get('age')!.invalid &&
+                      (requestForm.get('age')!.dirty ||
+                      requestForm.get('age')!.touched)
+                    "
+                    style="color: red"
+                  >
+                    <div *ngIf="requestForm.get('age')!.errors?.['required']">
+                      Age is required.
+                    </div>
+                  </div>
                   </div>
                 </div>
                 <div class="mb-3">
@@ -103,6 +165,13 @@
                       <option *ngFor="let group of gender" [value]="group.type"> {{group.type}} </option>
                     </select>
                     <span class="user">Gender</span>
+                    <div
+                    *ngIf="requestForm.get('gender')!.invalid && (requestForm.get('gender')!.dirty || requestForm.get('gender')!.touched)"
+                    style="color: red;">
+                    <div *ngIf="requestForm.get('gender')!.errors?.['required']">
+                     Please select gender.
+                    </div>
+                  </div>
                   </div>
                 </div>
                 <div class="mb-3">
@@ -112,6 +181,13 @@
                       <option *ngFor="let s of states" [value]="s.isoCode">{{s.name}}</option>
                      </select>
                      <span class="user">State</span>
+                     <div
+                     *ngIf="requestForm.get('state')!.invalid && (requestForm.get('state')!.dirty || requestForm.get('state')!.touched)"
+                     style="color: red;">
+                     <div *ngIf="requestForm.get('state')!.errors?.['required']">
+                      Please select state.
+                     </div>
+                   </div>
                   </div>
                 </div>
                 <div class="mb-3">
@@ -122,6 +198,13 @@
                       formControlName="location"
                     />
                     <span class="user">Location</span>
+                    <div
+                     *ngIf="requestForm.get('location')!.invalid && (requestForm.get('location')!.dirty || requestForm.get('location')!.touched)"
+                     style="color: red;">
+                     <div *ngIf="requestForm.get('location')!.errors?.['required']">
+                      Please enter locality.
+                     </div>
+                   </div>
                   </div>
                 </div>
                 <div class="mb-3">
@@ -132,6 +215,13 @@
                       formControlName="hemoglobin"
                     />
                     <span class="user">Hemoglobin</span>
+                    <div
+                    *ngIf="requestForm.get('hemoglobin')!.invalid && (requestForm.get('hemoglobin')!.dirty || requestForm.get('hemoglobin')!.touched)"
+                    style="color: red;">
+                    <div *ngIf="requestForm.get('hemoglobin')!.errors?.['required']">
+                     Please Add Hemoglobin.
+                    </div>
+                  </div>
                   </div>
                 </div>
                 <div class="mb-3">
@@ -142,6 +232,18 @@
                       formControlName="units"
                     />
                     <span class="user">Unit</span>
+                    <div
+                    *ngIf="
+                      requestForm.get('units')!.invalid &&
+                      (requestForm.get('units')!.dirty ||
+                      requestForm.get('units')!.touched)
+                    "
+                    style="color: red"
+                  >
+                    <div *ngIf="requestForm.get('units')!.errors?.['required']">
+                      Enter unit.
+                    </div>
+                  </div>
                   </div>
                 </div>
               </div>
