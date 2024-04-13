@@ -58,9 +58,9 @@ export class ProfilePage implements OnInit {
 
   getByIdData(id:any) {
     this.service.profile(id).subscribe((success: any) => {
+      console.log('success getByIdData',success);
       this.user = success;
       this.registrationForm.patchValue(success);
-      console.log("profile",this.registrationForm);
     });
   }
 
@@ -73,6 +73,13 @@ export class ProfilePage implements OnInit {
 
   toggle(){
     this.isEditable= ! this.isEditable;
+  }
+
+  navigate(){
+    const userId = this.registrationForm.value.id;
+    this.router.navigate(['/auth/edit-profile'],{ queryParams: { id: userId } })
+    console.log("---id",userId);
+    
   }
 }
 

@@ -305,16 +305,28 @@ export class BloodRequestsPage implements OnInit {
     // event.target.complete(); 
   }
 
-  done(data : any,index : number){
+  statusChange(event:any,data : any,index : number,status:string){
     // this.loader = true;
+    console.log("status",status);
+    event.stopPropagation();
     this.spinner.show();
     this.service.statusUpdate(data.id, 'DONE').subscribe(
       async (success) => {
         this.toast.successToast(success.message);
 
        let data =  this.myListTabDetails[index];
+       console.log("data",data);
        this.myListTabDetails.splice(index,1);
-       this.historyTabDetails.unshift(data);
+       if(status == 'DONE'){
+        this.historyTabDetails.unshift(data);
+       }else{
+        data.status = status;
+        this.latestTabDetails.unshift(data);
+        console.log("latestTabDetails",this.latestTabDetails);
+        console.log("revert");
+        
+       }
+   
         // this.loader = false;
         this.spinner.hide();
       },
