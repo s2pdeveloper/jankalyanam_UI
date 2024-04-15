@@ -20,8 +20,8 @@
           <ion-badge color="primary">
             {{'changeProfile' | translate}}
           </ion-badge>
-        </ion-text> 
-         -->
+        </ion-text>  -->
+        
         <ion-row class="ion-justify-content-end">
           <ion-item lines="none" (click)="uploadFile()">
             <ion-icon name="create"></ion-icon>
@@ -95,8 +95,9 @@
             >
               <ion-col size="11">
                 <ion-item class="input-class">
+                  <i class="ion-padding-horizontal fa-solid fa-location-dot"></i>
                   <ion-input
-                    label="State"
+                   
                     labelPlacement="stacked"
                     [readonly]="!isEditable"
                     placeholder="state"
@@ -112,8 +113,9 @@
             >
               <ion-col size="11">
                 <ion-item class="input-class">
+                  <i class="ion-padding-horizontal fa-solid fa-city"></i>
                   <ion-input
-                    label="City"
+                   
                     labelPlacement="stacked"
                     [readonly]="!isEditable"
                     placeholder="city"
