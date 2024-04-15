@@ -45,7 +45,10 @@ export class DonationDetailsComponent implements OnInit {
     }
   
     console.log("this.edit ----", this.edit,this.openAccordion,this.data);
-    this.bloodDonateForm.controls.donationDate.setValue(new Date(this.data.donationDate.split('-').reverse().join('-')).toISOString());
+    if(this.edit){
+      this.bloodDonateForm.controls.donationDate.setValue(new Date(this.data.donationDate.split('-').reverse().join('-')).toISOString());
+
+    }
     
   }
   bloodDonateForm = new FormGroup({
@@ -120,7 +123,8 @@ export class DonationDetailsComponent implements OnInit {
 
   async editData(){
     this.edit = !this.edit;
-this.bloodDonateForm.patchValue(this.data);
+    this.bloodDonateForm.patchValue(this.data);
+    this.bloodDonateForm.controls.donationDate.setValue(new Date(this.data.donationDate.split('-').reverse().join('-')).toISOString());
     
 
   }

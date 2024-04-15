@@ -55,7 +55,7 @@ export class LoginPage implements OnInit {
   async deviceToken() {
 console.log("this.storage.get('deviceToken')===",localStorage.getItem('deviceToken'));
 
-    if(localStorage.getItem('deviceToken')){
+    if(!!localStorage.getItem('deviceToken')){
       this.service.addDeviceId(localStorage.getItem('deviceToken')).subscribe(
         { 
           next:(success: any) => {

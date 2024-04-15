@@ -8,7 +8,7 @@
     "start": "ng serve",
     "build": "ng build",
     "android": "ng build && npx cap copy android && npx cap sync android && npx  cap open android",
-    "watch": "ng build --watch --configuration development",
+    "watch": "ionic cap run android -l --external --watch --open",
     "test": "ng test",
     "lint": "ng lint"
   },
