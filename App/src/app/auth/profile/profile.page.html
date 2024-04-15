@@ -10,10 +10,14 @@
     <ion-card-content>
       <form [formGroup]="registrationForm">
         <ion-item lines="none">
-          <img
+          <img *ngIf="!profile"
             src="../../../../assets/icon/73-730477_first-name-profile-image-placeholder-png.png"
             alt=""
           />
+          <img *ngIf="!!profile"
+          src={{profile}}
+          alt=""
+        />
         </ion-item>
         <!-- <ion-text class="change-profile" (click)="uploadFile()">
           <img class="edit" src="../../../assets/edit.png" alt="">

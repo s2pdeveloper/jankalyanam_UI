@@ -12,17 +12,10 @@ import { LoaderService } from 'src/app/service/loader.service';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-
-
-  async uploadFile() {
-    this.cameraService.requestPermission();
-    let image = await this.cameraService.openCamera();
-    console.log('image', JSON.stringify(image));   
-  }
-
   user: any;
   userData: any;
   isEditable : Boolean = false;
+  profile:string=null;
   constructor(
     private storage: StorageService,
     private router: Router,
@@ -56,11 +49,31 @@ export class ProfilePage implements OnInit {
     status: new FormControl('',),
   });
 
+  async uploadFile() {
+    this.cameraService.requestPermission();
+    let image = await this.cameraService.openCamera();
+    console.log('image---------', JSON.stringify(image));   
+    let imageBlob = await this.cameraService.b64toBlob(image.base64String,`image/${image.format}`)
+  console.log("imageBlob---------",imageBlob,image.format);
+  
+    const formData = new FormData();
+    formData.append('id',this.userData.id);
+     formData.append('image', imageBlob, `${this.userData.firstName}_${this.userData.id}`);
+     this.service.updateImage(formData).subscribe((success: any) => {
+      console.log('success getByIdData',success);
+      this.profile =success.image;
+    },(error) => {
+      this.toast.errorToast(error.message);
+    });
+    }
+
   getByIdData(id:any) {
     this.service.profile(id).subscribe((success: any) => {
       console.log('success getByIdData',success);
       this.user = success;
       this.registrationForm.patchValue(success);
+    },(error) => {
+      this.toast.errorToast(error.message);
     });
   }
 
@@ -68,6 +81,8 @@ export class ProfilePage implements OnInit {
     let formData = this.registrationForm.value;
     this.service.updateUser(formData.id, formData).subscribe((success: any) => {
       this.toast.successToast('Profile Updated Successfully');
+    },(error) => {
+      this.toast.errorToast(error.message);
     });
   }
 

@@ -24,10 +24,11 @@ export class CameraService {
   async openCamera() {
     const image = await Camera.getPhoto({
       quality: 90,
-      allowEditing: false,
+      allowEditing: true,
       resultType: CameraResultType.Base64,
       source: CameraSource.Prompt
     });
+    
     return image
   }
 
