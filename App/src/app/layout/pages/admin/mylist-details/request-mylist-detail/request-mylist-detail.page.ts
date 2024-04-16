@@ -9,6 +9,7 @@ import { RestService } from "src/app/core/services/rest.service";
 import { BloodDonationService } from "src/app/service/donation/donation.service";
 import { Location } from "@angular/common";
 import { SessionStorageService } from "src/app/core/services/session-storage.service";
+import { LoaderService } from "src/app/service/loader.service";
 @Component({
   selector: "app-request-mylist-detail",
   templateUrl: "./request-mylist-detail.page.html",
@@ -47,7 +48,8 @@ export class RequestMylistDetailPage implements OnInit {
     private donorService: BloodDonationService,
     private toast: ToastService,
     private restService: RestService,
-    private location: Location
+    private location: Location,
+    private spinner: LoaderService,
   ) {}
 
   bloodRequestAllocateForm = new FormGroup({
@@ -155,7 +157,7 @@ export class RequestMylistDetailPage implements OnInit {
       return;
     }
 
-    this.loader = true;
+   this.spinner.show();
 
     this.service
       .allocate(this.data.id, this.bloodRequestAllocateForm.value)
@@ -173,10 +175,10 @@ export class RequestMylistDetailPage implements OnInit {
 
           this.bloodRequestAllocateForm.reset();
 
-          this.loader = false;
+          this.spinner.hide();
         },
         error: (err) => {
-          this.loader = false;
+          this.spinner.hide();
           this.toast.errorToast(err.message);
         },
       });

@@ -24,11 +24,15 @@ export class HomePage implements OnInit {
     
   }
   ionViewWillEnter(){
-   
-    setTimeout(() => {
-      this.data = this.sessionStorage.get("advertisementData");
-      console.log("this.data----------------",this.data) 
-    }, 500);
+    this.data = this.sessionStorage.get("advertisementData");
+    console.log("this.data------11----------",this.data) 
+    if(this.data == null){
+      setTimeout(() => {
+        this.data = this.sessionStorage.get("advertisementData");
+        console.log("this.data----------------",this.data) 
+      }, 500);
+    }
+
   }
 
 

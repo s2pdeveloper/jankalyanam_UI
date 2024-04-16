@@ -59,9 +59,20 @@ loader = true;
       // this.router.navigate([/auth/onboarding]);
       this.router.navigate([`/auth/on-boarding`], { replaceUrl: true });
     }
-   
+   this.getAllAdvertisement()
   }
-
+  
+  async getAllAdvertisement() {
+    this.advertiseService.getAllAdvertisemnt().subscribe((res) => {
+      console.log("advertisement DONE", res);
+      this.sessionStorage.set("advertisementData", res);
+    
+    },
+    (err) => {
+    
+      this.toast.errorToast(err.message);
+    })
+  }
   
 
   initializeApp() {

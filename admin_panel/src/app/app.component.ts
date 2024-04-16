@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
     iconSet.icons = { ...freeSet };
   }
 
+  
   ngOnInit() {
     this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {

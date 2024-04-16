@@ -19,9 +19,7 @@ export class LoginPage implements OnInit {
     private service: AuthService,
     private toast: ToastService,
     private spinner: LoaderService,
-    private storage: StorageService,
-    private advertiseService: AdvertisementService,
-    private sessionStorage: SessionStorageService,
+    private storage: StorageService
   ) {}
 
   ngOnInit() {}
@@ -52,7 +50,6 @@ export class LoginPage implements OnInit {
         await this.spinner.hideLoader();
         this.loginForm.reset();
         this.storage.set('user', success);
-        this.getAllAdvertisement();
         this.deviceToken();
         console.log("login DONE", success);
         this.router.navigate(['/layout/home']);
@@ -64,22 +61,7 @@ export class LoginPage implements OnInit {
     );
   }
 
-  async getAllAdvertisement() {
-    this.advertiseService.getAllAdvertisemnt().subscribe((res) => {
-      
-     
-      this.advertisementArray = res;
-      console.log("advertisement DONE", res);
-      this.sessionStorage.set("advertisementData", res);
-     ;
-      
-    },
-  (err) =>{
-  
-    
-    this.toast.errorToast(err.message);
-  })
-  }
+
 
 
   async deviceToken() {
