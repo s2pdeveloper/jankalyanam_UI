@@ -6,9 +6,72 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-card>
-    <ion-card-content>
-      <form [formGroup]="registrationForm">
+  <ion-item lines="none" class="margin-img">
+    <ion-avatar class="avatar border-color-7">
+      <img
+        class="profile-img"
+        *ngIf="!profile"
+        src="../../../../assets/icon/73-730477_first-name-profile-image-placeholder-png.png"
+        alt="mainPofile"
+      />
+      <img *ngIf="!!profile" src="{{profile}}" alt="mainPofile" />
+      <ion-icon name="camera" class="overlay-icon" (click)="uploadFile()"></ion-icon>
+    </ion-avatar>
+  </ion-item>
+
+  <ion-list class="margin-top">
+    <ion-item>
+      <ion-icon name="person-circle"></ion-icon>
+      <ion-label class="head ion-margin-start ">
+      Full Name
+        <h3 class="fontSize">{{user?.firstName}} {{user?.lastName}}</h3>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-icon  name="mail"></ion-icon>
+      <ion-label class="head ion-margin-start ">
+      Email
+        <h3 class="fontSize">{{user?.email}}</h3>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="call"></ion-icon>
+      <ion-label class="head ion-margin-start ">
+      Mobile Number
+        <h3 class="fontSize">{{user?.mobileNo}}</h3>
+      </ion-label>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-button
+      expand="block"
+      class="edit-btn ion-justify-content-end ion-padding"
+      color="primary"
+      (click)="navigate()"
+      >Edit
+    </ion-button>
+    </ion-item>
+   
+
+  </ion-list>
+  <ion-item class="logo" lines="none">
+    <img class="logo-img" src="../../../assets/bloodLogo.jpg
+    " alt="">
+    <ion-badge color="primary">
+      {{'changeProfile' | translate}}
+    </ion-badge>
+ 
+  </ion-item>
+    
+</ion-content>
+
+<!-- <ion-text class="change-profile" (click)="uploadFile()">
+          <img class="edit" src="../../../assets/edit.png" alt="">
+          <ion-badge color="primary">
+            {{'changeProfile' | translate}}
+          </ion-badge>
+        </ion-text>  -->
+<!-- <form [formGroup]="registrationForm">
         <ion-item lines="none">
           <img *ngIf="!profile"
             src="../../../../assets/icon/73-730477_first-name-profile-image-placeholder-png.png"
@@ -19,12 +82,7 @@
           alt=""
         />
         </ion-item>
-        <!-- <ion-text class="change-profile" (click)="uploadFile()">
-          <img class="edit" src="../../../assets/edit.png" alt="">
-          <ion-badge color="primary">
-            {{'changeProfile' | translate}}
-          </ion-badge>
-        </ion-text>  -->
+       
         
         <ion-row class="ion-justify-content-end">
           <ion-item lines="none" (click)="uploadFile()">
@@ -137,14 +195,9 @@
                   color="primary"
                   (click)="navigate()"
                   >Edit
-
-                  <!-- <img class="editForm" src="../../../assets/edit (1).png" alt=""> -->
                 </ion-button>
               </ion-col>
             </ion-row>
           </ion-grid>
         </ion-item>
-      </form>
-    </ion-card-content>
-  </ion-card>
-</ion-content>
+      </form> -->

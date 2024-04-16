@@ -1,21 +1,40 @@
-img{
-width: 50%;
-margin: auto;
+
+.overlay-icon {
+  position: absolute;
+  top: 72%;
+  left: 31%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+}
+.margin-top {
+  margin-top: 11px;
+}
+.margin-img {
+  margin-top: 6rem;
+}
+.edit-btn {
+  width: 100%;
 }
 
-ion-card{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 6rem;
+img {
+  text-align: center;
+  margin: auto !important;
+}
+.logo{
+    margin-top: 2rem;
+    .logo-img {
+        width: 74%;
+      }
+}
+.head{
+  font-weight: bold;
 }
 
-.edit{
-    width: 20px;
+.avatar {
+  margin: auto;
+  width: 8em;
+  height: 8em;
 }
-.editForm{
-    width: 15px;
+.fontSize {
+  font-size: 1.15rem;
 }
-// ion-button{
-//     --background 
-// }

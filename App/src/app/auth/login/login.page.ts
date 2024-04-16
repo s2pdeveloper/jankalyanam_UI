@@ -5,21 +5,31 @@ import { AuthService } from 'src/app/service/auth/auth.service';
 import { ToastService } from 'src/app/core/services';
 import { LoaderService } from 'src/app/core/services/loader.service';
 import { StorageService } from 'src/app/core/services';
+import { AdvertisementService } from 'src/app/service/advertisement/advertisement.service';
+import { SessionStorageService } from 'src/app/core/services/session-storage.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  advertisementArray = [];
   constructor(
     private router: Router,
     private service: AuthService,
     private toast: ToastService,
     private spinner: LoaderService,
-    private storage: StorageService
+    private storage: StorageService,
+    private advertiseService: AdvertisementService,
+    private sessionStorage: SessionStorageService,
   ) {}
 
   ngOnInit() {}
+
+  ionViewWillEnter() {
+
+    
+  }
 
   loginForm = new FormGroup({
     mobileNo: new FormControl(''),
@@ -42,7 +52,9 @@ export class LoginPage implements OnInit {
         await this.spinner.hideLoader();
         this.loginForm.reset();
         this.storage.set('user', success);
+        this.getAllAdvertisement();
         this.deviceToken();
+        console.log("login DONE", success);
         this.router.navigate(['/layout/home']);
       },
       async (error: any) => {
@@ -51,6 +63,24 @@ export class LoginPage implements OnInit {
       }
     );
   }
+
+  async getAllAdvertisement() {
+    this.advertiseService.getAllAdvertisemnt().subscribe((res) => {
+      
+     
+      this.advertisementArray = res;
+      console.log("advertisement DONE", res);
+      this.sessionStorage.set("advertisementData", res);
+     ;
+      
+    },
+  (err) =>{
+  
+    
+    this.toast.errorToast(err.message);
+  })
+  }
+
 
   async deviceToken() {
 console.log("this.storage.get('deviceToken')===",localStorage.getItem('deviceToken'));

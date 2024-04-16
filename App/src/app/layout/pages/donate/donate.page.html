@@ -12,8 +12,8 @@
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
             <ion-item fill="outline" class="input">
-              <ion-label position="floating" lablePlacement="stacked"
-                >Name</ion-label
+              <ion-label position="floating" labelPlacement="stacked"
+                > {{ translatedName  }}</ion-label
               >
               <ion-input
                 placeholder="Full Name"
@@ -25,7 +25,7 @@
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
             <ion-item fill="outline" class="input">
-              <ion-label position="floating" lablePlacement="stacked"
+              <ion-label position="floating" labelPlacement="stacked"
                 >Age</ion-label
               >
               <ion-input placeholder="Age" label-placement="floating" formControlName="age"></ion-input>
@@ -36,7 +36,7 @@
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
             <ion-item fill="outline">
-              <ion-label *ngIf="!f['donationDate'].value" position="floating" lablePlacement="stacked"
+              <ion-label *ngIf="!f['donationDate'].value" position="floating" labelPlacement="stacked"
                 >Donation Date</ion-label
               >
               <p class="ion-margin-end">{{f['donationDate'].value | date}}</p>
@@ -71,7 +71,7 @@
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
             <ion-item fill="outline" class="input">
-              <ion-label position="floating" lablePlacement="stacked"
+              <ion-label position="floating" labelPlacement="stacked"
                 >hemoglobin</ion-label
               >
               <ion-input
@@ -98,7 +98,7 @@
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
             <ion-item fill="outline" class="input">
-              <ion-label position="floating" lablePlacement="stacked"
+              <ion-label position="floating" labelPlacement="stacked"
                 >mobileNo</ion-label
               >
               <ion-input
@@ -112,7 +112,7 @@
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
             <ion-item fill="outline">
-              <ion-label position="floating" lablePlacement="stacked"
+              <ion-label position="floating" labelPlacement="stacked"
                 >State
               </ion-label>
               <ionic-selectable
@@ -157,7 +157,7 @@
         <ion-row *ngIf="isCity"  class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12" class="ion-justify-content-between">
             <ion-item fill="outline">
-              <ion-label position="floating" lablePlacement="stacked">
+              <ion-label position="floating" labelPlacement="stacked">
                 City
               </ion-label>
               <ionic-selectable

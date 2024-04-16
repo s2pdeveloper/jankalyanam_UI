@@ -10,7 +10,7 @@ import { IonicSelectableComponent } from "ionic-selectable";
 import { RestService } from "src/app/core/services/rest.service";
 import { AdminRequestActiveComponent } from "src/app/shared/models/admin-request-active/admin-request-active.component";
 import { ModalService } from "src/app/service/modal.service";
-
+import { TranslateService } from "@ngx-translate/core";
 @Component({
   selector: "app-donate",
   templateUrl: "./donate.page.html",
@@ -26,6 +26,7 @@ export class DonatePage implements OnInit {
   donationDateSelected: Boolean = false;
   disabledCity: Boolean = true;
   isCity: boolean = false;
+  translatedName: string = "";
   constructor(
     private service: BloodDonationService,
     private router: Router,
@@ -34,16 +35,42 @@ export class DonatePage implements OnInit {
     private spinner: LoaderService,
     private modalController: ModalController,
     private restService: RestService,
-    private modalService: ModalService
-  ) {}
-  ngOnInit() {}
+    private modalService: ModalService,
+    private translate : TranslateService
+  ) {
+    this.translate.setDefaultLang('en');
+  }
+
+
+  ngOnInit() {this.translate.get('name').subscribe(
+    (res: string) => {
+      this.translatedName = res;
+      console.log('Translated Name:', this.translatedName);
+    },
+    (error) => {
+      console.error('Error loading translation:', error);
+    }
+  );
+}
   ionViewWillEnter() {
     this.bloodRequest =
       this.activatedRoute.snapshot.paramMap.get("value") == "true";
     this.states = this.restService.getStatesOfCountry("IN");
     console.log("this.states-----", this.states);
+    this.translate.get('name').subscribe(
+      (res: string) => {
+        this.translatedName = res;
+        console.log('Translated Name:', this.translatedName);
+      },
+      (error) => {
+        console.error('Error loading translation:', error);
+      }
+    );
   }
-
+ 
+  switchLanguage(lang: string){
+this.translate.use(lang);
+  }
   bloodDonateForm = new FormGroup({
     age: new FormControl("", [Validators.required]),
     city: new FormControl("", [Validators.required]),
@@ -60,6 +87,7 @@ export class DonatePage implements OnInit {
   get f() {
     return this.bloodDonateForm.controls;
   }
+ 
 
   async create() {
     if (this.bloodDonateForm.invalid) {

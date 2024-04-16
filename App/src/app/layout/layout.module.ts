@@ -6,6 +6,7 @@ import { LayoutPageRoutingModule } from "./layout-routing.module";
 import { IonicSelectableComponent } from "ionic-selectable";
 import { LayoutPage } from "./layout.page";
 import { MenuPageModule } from "./pages/menu/menu.module";
+import { SharedModule } from "../shared/shared.module";
 
 @NgModule({
   imports: [
@@ -14,8 +15,9 @@ import { MenuPageModule } from "./pages/menu/menu.module";
     IonicModule,
     LayoutPageRoutingModule,
     MenuPageModule,
+    SharedModule,
     IonicSelectableComponent,
-
+    
   ],
   declarations: [LayoutPage],
 })

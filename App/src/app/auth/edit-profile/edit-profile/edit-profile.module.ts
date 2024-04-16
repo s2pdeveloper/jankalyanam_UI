@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { EditProfilePageRoutingModule } from './edit-profile-routing.module';
 
 import { EditProfilePage } from './edit-profile.page';
+import { IonicSelectableComponent } from 'ionic-selectable';
 
 @NgModule({
   imports: [
@@ -15,7 +16,9 @@ import { EditProfilePage } from './edit-profile.page';
     IonicModule,
     EditProfilePageRoutingModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    IonicSelectableComponent
+    
   ],
   declarations: [EditProfilePage]
 })

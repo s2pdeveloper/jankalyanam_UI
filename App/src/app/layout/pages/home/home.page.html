@@ -31,7 +31,7 @@
   </div>
 </ion-content> -->
 
-<ion-content  [fullscreen]="true" class="slider">
+<ion-content  [fullscreen]="true">
   <ion-item>
     <ion-grid class="tabs">
       <ion-row class="ion-justify-content-start">
@@ -55,9 +55,10 @@
     </ion-grid>
   </ion-item>
 
-  <swiper-container [loop]="true" [speed]="100" [autoplay]="{enable:true,slidesPerView:1}">
-    <swiper-slide *ngFor="let imgFile of advertisementArray ">
-      <img class="slide-img" [src]=imgFile.file alt="Advertisement" />
+  <swiper-container class="mySwiper" pagination="true" pagination-clickable="true"  space-between="30"
+  centered-slides="true" autoplay-delay="2500" autoplay-disable-on-interaction="false">
+    <swiper-slide *ngFor="let item of data">
+      <img class="slide-img" [src]="item.file" alt="Advertisement" />
     </swiper-slide>
   </swiper-container>
 
@@ -71,10 +72,6 @@
       </ion-item>
     </ion-card>
   </ion-item>
-
-  
-
-
 </ion-content>
 
 

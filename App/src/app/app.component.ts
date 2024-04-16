@@ -5,6 +5,10 @@ import { Router } from "@angular/router";
 import { StorageService } from "./core/services/local-storage.service";
 import { StatusBarService } from "./core/services/status-bar-service.service";
 import { CameraService } from "./service/camera.service";
+import { AuthService } from "./service/auth/auth.service";
+import { AdvertisementService } from "./service/advertisement/advertisement.service";
+import { ToastService } from "./core/services";
+import { SessionStorageService } from "./core/services/session-storage.service";
 
 // register Swiper custom elements
 register();
@@ -14,13 +18,20 @@ register();
   templateUrl: "app.component.html",
   styleUrls: ["app.component.scss"],
 })
+
+
 export class AppComponent implements OnInit {
+  advertisementArray = [];
+loader = true;
   constructor(
     private pushNotificationService: PushNotificationService,
     private storageService: StorageService,
     private statusBarService: StatusBarService,
     private cameraService: CameraService,
+    private authService : AuthService,
     private router: Router,
+    private sessionStorage: SessionStorageService,
+    private advertiseService: AdvertisementService,private toast: ToastService,
   ) {
    
     this.initializeApp();
@@ -48,7 +59,10 @@ export class AppComponent implements OnInit {
       // this.router.navigate([/auth/onboarding]);
       this.router.navigate([`/auth/on-boarding`], { replaceUrl: true });
     }
+   
   }
+
+  
 
   initializeApp() {
     if(localStorage.getItem('language')){
@@ -57,5 +71,7 @@ export class AppComponent implements OnInit {
     this.statusBarService.changeColor("#7e2212");
     this.pushNotificationService.registerForPushNotification();
     this.cameraService.requestPermission();
-  }
+  
+  
+}
 }

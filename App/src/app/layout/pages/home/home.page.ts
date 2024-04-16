@@ -2,55 +2,43 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { AdvertisementService } from "src/app/service/advertisement/advertisement.service";
 import { ToastService } from "src/app/core/services/toast.service";
+import { SessionStorageService } from "src/app/core/services/session-storage.service";
 @Component({
   selector: "app-home",
   templateUrl: "./home.page.html",
   styleUrls: ["./home.page.scss"],
 })
 export class HomePage implements OnInit {
-
+  data: any = null;
   advertisementArray = [];
   loader = true;
   constructor(
     private route: Router,
     private advertiseService: AdvertisementService,private toast: ToastService,
+    private sessionStorage: SessionStorageService,
   ) {}
-
-
-  ngOnInit() {
-    console.log("render home page");
-    this.getAllAdvertisement();
-  }
 
   activeSegment = "donate";
   currentTitle = "Home";
+  ngOnInit() {
+    
+  }
+  ionViewWillEnter(){
+   
+    setTimeout(() => {
+      this.data = this.sessionStorage.get("advertisementData");
+      console.log("this.data----------------",this.data) 
+    }, 500);
+  }
+
+
 
   navigateTo(url: string) {
     console.log(url);
     this.route.navigate([url]);
   }
 
-  Option = {
-    // slidesPerView: 1,
-    loop: true, 
-    autoplay: {
-      delay: 1000,
-    },
-  };
 
-  async getAllAdvertisement() {
-    this.advertiseService.getAllAdvertisemnt().subscribe((res) => {
-      console.log("-------", res);
-      this.loader = true;
-      this.advertisementArray = res;
-      this.loader = false;
-    },
-  (err) =>{
-    this.loader = false;
-    // this.toast.errorToast("Advertisement not found!");
-    this.toast.errorToast(err.message);
-  })
-  }
-  
+
   
 }

@@ -67,6 +67,8 @@ export class RequestMylistDetailPage implements OnInit {
    
     this.user = this.localStorage.get("user");
     this.data = this.sessionStorage.get("request");
+    console.log("------session",this.data);
+    
     this.providedBy = this.data.provided ? this.data.provided : null;
     this.edit = this.data.bloodBankName == null ? true : false;
     this.donorEdit = this.data.donor == null ? true : false;

@@ -31,6 +31,8 @@
     "@capacitor/push-notifications": "^5.0.0",
     "@capacitor/camera": "^5.0.9",
     "@capacitor/status-bar": "5.0.7",
+    "@ngx-translate/core": "^14.0.0",
+    "@ngx-translate/http-loader": "^7.0.0",
     "@ionic/angular": "^7.0.0",
     "country-state-city": "^3.2.1",
     "ionic-selectable": "^5.0.0",

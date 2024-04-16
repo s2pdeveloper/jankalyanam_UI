@@ -11,12 +11,14 @@
       <form [formGroup]="editRegistrationForm">
         <ion-item>
           <ion-grid>
-            <ion-row class="ion-justify-content-center">
-              <ion-col size="11">
-                <ion-item class="input-class">
-                  
+            <ion-row class="ion-align-items-center  ion-justify-content-center">
+              <ion-col size="12">
+                <ion-item fill="outline" class="input" lines="none">
+                  <ion-label position="floating" lablePlacement="stacked"
+                  >First Name</ion-label
+                >
                   <ion-input
-                  label="First Name"
+                
                     formControlName="firstName"
                   >
                   </ion-input>
@@ -25,12 +27,14 @@
             </ion-row>
 
             <ion-row class="ion-align-items-center ion-justify-content-center">
-              <ion-col size="11">
-                <ion-item class="input-class">
-                  
+              <ion-col size="12">
+                <ion-item fill="outline" class="input" lines="none">
+                  <ion-label position="floating" lablePlacement="stacked"
+                  >Last Name</ion-label
+                >
                   <ion-input
                    
-                    label="Last Name"
+                   
                     formControlName="lastName"
                   >
                   </ion-input>
@@ -41,12 +45,14 @@
               class="ion-align-items-center ion-justify-content-center"
               
             >
-              <ion-col size="11">
-                <ion-item class="input-class">
-                 
+              <ion-col size="12">
+                <ion-item fill="outline" class="input" lines="none">
+                  <ion-label position="floating" lablePlacement="stacked"
+                >Email</ion-label
+              >
                   <ion-input
                    
-                    label="Email"
+                   
                     formControlName="email"
                   >
                   </ion-input>
@@ -57,59 +63,114 @@
               class="ion-align-items-center ion-justify-content-center"
               
             >
-              <ion-col size="11">
-                <ion-item class="input-class">
-                  
+              <ion-col size="12">
+                <ion-item fill="outline" class="input" lines="none">
+                  <ion-label position="floating" lablePlacement="stacked"
+                  >Mobile</ion-label
+                >
                   <ion-input
-                   
-                    label="Mobile"
                     formControlName="mobileNo"
                   >
                   </ion-input>
                 </ion-item>
               </ion-col>
             </ion-row>
-            <ion-row
-              class="ion-align-items-center ion-justify-content-center"
-              
-            >
-              <ion-col size="11">
-                <ion-item class="input-class">
-                  <ion-input
-                    label="State"
-                   
-                    placeholder="state"
-                    formControlName="state"
+            <ion-row class="ion-align-items-center ion-justify-content-center">
+              <ion-col size="12">
+                <ion-item fill="outline" lines="none">
+                  <ion-label position="floating" lablePlacement="stacked"
+                    >State
+                  </ion-label>
+                  <ionic-selectable
+                    item-content
+                    class="ion-text-capilatize"
+                    #selectableState
+                    [items]="states"
+                    itemTextField="name"
+                    itemValueField="name"
+                    [canSearch]="true"
+                    (onChange)="getCity($event)"
+                    [hasConfirmButton]="true"
+                    [hasInfiniteScroll]="true"
                   >
-                  </ion-input>
+                    <ng-template ionicSelectableHeaderTemplate>
+                      <ion-toolbar class="bg-color-2">
+                        <ion-buttons slot="start">
+                          <ion-button
+                            class="text-color-4"
+                            (click)="selectableState.close()"
+                          >
+                            <ion-icon name="arrow-back-outline"></ion-icon>
+                          </ion-button>
+                        </ion-buttons>
+                        <ion-title
+                          class="text-color-4 ion-text-capitalize ion-text-wrap"
+                        >
+                          State
+                        </ion-title>
+                      </ion-toolbar>
+                    </ng-template>
+                    <ng-template ionicSelectableItemTemplate let-port="item">
+                      <ion-label class="ion-text-capitalize ion-text-wrap">
+                        {{port?.name}}
+                      </ion-label>
+                    </ng-template>
+                  </ionic-selectable>
                 </ion-item>
               </ion-col>
             </ion-row>
-            <ion-row
-              class="ion-align-items-center ion-justify-content-center"
-             
-            >
-              <ion-col size="11">
-                <ion-item class="input-class">
-                  <ion-input
-                    label="City"
-                   
-                 
-                    placeholder="city"
-                    formControlName="city"
+            <ion-row *ngIf="isCity" class="ion-align-items-center ion-justify-content-center">
+              <ion-col size="12" class="ion-justify-content-between">
+                <ion-item fill="outline">
+                  <ion-label position="floating" lablePlacement="stacked">
+                    City
+                  </ion-label>
+                  <ionic-selectable
+                    item-content
+                    class="ion-text-capilatize"
+                    #selectableCity
+                    [items]="cities"
+                    itemTextField="name"
+                    itemValueField="name"
+                    [canSearch]="true"
+                    [hasConfirmButton]="true"
+                    [hasInfiniteScroll]="true"
+                    (onChange)="setCity($event)"
                   >
-                  </ion-input>
+                    <ng-template ionicSelectableHeaderTemplate>
+                      <ion-toolbar class="bg-color-2">
+                        <ion-buttons slot="start">
+                          <ion-button
+                            class="text-color-4"
+                            (click)="selectableCity.close()"
+                          >
+                            <ion-icon name="arrow-back-outline"></ion-icon>
+                          </ion-button>
+                        </ion-buttons>
+                        <ion-title
+                          class="text-color-4 ion-text-capitalize ion-text-wrap"
+                        >
+                          City
+                        </ion-title>
+                      </ion-toolbar>
+                    </ng-template>
+                    <ng-template ionicSelectableItemTemplate let-port="item">
+                      <ion-label class="ion-text-capitalize ion-text-wrap">
+                        {{port?.name}}
+                      </ion-label>
+                    </ng-template>
+                  </ionic-selectable>
                 </ion-item>
               </ion-col>
             </ion-row>
             <ion-row class="ion-align-items-center ion-justify-content-center">
-              <ion-col size="7">
+              <ion-col size="12">
                 <ion-button
                   expand="block"
                   class="button ion-justify-content-end ion-padding"
                   color="primary"
                   (click)="update()"
-                  >Save
+                  >Update
 
                   <!-- <img class="editForm" src="../../../assets/edit (1).png" alt=""> -->
                 </ion-button>

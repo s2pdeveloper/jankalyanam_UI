@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { AlertController } from "@ionic/angular";
 import { StorageService } from "src/app/core/services";
+import { SessionStorageService } from "src/app/core/services/session-storage.service";
 
 @Component({
   selector: "app-menu",
@@ -21,6 +22,7 @@ export class MenuPage implements OnInit {
   constructor(
     private alertController: AlertController,
     private storageService: StorageService,
+    private sessionService: SessionStorageService,
     private router: Router
   ) {}
 
@@ -51,6 +53,7 @@ export class MenuPage implements OnInit {
     // this.loca
     console.log("remove logout");
     this.storageService.remove("user");
+    this.sessionService.remove('advertisementData')
     // this.router.navigate(["/auth/login"]);
     this.router.navigate(["/auth/login"]);
 
