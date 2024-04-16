@@ -12,6 +12,7 @@ export class AuthService {
     login: 'user/login',
     getByIdPath: (id: string) => `user/${id}`,
     updatePath: (id: string) => `user/${id}`,
+    imageUpdatePath: `user/profile`,
     forget_password: 'user/forgot-password',
     reset_password: 'user/reset-password',
     set_password: 'user/set-password',
@@ -71,5 +72,9 @@ export class AuthService {
 
   addDeviceId(deviceId:string) {
     return this.http.post(this.routes.deviceIdPath(deviceId));
+  }
+
+  updateImage(imageData:any){
+    return this.http.put(this.routes.imageUpdatePath,imageData);
   }
 }

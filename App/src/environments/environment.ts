@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  // apiEndpoint: 'http://45.13.132.155:1996/',
-  // base_url: 'http://0.0.0.0:1996/',
+  // apiEndpoint: 'http://localhost:1996/',
+  // base_url: 'http://localhost:1996/',
   apiEndpoint:  'https://api-dev.jankalyan.life/',
   base_url:  'https://api-dev.jankalyan.life/',
 };
