@@ -5,9 +5,9 @@ import { ModalController } from "@ionic/angular";
 import { ToastService } from "src/app/core/services";
 import { LoaderService } from "src/app/core/services/loader.service";
 import { BloodRequestService } from "src/app/service/request/request.service";
-import { CalenderComponent } from "../../components/calender/calender.component";
 import { RestService } from "src/app/core/services/rest.service";
 import { IonicSelectableComponent } from "ionic-selectable";
+import { CalenderComponent } from "src/app/shared/models/calender/calender.component";
 
 @Component({
   selector: "app-request",

@@ -19,7 +19,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     IonicModule,
     ProfilePageRoutingModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
   ],
   declarations: [ProfilePage]
 })

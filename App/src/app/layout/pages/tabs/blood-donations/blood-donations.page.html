@@ -70,7 +70,7 @@
 
                       <ion-button
                         *ngIf="user.role=='ADMIN' && l.status=='DONE'"
-                        (click)="close(l.id,i)"
+                        (click)="close($event,l.id,i)"
                       >
                         Close</ion-button
                       >

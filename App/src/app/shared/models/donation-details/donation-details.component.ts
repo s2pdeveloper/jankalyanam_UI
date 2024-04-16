@@ -5,8 +5,8 @@ import { ModalController } from "@ionic/angular";
 import { LoaderService } from "src/app/core/services/loader.service";
 import { StorageService } from "src/app/core/services/local-storage.service";
 import { ToastService } from "src/app/core/services/toast.service";
-import { CalenderComponent } from "src/app/layout/components/calender/calender.component";
 import { BloodDonationService } from "src/app/service/donation/donation.service";
+import { CalenderComponent } from "src/app/shared/models/calender/calender.component";
 
 @Component({
   selector: "app-donation-details",

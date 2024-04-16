@@ -1,20 +1,20 @@
 import { Pipe, PipeTransform } from "@angular/core";
 import { english } from "../../../assets/i18n/en";
 import { hindi } from "../../../assets/i18n/hi";
+import { languageConst } from "../../../assets/language";
 
 @Pipe({
   name: "translate",
+  pure:false
 })
 export class TranslatePipe implements PipeTransform {
-  // language='en'
+  langConst=languageConst
   transform(value: string, ...args: unknown[]): any {
     try {
       let language = localStorage.getItem("language") || "en";
-
-      return language == "en" ? english[value] : hindi[value];
+     return this.langConst[language][value]
     } catch (error) {
-      console.log("error", error);
-      return english[value];
+      return value;
     }
   }
 }

@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
     <ion-back-button slot="start" (click)="navigate()" default-href=""></ion-back-button>
-    <ion-title class="ion-justify-content-center">Donate</ion-title>
+    <ion-title class="ion-justify-content-center">{{'donate' | translate}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,9 +12,15 @@
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
             <ion-item fill="outline" class="input">
-              <ion-label position="floating" labelPlacement="stacked"
-                > {{ translatedName  }}</ion-label
-              >
+              <!-- <ion-label position="floating" lablePlacement="stacked"
+                >Name
+                <ion-badge color="primary">
+                  {{'name' | translate}}
+                </ion-badge>
+                </ion-label -->
+                <ion-label position="floating" labelPlacement="stacked">
+                    {{'Name' | translate  }}
+                </ion-label>
               <ion-input
                 placeholder="Full Name"
                 formControlName="name"
@@ -26,7 +32,7 @@
           <ion-col size="12">
             <ion-item fill="outline" class="input">
               <ion-label position="floating" labelPlacement="stacked"
-                >Age</ion-label
+                > {{'age' | translate  }}</ion-label
               >
               <ion-input placeholder="Age" label-placement="floating" formControlName="age"></ion-input>
             </ion-item>
@@ -37,7 +43,7 @@
           <ion-col size="12">
             <ion-item fill="outline">
               <ion-label *ngIf="!f['donationDate'].value" position="floating" labelPlacement="stacked"
-                >Donation Date</ion-label
+                >{{'donationDate' | translate  }}</ion-label
               >
               <p class="ion-margin-end">{{f['donationDate'].value | date}}</p>
               <ion-icon
@@ -58,7 +64,7 @@
               <ion-select
                 aria-label="Fruit"
                 interface="action-sheet"
-                placeholder="Select Blood Group"
+                placeholder="{{'select bloodgroup' | translate}}"
                 formControlName="bloodGroup"
               >
               
@@ -72,7 +78,7 @@
           <ion-col size="12">
             <ion-item fill="outline" class="input">
               <ion-label position="floating" labelPlacement="stacked"
-                >hemoglobin</ion-label
+                >{{'hemoglobin' | translate  }}</ion-label
               >
               <ion-input
                 placeholder="hemoglobin"
@@ -81,25 +87,11 @@
             </ion-item>
           </ion-col>
         </ion-row>
-
-        <!-- <ion-row class="ion-align-items-center ion-justify-content-center">
-          <ion-col size="12">
-            <ion-item fill="outline" class="input">
-              <ion-label position="floating" lablePlacement="stacked"
-                >location</ion-label
-              >
-              <ion-input
-                placeholder="location"
-                formControlName="location"
-              ></ion-input>
-            </ion-item>
-          </ion-col>
-        </ion-row> -->
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
             <ion-item fill="outline" class="input">
               <ion-label position="floating" labelPlacement="stacked"
-                >mobileNo</ion-label
+                >{{'mobileNo' | translate  }}</ion-label
               >
               <ion-input
                 placeholder="mobileNo"
@@ -113,7 +105,7 @@
           <ion-col size="12">
             <ion-item fill="outline">
               <ion-label position="floating" labelPlacement="stacked"
-                >State
+                >{{'state' | translate  }}
               </ion-label>
               <ionic-selectable
                 item-content
@@ -158,7 +150,7 @@
           <ion-col size="12" class="ion-justify-content-between">
             <ion-item fill="outline">
               <ion-label position="floating" labelPlacement="stacked">
-                City
+                {{'city' | translate  }}
               </ion-label>
               <ionic-selectable
                 item-content
@@ -206,7 +198,7 @@
               <ion-select
                 aria-label="Fruit"
                 interface="action-sheet"
-                placeholder="Select Gender"
+                placeholder="{{'select gender' | translate}}"
                 formControlName="gender"
               >
                 <ion-select-option value="MALE">Male</ion-select-option>
@@ -233,7 +225,7 @@
               class="button ion-padding"
               color="primary"
               (click)="create()"
-              >Submit</ion-button
+              >{{'submit'| translate}}</ion-button
             >
           </ion-col>
         </ion-row>

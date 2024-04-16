@@ -65,7 +65,7 @@ loader = true;
   
 
   initializeApp() {
-    if(localStorage.getItem('language')){
+    if(!localStorage.getItem('language')){
       localStorage.setItem('language','en');
     }
     this.statusBarService.changeColor("#7e2212");

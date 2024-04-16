@@ -80,9 +80,10 @@ export class BloodRequestsPage implements OnInit {
     this.router.navigate([url]);
   }
 
-  async accept(data: any, status: any) {
+  async accept(event:any,data: any, status: any) {
     // this.loader = true;
     this.spinner.show();
+    event.stopPropagation();
     this.service.statusUpdate(data.id, status).subscribe(
       (res) => {
         data.status = status;

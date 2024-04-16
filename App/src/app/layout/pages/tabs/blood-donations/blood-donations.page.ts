@@ -246,8 +246,9 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
     // event.target.complete();
   }
   
-  close(id : any,index : number){
+  close(event:any,id : any,index : number){
     this.spinner.show();
+    event.stopPropagation();
     this.service.statusUpdate(id, 'CLOSE').subscribe(
       async (success) => {
         this.toast.successToast(success.message);

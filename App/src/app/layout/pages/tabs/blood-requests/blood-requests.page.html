@@ -154,7 +154,7 @@
                       class="ion-text-end"
                       *ngIf="user.role == 'ADMIN' &&  l.status == 'PENDING'"
                     >
-                      <ion-button (click)="accept(l,'ACCEPTED')">
+                      <ion-button (click)="accept($event,l,'ACCEPTED')">
                         Accept
                       </ion-button>
                     </ion-col>

@@ -1,7 +1,7 @@
 <ion-toolbar color="primary">
-  <ion-title mode="md">Calender</ion-title>
+  <ion-title mode="md">{{'calendar' | translate}}</ion-title>
   <ion-buttons slot="end">
-    <ion-button (click)="dismiss()">Close</ion-button>
+    <ion-button (click)="dismiss()">{{'close' | translate}}</ion-button>
   </ion-buttons>
 </ion-toolbar>
 
@@ -21,7 +21,7 @@
       class="btn-color-1 btn-height-large"
       type="submit"
     >
-      Save
+      {{'save' | translate}}
     </ion-button>
   </div>
 </ion-content>

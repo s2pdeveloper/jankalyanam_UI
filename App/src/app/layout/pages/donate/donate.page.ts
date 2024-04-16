@@ -5,12 +5,12 @@ import { ModalController } from "@ionic/angular";
 import { ToastService } from "src/app/core/services";
 import { LoaderService } from "src/app/core/services/loader.service";
 import { BloodDonationService } from "src/app/service/donation/donation.service";
-import { CalenderComponent } from "../../components/calender/calender.component";
 import { IonicSelectableComponent } from "ionic-selectable";
 import { RestService } from "src/app/core/services/rest.service";
 import { AdminRequestActiveComponent } from "src/app/shared/models/admin-request-active/admin-request-active.component";
 import { ModalService } from "src/app/service/modal.service";
-import { TranslateService } from "@ngx-translate/core";
+import { CalenderComponent } from "src/app/shared/models/calender/calender.component";
+
 @Component({
   selector: "app-donate",
   templateUrl: "./donate.page.html",
@@ -36,41 +36,23 @@ export class DonatePage implements OnInit {
     private modalController: ModalController,
     private restService: RestService,
     private modalService: ModalService,
-    private translate : TranslateService
+   
   ) {
-    this.translate.setDefaultLang('en');
+    
   }
 
 
-  ngOnInit() {this.translate.get('name').subscribe(
-    (res: string) => {
-      this.translatedName = res;
-      console.log('Translated Name:', this.translatedName);
-    },
-    (error) => {
-      console.error('Error loading translation:', error);
-    }
-  );
+  ngOnInit() {
 }
   ionViewWillEnter() {
     this.bloodRequest =
       this.activatedRoute.snapshot.paramMap.get("value") == "true";
     this.states = this.restService.getStatesOfCountry("IN");
     console.log("this.states-----", this.states);
-    this.translate.get('name').subscribe(
-      (res: string) => {
-        this.translatedName = res;
-        console.log('Translated Name:', this.translatedName);
-      },
-      (error) => {
-        console.error('Error loading translation:', error);
-      }
-    );
+    
   }
  
-  switchLanguage(lang: string){
-this.translate.use(lang);
-  }
+ 
   bloodDonateForm = new FormGroup({
     age: new FormControl("", [Validators.required]),
     city: new FormControl("", [Validators.required]),
