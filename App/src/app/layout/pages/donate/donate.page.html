@@ -12,9 +12,15 @@
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
             <ion-item fill="outline" class="input">
-              <ion-label position="floating" lablePlacement="stacked"
-                >Name</ion-label
-              >
+              <!-- <ion-label position="floating" lablePlacement="stacked"
+                >Name
+                <ion-badge color="primary">
+                  {{'name' | translate}}
+                </ion-badge>
+                </ion-label -->
+                <ion-label position="floating" labelPlacement="stacked">
+                    {{'Name' | translate }}
+                </ion-label>
               <ion-input
                 placeholder="Full Name"
                 formControlName="name"

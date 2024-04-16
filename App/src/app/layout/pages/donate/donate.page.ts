@@ -5,11 +5,11 @@ import { ModalController } from "@ionic/angular";
 import { ToastService } from "src/app/core/services";
 import { LoaderService } from "src/app/core/services/loader.service";
 import { BloodDonationService } from "src/app/service/donation/donation.service";
-import { CalenderComponent } from "../../components/calender/calender.component";
 import { IonicSelectableComponent } from "ionic-selectable";
 import { RestService } from "src/app/core/services/rest.service";
 import { AdminRequestActiveComponent } from "src/app/shared/models/admin-request-active/admin-request-active.component";
 import { ModalService } from "src/app/service/modal.service";
+import { CalenderComponent } from "src/app/shared/models/calender/calender.component";
 
 @Component({
   selector: "app-donate",

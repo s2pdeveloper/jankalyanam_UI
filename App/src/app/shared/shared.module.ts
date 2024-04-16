@@ -11,6 +11,7 @@ import { SkeletonComponent } from "./models/skeleton/skeleton.component";
 import { IonicSelectableComponent } from "ionic-selectable";
 import { NoDataComponent } from "./models/no-data/no-data.component";
 import { TranslatePipe } from './pipes/translate.pipe';
+import { CalenderComponent } from "./models/calender/calender.component";
 
 const models: any[] = [
   DonationDetailsComponent,
@@ -19,13 +20,14 @@ const models: any[] = [
   AdminRequestActiveComponent,
   AdminRequestMylistComponent,
   SkeletonComponent,
-  NoDataComponent
+  NoDataComponent,
+  CalenderComponent
 ];
 const pipes: any[] = [TranslatePipe];
 
 @NgModule({
   declarations: [...models, ...pipes],
-  exports: [...models, ...pipes],
+  exports: [...models, ...pipes,IonicSelectableComponent],
   imports: [CommonModule, IonicModule, FormsModule, ReactiveFormsModule,IonicSelectableComponent],
 })
 export class SharedModule {}

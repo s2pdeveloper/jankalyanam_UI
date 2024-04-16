@@ -11,10 +11,13 @@ export class TranslatePipe implements PipeTransform {
     try {
       let language = localStorage.getItem("language") || "en";
 
-      return language == "en" ? english[value] : hindi[value];
+      console.log('vhanged----',language);
+      
+
+      return language == "en" ? value : hindi[value];
     } catch (error) {
       console.log("error", error);
-      return english[value];
+      return value;
     }
   }
 }
