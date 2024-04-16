@@ -311,7 +311,7 @@ export class BloodRequestsPage implements OnInit {
     console.log("status",status);
     event.stopPropagation();
     this.spinner.show();
-    this.service.statusUpdate(data.id, 'DONE').subscribe(
+    this.service.statusUpdate(data.id,status).subscribe(
       async (success) => {
         this.toast.successToast(success.message);
 

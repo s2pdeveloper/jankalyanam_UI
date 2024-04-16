@@ -111,14 +111,14 @@
               <ion-card-content class="ion-no-padding">
                 <ion-grid>
                   <ion-row>
-                    <ion-col size="3" class="drop">
+                    <ion-col size="3" class="drop ion-no-padding ">
                       <img
                         src="../../../../../assets/blood-unscreen.gif"
                         alt=""
                       />
                       <ion-card-title>{{l?.bloodGroup}}</ion-card-title>
                     </ion-col>
-                    <ion-col size="6">
+                    <ion-col size="6" class="ion-no-padding">
                       <ion-label class="name">{{l?.name}}</ion-label>
                       <div class="ion-margin-top">
                         <i class="icons-img fa-solid fa-location-dot"></i>
@@ -143,7 +143,7 @@
                         </div>
                       </div>
                     </ion-col>
-                    <ion-col
+                    <ion-col size="3" class="ion-no-padding"
                       [ngClass]="{'status-pending': l?.status == 'PENDING','status-allocated' : l?.status == 'ALLOCATED','status-received': l.status== 'RECEIVED','status-done' : l?.status == 'DONE','status-accepted' : l.status == 'ACCEPTED' ,'statusdoclose': l.status=='CLOSE'}"
                     >
                       <ion-label class="status">{{l?.status}}</ion-label>
