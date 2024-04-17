@@ -3,11 +3,11 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { ModalController } from "@ionic/angular";
 import { ToastService } from "src/app/core/services";
-import { LoaderService } from "src/app/core/services/loader.service";
 import { BloodRequestService } from "src/app/service/request/request.service";
 import { RestService } from "src/app/core/services/rest.service";
 import { IonicSelectableComponent } from "ionic-selectable";
 import { CalenderComponent } from "src/app/shared/models/calender/calender.component";
+import { LoaderService } from "src/app/service/loader.service";
 
 @Component({
   selector: "app-request",
@@ -62,16 +62,16 @@ export class RequestPage implements OnInit {
       this.toast.successToast("Please fill required fields!");
       return;
     }
-    await this.spinner.showLoader();
+    await this.spinner.show();
     this.service.create(this.bloodRequestForm.value).subscribe(
       async (success: any) => {
         this.toast.successToast(success.message);
         this.bloodRequestForm.reset();
-        await this.spinner.hideLoader();
+        await this.spinner.hide();
         this.router.navigate(["/layout/home"]);
       },
       async (error: any) => {
-        await this.spinner.hideLoader();
+        await this.spinner.hide();
         // this.toast.errorToast(error.error);
         this.toast.errorToast(error.message);
       }

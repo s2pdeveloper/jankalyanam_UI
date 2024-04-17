@@ -3,10 +3,10 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { AuthService } from 'src/app/service/auth/auth.service';
 import { ToastService } from 'src/app/core/services';
-import { LoaderService } from 'src/app/core/services/loader.service';
 import { StorageService } from 'src/app/core/services';
 import { AdvertisementService } from 'src/app/service/advertisement/advertisement.service';
 import { SessionStorageService } from 'src/app/core/services/session-storage.service';
+import { LoaderService } from 'src/app/service/loader.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -44,10 +44,10 @@ export class LoginPage implements OnInit {
       this.toast.successToast('Please fill required fields!');
       return;
     }
-    await this.spinner.showLoader();
+    await this.spinner.show();
     this.service.login(this.loginForm.value).subscribe(
       async (success: any) => {
-        await this.spinner.hideLoader();
+        await this.spinner.hide();
         this.loginForm.reset();
         this.storage.set('user', success);
         this.deviceToken();
@@ -55,7 +55,7 @@ export class LoginPage implements OnInit {
         this.router.navigate(['/layout/home']);
       },
       async (error: any) => {
-        await this.spinner.hideLoader();
+        await this.spinner.hide();
         this.toast.errorToast(error.message);
       }
     );
