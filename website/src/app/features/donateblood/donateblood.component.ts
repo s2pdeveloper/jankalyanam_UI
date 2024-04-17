@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators, } from '@angular/forms';
 import { DonateService } from 'src/app/service/donate.service';
 import { RestService } from 'src/app/service/res.service';
 
@@ -11,14 +11,12 @@ import { RestService } from 'src/app/service/res.service';
 export class DonatebloodComponent implements OnInit {
   states: any = [];
   cities: any = [];
+  formSubmitted: boolean = false;
 
   constructor(private donate: DonateService, private rest: RestService) {}
 
   ngOnInit(): void {
     this.states = this.rest.getStatesOfCountry('IN');
-
-    console.log(this.states);
-    
   }
   bloodGroup = [
     {"name":"A+"},
@@ -38,21 +36,34 @@ export class DonatebloodComponent implements OnInit {
    ]
 
   donateForm = new FormGroup({
-    name: new FormControl(''),
-    gender: new FormControl(''),
-    age: new FormControl(''),
-    bloodGroup: new FormControl(''),
-    hemoglobin: new FormControl(''),
-    donationDate: new FormControl(''),
+    name: new FormControl('', [Validators.required]),
+    gender: new FormControl('', [Validators.required]),
+    age: new FormControl('', [
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(3),
+    ]),
+    bloodGroup: new FormControl('', [Validators.required]),
+    hemoglobin: new FormControl('', [Validators.required]),
+    donationDate: new FormControl('', [Validators.required]),
     illness: new FormControl(''),
-    mobileNo: new FormControl(''),
-    city: new FormControl(''),
-    state: new FormControl(''),
+    mobileNo: new FormControl('', [
+      Validators.required,
+      Validators.pattern('^[7-9][0-9]{9}$'),
+      Validators.minLength(10),
+      Validators.maxLength(10),
+    ]),
+    city: new FormControl('', [Validators.required]),
+    state: new FormControl('', [Validators.required]),
     isWebsite: new FormControl(true),
   });
 
   submit() {
-    console.log('this.donateForm.value', this.donateForm.value);
+    this.formSubmitted = true;
+    if (this.donateForm.invalid) {
+      console.log('Form is invalid. Cannot submit.');
+      return; 
+    }
     this.donate.post(this.donateForm.value).subscribe((success) => {
       console.log('success of donate ', success);
       this.donateForm.reset();

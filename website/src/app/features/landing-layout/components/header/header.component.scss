@@ -20,8 +20,12 @@ nav {
       font-weight: 700;
       text-align: center;
       cursor: pointer;
-      color: rgb(186, 35, 35);
+      color: rgb(3, 3, 3);
       &:hover {
+        color: rgb(165, 42, 42);
+        transform: scale(1.2);
+      }
+      &.selected{
         color: rgb(165, 42, 42);
       }
     }
@@ -38,7 +42,12 @@ nav {
       }
     }
     nav ul {
-      background-color: #cabdbd8e;
+      // background-color: #cabdbd8e;
+    background-color: #ecb3b9;
+      li a {
+      text-align: left;
+      margin-left: 2rem;
+      }
     }
   }
   
