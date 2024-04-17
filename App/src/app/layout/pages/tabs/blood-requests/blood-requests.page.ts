@@ -49,7 +49,9 @@ export class BloodRequestsPage implements OnInit {
     private sessionStorage: SessionStorageService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+
+  }
 
   ionViewWillEnter() {
     console.log("myListCount--",this.myListCount,this.latestPage);
@@ -57,6 +59,8 @@ export class BloodRequestsPage implements OnInit {
     this.historyPage = 0;
     this.mylistPage = 0;
     this.user = this.localStorage.get("user");
+    console.log("this.user------",this.user);
+    
     if (this.user.role == "ATTENDER") {
       this.activeSegment = "latest";
       this.getAllAttenderList("ACTIVE");
@@ -84,22 +88,28 @@ export class BloodRequestsPage implements OnInit {
     // this.loader = true;
     this.spinner.show();
     event.stopPropagation();
+    console.log("this.data----",data);
+    
     this.service.statusUpdate(data.id, status).subscribe(
       (res) => {
-        data.status = status;
-        data.acceptor.firstName = this.user.firstName;
-        data.acceptor.lastName = this.user.lastName;
-        this.getAllAdminList("MYLIST");
-        console.log("Accepted");
         
-        // this.loader = false;
+        // data.status = status;
+        // data.acceptor.firstName = this.user.firstName;
+        // data.acceptor.lastName = this.user.lastName;
+        this.mylistPage = 0;
+        this.latestPage = this.latestPage > 0 ? this.latestPage -1 : 0;
+        this.getAllAdminList("ACTIVE");
+        this.getAllAdminList("MYLIST");
+        console.log("Accepted",data);
         this.spinner.hide();
+        this.activeSegment = 'list';
+       
+        
       },
       (error) => {
-        // this.loader = false;
-        // this.toast.errorToast("Something went wrong!");
-        this.toast.errorToast(error.message);
         this.spinner.hide();
+        this.toast.errorToast(error.message);
+        
       }
     );
   }
