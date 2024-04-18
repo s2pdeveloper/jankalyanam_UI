@@ -200,10 +200,24 @@
                 interface="action-sheet"
                 placeholder="{{'select gender' | translate}}"
                 formControlName="gender"
+                (ionChange)="checkGender()"
               >
                 <ion-select-option value="MALE">Male</ion-select-option>
                 <ion-select-option value="FEMALE">Female</ion-select-option>
               </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="isFemale" class="ion-align-items-center ion-justify-content-center">
+          <ion-col size="12">
+            <ion-item fill="outline" class="input" lines="none">
+              <ion-label position="floating" lablePlacement="stacked"
+                >Father/Husband</ion-label
+              >
+              <ion-input
+                placeholder="Father/Husband"
+                formControlName="fatherOrHusband"
+              ></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
