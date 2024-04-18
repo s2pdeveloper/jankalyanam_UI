@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { RequestService } from 'src/app/service/request.service';
 import { RestService } from 'src/app/service/res.service';
 
@@ -11,6 +11,7 @@ import { RestService } from 'src/app/service/res.service';
 export class RequestbloodComponent implements OnInit{
   states: any = [];
   cities: any = [];
+  formSubmitted: boolean = false;
   constructor(private request : RequestService,  private rest: RestService){}
 
   ngOnInit(): void {
@@ -38,23 +39,37 @@ export class RequestbloodComponent implements OnInit{
    ]
 
   requestForm = new FormGroup({
-    name: new FormControl(''),
-    gender: new FormControl(''),
-    age: new FormControl(''),
-    bloodGroup: new FormControl(''),
-    hemoglobin: new FormControl(''),
+    name: new FormControl('', [Validators.required]),
+    gender: new FormControl('',  [Validators.required]),
+    age: new FormControl('', [
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(3),
+    ]),
+    bloodGroup: new FormControl('', [Validators.required]),
+    hemoglobin: new FormControl('', [Validators.required]),
     illness: new FormControl(''),
-    mobileNo: new FormControl(''),
-    city: new FormControl(''),
-    state: new FormControl(''),
-    bloodRequireDate: new FormControl(''),
-    fatherOrHusband: new FormControl(''),
-    location: new FormControl(''),
-    units: new FormControl(''),
+    mobileNo: new FormControl('', [
+      Validators.required,
+      Validators.pattern('^[7-9][0-9]{9}$'),
+      Validators.minLength(10),
+      Validators.maxLength(10),
+    ]),
+    city: new FormControl('',  [Validators.required]),
+    state: new FormControl('',  [Validators.required]),
+    bloodRequireDate: new FormControl('',  [Validators.required]),
+    fatherOrHusband: new FormControl('', [Validators.required]),
+    location: new FormControl('',  [Validators.required]),
+    units: new FormControl('',  [Validators.required]),
     isWebsite: new FormControl(true)
   });
 
   submit(){
+    this.formSubmitted = true;
+    if (this.requestForm.invalid) {
+      console.log('Form is invalid. Cannot submit.');
+      return; 
+    }
     console.log("this.requestForm.value",this.requestForm.value);
     this.request.post(this.requestForm.value).subscribe(success => {
       console.log("success of donate ",success);

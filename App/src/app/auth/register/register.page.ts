@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { LoaderService } from 'src/app/core/services/loader.service';
 import { ToastService } from 'src/app/core/services';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth/auth.service';
+import { LoaderService } from 'src/app/service/loader.service';
 
 @Component({
   selector: 'app-register',
@@ -32,16 +32,16 @@ export class RegisterPage implements OnInit {
       this.toast.successToast('Please fill required fields!');
       return;
     }
-    await this.spinner.showLoader();
+    await this.spinner.show();
     this.service.register(this.registrationForm.value).subscribe(
       async (success: any) => {
         this.toast.successToast(success.message);
         this.registrationForm.reset();
-        await this.spinner.hideLoader();
+        await this.spinner.hide();
         this.router.navigate(['/auth/login']);
       },
       async (error: any) => {
-        await this.spinner.hideLoader();
+        await this.spinner.hide();
         this.toast.errorToast(error.error);
       }
     );

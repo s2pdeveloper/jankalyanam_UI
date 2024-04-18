@@ -3,13 +3,13 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ModalController } from "@ionic/angular";
 import { ToastService } from "src/app/core/services";
-import { LoaderService } from "src/app/core/services/loader.service";
 import { BloodDonationService } from "src/app/service/donation/donation.service";
 import { IonicSelectableComponent } from "ionic-selectable";
 import { RestService } from "src/app/core/services/rest.service";
 import { AdminRequestActiveComponent } from "src/app/shared/models/admin-request-active/admin-request-active.component";
 import { ModalService } from "src/app/service/modal.service";
 import { CalenderComponent } from "src/app/shared/models/calender/calender.component";
+import { LoaderService } from "src/app/service/loader.service";
 
 @Component({
   selector: "app-donate",
@@ -79,12 +79,12 @@ export class DonatePage implements OnInit {
       return;
     }
 
-    await this.spinner.showLoader();
+    await this.spinner.show();
     this.service.create(this.bloodDonateForm.value).subscribe(
       async (success: any) => {
         this.toast.successToast("Donar Created Successfully!");
         this.bloodDonateForm.reset();
-        await this.spinner.hideLoader();
+        await this.spinner.hide();
         if (this.bloodRequest) {
           this.router.navigate(["/layout/request-mylist-detail"], {
             state: { success },
@@ -94,7 +94,7 @@ export class DonatePage implements OnInit {
         }
       },
       async (error: any) => {
-        await this.spinner.hideLoader();
+        await this.spinner.hide();
         this.toast.errorToast(error.message);
       }
     );

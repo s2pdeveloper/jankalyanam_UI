@@ -2,8 +2,6 @@ import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { ModalService } from "src/app/service/modal.service";
 import { DonationDetailsComponent } from "src/app/shared/models/donation-details/donation-details.component";
-import { BloodRequestService } from "src/app/service/request/request.service";
-import { forkJoin } from "rxjs";
 import { StorageService, ToastService } from "src/app/core/services";
 import { DonationHistoryComponent } from "src/app/shared/models/donation-history/donation-history.component";
 import { BloodDonationService } from "src/app/service/donation/donation.service";

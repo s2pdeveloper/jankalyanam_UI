@@ -21,28 +21,33 @@
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/home" (click)="routeTo('about')" (click)="toggleCollapse()"
+            <a class="nav-link" routerLink="/home" (click)="routeTo('about', 'about')" (click)="toggleCollapse()"
+            [class.selected]="selectedLink === 'about'"
               >About</a
             >
           </li>         
           <li class="nav-item">
-            <a class="nav-link" routerLink="/home" (click)="routeTo('gallery')" (click)="toggleCollapse()"
-              >Gallery</a
+            <a class="nav-link" routerLink="/home" (click)="routeTo('gallery', 'gallery')" (click)="toggleCollapse()"
+            [class.selected]="selectedLink === 'gallery'"
+            >Gallery</a
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link"  routerLink="/donate" (click)="toggleCollapse()" 
-              >Donate Blood</a
+            <a class="nav-link"  routerLink="/donate" (click)="routeTo('donate', 'donate')" (click)="scrollToTop()" (click)="toggleCollapse()" 
+            [class.selected]="selectedLink === 'donate'"  
+            >Donate Blood</a
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/request" (click)="toggleCollapse()"
-              >Request Blood</a
+            <a class="nav-link" routerLink="/request" (click)="routeTo('request', 'request')" (click)="scrollToTop()" (click)="toggleCollapse()"
+            [class.selected]="selectedLink === 'request'"  
+            >Request Blood</a
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/home"  (click)="toggleCollapse()" id="contact1" (click)="routeTo('footer')"
-              >Contact</a
+            <a class="nav-link" routerLink="/home"  (click)="toggleCollapse()" id="contact1" (click)="routeTo('footer', 'footer')"
+            [class.selected]="selectedLink === 'footer'"  
+            >Contact</a
             >
           </li>
         </ul>

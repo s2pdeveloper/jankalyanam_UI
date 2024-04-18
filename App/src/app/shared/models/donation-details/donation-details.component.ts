@@ -2,10 +2,10 @@ import { Component, Input, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { ModalController } from "@ionic/angular";
-import { LoaderService } from "src/app/core/services/loader.service";
 import { StorageService } from "src/app/core/services/local-storage.service";
 import { ToastService } from "src/app/core/services/toast.service";
 import { BloodDonationService } from "src/app/service/donation/donation.service";
+import { LoaderService } from "src/app/service/loader.service";
 import { CalenderComponent } from "src/app/shared/models/calender/calender.component";
 
 @Component({
