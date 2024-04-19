@@ -22,7 +22,7 @@ export class RegisterPage implements OnInit {
   registrationForm = new FormGroup({
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
-    mobileNo: new FormControl('', [Validators.required]),
+    mobileNo: new FormControl('', [Validators.required,Validators.maxLength(12),Validators.minLength(10)]),
     password: new FormControl('', [Validators.required]),
     role:new FormControl('ATTENDER'),
   });

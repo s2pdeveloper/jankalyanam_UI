@@ -16,7 +16,8 @@ export const languageConst={
       "select gender" : "Select gender",
       "select bloodgroup" : "Select Blood Group",
       "close" : "CLOSE",
-      "calendar" : "Calendar"
+      "calendar" : "Calendar",
+      "save" : "SAVE"
     },
     hi:{
         "Change Profile":"उदाहरण और वाक्य",

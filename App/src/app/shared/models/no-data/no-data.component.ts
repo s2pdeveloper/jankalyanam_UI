@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-no-data',
@@ -7,8 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NoDataComponent  implements OnInit {
 
-  constructor() { }
+  constructor( private modalController: ModalController,) { }
 
   ngOnInit() {}
 
+  dismiss() {
+    this.modalController.dismiss();
+  }
 }

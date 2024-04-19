@@ -21,6 +21,7 @@ export class DonatePage implements OnInit {
   @ViewChild("selectableCity") selectableCity: any = IonicSelectableComponent;
   states: any = [];
   cities: any = [];
+  isFemale: boolean = false;
   bloodGroup: any = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
   bloodRequest: Boolean = false;
   donationDateSelected: Boolean = false;
@@ -60,7 +61,7 @@ export class DonatePage implements OnInit {
     gender: new FormControl("", [Validators.required]),
     hemoglobin: new FormControl("", [Validators.required]),
     illness: new FormControl(false, []),
-    mobileNo: new FormControl("", [Validators.required]),
+    mobileNo: new FormControl("", [Validators.required,Validators.maxLength(12),Validators.minLength(10)]),
     name: new FormControl("", [Validators.required]),
     state: new FormControl("", [Validators.required]),
     bloodGroup: new FormControl("", [Validators.required]),
@@ -83,7 +84,7 @@ export class DonatePage implements OnInit {
     this.service.create(this.bloodDonateForm.value).subscribe(
       async (success: any) => {
         this.toast.successToast("Donar Created Successfully!");
-        this.bloodDonateForm.reset();
+        // this.bloodDonateForm.reset();
         await this.spinner.hide();
         if (this.bloodRequest) {
           this.router.navigate(["/layout/request-mylist-detail"], {
@@ -98,6 +99,19 @@ export class DonatePage implements OnInit {
         this.toast.errorToast(error.message);
       }
     );
+  }
+
+  ionViewWillLeave(){
+    this.bloodDonateForm.reset();
+  }
+  checkGender() {
+    console.log("this.f[].value", this.f["gender"].value);
+
+    if (this.f["gender"].value == "FEMALE") {
+      this.isFemale = true;
+    } else {
+      this.isFemale = false;
+    }
   }
 
   async openCalender(field: any) {

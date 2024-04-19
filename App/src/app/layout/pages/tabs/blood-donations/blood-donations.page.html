@@ -55,6 +55,14 @@
                         </div>
                       </div>
                     </ion-col>
+                    <ion-col size="3">
+                      <ion-button
+                        *ngIf="user.role=='ADMIN' && l.status=='DONE'"
+                        (click)="close($event,l.id,i)"
+                      >
+                        Close</ion-button
+                      >
+                    </ion-col>
                   </ion-row>
                   <ion-row>
                     <ion-col class="ion-text-end">
@@ -68,12 +76,7 @@
                         <button (click)="close(l.id)">Close</button>
                       </ng-container> -->
 
-                      <ion-button
-                        *ngIf="user.role=='ADMIN' && l.status=='DONE'"
-                        (click)="close($event,l.id,i)"
-                      >
-                        Close</ion-button
-                      >
+                      
                     </ion-col>
                   </ion-row>
                 </ion-grid>

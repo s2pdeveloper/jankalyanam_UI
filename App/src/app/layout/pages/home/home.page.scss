@@ -20,7 +20,15 @@ ion-card-title {
     height: auto;
   }
 }
-// .slide-img{
-//   height: 100%;
-//   width: 100%;
-// }
+
+@media (max-width: 405px) {
+  .tabs {
+    ion-card {
+      height: 84%;
+
+      img {
+        height: 103px;
+      }
+    }
+  }
+}

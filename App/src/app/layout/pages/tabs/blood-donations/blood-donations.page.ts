@@ -57,7 +57,7 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
     this.router.navigate([url]);
   }
   ngOnDestroy(): void {
-    console.log("destroy------------1");
+   
   }
 
   async getAllAttenderList(status: any, event = null) {
@@ -181,26 +181,7 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
       }
     );
   }
-  // async getAllAdminList() {
-  //   await this.spinner.showLoader();
-  //   let params ={
-  //     pageNo:this.page,
-  //     pageSize:this.pageSize,
-  //     search: this.search,
-  //     sortBy: this.sortBy
-  //   }
-  //   forkJoin([
-  //     this.service.getAllAdminList(params,"HISTORY"),
-  //     this.service.getAllAdminList(params,"ACTIVE"),
-  //   ]).subscribe(async (res) => {
-  //     this.historyTabDetails = res[0];
-  //     this.latestTabDetails = res[1];
-  //     await this.spinner.hideLoader();
-  //   },async (error) =>{
-  //     await this.spinner.hideLoader();
-  //     this.toast.errorToast("Something went wrong!");
-  //   });
-  // }
+ 
   openModel(key: string, data: any) {
     switch (key) {
       case "history":

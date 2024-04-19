@@ -8,53 +8,58 @@
 
 
 <ion-content [fullscreen]="true">
-  <ion-card>
+  <div class="card">
   <form [formGroup]="registrationForm">
-    <ion-item>
+    
       <ion-grid>
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col class="logo">
+            <img src="../../../assets/bloodLogo.jpg" alt="LOGO" />
+          </ion-col>
+        </ion-row>
         <ion-row class="ion-align-items-center ion-justify-content-center ion-margin-bottom">
           <ion-label class="text">Registration Form</ion-label>
         </ion-row>
         <ion-row class="ion-align-items-center ion-justify-content-center">
-          <ion-col size="12">
+          <ion-col size="10">
             <ion-item  fill="outline" class="input">
               <ion-label position="floating" lablePlacement="stacked">First Name</ion-label>
-              <ion-input placeholder="First Name" formControlName="firstName"></ion-input>
+              <ion-input autoComplete="off" placeholder="First Name" formControlName="firstName"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
         <ion-row class="ion-align-items-center ion-justify-content-center">
-          <ion-col size="12">
+          <ion-col size="10">
             <ion-item  fill="outline" class="input">
               <ion-label position="floating" lablePlacement="stacked">Last Name</ion-label>
-              <ion-input placeholder="Last Name" formControlName="lastName"></ion-input>
+              <ion-input autoComplete="off" placeholder="Last Name" formControlName="lastName"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
         <ion-row class="ion-align-items-center ion-justify-content-center">
-          <ion-col size="12">
+          <ion-col size="10">
             <ion-item  fill="outline" class="input">
               <ion-label position="floating" lablePlacement="stacked">Mobile Number</ion-label>
-              <ion-input placeholder="Mobile Number" formControlName="mobileNo"></ion-input>
+              <ion-input autocomplete="off" placeholder="Mobile Number" formControlName="mobileNo"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
         <ion-row class="ion-align-items-center ion-justify-content-center">
-          <ion-col size="12">
+          <ion-col size="10">
             <ion-item  fill="outline" class="input">
               <ion-label position="floating">Password</ion-label>
-              <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+              <ion-input autocomplete="off" type="password" placeholder="Password" formControlName="password"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
         <ion-row class="ion-align-items-center ion-justify-content-center">
-          <ion-col size="12">
+          <ion-col size="10">
             <ion-button expand="block" shape="round" class="button ion-padding" color="primary" (click)="register()">Register</ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>
-    </ion-item>
+   
   </form>
-  </ion-card>
+</div>
 </ion-content>
 

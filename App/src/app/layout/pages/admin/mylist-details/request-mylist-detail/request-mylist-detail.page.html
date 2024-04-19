@@ -11,7 +11,7 @@
 <ion-content>
   <!-- <ion-accordion-group value="first" class="ion-padding"> -->
   <ion-accordion-group
-    [value]="!!providedBy ? (providedBy == 'DONOR' ? 'third' : 'second') : 'first'"
+    [value]="providedBy ? (providedBy == 'DONOR' ? 'third' : 'second') : 'first'"
   >
     <ion-accordion value="first">
       <ion-item slot="header" color="light">
@@ -291,7 +291,8 @@
       <div class="ion-padding" slot="content">
         <ion-card>
           <ion-card-content>
-            <ng-container *ngIf="donorEdit">
+          
+            <ng-container *ngIf="donorEdit" noDataLatest>
               <ion-row
                 class="ion-align-items-center ion-justify-content-center"
               >
@@ -343,6 +344,7 @@
                 <ion-button>Submit</ion-button>
               </ion-col>
             </ion-row> -->
+          
               <ng-container *ngIf="!!donor">
                 <ion-grid>
                   <ion-row>
@@ -415,6 +417,10 @@
                 </ion-grid>
               </ng-container>
             </ng-container>
+            <ng-template #noDataLatest>
+              <app-no-data></app-no-data>
+            </ng-template>
+          
             <ng-container *ngIf="!!donor && !donorEdit">
               <ion-item class="ion-no-padding ion-no-margin" lines="none">
                 <ion-icon

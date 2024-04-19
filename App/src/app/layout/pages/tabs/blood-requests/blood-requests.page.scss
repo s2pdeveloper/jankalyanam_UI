@@ -50,3 +50,23 @@ ion-card {
     display: flex;
     justify-content: end;
   }
+  ion-button{
+    font-size: 11px;
+  }
+
+  @media (max-width: 405px) {
+    ion-card{
+      max-height: 159px;
+    }
+
+    ion-label{
+      font-size: 11px;
+    }
+    .align-status{
+      margin-top: 0;
+    }
+    .name{
+      font-size: 14px;
+      font-weight: 600;
+    }
+  }

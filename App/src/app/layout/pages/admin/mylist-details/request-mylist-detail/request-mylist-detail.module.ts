@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { RequestMylistDetailPageRoutingModule } from './request-mylist-detail-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { IonicSelectableComponent } from "ionic-selectable";
-
+import { SharedModule } from 'src/app/shared/shared.module';
 import { RequestMylistDetailPage } from './request-mylist-detail.page';
 
 @NgModule({
@@ -17,7 +17,8 @@ import { RequestMylistDetailPage } from './request-mylist-detail.page';
     IonicModule,
     RequestMylistDetailPageRoutingModule,
     ReactiveFormsModule,
-    IonicSelectableComponent
+    IonicSelectableComponent,
+    SharedModule
  
   ],
   declarations: [RequestMylistDetailPage]

@@ -48,7 +48,7 @@ export class ProfilePage implements OnInit {
     firstName: new FormControl("", [Validators.required]),
     lastName: new FormControl("", [Validators.required]),
     email: new FormControl("", [Validators.required]),
-    mobileNo: new FormControl("", [Validators.required]),
+    mobileNo: new FormControl("", [Validators.required,Validators.maxLength(12),Validators.minLength(10)]),
     state: new FormControl("", [Validators.required]),
     city: new FormControl("", [Validators.required]),
     role: new FormControl(""),

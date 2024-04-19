@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+import { ModalService } from "src/app/service/modal.service";
 import { ModalController } from "@ionic/angular";
 import { StorageService } from "src/app/core/services/local-storage.service";
 import { ToastService } from "src/app/core/services/toast.service";
@@ -10,6 +11,7 @@ import { BloodDonationService } from "src/app/service/donation/donation.service"
 import { Location } from "@angular/common";
 import { SessionStorageService } from "src/app/core/services/session-storage.service";
 import { LoaderService } from "src/app/service/loader.service";
+import { NoDataComponent } from "src/app/shared/models/no-data/no-data.component";
 @Component({
   selector: "app-request-mylist-detail",
   templateUrl: "./request-mylist-detail.page.html",
@@ -44,6 +46,7 @@ export class RequestMylistDetailPage implements OnInit {
     private localStorage: StorageService,
     private sessionStorage: SessionStorageService,
     private modalController: ModalController,
+    private modalService: ModalService,
     private service: BloodRequestService,
     private donorService: BloodDonationService,
     private toast: ToastService,
@@ -116,6 +119,10 @@ export class RequestMylistDetailPage implements OnInit {
           this.donorData,
           this.donorData.length
         );
+        if(this.donorData.length ===0){
+          console.log("No DONORS FOUND FOR THIS BLOODGROUP");
+          this.openModel();
+        }
         this.loader = false;
       },
       error: (err) => {
@@ -125,6 +132,9 @@ export class RequestMylistDetailPage implements OnInit {
     });
   }
 
+  async openModel(){
+    this.modalService.openModal(NoDataComponent);
+  }
   async selectDonor(donor: any) {
     this.donor = donor.value;
     this.f["donorId"].setValue(donor.value.id);
@@ -196,9 +206,7 @@ export class RequestMylistDetailPage implements OnInit {
   setCity(bankCity: any) {
     this.f["bankCity"].setValue(bankCity.value.name);
   }
-  // ionViewWillLeave(){
-  //   this.sessionStorage.remove('request');
-  // }
+  
 
   back() {
     this.sessionStorage.remove("request");

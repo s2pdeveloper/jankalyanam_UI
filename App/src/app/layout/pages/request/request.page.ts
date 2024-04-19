@@ -39,7 +39,7 @@ export class RequestPage implements OnInit {
     name: new FormControl("", [Validators.required]),
     age: new FormControl("", [Validators.required]),
     bloodRequireDate: new FormControl("", [Validators.required]),
-    mobileNo: new FormControl("", [Validators.required]),
+    mobileNo: new FormControl("", [Validators.required,Validators.maxLength(12),Validators.minLength(10)]),
     location: new FormControl("", [Validators.required]),
     hemoglobin: new FormControl("", [Validators.required]),
     illness: new FormControl("", [Validators.required]),
@@ -66,7 +66,7 @@ export class RequestPage implements OnInit {
     this.service.create(this.bloodRequestForm.value).subscribe(
       async (success: any) => {
         this.toast.successToast(success.message);
-        this.bloodRequestForm.reset();
+        // this.bloodRequestForm.reset();
         await this.spinner.hide();
         this.router.navigate(["/layout/home"]);
       },
@@ -77,6 +77,8 @@ export class RequestPage implements OnInit {
       }
     );
   }
+
+  
 
   async openCalender(field: any) {
     let date = this.f[field].value
@@ -121,6 +123,8 @@ export class RequestPage implements OnInit {
       this.isFemale = false;
     }
   }
-
+  ionViewWillLeave(){
+    this.bloodRequestForm.reset();
+  }
   
 }
