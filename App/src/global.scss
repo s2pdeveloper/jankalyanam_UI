@@ -123,6 +123,9 @@ ion-input-md-h {
 ion-invalid.ion-touched .label-floating.sc-ion-label-md-h:not(.ion-color) {
   color: var(--ion-color-primary);
 }
+.input-label-placement-start.sc-ion-input-md-h .input-wrapper.sc-ion-input-md{
+  color: var(--ion-color-primary);
+}
 .label-floating.sc-ion-input-md-h .label-text-wrapper.sc-ion-input-md {
   font-size: 20px;
   --font-size: 20px;
