@@ -6,60 +6,75 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-item lines="none" class="margin-img">
-    <ion-avatar class="avatar border-color-7">
-      <img
-        class="profile-img"
-        *ngIf="!profile"
-        src="../../../../assets/icon/73-730477_first-name-profile-image-placeholder-png.png"
-        alt="mainPofile"
-      />
-      <img *ngIf="!!profile" src="{{profile}}" alt="mainPofile" />
-      <ion-icon name="camera" class="overlay-icon" (click)="uploadFile()"></ion-icon>
-    </ion-avatar>
-  </ion-item>
+  <div class="upper-overlay"></div>
+  <div class="margin-img">
+    <img
+      class="profile-img"
+      *ngIf="!profile"
+      src="../../../../assets/icon/73-730477_first-name-profile-image-placeholder-png.png"
+      alt="mainPofile"
+    />
+    <img *ngIf="!!profile" src="{{profile}}" alt="mainPofile" />
+    <ion-icon
+      name="camera"
+      class="overlay-icon"
+      (click)="uploadFile()"
+    ></ion-icon>
+  </div>
 
   <ion-list class="margin-top">
     <ion-item>
-      <ion-icon name="person-circle"></ion-icon>
-      <ion-label class="head ion-margin-start ">
-      Full Name
-        <h3 class="fontSize">{{user?.firstName}} {{user?.lastName}}</h3>
-      </ion-label>
+      <ion-grid fixed>
+        <ion-row class="ion-align-items-center">
+          <ion-col size="2"><ion-icon size="large" name="person-circle"></ion-icon></ion-col>
+          <ion-col size="9"
+            ><ion-label class="head ion-margin-start">
+              <h3 class="fontSize">{{user?.firstName}} {{user?.lastName}}</h3>
+            </ion-label></ion-col
+          >
+        </ion-row>
+      </ion-grid>
     </ion-item>
     <ion-item>
-      <ion-icon  name="mail"></ion-icon>
-      <ion-label class="head ion-margin-start ">
-      Email
-        <h3 class="fontSize">{{user?.email}}</h3>
-      </ion-label>
+      <ion-grid fixed>
+        <ion-row class="ion-align-items-center">
+          <ion-col size="2"> <ion-icon size="large" name="mail"></ion-icon></ion-col>
+          <ion-col size="9">
+            <ion-label class="head ion-margin-start">
+              <h3 class="fontSize">{{user?.email}}</h3>
+            </ion-label></ion-col
+          >
+        </ion-row>
+      </ion-grid>
     </ion-item>
     <ion-item>
-      <ion-icon name="call"></ion-icon>
-      <ion-label class="head ion-margin-start ">
-      Mobile Number
-        <h3 class="fontSize">{{user?.mobileNo}}</h3>
-      </ion-label>
+      <ion-grid fixed>
+        <ion-row class="ion-align-items-center">
+          <ion-col size="2"><ion-icon size="large" name="call"></ion-icon></ion-col>
+          <ion-col size="9">
+            <ion-label class="head ion-margin-start">
+              <h3 class="fontSize">{{user?.mobileNo}}</h3>
+            </ion-label></ion-col
+          >
+        </ion-row>
+      </ion-grid>
     </ion-item>
 
     <ion-item lines="none">
       <ion-button
-      expand="block"
-      class="edit-btn ion-justify-content-end ion-padding"
-      color="primary"
-      (click)="navigate()"
-      >Edit
-    </ion-button>
+        expand="block"
+        class="edit-btn ion-justify-content-end ion-padding"
+        color="primary"
+        (click)="navigate()"
+        >Edit
+      </ion-button>
     </ion-item>
-   
-
   </ion-list>
-  <ion-item class="logo" lines="none">
+  <!-- <ion-item class="logo" lines="none">
     <img class="logo-img" src="../../../assets/bloodLogo.jpg
     " alt="">
  
-  </ion-item>
-    
+  </ion-item> -->
 </ion-content>
 
 <!-- <ion-text class="change-profile" (click)="uploadFile()">

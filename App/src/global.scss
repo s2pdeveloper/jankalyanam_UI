@@ -75,50 +75,67 @@ ion-toast.custom-error {
   --background: #9a381f;
   --box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.2);
   --color: white;
- 
 }
 ion-toast.custom-warning {
   --background: #9a381f;
   --box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.2);
   --color: white;
-  
 }
 ion-toast.custom-success {
   --background: #2ab92f;
   --box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.2);
   --color: white;
- 
 }
 
-.head{
+.head {
   font-weight: 600;
   font-size: 1rem;
 }
 
-.input-class {
-  --border-color: #d7d8da;
-  --border-radius: 0.6em;
+.input {
+  --border-color: var(--ion-color-primary);
+  --border-radius: 2rem;
   --border-width: 1px;
   border: var(--border-width) solid var(--border-color);
   border-radius: var(--border-radius);
   box-shadow: 0 0 10px #dee2e6;
 }
-
-.input-class:focus-within {
-  --border-color: #555;
+.label-text-wrapper {
+  --color: var(--ion-color-primary);
 }
-
-
-
-
-
-
-
+// .input:focus-within {
+//   --border-color: #3fe36b;
+// }
 
 .ion-valid.sc-ion-input-md-h {
-  --highlight-color: var(--ion-color-dark);
+  --highlight-color: var(--ion-color-primary);
 }
 
 .ion-valid {
-  --highlight-color: var(--ion-color-dark);
+  --highlight-color: var(--ion-color-primary);
+}
+.ion-touched.ion-invalid.sc-ion-input-md-h {
+  --highlight-color: var(--ion-color-primary);
+}
+ion-input-md-h {
+  --border-color: var(--ion-color-primary);
+}
+ion-invalid.ion-touched .label-floating.sc-ion-label-md-h:not(.ion-color) {
+  color: var(--ion-color-primary);
+}
+.label-floating.sc-ion-input-md-h .label-text-wrapper.sc-ion-input-md {
+  font-size: 20px;
+  --font-size: 20px;
+  font-weight: 600;
+  color: var(--ion-color-primary);
+  --color: var(--ion-color-primary);
+}
+ion-toolbar {
+  --background: var(--ion-color-primary);
+
+  ion-buttons,
+  ion-title {
+    color: #fff;
+    --color: #fff;
+  }
 }

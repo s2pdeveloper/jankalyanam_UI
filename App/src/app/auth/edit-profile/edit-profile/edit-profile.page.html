@@ -5,180 +5,159 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-card>
-    <ion-card-content>
-      <form [formGroup]="editRegistrationForm">
-        <ion-item>
-          <ion-grid>
-            <ion-row class="ion-align-items-center  ion-justify-content-center">
-              <ion-col size="12">
-                <ion-item fill="outline" class="input" lines="none">
-                  <ion-label position="floating" lablePlacement="stacked"
-                  >First Name</ion-label
-                >
-                  <ion-input
-                
-                    formControlName="firstName"
-                  >
-                  </ion-input>
-                </ion-item>
-              </ion-col>
-            </ion-row>
+<ion-content [fullscreen]="true" class="ion-padding-vertical">
+  <!-- <ion-grid fixed>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="8" class="img-col">
+        <img
+          height="110"
+          class="logo-img"
+          src="../../../assets/bloodLogo.jpg
+        "
+          alt=""
+      /></ion-col>
+    </ion-row>
+  </ion-grid> -->
 
-            <ion-row class="ion-align-items-center ion-justify-content-center">
-              <ion-col size="12">
-                <ion-item fill="outline" class="input" lines="none">
-                  <ion-label position="floating" lablePlacement="stacked"
-                  >Last Name</ion-label
-                >
-                  <ion-input
-                   
-                   
-                    formControlName="lastName"
-                  >
-                  </ion-input>
-                </ion-item>
-              </ion-col>
-            </ion-row>
-            <ion-row
-              class="ion-align-items-center ion-justify-content-center"
-              
-            >
-              <ion-col size="12">
-                <ion-item fill="outline" class="input" lines="none">
-                  <ion-label position="floating" lablePlacement="stacked"
-                >Email</ion-label
+  <form [formGroup]="editRegistrationForm" >
+    <ion-item lines="none">
+      <ion-grid>
+        <ion-row
+          class="ion-align-items-center ion-justify-content-center ion-margin-bottom"
+        >
+          <ion-col size="12">
+            <ion-item class="input" lines="none">
+              <ion-input color="primary" placeholder="Enter First Name" labelPlacement="stacked" label="Name"  formControlName="firstName"> </ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row
+          class="ion-align-items-center ion-justify-content-center ion-margin-bottom"
+        >
+          <ion-col size="12">
+            <ion-item class="input" lines="none">
+              <ion-input labelPlacement="stacked" placeholder="Enter Last Name" label="Last Name" formControlName="lastName"> </ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center ion-justify-content-center ion-margin-bottom">
+          <ion-col size="12">
+            <ion-item class="input" lines="none">
+              <ion-input labelPlacement="stacked" label="Email" formControlName="email"> </ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center ion-justify-content-center ion-margin-bottom">
+          <ion-col size="12">
+            <ion-item class="input" lines="none">
+              <ion-input labelPlacement="stacked" label="Mobile" formControlName="mobileNo"> </ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center ion-justify-content-center ion-margin-bottom">
+          <ion-col size="12">
+            <ion-item class="input"  lines="none">
+              <ion-label class="label-margin" lablePlacement="stacked"
+                >State
+              </ion-label>
+              <ionic-selectable
+                item-content
+                class="ion-text-capilatize"
+                #selectableState
+                [items]="states"
+                itemTextField="name"
+                itemValueField="name"
+                [canSearch]="true"
+                (onChange)="getCity($event)"
+                [hasConfirmButton]="true"
+                [hasInfiniteScroll]="true"
               >
-                  <ion-input
-                   
-                   
-                    formControlName="email"
-                  >
-                  </ion-input>
-                </ion-item>
-              </ion-col>
-            </ion-row>
-            <ion-row
-              class="ion-align-items-center ion-justify-content-center"
-              
-            >
-              <ion-col size="12">
-                <ion-item fill="outline" class="input" lines="none">
-                  <ion-label position="floating" lablePlacement="stacked"
-                  >Mobile</ion-label
-                >
-                  <ion-input
-                    formControlName="mobileNo"
-                  >
-                  </ion-input>
-                </ion-item>
-              </ion-col>
-            </ion-row>
-            <ion-row class="ion-align-items-center ion-justify-content-center">
-              <ion-col size="12">
-                <ion-item fill="outline" lines="none">
-                  <ion-label position="floating" lablePlacement="stacked"
-                    >State
+                <!-- <ng-template ionicSelectableHeaderTemplate>
+                  <ion-toolbar class="primary-color" color="primary" >
+                    <ion-buttons slot="start">
+                      <ion-button mode="md"
+                        class="text-color-4"
+                        (click)="selectableState.close()"
+                      >
+                        <ion-icon color="light" name="arrow-back-outline"></ion-icon>
+                      </ion-button>
+                    </ion-buttons>
+                    <ion-title mode="md"
+                      class="text-color-4 ion-text-capitalize ion-text-wrap"
+                    >
+                      State
+                    </ion-title>
+                  </ion-toolbar>
+                </ng-template> -->
+                <ng-template ionicSelectableItemTemplate let-port="item">
+                  <ion-label class="ion-text-capitalize ion-text-wrap">
+                    {{port?.name}}
                   </ion-label>
-                  <ionic-selectable
-                    item-content
-                    class="ion-text-capilatize"
-                    #selectableState
-                    [items]="states"
-                    itemTextField="name"
-                    itemValueField="name"
-                    [canSearch]="true"
-                    (onChange)="getCity($event)"
-                    [hasConfirmButton]="true"
-                    [hasInfiniteScroll]="true"
-                  >
-                    <ng-template ionicSelectableHeaderTemplate>
-                      <ion-toolbar class="bg-color-2">
-                        <ion-buttons slot="start">
-                          <ion-button
-                            class="text-color-4"
-                            (click)="selectableState.close()"
-                          >
-                            <ion-icon name="arrow-back-outline"></ion-icon>
-                          </ion-button>
-                        </ion-buttons>
-                        <ion-title
-                          class="text-color-4 ion-text-capitalize ion-text-wrap"
-                        >
-                          State
-                        </ion-title>
-                      </ion-toolbar>
-                    </ng-template>
-                    <ng-template ionicSelectableItemTemplate let-port="item">
-                      <ion-label class="ion-text-capitalize ion-text-wrap">
-                        {{port?.name}}
-                      </ion-label>
-                    </ng-template>
-                  </ionic-selectable>
-                </ion-item>
-              </ion-col>
-            </ion-row>
-            <ion-row *ngIf="isCity" class="ion-align-items-center ion-justify-content-center">
-              <ion-col size="12" class="ion-justify-content-between">
-                <ion-item fill="outline">
-                  <ion-label position="floating" lablePlacement="stacked">
-                    City
+                </ng-template>
+              </ionic-selectable>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row
+          *ngIf="isCity"
+          class="ion-align-items-center ion-justify-content-center"
+        >
+          <ion-col size="12" class="ion-justify-content-between">
+            <ion-label class="label-margin" lablePlacement="stacked">
+              City
+            </ion-label>
+            <ion-item fill="outline">
+              <ionic-selectable
+                item-content
+                class="ion-text-capilatize"
+                #selectableCity
+                [items]="cities"
+                itemTextField="name"
+                itemValueField="name"
+                [canSearch]="true"
+                [hasConfirmButton]="true"
+                [hasInfiniteScroll]="true"
+                (onChange)="setCity($event)"
+              >
+                <ng-template ionicSelectableHeaderTemplate>
+                  <ion-toolbar class="bg-color-2">
+                    <ion-buttons slot="start">
+                      <ion-button
+                        class="text-color-4"
+                        (click)="selectableCity.close()"
+                      >
+                        <ion-icon name="arrow-back-outline"></ion-icon>
+                      </ion-button>
+                    </ion-buttons>
+                    <ion-title
+                      class="text-color-4 ion-text-capitalize ion-text-wrap"
+                    >
+                      City
+                    </ion-title>
+                  </ion-toolbar>
+                </ng-template>
+                <ng-template ionicSelectableItemTemplate let-port="item">
+                  <ion-label class="ion-text-capitalize ion-text-wrap">
+                    {{port?.name}}
                   </ion-label>
-                  <ionic-selectable
-                    item-content
-                    class="ion-text-capilatize"
-                    #selectableCity
-                    [items]="cities"
-                    itemTextField="name"
-                    itemValueField="name"
-                    [canSearch]="true"
-                    [hasConfirmButton]="true"
-                    [hasInfiniteScroll]="true"
-                    (onChange)="setCity($event)"
-                  >
-                    <ng-template ionicSelectableHeaderTemplate>
-                      <ion-toolbar class="bg-color-2">
-                        <ion-buttons slot="start">
-                          <ion-button
-                            class="text-color-4"
-                            (click)="selectableCity.close()"
-                          >
-                            <ion-icon name="arrow-back-outline"></ion-icon>
-                          </ion-button>
-                        </ion-buttons>
-                        <ion-title
-                          class="text-color-4 ion-text-capitalize ion-text-wrap"
-                        >
-                          City
-                        </ion-title>
-                      </ion-toolbar>
-                    </ng-template>
-                    <ng-template ionicSelectableItemTemplate let-port="item">
-                      <ion-label class="ion-text-capitalize ion-text-wrap">
-                        {{port?.name}}
-                      </ion-label>
-                    </ng-template>
-                  </ionic-selectable>
-                </ion-item>
-              </ion-col>
-            </ion-row>
-            <ion-row class="ion-align-items-center ion-justify-content-center">
-              <ion-col size="12">
-                <ion-button
-                  expand="block"
-                  class="button ion-justify-content-end ion-padding"
-                  color="primary"
-                  (click)="update()"
-                  >Update
-
-                  <!-- <img class="editForm" src="../../../assets/edit (1).png" alt=""> -->
-                </ion-button>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-item>
-      </form>
-    </ion-card-content>
-  </ion-card>
+                </ng-template>
+              </ionic-selectable>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col size="12" class="ion-no-padding">
+            <ion-button
+              expand="block"
+              class="button ion-justify-content-end ion-padding"
+              color="primary"
+              (click)="update()"
+              >Update
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </form>
 </ion-content>

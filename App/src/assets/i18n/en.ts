@@ -5,9 +5,9 @@ export const english={
   "city": "City",
   "donationDate": "Donation Date",
   "gender": "Gender",
-  "hemoglobin": "hemoglobin",
+  "hemoglobin": "Hemoglobin",
   "illness": "illness",
   "mobileNo": "Mobile No",
   "name": "Name",
-  "state": "state"
+  "state": "State"
 }

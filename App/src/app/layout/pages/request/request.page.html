@@ -8,15 +8,13 @@
 
 <ion-content [fullscreen]="true">
   <form [formGroup]="bloodRequestForm">
-    <ion-item>
+    <ion-item lines="none">
       <ion-grid>
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
-            <ion-item fill="outline" class="input">
-              <ion-label position="floating" lablePlacement="stacked"
-                >Name</ion-label
-              >
-              <ion-input
+            <ion-item class="input">
+           
+              <ion-input lablePlacement="stacked" label="Name"
                 placeholder="Full Name"
                 formControlName="name"
               ></ion-input>
@@ -25,18 +23,16 @@
         </ion-row>
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
-            <ion-item fill="outline" class="input">
-              <ion-label position="floating" lablePlacement="stacked"
-                >Age</ion-label
-              >
-              <ion-input placeholder="Age" formControlName="age"></ion-input>
+            <ion-item lines="none" class="input">
+            
+              <ion-input lablePlacement="stacked" label="Age" placeholder="Age" formControlName="age"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
 
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
-            <ion-item fill="outline" lines="none">
+            <ion-item lines="none" class="input">
               <ion-select
                 aria-label="Gender"
                 interface="action-sheet"
@@ -53,11 +49,11 @@
 
         <ion-row *ngIf="isFemale" class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
-            <ion-item fill="outline" class="input">
-              <ion-label position="floating" lablePlacement="stacked"
-                >Father/Husband</ion-label
+            <ion-item lines="none" class="input">
+              <ion-label position="floating" 
+                ></ion-label
               >
-              <ion-input
+              <ion-input lablePlacement="stacked" label="Father/Husband"
                 placeholder="Father/Husband"
                 formControlName="fatherOrHusband"
               ></ion-input>
@@ -67,7 +63,7 @@
 
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
-            <ion-item fill="outline" class="input" >
+            <ion-item lines="none" class="input" >
               <ion-label  *ngIf="!f['bloodRequireDate'].value" position="floating" lablePlacement="stacked"
                 >Blood Require Date</ion-label
               >
@@ -87,11 +83,9 @@
         </ion-row>
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
-            <ion-item fill="outline" class="input">
-              <ion-label position="floating" lablePlacement="stacked"
-                >mobileNo</ion-label
-              >
-              <ion-input
+            <ion-item lines="none" class="input">
+            
+              <ion-input lablePlacement="stacked" label="Mobile No."
                 placeholder="mobileNo"
                 formControlName="mobileNo"
               ></ion-input>
@@ -101,11 +95,9 @@
 
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
-            <ion-item fill="outline" class="input" >
-              <ion-label position="floating" lablePlacement="stacked"
-                >location</ion-label
-              >
-              <ion-input
+            <ion-item lines="none" class="input" >
+            
+              <ion-input lablePlacement="stacked" label="Location"
                 placeholder="location"
                 formControlName="location"
               ></ion-input>
@@ -114,7 +106,7 @@
         </ion-row>
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
-            <ion-item fill="outline" lines="none">
+            <ion-item lines="none" class="input">
               <ion-select
                 aria-label="bloodGroup"
                 interface="action-sheet"
@@ -129,13 +121,11 @@
         </ion-row>
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
-            <ion-item fill="outline" class="input" >
-              <ion-label position="floating" lablePlacement="stacked"
-                >hemoglobin</ion-label
-              >
-              <ion-input
-                placeholder="hemoglobin"
-                formControlName="hemoglobin"
+            <ion-item lines="none" class="input" >
+            
+              <ion-input  lablePlacement="stacked" label="Hemoglobin"
+                placeholder="Hemoglobin"
+                formControlName="Hemoglobin"
               ></ion-input>
             </ion-item>
           </ion-col>
@@ -144,13 +134,11 @@
 
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
-            <ion-item fill="outline" class="input">
-              <ion-label position="floating" lablePlacement="stacked"
-                >units</ion-label
-              >
-              <ion-input
-                placeholder="units"
-                formControlName="units"
+            <ion-item lines="none" class="input">
+             
+              <ion-input lablePlacement="stacked" label="Units"
+                placeholder="Units"
+                formControlName="Units"
                 type="number"
               ></ion-input>
             </ion-item>
@@ -159,7 +147,7 @@
 
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
-            <ion-item fill="outline">
+            <ion-item lines="none" class="input">
               <ion-label position="floating" lablePlacement="stacked"
                 >State
               </ion-label>
@@ -203,7 +191,7 @@
         </ion-row>
         <ion-row *ngIf="isCity" class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12" class="ion-justify-content-between">
-            <ion-item fill="outline">
+            <ion-item  lines="none" class="input">
               <ion-label position="floating" lablePlacement="stacked">
                 City
               </ion-label>
@@ -247,7 +235,7 @@
         </ion-row>
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
-            <ion-item fill="outline" class="input">
+            <ion-item  lines="none" class="input">
               <ion-label position="floating" lablePlacement="stacked"
                 >illness</ion-label
               >
@@ -259,8 +247,8 @@
           </ion-col>
         </ion-row>
 
-        <ion-row class="ion-align-items-center ion-justify-content-center">
-          <ion-col size="12">
+        <ion-row class="ion-align-items-center ion-justify-content-center clearfix">
+          <ion-col >
             <ion-button
               expand="block"
               shape="round"

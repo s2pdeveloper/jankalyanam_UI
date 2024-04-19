@@ -1,0 +1,16 @@
+.label-margin {
+  margin-bottom: 0.5rem;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ion-color-primary);
+}
+.primary-color {
+  --background-color: var(--ion-color-primary);
+}
+.img-col {
+  display: flex;
+  justify-content: center;
+}
+ion-button {
+  padding: 0;
+}
