@@ -293,7 +293,7 @@
           <ion-card-content>
           
             <ng-container *ngIf="donorEdit" noDataLatest>
-              <ion-row
+              <ion-row *ngIf="donorData.length !=0"
                 class="ion-align-items-center ion-justify-content-center"
               >
                 <ion-col size="8">

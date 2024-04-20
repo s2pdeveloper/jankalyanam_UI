@@ -1,7 +1,20 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
-    <ion-back-button slot="start" default-href="/layout"></ion-back-button>
-    <ion-title>Blood Donations</ion-title>
+    <!-- <ion-back-button slot="start" default-href="/layout"></ion-back-button>
+    <ion-title>Blood Donations</ion-title> -->
+    <ion-grid>
+      <ion-row class="ion-justify-content-center ion-align-items-center">
+        <ion-col size="auto">
+          <ion-back-button default-href="/layout/home"></ion-back-button>
+        </ion-col>
+        <ion-col>
+          <ion-title>Blood Donations</ion-title>
+        </ion-col>
+        <ion-col size="auto" (click)="refreshData()">
+          <img class="refresh-btn" src="../../../../../assets/refresh.png" alt="">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-toolbar>
 </ion-header>
 

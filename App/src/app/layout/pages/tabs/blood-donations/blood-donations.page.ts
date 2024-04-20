@@ -182,6 +182,79 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
     );
   }
  
+  async refreshData(event = null) {
+    this.historyPage = 0;
+    this.latestPage = 0;
+    let status: string;
+    let pageNo: number = 0;
+
+    switch (this.activeSegment) {
+      case "history":
+        status = "HISTORY";
+        pageNo = this.historyPage;
+        break;
+      case "latest":
+        status = "ACTIVE";
+        pageNo = this.latestPage;
+        break;
+      default:
+        return;
+    }
+
+    let params = {
+      pageNo: pageNo,
+      pageSize: this.pageSize,
+      search: this.search,
+      sortBy: this.sortBy,
+  };
+  this.service.getAllAdminList(params, status).subscribe(
+    async (res) => {
+      if (status == "HISTORY") {
+        if (event) {
+          this.historyTabDetails = [...this.historyTabDetails, ...res.data];
+        } else {
+          this.historyTabDetails = res.data;
+          console.log("Admin", this.historyTabDetails)
+        }
+        this.historyCount = res.count;
+        this.historyPage++;
+      } else {
+        if (event) {
+          this.latestTabDetails = [...this.latestTabDetails, ...res.data];
+        } else {
+          this.latestTabDetails = res.data;
+          console.log("this.latestTabDetails", this.latestTabDetails);
+        }
+        this.latestCount = res.count;
+        this.latestPage++;
+      }
+     
+
+      if (res?.data.length === 0 && event) {
+        event.target.disabled = true;
+      }
+
+     
+      if(event){
+        event.target.complete();
+        }else{
+          this.loader = false;
+        }
+    },
+    async (error) => {
+     
+      if(event){
+        event.target.complete();
+        }else{
+          this.loader = false;
+        }
+      // this.toast.errorToast("Something went wrong!");
+      this.toast.errorToast(error.message);
+    }
+  );
+   
+  }
+
   openModel(key: string, data: any) {
     switch (key) {
       case "history":

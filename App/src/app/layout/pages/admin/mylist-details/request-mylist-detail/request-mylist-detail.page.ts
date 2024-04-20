@@ -119,10 +119,7 @@ export class RequestMylistDetailPage implements OnInit {
           this.donorData,
           this.donorData.length
         );
-        if(this.donorData.length ===0){
-          console.log("No DONORS FOUND FOR THIS BLOODGROUP");
-          this.openModel();
-        }
+      
         this.loader = false;
       },
       error: (err) => {
