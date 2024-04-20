@@ -238,86 +238,35 @@ export class BloodRequestsPage implements OnInit {
     );
   }
 
-  async refreshData(event = null) {
-    this.historyPage = 0;
-    this.latestPage = 0;
-    this.mylistPage = 0;
-    let status: string;
-    let pageNo: number = 0;
-
+  async refreshData() {
+  
     switch (this.activeSegment) {
       case "history":
-        status = "HISTORY";
-        pageNo = this.historyPage;
+        this.historyPage = 0;
+        if(this.user.role == "ADMIN"){
+          this.getAllAdminList("HISTORY");
+        }else{
+          this.getAllAttenderList("HISTORY");
+        }
         break;
       case "latest":
-        status = "ACTIVE";
-        pageNo = this.latestPage;
+         this.latestPage = 0;
+         if(this.user.role == "ADMIN"){
+          this.getAllAdminList("ACTIVE");
+        }else{
+          this.getAllAttenderList("ACTIVE");
+        }
         break;
       case "list":
-        status = "MYLIST";
-        pageNo = this.mylistPage;
+        this.mylistPage = 0;
+        if(this.user.role == "ADMIN"){
+          this.getAllAdminList("MYLIST");
+        }
         break;
       default:
         return;
     }
 
-    let params = {
-      pageNo: pageNo,
-      pageSize: this.pageSize,
-      search: this.search,
-      sortBy: this.sortBy,
-  };
-
-    // this.getAllAdminList(status, params);
-
-    this.service.getAllAdminList(params, status).subscribe(
-      async (res) => {
-          if (status === "HISTORY") {
-              if (event) {
-                  this.historyTabDetails = [...this.historyTabDetails, ...res.data];
-              } else {
-                  this.historyTabDetails = res.data;
-                  console.log("Admin", this.historyTabDetails);
-              }
-              this.historyCount = res.count;
-          } else if (status === "ACTIVE") {
-              if (event) {
-                  this.latestTabDetails = [...this.latestTabDetails, ...res.data];
-              } else {
-                  this.latestTabDetails = res.data;
-                  console.log("this.latestTabDetails", this.latestTabDetails);
-              }
-              this.latestCount = res.count;
-          } else if (status === "MYLIST") {
-              if (event) {
-                  this.myListTabDetails = [...this.myListTabDetails, ...res.data];
-              } else {
-                  this.myListTabDetails = res.data;
-                  console.log("this.myListTabDetails", this.myListTabDetails);
-              }
-              this.myListCount = res.count;
-          }
-
-          if (res?.data.length === 0 && event) {
-              event.target.disabled = true;
-          }
-
-          if (event) {
-              event.target.complete();
-          } else {
-              this.loader = false;
-          }
-      },
-      async (error) => {
-          if (event) {
-              event.target.complete();
-          } else {
-              this.loader = false;
-          }
-          this.toast.errorToast(error.message);
-      }
-  );
   }
 
   openModel(key: string, data: any) {

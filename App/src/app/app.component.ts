@@ -38,6 +38,10 @@ loader = true;
   }
 
   ngOnInit(): void {
+    console.log("Call NGONIT-------");
+    
+    this.getAllAdvertisement()
+
     if (localStorage.getItem("user")) {
       // if (this.jwtService.getToken() && localStorage.getItem("firstName") && localStorage.getItem('lastName')) {
       //   if (localStorage.getItem("role") === ROLES.EMPLOYEE) {
@@ -59,13 +63,13 @@ loader = true;
       // this.router.navigate([/auth/onboarding]);
       this.router.navigate([`/auth/on-boarding`], { replaceUrl: true });
     }
-   this.getAllAdvertisement()
   }
   
   async getAllAdvertisement() {
     this.advertiseService.getAllAdvertisemnt().subscribe((res) => {
       console.log("advertisement DONE", res);
       this.sessionStorage.set("advertisementData", res);
+      console.log("GET DATA ---", this.sessionStorage.get("advertisementData"));
     
     },
     (err) => {
