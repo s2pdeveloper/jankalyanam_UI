@@ -1,7 +1,20 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
-    <ion-back-button slot="start" default-href="/layout/home"></ion-back-button>
-    <ion-title>Blood-Requests</ion-title>
+    <!-- <ion-back-button slot="start" default-href="/layout/home"></ion-back-button>
+    <ion-title>Blood-Requests</ion-title> -->
+    <ion-grid>
+      <ion-row class="ion-justify-content-center ion-align-items-center">
+        <ion-col size="auto">
+          <ion-back-button default-href="/layout/home"></ion-back-button>
+        </ion-col>
+        <ion-col>
+          <ion-title>Blood-Requests</ion-title>
+        </ion-col>
+        <ion-col size="auto" (click)="refreshData()">
+          <img class="refresh-btn" src="../../../../../assets/refresh.png" alt="">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-toolbar>
 </ion-header>
 
@@ -73,26 +86,28 @@
                         </div>
                       </div>
                     </ion-col>
-                    <ion-col size="3" class="ion-text-end ion-align-items-center">
+                    <ion-col  *ngIf="i.status == 'ACCEPTED'" size="3" class="ion-text-end ion-align-items-center">
                       <ion-button
                       *ngIf="i.status == 'ACCEPTED'"
                       (click)="statusChange($event,i,j,'PENDING')"
                     >
                       Revert</ion-button>
                     </ion-col>
-                  </ion-row>
-                  <ion-row>
-                   
-                    <ion-col size="12" class="ion-text-end ion-align-items-center">
-                      <ion-label class="align-status" *ngIf="i?.status != 'RECEIVED'"
-                        [ngClass]="{'status-pending': i?.status == 'PENDING','status-allocated' : i?.status == 'ALLOCATED','status-received': i.status== 'RECEIVED','status-done' : i?.status == 'DONE','status-accepted' : i.status == 'ACCEPTED' ,'statusdoclose': i.status=='CLOSE'}"
-                        >{{i?.status}}</ion-label>
+                    <ion-col  *ngIf="i.status == 'RECEIVED'" size="3" class="ion-text-end ion-align-items-center">
+                      
                       <ion-button
                       *ngIf="i.status == 'RECEIVED'"
                       (click)="statusChange($event,i,j,'DONE')"
                     >
                       Done</ion-button>
                     </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col size="12" class="ion-text-end ion-align-items-center">
+                    <ion-label class="align-status" *ngIf="i?.status != 'RECEIVED'"
+                    [ngClass]="{'status-pending': i?.status == 'PENDING','status-allocated' : i?.status == 'ALLOCATED','status-received': i.status== 'RECEIVED','status-done' : i?.status == 'DONE','status-accepted' : i.status == 'ACCEPTED' ,'statusdoclose': i.status=='CLOSE'}"
+                    >{{i?.status}}</ion-label>
+                  </ion-col>
                   </ion-row>
                 </ion-grid>
               </ion-card-content>
