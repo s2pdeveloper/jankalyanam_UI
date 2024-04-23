@@ -2,7 +2,7 @@
   <ion-toolbar color="primary">
     <ion-back-button slot="start" default-href="/layout/home"></ion-back-button>
 
-    <ion-title class="ion-justify-content-center">Request</ion-title>
+    <ion-title class="ion-justify-content-center">{{'requestBlood' | translate}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -14,7 +14,7 @@
           <ion-col size="12">
             <ion-item fill="outline" class="input">
               <ion-label position="floating" lablePlacement="stacked"
-                >Name</ion-label
+                > {{'Name' | translate  }}</ion-label
               >
               <ion-input
                 placeholder="Full Name"
@@ -27,7 +27,7 @@
           <ion-col size="12">
             <ion-item fill="outline" class="input">
               <ion-label position="floating" lablePlacement="stacked"
-                >Age</ion-label
+                >{{'age' | translate  }}</ion-label
               >
               <ion-input placeholder="Age" formControlName="age"></ion-input>
             </ion-item>
@@ -44,8 +44,8 @@
                 formControlName="gender"
                 (ionChange)="checkGender()"
               >
-                <ion-select-option value="MALE">Male</ion-select-option>
-                <ion-select-option value="FEMALE">Female</ion-select-option>
+                <ion-select-option value="MALE">{{'male' | translate}}</ion-select-option>
+                <ion-select-option value="FEMALE">{{'female' | translate}}</ion-select-option>
               </ion-select>
             </ion-item>
           </ion-col>
@@ -55,7 +55,7 @@
           <ion-col size="12">
             <ion-item fill="outline" class="input">
               <ion-label position="floating" lablePlacement="stacked"
-                >Father/Husband</ion-label
+                >{{'fatherHusband' | translate}}</ion-label
               >
               <ion-input
                 placeholder="Father/Husband"
@@ -69,7 +69,7 @@
           <ion-col size="12">
             <ion-item fill="outline" class="input" >
               <ion-label  *ngIf="!f['bloodRequireDate'].value" position="floating" lablePlacement="stacked"
-                >Blood Require Date</ion-label
+                >{{'bloodRequireData' | translate  }}</ion-label
               >
               <p class="ion-margin-end">
                 {{f['bloodRequireDate'].value | date}}
@@ -89,7 +89,7 @@
           <ion-col size="12">
             <ion-item fill="outline" class="input">
               <ion-label position="floating" lablePlacement="stacked"
-                >mobileNo</ion-label
+                >{{'mobileNo' | translate  }}</ion-label
               >
               <ion-input
                 placeholder="mobileNo"
@@ -103,7 +103,7 @@
           <ion-col size="12">
             <ion-item fill="outline" class="input" >
               <ion-label position="floating" lablePlacement="stacked"
-                >location</ion-label
+                >{{'location' | translate}}</ion-label
               >
               <ion-input
                 placeholder="location"
@@ -131,7 +131,7 @@
           <ion-col size="12">
             <ion-item fill="outline" class="input" >
               <ion-label position="floating" lablePlacement="stacked"
-                >hemoglobin</ion-label
+                >{{'hemoglobin' | translate}}</ion-label
               >
               <ion-input
                 placeholder="hemoglobin"
@@ -146,7 +146,7 @@
           <ion-col size="12">
             <ion-item fill="outline" class="input">
               <ion-label position="floating" lablePlacement="stacked"
-                >units</ion-label
+                >{{'units' | translate}}</ion-label
               >
               <ion-input
                 placeholder="units"
@@ -161,7 +161,7 @@
           <ion-col size="12">
             <ion-item fill="outline">
               <ion-label position="floating" lablePlacement="stacked"
-                >State
+                >{{'state' | translate}}
               </ion-label>
               <ionic-selectable
                 item-content
@@ -188,7 +188,7 @@
                     <ion-title
                       class="text-color-4 ion-text-capitalize ion-text-wrap"
                     >
-                      State
+                    {{'state' | translate}}
                     </ion-title>
                   </ion-toolbar>
                 </ng-template>
@@ -205,7 +205,7 @@
           <ion-col size="12" class="ion-justify-content-between">
             <ion-item fill="outline">
               <ion-label position="floating" lablePlacement="stacked">
-                City
+                {{'city' | translate}}
               </ion-label>
               <ionic-selectable
                 item-content
@@ -232,7 +232,7 @@
                     <ion-title
                       class="text-color-4 ion-text-capitalize ion-text-wrap"
                     >
-                      City
+                    {{'city' | translate}}
                     </ion-title>
                   </ion-toolbar>
                 </ng-template>
@@ -249,7 +249,7 @@
           <ion-col size="12">
             <ion-item fill="outline" class="input">
               <ion-label position="floating" lablePlacement="stacked"
-                >illness</ion-label
+                >{{'illness' | translate}}</ion-label
               >
               <ion-input
                 placeholder="illness"
@@ -267,7 +267,7 @@
               class="button ion-padding"
               color="primary"
               (click)="create()"
-              >Submit</ion-button
+              >{{'submit' | translate}}</ion-button
             >
           </ion-col>
         </ion-row>

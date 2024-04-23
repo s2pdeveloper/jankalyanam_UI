@@ -17,7 +17,14 @@ export const languageConst={
       "select bloodgroup" : "Select Blood Group",
       "close" : "CLOSE",
       "calendar" : "Calendar",
-      "save" : "SAVE"
+      "save" : "SAVE",
+      "bloodRequireData" : "Blood Require Date",
+      "location" : "Location",
+      "units" : "Units",
+      "fatherHusband" : "Father/Husband",
+      "male" : "Male",
+      "female" : "Female",
+      "requestBlood" : "Request Blood"
     },
     hi:{
         "Change Profile":"उदाहरण और वाक्य",
@@ -37,6 +44,13 @@ export const languageConst={
       "select bloodgroup" : "रक्त समूह चुनें",
       "close" : "बंद करें",
       "calendar" : "पंचांग",
-      "save" : "जमा करें"
+      "save" : "जमा करें",
+      "bloodRequireData" : "रक्त आवश्यक डेटा",
+      "location" : "स्थान",
+      "units" : "इकाइयाँ",
+      "fatherHusband" : "पिता/पति",
+      "male" : "पुरुष",
+      "female" : "महिला",
+      "requestBlood" : "रक्त का अनुरोध करें"
     }
 }
