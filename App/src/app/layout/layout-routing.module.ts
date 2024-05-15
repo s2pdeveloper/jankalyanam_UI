@@ -54,9 +54,13 @@ const routes: Routes = [
         loadChildren: () => import('./pages/admin/history/history/history.module').then( m => m.HistoryPageModule)
       },
     
-
+      {
+        path: 'chat',
+        loadChildren: () => import('./pages/chat/chat.module').then( m => m.ChatPageModule)
+      },
     ]
   },
+ 
   
  
 
