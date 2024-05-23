@@ -29,7 +29,7 @@
               <ion-label position="floating" lablePlacement="stacked"
                 >Age</ion-label
               >
-              <ion-input placeholder="Age" formControlName="age"></ion-input>
+              <ion-input placeholder="Age" formControlName="age" type="number"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -89,17 +89,18 @@
           <ion-col size="12">
             <ion-item fill="outline" class="input">
               <ion-label position="floating" lablePlacement="stacked"
-                >mobileNo</ion-label
+                >Mobile Number</ion-label
               >
               <ion-input
                 placeholder="mobileNo"
                 formControlName="mobileNo"
+                type="number"
               ></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
 
-        <ion-row class="ion-align-items-center ion-justify-content-center">
+        <!-- <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
             <ion-item fill="outline" class="input" >
               <ion-label position="floating" lablePlacement="stacked"
@@ -108,6 +109,19 @@
               <ion-input
                 placeholder="location"
                 formControlName="location"
+              ></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row> -->
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col size="12">
+            <ion-item fill="outline" class="input" >
+              <ion-label position="floating" lablePlacement="stacked"
+                >Hospital Name</ion-label
+              >
+              <ion-input
+                placeholder="Hospital Name"
+                formControlName="hospitalName"
               ></ion-input>
             </ion-item>
           </ion-col>
@@ -128,6 +142,51 @@
           </ion-col>
         </ion-row>
         <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col size="12">
+            <ion-item fill="outline" lines="none">
+              <ion-select
+                aria-label="Blood Type"
+                interface="action-sheet"
+                placeholder="Select Blood Type"
+                formControlName="bloodType"
+              >
+              
+                <ion-select-option *ngFor="let item of bloodType" value="{{item}}">{{item}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col size="12">
+            <ion-item fill="outline" lines="none">
+              <ion-select
+                aria-label="Hemoglobin"
+                interface="action-sheet"
+                placeholder="Select Hemoglobin"
+                formControlName="hemoglobin"
+              >
+              
+                <ion-select-option *ngFor="let item of hemoglobin" value="{{item}}">{{item}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col size="12">
+            <ion-item fill="outline" lines="none">
+              <ion-select
+                aria-label="Units"
+                interface="action-sheet"
+                placeholder="Select Units"
+                formControlName="units"
+              >
+              
+                <ion-select-option *ngFor="let item of units" value="{{item}}">{{item}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <!-- <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
             <ion-item fill="outline" class="input" >
               <ion-label position="floating" lablePlacement="stacked"
@@ -155,9 +214,9 @@
               ></ion-input>
             </ion-item>
           </ion-col>
-        </ion-row>
+        </ion-row> -->
 
-        <ion-row class="ion-align-items-center ion-justify-content-center">
+        <!-- <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
             <ion-item fill="outline">
               <ion-label position="floating" lablePlacement="stacked"
@@ -244,12 +303,185 @@
               </ionic-selectable>
             </ion-item>
           </ion-col>
+        </ion-row> -->
+
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col size="12">
+            <ion-item fill="outline">
+              <ion-label position="floating" labelPlacement="stacked"
+                >State
+              </ion-label>
+              <ionic-selectable
+                item-content
+                class="ion-text-capilatize"
+                #selectableState
+                itemTextField="name"
+                itemValueField="name"
+                [canSearch]="true"
+                [hasConfirmButton]="true"
+                [hasInfiniteScroll]="true"
+              >
+                <ng-template ionicSelectableHeaderTemplate>
+                  <ion-toolbar class="bg-color-2">
+                    <ion-buttons slot="start">
+                      <ion-button
+                        class="text-color-4"
+                        (click)="selectableState.close()"
+                      >
+                        <ion-icon name="arrow-back-outline"></ion-icon>
+                      </ion-button>
+                    </ion-buttons>
+                    <ion-title
+                      class="text-color-4 ion-text-capitalize ion-text-wrap"
+                    >
+                    state
+                    </ion-title>
+                  </ion-toolbar>
+                </ng-template>
+                <!-- <ng-template ionicSelectableItemTemplate let-port="item">
+                  <ion-label class="ion-text-capitalize ion-text-wrap">
+                    {{port?.name}}
+                  </ion-label>
+                </ng-template> -->
+              </ionic-selectable>
+            </ion-item>
+          </ion-col>
         </ion-row>
+
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col size="12">
+            <ion-item fill="outline">
+              <ion-label position="floating" labelPlacement="stacked"
+                >District
+              </ion-label>
+              <ionic-selectable
+                item-content
+                class="ion-text-capilatize"
+                #selectableState
+                itemTextField="name"
+                itemValueField="name"
+                [canSearch]="true"
+                [hasConfirmButton]="true"
+                [hasInfiniteScroll]="true"
+              >
+                <ng-template ionicSelectableHeaderTemplate>
+                  <ion-toolbar class="bg-color-2">
+                    <ion-buttons slot="start">
+                      <ion-button
+                        class="text-color-4"
+                        (click)="selectableState.close()"
+                      >
+                        <ion-icon name="arrow-back-outline"></ion-icon>
+                      </ion-button>
+                    </ion-buttons>
+                    <ion-title
+                      class="text-color-4 ion-text-capitalize ion-text-wrap"
+                    >
+                    district
+                    </ion-title>
+                  </ion-toolbar>
+                </ng-template>
+                <!-- <ng-template ionicSelectableItemTemplate let-port="item">
+                  <ion-label class="ion-text-capitalize ion-text-wrap">
+                    {{port?.name}}
+                  </ion-label>
+                </ng-template> -->
+              </ionic-selectable>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col size="12">
+            <ion-item fill="outline">
+              <ion-label position="floating" labelPlacement="stacked"
+                >Tehsil
+              </ion-label>
+              <ionic-selectable
+                item-content
+                class="ion-text-capilatize"
+                #selectableState
+                
+                itemTextField="name"
+                itemValueField="name"
+                [canSearch]="true"
+                [hasConfirmButton]="true"
+                [hasInfiniteScroll]="true"
+              >
+                <ng-template ionicSelectableHeaderTemplate>
+                  <ion-toolbar class="bg-color-2">
+                    <ion-buttons slot="start">
+                      <ion-button
+                        class="text-color-4"
+                        (click)="selectableState.close()"
+                      >
+                        <ion-icon name="arrow-back-outline"></ion-icon>
+                      </ion-button>
+                    </ion-buttons>
+                    <ion-title
+                      class="text-color-4 ion-text-capitalize ion-text-wrap"
+                    >
+                    tehsil
+                    </ion-title>
+                  </ion-toolbar>
+                </ng-template>
+                <!-- <ng-template ionicSelectableItemTemplate let-port="item">
+                  <ion-label class="ion-text-capitalize ion-text-wrap">
+                    {{port?.name}}
+                  </ion-label>
+                </ng-template> -->
+              </ionic-selectable>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col size="12">
+            <ion-item fill="outline">
+              <ion-label position="floating" labelPlacement="stacked"
+                >Village
+              </ion-label>
+              <ionic-selectable
+                item-content
+                class="ion-text-capilatize"
+                #selectableState
+                
+                itemTextField="name"
+                itemValueField="name"
+                [canSearch]="true"
+                [hasConfirmButton]="true"
+                [hasInfiniteScroll]="true"
+              >
+                <ng-template ionicSelectableHeaderTemplate>
+                  <ion-toolbar class="bg-color-2">
+                    <ion-buttons slot="start">
+                      <ion-button
+                        class="text-color-4"
+                        (click)="selectableState.close()"
+                      >
+                        <ion-icon name="arrow-back-outline"></ion-icon>
+                      </ion-button>
+                    </ion-buttons>
+                    <ion-title
+                      class="text-color-4 ion-text-capitalize ion-text-wrap"
+                    >
+                    village
+                    </ion-title>
+                  </ion-toolbar>
+                </ng-template>
+                <!-- <ng-template ionicSelectableItemTemplate let-port="item">
+                  <ion-label class="ion-text-capitalize ion-text-wrap">
+                    {{port?.name}}
+                  </ion-label>
+                </ng-template> -->
+              </ionic-selectable>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
             <ion-item fill="outline" class="input">
               <ion-label position="floating" lablePlacement="stacked"
-                >illness</ion-label
+                >Illness</ion-label
               >
               <ion-input
                 placeholder="illness"

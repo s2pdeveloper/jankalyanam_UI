@@ -42,6 +42,7 @@ export class RegisterPage implements OnInit {
     pincode :  new FormControl("", [Validators.required]),
     password: new FormControl('', [Validators.required]),
     bloodGroup: new FormControl("", [Validators.required]),
+    state: new FormControl("", [Validators.required]),
     district:  new FormControl("", [Validators.required]),
     tehsil :  new FormControl("", [Validators.required]),
     village :  new FormControl("", [Validators.required]),

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { ModalController } from "@ionic/angular";
+import { IonCheckbox, IonModal, ModalController } from "@ionic/angular";
 import { ToastService } from "src/app/core/services";
 import { BloodDonationService } from "src/app/service/donation/donation.service";
 import { IonicSelectableComponent } from "ionic-selectable";
@@ -10,7 +10,7 @@ import { AdminRequestActiveComponent } from "src/app/shared/models/admin-request
 import { ModalService } from "src/app/service/modal.service";
 import { CalenderComponent } from "src/app/shared/models/calender/calender.component";
 import { LoaderService } from "src/app/service/loader.service";
-
+import { OverlayEventDetail } from '@ionic/core/components';
 @Component({
   selector: "app-donate",
   templateUrl: "./donate.page.html",
@@ -20,6 +20,9 @@ export class DonatePage implements OnInit {
   @ViewChild("selectableState") selectableState: any = IonicSelectableComponent;
   @ViewChild("selectableCity") selectableCity: any = IonicSelectableComponent;
   states: any = [];
+  district: any = [];
+  tehsil: any = [];
+  village: any = [];
   cities: any = [];
   isFemale: boolean = false;
   bloodGroup: any = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
@@ -73,7 +76,7 @@ export class DonatePage implements OnInit {
  
 
   async create() {
-    if (this.bloodDonateForm.invalid) {
+    if (!this.isTermsAgreed) {
       console.log(this.bloodDonateForm.controls);
 
       this.toast.errorToast("Please fill required fields!");
@@ -159,6 +162,34 @@ export class DonatePage implements OnInit {
       this.router.navigate(["/layout/request-mylist-detail"], {});
     } else {
       this.router.navigate(["/layout/home"]);
+    }
+  }
+
+
+  // model
+
+  @ViewChild(IonModal) modal: IonModal;
+  @ViewChild('openModalCheckbox', { static: false }) openModalCheckbox: IonCheckbox;
+
+  message = 'This modal example uses triggers to automatically open a modal when the button is clicked.';
+  name: string;
+  isTermsAgreed: boolean = false;
+  cancel() {
+    this.modal.dismiss(null, 'cancel');
+  }
+
+  confirm() {
+    this.modal.dismiss(this.name, 'confirm');
+  }
+
+  onWillDismiss(event: Event) {
+    const ev = event as CustomEvent<OverlayEventDetail<string>>;
+    console.log('ev--------->', ev);
+
+    if (ev.detail.role === 'confirm') {
+      this.message = `Hello, ${ev.detail.data}!`;
+    } else if (ev.detail.role === 'cancel') {
+      this.openModalCheckbox.checked = false;
     }
   }
 }

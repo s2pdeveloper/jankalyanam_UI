@@ -18,10 +18,15 @@ export class RequestPage implements OnInit {
   @ViewChild("selectableState") selectableState: any = IonicSelectableComponent;
   @ViewChild("selectableCity") selectableCity: any = IonicSelectableComponent;
   states: any = [];
-  cities: any = [];
+  district: any = [];
+  tehsil: any = [];
+  village: any = [];
   isFemale: boolean = false;
   isCity: boolean = false;
   bloodGroup: any = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
+  bloodType:any = [];
+  units: any = [1,2,3,4,5,6,7,8,9,10];
+  hemoglobin:any=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
   constructor(
     private service: BloodRequestService,
     private router: Router,
@@ -40,12 +45,15 @@ export class RequestPage implements OnInit {
     age: new FormControl("", [Validators.required]),
     bloodRequireDate: new FormControl("", [Validators.required]),
     mobileNo: new FormControl("", [Validators.required,Validators.maxLength(12),Validators.minLength(10)]),
-    location: new FormControl("", [Validators.required]),
+    // location: new FormControl("", [Validators.required]),
+    hospitalName: new FormControl("", [Validators.required]),
     hemoglobin: new FormControl("", [Validators.required]),
     illness: new FormControl("", [Validators.required]),
     units: new FormControl("", [Validators.required]),
     state: new FormControl("", [Validators.required]),
-    city: new FormControl("", [Validators.required]),
+    district:  new FormControl("", [Validators.required]),
+    tehsil :  new FormControl("", [Validators.required]),
+    village :  new FormControl("", [Validators.required]),
     gender: new FormControl("", [Validators.required]),
     fatherOrHusband: new FormControl(""),
     bloodGroup: new FormControl("", [Validators.required]),
@@ -102,14 +110,14 @@ export class RequestPage implements OnInit {
     });
   }
 
-  getCity(state: any) {
-    this.f["state"].setValue(state.value.name);
-    this.isCity = true;
-    this.cities = this.restService.getCitiesOfState(
-      state.value.countryCode,
-      state.value.isoCode
-    );
-  }
+  // getCity(state: any) {
+  //   this.f["state"].setValue(state.value.name);
+  //   this.isCity = true;
+  //   this.cities = this.restService.getCitiesOfState(
+  //     state.value.countryCode,
+  //     state.value.isoCode
+  //   );
+  // }
   setCity(city: any) {
     this.f["city"].setValue(city.value.name);
   }
