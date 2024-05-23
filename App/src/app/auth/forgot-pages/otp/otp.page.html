@@ -1,6 +1,6 @@
 <ion-content [fullscreen]="true">
   <div class="card">
-    <form [formGroup]="forgotForm">
+    <form [formGroup]="otpForm">
    
         <ion-grid>
           <ion-row class="ion-align-items-center ion-justify-content-center">
@@ -11,17 +11,17 @@
           <ion-row
             class="ion-align-items-center ion-justify-content-center ion-margin-bottom ion-margin-top"
           >
-            <ion-label class="text">Forgot Password?</ion-label>
+            <ion-label class="text">Verify Your OTP</ion-label>
           </ion-row>
           <ion-row class="ion-align-items-center ion-justify-content-center">
             <ion-col size="10">
               <ion-item fill="outline" class="input">
                 <ion-label position="floating" label Placement="stacked"
-                  >Mobile Number</ion-label
+                  >OTP</ion-label
                 >
                 <ion-input
-                  placeholder="Enter Mobile Number"
-                  formControlName="mobileNo"
+                  placeholder="Enter OTP"
+                  formControlName="otp"
                 ></ion-input>
               </ion-item>
             </ion-col>
@@ -33,8 +33,8 @@
                 shape="round"
                 class="button ion-padding"
                 color="primary"
-                (click)="verifyNumber()"
-                >Verify Number</ion-button
+                (click)="verifyOtp()"
+                >Verify Otp</ion-button
               >
             </ion-col>
           </ion-row>

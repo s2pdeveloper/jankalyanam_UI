@@ -42,8 +42,19 @@ const routes: Routes = [
       {
         path: 'edit-profile',
         loadChildren: () => import('./auth/edit-profile/edit-profile/edit-profile.module').then( m => m.EditProfilePageModule)
+      },
+      {
+        path: 'email-for-otp',
+        loadChildren: () => import('./auth/forgot-pages/email-for-otp/email-for-otp.module').then( m => m.EmailForOtpPageModule)
+      },
+      {
+        path: 'verify-otp',
+        loadChildren: () => import('./auth/forgot-pages/otp/otp.module').then( m => m.OtpPageModule)
+      },
+      {
+        path: 'new-password',
+        loadChildren: () => import('./auth/forgot-pages/set-new-password/set-new-password.module').then( m => m.SetNewPasswordPageModule)
       }
- 
     ]
   },
 
@@ -52,6 +63,20 @@ const routes: Routes = [
     loadChildren: () => import('./layout/layout.module').then(m => m.LayoutPageModule)
 
   },
+  {
+    path: 'email-for-otp',
+    loadChildren: () => import('./auth/forgot-pages/email-for-otp/email-for-otp.module').then( m => m.EmailForOtpPageModule)
+  },
+  {
+    path: 'verify-otp',
+    loadChildren: () => import('./auth/forgot-pages/otp/otp.module').then( m => m.OtpPageModule)
+  },
+  {
+    path: 'new-password',
+    loadChildren: () => import('./auth/forgot-pages/set-new-password/set-new-password.module').then( m => m.SetNewPasswordPageModule)
+  },
+
+
   
 
 

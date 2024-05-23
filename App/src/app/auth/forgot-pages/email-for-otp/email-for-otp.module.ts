@@ -2,18 +2,20 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+
 import { IonicModule } from '@ionic/angular';
-import { RegisterPageRoutingModule } from './register-routing.module';
-import { RegisterPage } from './register.page';
-import { IonicSelectableComponent } from 'ionic-selectable';
+
+import { EmailForOtpPageRoutingModule } from './email-for-otp-routing.module';
+
+import { EmailForOtpPage } from './email-for-otp.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RegisterPageRoutingModule,ReactiveFormsModule,IonicSelectableComponent
+    EmailForOtpPageRoutingModule,ReactiveFormsModule
   ],
-  declarations: [RegisterPage]
+  declarations: [EmailForOtpPage]
 })
-export class RegisterPageModule {}
+export class EmailForOtpPageModule {}

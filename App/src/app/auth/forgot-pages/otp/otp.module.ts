@@ -2,18 +2,20 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+
 import { IonicModule } from '@ionic/angular';
-import { RegisterPageRoutingModule } from './register-routing.module';
-import { RegisterPage } from './register.page';
-import { IonicSelectableComponent } from 'ionic-selectable';
+
+import { OtpPageRoutingModule } from './otp-routing.module';
+
+import { OtpPage } from './otp.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RegisterPageRoutingModule,ReactiveFormsModule,IonicSelectableComponent
+    OtpPageRoutingModule,ReactiveFormsModule
   ],
-  declarations: [RegisterPage]
+  declarations: [OtpPage]
 })
-export class RegisterPageModule {}
+export class OtpPageModule {}
