@@ -355,6 +355,31 @@
           </ion-card>
         </div>
       </ion-accordion>
+
+      <ion-accordion value="fourth">
+        <ion-item slot="header" color="light">
+          <i class="fa-solid fa-user"></i>
+          <ion-label class="ion-padding-horizontal">Upload Image</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">
+          <ion-card>
+            <ion-card-content>
+              <ion-item lines="none" class="margin-img">
+                <ion-avatar class="avatar border-color-7">
+                  <img
+                    class="profile-img"
+                    *ngIf="!profile"
+                    src="../../../../assets/icon/73-730477_first-name-profile-image-placeholder-png.png"
+                    alt="mainPofile"
+                  />
+                  <img *ngIf="!!profile" src="{{profile}}" alt="mainPofile" />
+                  <ion-icon name="camera" class="overlay-icon" (click)="uploadFile()"></ion-icon>
+                </ion-avatar>
+              </ion-item>
+            </ion-card-content>
+          </ion-card>
+        </div>
+      </ion-accordion>
     </ion-accordion-group>
   <!-- </ng-template> -->
 </ion-content>

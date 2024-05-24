@@ -4,6 +4,8 @@ import { Router } from "@angular/router";
 import { ModalController } from "@ionic/angular";
 import { StorageService } from "src/app/core/services/local-storage.service";
 import { ToastService } from "src/app/core/services/toast.service";
+import { AuthService } from "src/app/service/auth/auth.service";
+import { CameraService } from "src/app/service/camera.service";
 import { BloodDonationService } from "src/app/service/donation/donation.service";
 import { LoaderService } from "src/app/service/loader.service";
 import { CalenderComponent } from "src/app/shared/models/calender/calender.component";
@@ -19,13 +21,18 @@ export class DonationDetailsComponent implements OnInit {
   edit: boolean = false;
   openAccordion = '';
   loader = true;
+  profile: string = null;
+  userData: any;
   constructor(
     private router: Router,
     private modalController: ModalController,
     private localStorage: StorageService,
     private service: BloodDonationService,
     private toast: ToastService,
-    private spinner: LoaderService
+    private spinner: LoaderService,
+    private cameraService: CameraService,
+    private authService: AuthService,
+    
   ) {}
 
 
@@ -44,10 +51,13 @@ export class DonationDetailsComponent implements OnInit {
       this.openAccordion = !!this.data.bloodRequest ? 'second' : (!!this.data.location ?'first' : 'third');
     }
   
-    console.log("this.edit ----", this.edit,this.openAccordion,this.data);
     if(this.edit){
       this.bloodDonateForm.controls.donationDate.setValue(new Date(this.data.donationDate.split('-').reverse().join('-')).toISOString());
+    }
 
+    this.userData = this.localStorage.get("user");
+    if (this.userData.id) {
+      this.getByIdData(this.userData.id);
     }
     
   }
@@ -151,4 +161,43 @@ export class DonationDetailsComponent implements OnInit {
   // handleRefresh(event:any){
 
   // }
+
+  //profile
+  async uploadFile() {
+    this.cameraService.requestPermission();
+    let image = await this.cameraService.openCamera();
+    // const compressedImage = await this.compressImage(image.base64String, image.format);
+    let imageBlob = await this.cameraService.b64toBlob(
+      image.base64String,
+      // compressedImage,
+      `image/${image.format}`
+    );
+    const formData = new FormData();
+    formData.append("id", this.userData.id);
+    formData.append(
+      "image",
+      imageBlob,
+      `${this.userData.firstName}_${this.userData.id}`
+    );
+    this.authService.updateImage(formData).subscribe(
+      (success: any) => {
+        this.profile = success.image;
+      },
+      (error) => {
+        this.toast.errorToast(error.message);
+      }
+    );
+  }
+  getByIdData(id: any) {
+    this.authService.profile(id).subscribe(
+      (success: any) => {
+        this.user = success;
+        this.profile = success.image;
+      },
+      (error) => {
+        this.toast.errorToast(error.message);
+      }
+    );
+  }
+ 
 }

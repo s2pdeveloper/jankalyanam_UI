@@ -10,8 +10,11 @@
         <ion-col>
           <ion-title>Blood Donations</ion-title>
         </ion-col>
+        <ion-col>
+          <img class="refresh-btn" src="../../../../../assets/filter.png" alt="filter">
+        </ion-col>
         <ion-col size="auto" (click)="refreshData()">
-          <img class="refresh-btn" src="../../../../../assets/refresh.png" alt="">
+          <img class="refresh-btn" src="../../../../../assets/new-refresh.png" alt="refresh">
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -23,6 +26,7 @@
     <app-skeleton></app-skeleton>
   </div>
   <ng-template #otherContent>
+    <ion-searchbar></ion-searchbar>
     <div>
       <ion-item class="mt-2" lines="none">
         <ion-segment [(ngModel)]="activeSegment" [scrollable]="true">
