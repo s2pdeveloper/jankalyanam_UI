@@ -28,7 +28,7 @@ export class ChangePasswordPage implements OnInit {
         newPassword: this.changePasswordForm.value.newPassword,
         password: this.changePasswordForm.value.confirmPassword
       };
-      this.service.setPassword(userPayload).subscribe(
+      this.service.changePassword(userPayload).subscribe(
         (response) => {
           this.toast.successToast('Profile PasswordUpdated Successfully');
         },

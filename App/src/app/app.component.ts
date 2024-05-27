@@ -61,7 +61,7 @@ loader = true;
       this.router.navigate([`/layout/home`], { replaceUrl: true });
     } else {
       // this.router.navigate([/auth/onboarding]);
-      this.router.navigate([`/auth/on-boarding`], { replaceUrl: true });
+      this.router.navigate([`/auth/login`], { replaceUrl: true });
     }
   }
   
