@@ -15,11 +15,17 @@ export class AuthService {
     imageUpdatePath: `user/profile`,
     forget_password: 'user/forgot-password',
     reset_password: 'user/reset-password',
-    set_password: 'user/set-password',
+    changePasswordPath: 'user/change',
     createAndUpdateUserDevice: 'user/createAndUpdateUserDevice',
     emailVerifyPath: 'user/email-verify',
     resetPinVerifyPath: 'user/resetPinVerify',
-    deviceIdPath: (deviceId: string) => `user-device?deviceId=${deviceId}`
+    deviceIdPath: (deviceId: string) => `user-device?deviceId=${deviceId}`,
+    listPath: `address/list`,
+    verifyMobilePath:(mobileNo: string) =>`user/forget?mobileNo=${mobileNo}`,
+    otpPath:(email: string,mobileNo: string) =>`user/sendMail?mobileNo=${mobileNo}&email=${email}`,
+    verifyOTPPath:(otp: string,mobileNo: string) =>`user/verify?mobileNo=${mobileNo}&otp=${otp}`,
+    setPasswordPath:(password: string,mobileNo: string) =>`user/setPassword?mobileNo=${mobileNo}&password=${password}`
+   
   };
 
   constructor(
@@ -49,17 +55,10 @@ export class AuthService {
     return this.getCurrentUser() !== null;
   }
 
-  forgetPassword(userPayload: any) {
-    return this.http.post(this.routes.forget_password, userPayload);
-  }
-
   resetPassword(userPayload: any) {
     return this.http.post(this.routes.reset_password, userPayload);
   }
 
-  setPassword(userPayload: any) {
-    return this.http.post(this.routes.set_password, userPayload);
-  }
   createAndUpdateUserDevice(userPayload: any) {
     return this.http.post(this.routes.createAndUpdateUserDevice, userPayload);
   }
@@ -76,5 +75,27 @@ export class AuthService {
 
   updateImage(imageData:any){
     return this.http.put(this.routes.imageUpdatePath,imageData);
+  }
+
+  list(){
+    return this.http.get(this.routes.listPath);
+  }
+
+  forgetPassword(mobileNo:string){
+    return this.http.post(this.routes.verifyMobilePath(mobileNo));
+  }
+
+  otp(email:string,mobileNo:string){
+    return this.http.post(this.routes.otpPath(email,mobileNo));
+  }
+  verifyOTP(otp:number,mobileNo:string){
+    return this.http.post(this.routes.verifyOTPPath(otp,mobileNo));
+  }
+  setPassword(password:string,mobileNo:string){
+    return this.http.post(this.routes.setPasswordPath(password,mobileNo));
+  }
+
+  changePassword(data:any){
+    return this.http.post(this.routes.changePasswordPath,data);
   }
 }

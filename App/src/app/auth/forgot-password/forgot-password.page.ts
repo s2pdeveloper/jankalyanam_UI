@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/service/auth/auth.service';
+import { LoaderService } from 'src/app/service/loader.service';
+import { ToastService } from 'src/app/core/services';
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.page.html',
@@ -8,18 +11,34 @@ import { Router } from '@angular/router';
 })
 export class ForgotPasswordPage implements OnInit {
 
-  constructor(private router : Router) { }
-
+  constructor(private router : Router, private service: AuthService, private toast: ToastService,
+    private spinner: LoaderService, private activatedRoute: ActivatedRoute) { }
+    mobileNo:string = null;
   ngOnInit() {
   }
 
-  forgotForm = new FormGroup({
-    mobileNo: new FormControl('9999999999')
-  });
+ 
 
   verifyNumber(){
-    console.log('forgot Form',this.forgotForm.value);
-    this.router.navigate(['/auth/email-for-otp'])
+    console.log('mobileNo---',this.mobileNo);
+    if(this.mobileNo == null){
+      this.toast.errorToast("Please Enter The Mobile No");
+    }
+
+    this.service.forgetPassword(this.mobileNo).subscribe({
+      next: (res) => {
+        const item = {
+          'mobileNo':this.mobileNo,
+           'email':res.email
+           }
+        this.router.navigate(['/auth/email-for-otp',item])
+      },
+      error: (err) => {
+        
+        this.toast.errorToast(err.message);
+      },
+    });
+   
   }
 
 }

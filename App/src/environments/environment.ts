@@ -4,10 +4,10 @@
 
 export const environment = {
   production: false,
-  // apiEndpoint: 'http://localhost:1996/',
-  // base_url: 'http://localhost:1996/',
-  apiEndpoint:  'https://api-dev.jankalyan.life/',
-  base_url:  'https://api-dev.jankalyan.life/',
+  apiEndpoint: 'http://localhost:1996/',
+  base_url: 'http://localhost:1996/',
+  // apiEndpoint:  'https://api-dev.jankalyan.life/',
+  // base_url:  'https://api-dev.jankalyan.life/',
 };
 
 /*
