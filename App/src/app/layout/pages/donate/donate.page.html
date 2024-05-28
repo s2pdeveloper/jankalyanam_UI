@@ -1,7 +1,13 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
-    <ion-back-button slot="start" (click)="navigate()" default-href=""></ion-back-button>
-    <ion-title class="ion-justify-content-center">{{'donate' | translate}}</ion-title>
+    <ion-back-button
+      slot="start"
+      (click)="navigate()"
+      default-href=""
+    ></ion-back-button>
+    <ion-title class="ion-justify-content-center"
+      >{{'donate' | translate}}</ion-title
+    >
   </ion-toolbar>
 </ion-header>
 
@@ -12,9 +18,9 @@
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
             <ion-item fill="outline" class="input">
-                <ion-label position="floating" labelPlacement="stacked">
-                    {{'Name' | translate  }}
-                </ion-label>
+              <ion-label position="floating" labelPlacement="stacked">
+                {{'Name' | translate }}
+              </ion-label>
               <ion-input
                 placeholder="Full Name"
                 formControlName="name"
@@ -25,10 +31,15 @@
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
             <ion-item fill="outline" class="input">
-              <ion-label position="floating" labelPlacement="stacked"
-                > {{'age' | translate  }}</ion-label
+              <ion-label position="floating" labelPlacement="stacked">
+                {{'age' | translate }}</ion-label
               >
-              <ion-input placeholder="Age" label-placement="floating" formControlName="age" type="number"></ion-input>
+              <ion-input
+                placeholder="Age"
+                label-placement="floating"
+                formControlName="age"
+                type="number"
+              ></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -48,7 +59,10 @@
             </ion-item>
           </ion-col>
         </ion-row>
-        <ion-row *ngIf="isFemale" class="ion-align-items-center ion-justify-content-center">
+        <ion-row
+          *ngIf="isFemale"
+          class="ion-align-items-center ion-justify-content-center"
+        >
           <ion-col size="12">
             <ion-item fill="outline" class="input" lines="none">
               <ion-label position="floating" lablePlacement="stacked"
@@ -64,8 +78,11 @@
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
             <ion-item fill="outline">
-              <ion-label *ngIf="!f['donationDate'].value" position="floating" labelPlacement="stacked"
-                >{{'donationDate' | translate  }}</ion-label
+              <ion-label
+                *ngIf="!f['donationDate'].value"
+                position="floating"
+                labelPlacement="stacked"
+                >{{'donationDate' | translate }}</ion-label
               >
               <p class="ion-margin-end">{{f['donationDate'].value | date}}</p>
               <ion-icon
@@ -83,7 +100,7 @@
           <ion-col size="12">
             <ion-item fill="outline" class="input">
               <ion-label position="floating" labelPlacement="stacked"
-                >{{'mobileNo' | translate  }}</ion-label
+                >{{'mobileNo' | translate }}</ion-label
               >
               <ion-input
                 placeholder="mobileNo"
@@ -102,8 +119,11 @@
                 placeholder="{{'select bloodgroup' | translate}}"
                 formControlName="bloodGroup"
               >
-              
-                <ion-select-option *ngFor="let item of bloodGroup" value="{{item}}">{{item}}</ion-select-option>
+                <ion-select-option
+                  *ngFor="let item of bloodGroup"
+                  value="{{item}}"
+                  >{{item}}</ion-select-option
+                >
               </ion-select>
             </ion-item>
           </ion-col>
@@ -113,7 +133,7 @@
           <ion-col size="12">
             <ion-item fill="outline" class="input">
               <ion-label position="floating" labelPlacement="stacked"
-                >{{'hemoglobin' | translate  }}</ion-label
+                >{{'hemoglobin' | translate }}</ion-label
               >
               <ion-input
                 placeholder="hemoglobin"
@@ -122,7 +142,66 @@
             </ion-item>
           </ion-col>
         </ion-row>
-        
+
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col size="12">
+            <ion-item fill="outline" class="input">
+              <ion-label position="floating" labelPlacement="stacked">
+                {{'state' | translate }}</ion-label
+              >
+              <ion-input
+                placeholder="State"
+                label-placement="floating"
+                formControlName="state"
+              ></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col size="12">
+            <ion-item fill="outline" class="input">
+              <ion-label position="floating" labelPlacement="stacked">
+                {{'District' | translate }}</ion-label
+              >
+              <ion-input
+                placeholder="District"
+                label-placement="floating"
+                formControlName="district"
+              ></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col size="12">
+            <ion-item fill="outline" class="input">
+              <ion-label position="floating" labelPlacement="stacked">
+                {{'Tahsil' | translate }}</ion-label
+              >
+              <ion-input
+                placeholder="Tahsil"
+                label-placement="floating"
+                formControlName="tehsil"
+              ></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col size="12">
+            <ion-item fill="outline" class="input">
+              <ion-label position="floating" labelPlacement="stacked">
+                {{'Village' | translate }}</ion-label
+              >
+              <ion-input
+                placeholder="Village"
+                label-placement="floating"
+                formControlName="village"
+              ></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
 
         <!-- <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
@@ -168,7 +247,7 @@
             </ion-item>
           </ion-col>
         </ion-row> -->
-        
+
         <!-- <ion-row *ngIf="isCity"  class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12" class="ion-justify-content-between">
             <ion-item fill="outline">
@@ -215,9 +294,8 @@
           </ion-col>
         </ion-row>
    -->
-       
 
-   <ion-row class="ion-align-items-center ion-justify-content-center">
+        <!-- <ion-row class="ion-align-items-center ion-justify-content-center">
     <ion-col size="12">
       <ion-item fill="outline">
         <ion-label position="floating" labelPlacement="stacked"
@@ -250,11 +328,7 @@
               </ion-title>
             </ion-toolbar>
           </ng-template>
-          <!-- <ng-template ionicSelectableItemTemplate let-port="item">
-            <ion-label class="ion-text-capitalize ion-text-wrap">
-              {{port?.name}}
-            </ion-label>
-          </ng-template> -->
+         
         </ionic-selectable>
       </ion-item>
     </ion-col>
@@ -293,11 +367,7 @@
               </ion-title>
             </ion-toolbar>
           </ng-template>
-          <!-- <ng-template ionicSelectableItemTemplate let-port="item">
-            <ion-label class="ion-text-capitalize ion-text-wrap">
-              {{port?.name}}
-            </ion-label>
-          </ng-template> -->
+          
         </ionic-selectable>
       </ion-item>
     </ion-col>
@@ -336,11 +406,7 @@
               </ion-title>
             </ion-toolbar>
           </ng-template>
-          <!-- <ng-template ionicSelectableItemTemplate let-port="item">
-            <ion-label class="ion-text-capitalize ion-text-wrap">
-              {{port?.name}}
-            </ion-label>
-          </ng-template> -->
+         
         </ionic-selectable>
       </ion-item>
     </ion-col>
@@ -379,26 +445,35 @@
               </ion-title>
             </ion-toolbar>
           </ng-template>
-          <!-- <ng-template ionicSelectableItemTemplate let-port="item">
-            <ion-label class="ion-text-capitalize ion-text-wrap">
-              {{port?.name}}
-            </ion-label>
-          </ng-template> -->
+         
         </ionic-selectable>
       </ion-item>
     </ion-col>
-  </ion-row>
+  </ion-row> -->
 
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
-            
-              <ion-checkbox formControlName="illness" justify="start"
-                >Do you have any type of illness</ion-checkbox
-              >
+            <ion-checkbox formControlName="illness" justify="start"  labelPlacement="end"
+              >Do you have any type of illness</ion-checkbox
+            >
+          </ion-col>
+          <ion-col size="9">
+            <ion-checkbox
+              formControlName="illness"
+              justify="start"
+              labelPlacement="end"
+              >I agree the Terms and condition
+              
+            </ion-checkbox>
             
           </ion-col>
+          <ion-col size="3">
+            <ion-icon name="information-circle-outline" class="info-terms" color="dark"></ion-icon>
+          </ion-col>
         </ion-row>
-        <ion-row class="ion-align-items-center ion-justify-content-center ion-margin-bottom">
+ 
+
+        <!-- <ion-row class="ion-align-items-center ion-justify-content-center ion-margin-bottom">
           <ion-col size="12">
             <ion-checkbox #openModalCheckbox justify="start" id="open-modal" expand="block" (ionChange)="isTermsAgreed = $event.detail.checked">
            Terms and Conditions
@@ -432,9 +507,11 @@
               </ion-modal>
             </ion-content>
           </ion-col>
-        </ion-row>
-        
-        <ion-row class="ion-align-items-center ion-justify-content-center ion-margin-top">
+        </ion-row> -->
+
+        <ion-row
+          class="ion-align-items-center ion-justify-content-center ion-margin-top"
+        >
           <ion-col size="12">
             <ion-button
               expand="block"

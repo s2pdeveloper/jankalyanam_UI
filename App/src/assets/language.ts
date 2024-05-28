@@ -17,7 +17,12 @@ export const languageConst={
       "select bloodgroup" : "Select Blood Group",
       "close" : "CLOSE",
       "calendar" : "Calendar",
-      "save" : "SAVE"
+      "save" : "SAVE",
+      "District": "District",
+      "Tahsil": "Tahsil",
+      "Village": "Village",
+
+
     },
     hi:{
         "Change Profile":"उदाहरण और वाक्य",
