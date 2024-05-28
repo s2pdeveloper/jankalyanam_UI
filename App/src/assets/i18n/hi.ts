@@ -9,5 +9,7 @@ export const hindi={
   "illness": "बीमारी",
   "mobileNo": "मोबाइल नंबर",
   "Name": "नाम",
-  "state": "राज्य"
+  "state": "राज्य",
+  "State": "राज्य"
+
 }
