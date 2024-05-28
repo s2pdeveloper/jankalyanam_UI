@@ -34,6 +34,8 @@ export class EditProfilePage implements OnInit {
     lastName: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required]),
     mobileNo: new FormControl('', [Validators.required]),
+    bloodGroup: new FormControl('', [Validators.required]),
+    pincode: new FormControl('', [Validators.required]),
     state: new FormControl('', [Validators.required]),
     city: new FormControl('', [Validators.required]),
     role: new FormControl('',),

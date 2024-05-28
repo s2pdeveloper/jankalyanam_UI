@@ -24,7 +24,14 @@ export class AuthService {
     verifyMobilePath:(mobileNo: string) =>`user/forget?mobileNo=${mobileNo}`,
     otpPath:(email: string,mobileNo: string) =>`user/sendMail?mobileNo=${mobileNo}&email=${email}`,
     verifyOTPPath:(otp: string,mobileNo: string) =>`user/verify?mobileNo=${mobileNo}&otp=${otp}`,
-    setPasswordPath:(password: string,mobileNo: string) =>`user/setPassword?mobileNo=${mobileNo}&password=${password}`
+    setPasswordPath:(password: string,mobileNo: string) =>`user/setPassword?mobileNo=${mobileNo}&password=${password}`,
+    
+    getAllStatePath: `address/getAllState`,
+    getDistrictByStateIdPath:(stateId:string)=> `address/getDistrictByStateId?stateId=${stateId}`,
+    getTahsilByDistrictIdPath:(districtId:string)=> `address/getTahsilByDistrictId?districtId=${districtId}`,
+    getVillageByTahsilIdPath:(tahsilId:string)=> `address/getVillageByTahsilId?tahsilId=${tahsilId}`,
+
+
    
   };
 
@@ -97,5 +104,20 @@ export class AuthService {
 
   changePassword(data:any){
     return this.http.post(this.routes.changePasswordPath,data);
+  }
+
+
+
+  getAllState(){
+    return this.http.get(this.routes.getAllStatePath);
+  }
+  getDistrictByStateId(stateId:string){
+    return this.http.get(this.routes.getDistrictByStateIdPath(stateId));
+  }
+  getTahsilByDistrictId(districtId:string){
+    return this.http.get(this.routes.getTahsilByDistrictIdPath(districtId));
+  }
+  getVillageByTahsilId(tahsilId:string){
+    return this.http.get(this.routes.getVillageByTahsilIdPath(tahsilId));
   }
 }

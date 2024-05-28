@@ -9,5 +9,7 @@ export const english={
   "illness": "illness",
   "mobileNo": "Mobile No",
   "name": "Name",
-  "state": "state"
+  "state": "state",
+  "State": "State"
+
 }

@@ -1,0 +1,12 @@
+.input-class {
+    --border-color: #d7d8da;
+    --border-radius: 0.6em;
+    --border-width: 1px;
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--border-radius);
+    // box-shadow: 0 0 10px #dee2e6;
+  }
+  
+//   .input-class:focus-within {
+//     --border-color: #555;
+//   }

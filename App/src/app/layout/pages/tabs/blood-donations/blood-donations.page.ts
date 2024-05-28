@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
 import { ModalService } from "src/app/service/modal.service";
 import { DonationDetailsComponent } from "src/app/shared/models/donation-details/donation-details.component";
@@ -7,6 +7,8 @@ import { DonationHistoryComponent } from "src/app/shared/models/donation-history
 import { BloodDonationService } from "src/app/service/donation/donation.service";
 import { DATE_PIPE_DEFAULT_OPTIONS } from "@angular/common";
 import { LoaderService } from "src/app/service/loader.service";
+import { IonModal } from "@ionic/angular";
+import { OverlayEventDetail } from '@ionic/core/components';
 @Component({
   selector: "app-blood-donations",
   templateUrl: "./blood-donations.page.html",
@@ -28,6 +30,9 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
   latestCount: number = 0;
   loader = true;
   loaderDisabled = false;
+  bloodGroup: any = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
+  bloodType = ['Type1', 'Type2', 'Type3'];
+  hospitalName = ['Hospital A', 'Hospital B', 'Hospital C'];
   constructor(
     private router: Router,
     private modalService: ModalService,
@@ -271,4 +276,62 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
     );
   
   }
+
+  // search model
+  @ViewChild(IonModal) modal: IonModal;
+
+  message = 'This modal example uses triggers to automatically open a modal when the button is clicked.';
+  name: string;
+
+  cancel() {
+   this.clearSelections();
+    this.modal.dismiss(null, 'cancel');
+  }
+
+  confirm() {
+    this.modal.dismiss(this.name, 'confirm');
+  }
+
+  onWillDismiss(event: Event) {
+    const ev = event as CustomEvent<OverlayEventDetail<string>>;
+    if (ev.detail.role === 'confirm') {
+      this.message = `Hello, ${ev.detail.data}!`;
+    }
+  }
+
+
+ 
+  //for multiple select of filter tabs
+
+  selectedBloodGroups: string[] = [];
+  selectedBloodTypes: string[] = [];
+  selectedHospitals: string[] = [];
+
+  toggleBloodGroup(group: string) {
+    if (this.selectedBloodGroups.includes(group)) {
+      this.selectedBloodGroups = this.selectedBloodGroups.filter(g => g !== group);
+    } else {
+      this.selectedBloodGroups.push(group);
+    }
+  }
+
+  toggleBloodType(type: string) {
+    if (this.selectedBloodTypes.includes(type)) {
+      this.selectedBloodTypes = this.selectedBloodTypes.filter(t => t !== type);
+    } else {
+      this.selectedBloodTypes.push(type);
+    }
+  }
+
+  
+  onHospitalChange(event: any) {
+    this.selectedHospitals = event.detail.value;
+  }
+
+  clearSelections() {
+    this.selectedBloodGroups = [];
+    this.selectedBloodTypes = [];
+    this.selectedHospitals = [];
+  }
+  
 }

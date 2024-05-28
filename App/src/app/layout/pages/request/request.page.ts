@@ -8,6 +8,7 @@ import { RestService } from "src/app/core/services/rest.service";
 import { IonicSelectableComponent } from "ionic-selectable";
 import { CalenderComponent } from "src/app/shared/models/calender/calender.component";
 import { LoaderService } from "src/app/service/loader.service";
+import { AuthService } from 'src/app/service/auth/auth.service';
 
 @Component({
   selector: "app-request",
@@ -17,10 +18,43 @@ import { LoaderService } from "src/app/service/loader.service";
 export class RequestPage implements OnInit {
   @ViewChild("selectableState") selectableState: any = IonicSelectableComponent;
   @ViewChild("selectableCity") selectableCity: any = IonicSelectableComponent;
-  states: any = [];
-  district: any = [];
+  states: any = [
+    {
+      id: 1,
+      stateName: 'Andhra Pradesh',
+    },
+    {
+      id: 2,
+      stateName: 'Arunachal Pradesh',
+    },
+    {
+      id: 3,
+      stateName: 'Assam',
+    },
+  ];
+  district: any = [
+    {
+      id: 2,
+      districtName: 'Anantapur',
+      stateId: 1,
+      districtTahsil: [],
+    },
+
+    {
+      id: 14,
+      districtName: 'YSR Kadapa',
+      stateId: 1,
+      districtTahsil: [],
+    },
+  ];
   tehsil: any = [];
   village: any = [];
+  selectTable = {
+    state: null,
+    district: null,
+    tahsil: null,
+    village: null,
+  };
   isFemale: boolean = false;
   isCity: boolean = false;
   bloodGroup: any = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
@@ -33,11 +67,20 @@ export class RequestPage implements OnInit {
     private toast: ToastService,
     private spinner: LoaderService,
     private modalController: ModalController,
-    private restService: RestService
+    private restService: RestService,
+    private authService: AuthService,
+
   ) {}
 
   ngOnInit() {
-    this.states = this.restService.getStatesOfCountry("IN");
+    // this.states = this.restService.getStatesOfCountry("IN");
+  }
+
+  ionViewWillEnter() {
+    // this.service.getAllState().subscribe((success: any) => {
+    //   // this.states = success;
+    //   // console.log('this.listData-----', this.states);
+    // });
   }
 
   bloodRequestForm = new FormGroup({
@@ -52,8 +95,8 @@ export class RequestPage implements OnInit {
     units: new FormControl("", [Validators.required]),
     state: new FormControl("", [Validators.required]),
     district:  new FormControl("", [Validators.required]),
-    tehsil :  new FormControl("", [Validators.required]),
-    village :  new FormControl("", [Validators.required]),
+    tehsil :  new FormControl(""),
+    village :  new FormControl(""),
     gender: new FormControl("", [Validators.required]),
     fatherOrHusband: new FormControl(""),
     bloodGroup: new FormControl("", [Validators.required]),
@@ -61,6 +104,41 @@ export class RequestPage implements OnInit {
 
   get f() {
     return this.bloodRequestForm.controls;
+  }
+
+  getDistrictByStateId() {
+    this.selectTable.tahsil = null;
+    this.selectTable.village = null;
+    this.selectTable.district = null;
+    this.tehsil = [];
+    this.village = [];
+
+    this.authService
+      .getDistrictByStateId(this.selectTable.state.id)
+      .subscribe((success: any) => {
+        this.district = success;
+      });
+  }
+
+  getTahsilByDistrictId() {
+    this.selectTable.tahsil = null;
+    this.selectTable.village = null;
+    this.tehsil = [];
+    this.village = [];
+    this.authService
+      .getTahsilByDistrictId(this.selectTable.district.id)
+      .subscribe((success: any) => {
+        this.tehsil = success;
+      });
+  }
+
+  getVillageByTahsilId() {
+    this.selectTable.village = null;
+    this.authService
+      .getVillageByTahsilId(this.selectTable.tahsil.id)
+      .subscribe((success: any) => {
+        this.village = success;
+      });
   }
 
   async create() {
@@ -110,14 +188,7 @@ export class RequestPage implements OnInit {
     });
   }
 
-  // getCity(state: any) {
-  //   this.f["state"].setValue(state.value.name);
-  //   this.isCity = true;
-  //   this.cities = this.restService.getCitiesOfState(
-  //     state.value.countryCode,
-  //     state.value.isoCode
-  //   );
-  // }
+ 
   setCity(city: any) {
     this.f["city"].setValue(city.value.name);
   }
