@@ -113,6 +113,5 @@ export class ProfilePage implements OnInit {
     this.router.navigate(["/auth/edit-profile"], {
       queryParams: { id: userId },
     });
-    console.log("---id", userId);
   }
 }
