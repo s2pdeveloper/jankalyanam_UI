@@ -27,9 +27,9 @@ export class AuthService {
     setPasswordPath:(password: string,mobileNo: string) =>`user/setPassword?mobileNo=${mobileNo}&password=${password}`,
     
     getAllStatePath: `address/getAllState`,
-    getDistrictByStateIdPath:(stateId:string)=> `address/getDistrictByStateId?stateId=${stateId}`,
-    getTahsilByDistrictIdPath:(districtId:string)=> `address/getTahsilByDistrictId?districtId=${districtId}`,
-    getVillageByTahsilIdPath:(tahsilId:string)=> `address/getVillageByTahsilId?tahsilId=${tahsilId}`,
+    getDistrictByStateIdPath:(stateId:string)=> `address/getDistrictByStateId/${stateId}`,
+    getTahsilByDistrictIdPath:(districtId:string)=> `address/getTahsilByDistrictId/${districtId}`,
+    getVillageByTahsilIdPath:(tahsilId:string)=> `address/getVillageByTahsilId/${tahsilId}`,
 
 
    

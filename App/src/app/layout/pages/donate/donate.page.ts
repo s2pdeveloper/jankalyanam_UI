@@ -32,6 +32,7 @@ export class DonatePage implements OnInit {
   disabledCity: Boolean = true;
   isCity: boolean = false;
   translatedName: string = '';
+  setModal:boolean=false
   constructor(
     private service: BloodDonationService,
     private router: Router,
@@ -207,5 +208,9 @@ export class DonatePage implements OnInit {
     this.f['district'].setValue(this.userDetails.district);
     this.f['tehsil'].setValue(this.userDetails.tehsil);
     this.f['village'].setValue(this.userDetails.village);
+  }
+
+  handleModal(modalValue: boolean) {
+    this.setModal = modalValue;
   }
 }

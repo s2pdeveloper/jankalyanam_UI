@@ -33,6 +33,9 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
   bloodGroup: any = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
   bloodType = ['Type1', 'Type2', 'Type3'];
   hospitalName = ['Hospital A', 'Hospital B', 'Hospital C'];
+  selectedBloodGroups: string[] = [];
+  selectedBloodTypes: string[] = [];
+  selectedHospitals: string[] = [];
   constructor(
     private router: Router,
     private modalService: ModalService,
@@ -75,6 +78,9 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
         pageSize: this.pageSize,
         search: this.search,
         sortBy: this.sortBy,
+        bloodGroup:this.selectedBloodGroups,
+        bloodType:this.selectedBloodTypes,
+        hospitalName:this.selectedHospitals
       };
 
       this.service.getAllAttenderList(params, status).subscribe(
@@ -139,6 +145,9 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
       pageSize: this.pageSize,
       search: this.search,
       sortBy: this.sortBy,
+      bloodGroup:this.selectedBloodGroups,
+      bloodType:this.selectedBloodTypes,
+      hospitalName:this.selectedHospitals
     };
     this.service.getAllAdminList(params, status).subscribe(
       async (res) => {
@@ -289,6 +298,11 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
   }
 
   confirm() {
+    console.log("this.selectedHospitals---",this.selectedHospitals)
+    console.log( this.selectedBloodGroups,
+      this.selectedBloodTypes ,
+      this.selectedHospitals);
+    
     this.modal.dismiss(this.name, 'confirm');
   }
 
@@ -303,9 +317,7 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
  
   //for multiple select of filter tabs
 
-  selectedBloodGroups: string[] = [];
-  selectedBloodTypes: string[] = [];
-  selectedHospitals: string[] = [];
+ 
 
   toggleBloodGroup(group: string) {
     if (this.selectedBloodGroups.includes(group)) {

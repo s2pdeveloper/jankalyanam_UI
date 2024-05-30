@@ -114,7 +114,7 @@
     <app-skeleton></app-skeleton>
   </div>
   <ng-template #otherContent>
-    <ion-searchbar></ion-searchbar>
+    <!-- <ion-searchbar></ion-searchbar> -->
     <div>
       <ion-item class="mt-2" lines="none">
         <ion-segment [(ngModel)]="activeSegment" [scrollable]="true">
@@ -127,6 +127,8 @@
           </ion-segment-button>
         </ion-segment>
       </ion-item>
+    <ion-searchbar></ion-searchbar>
+
       <div [ngSwitch]="activeSegment">
         <div *ngSwitchCase="'latest'">
           <ng-container *ngIf="latestTabDetails.length > 0;else noDataLatest ">
@@ -146,7 +148,7 @@
                       <div class="ion-margin-top">
                         <i class="fa-solid fa-location-dot"></i>
                         <ion-label class="donar"
-                          >{{l?.city +', '+l?.state}}</ion-label
+                          >{{l?.district +', '+l?.state}}</ion-label
                         >
                       </div>
                       <div class="ion-margin-top donar-container">
@@ -210,7 +212,7 @@
                       <div class="ion-margin-top">
                         <i class="icons-img fa-solid fa-location-dot"></i>
                         <ion-label class="donar"
-                          >{{h?.city +', '+h?.state}}</ion-label
+                          >{{h?.district +', '+h?.state}}</ion-label
                         >
                       </div>
                       <div class="ion-margin-top donar-container">

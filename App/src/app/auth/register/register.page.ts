@@ -23,35 +23,8 @@ export class RegisterPage implements OnInit {
     private activatedRoute: ActivatedRoute,
     private modalController: ModalController
   ) {}
-  states: any = [
-    {
-      id: 1,
-      stateName: 'Andhra Pradesh',
-    },
-    {
-      id: 2,
-      stateName: 'Arunachal Pradesh',
-    },
-    {
-      id: 3,
-      stateName: 'Assam',
-    },
-  ];
-  district: any = [
-    {
-      id: 2,
-      districtName: 'Anantapur',
-      stateId: 1,
-      districtTahsil: [],
-    },
-
-    {
-      id: 14,
-      districtName: 'YSR Kadapa',
-      stateId: 1,
-      districtTahsil: [],
-    },
-  ];
+  states: any = [];
+  district: any = [];
   tehsil: any = [];
   village: any = [];
   selectTable = {
@@ -61,7 +34,6 @@ export class RegisterPage implements OnInit {
     village: null,
   };
   bloodGroup: any = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
-  @ViewChild('selectableState') selectableState: any = IonicSelectableComponent;
   ngOnInit() {}
   registrationForm = new FormGroup({
     firstName: new FormControl('', [Validators.required]),
@@ -86,10 +58,10 @@ export class RegisterPage implements OnInit {
     this.activatedRoute.snapshot.paramMap.get('value') == 'true';
     console.log('inside the Appp-----');
 
-    // this.service.getAllState().subscribe((success: any) => {
-    //   // this.states = success;
-    //   // console.log('this.listData-----', this.states);
-    // });
+    this.service.getAllState().subscribe((success: any) => {
+      this.states = success;
+      // console.log('this.listData-----', this.states);
+    });
   }
   get f() {
     return this.registrationForm.controls;
@@ -130,83 +102,27 @@ export class RegisterPage implements OnInit {
       });
   }
 
-  // getDistrict() {
-  //   console.log('this.selectTable.state--', this.selectTable.state);
-
-  //   if (this.selectTable.state) {
-  //     this.selectTable.tahsil = null;
-  //     this.selectTable.village = null;
-  //     this.selectTable.district = null;
-  //     this.tehsil = [];
-  //     this.village = [];
-  //     const matchingItem = this.listData.find(
-  //       (data) => data.stateName === this.selectTable.state.stateName
-  //     );
-  //     this.district = matchingItem ? matchingItem.stateDistrict : null;
-
-  //     console.log('district-----', this.district);
-  //   }
-  // }
-  // getTahsil() {
-  //   if (this.selectTable.district) {
-  //     this.selectTable.tahsil = null;
-  //     this.selectTable.village = null;
-  //     this.tehsil = [];
-  //     this.village = [];
-  //     const matchingItem = this.district.find(
-  //       (data) => data.districtName === this.selectTable.district.districtName
-  //     );
-  //     this.tehsil = matchingItem ? matchingItem.districtTahsil : null;
-
-  //     console.log('tehsil-----', this.tehsil);
-  //   }
-  // }
-  // getVillage() {
-  //   if (this.selectTable.tahsil) {
-  //     this.selectTable.village = null;
-  //     const matchingItem = this.tehsil.find(
-  //       (data) => data.tahsilName === this.selectTable.tahsil.tahsilName
-  //     );
-  //     this.village = matchingItem ? matchingItem.tahsilVillage : null;
-
-  //     console.log('village-----', this.village);
-  //   }
-  // }
-  // setVillage(event){
-  //   if (event && event.value && event.value.villageName) {
-  //     this.f["village"].setValue(event.value.villageName);
-  //   }
-
-  // }
-  // patchSelectTableData() {
-  //   for (const key in this.selectTable) {
-  //     // if (this.selectTable[key] && Array.isArray(this.selectTable[key])) {
-  //     //   this.registrationForm[key].setValue(this.selectTable[key].map(x => x.ccode));
-  //     // } else if (this.selectTable[key] && this.selectTable[key]?.ccode) {
-  //     //   this.registrationForm[key].setValue(this.selectTable[key].ccode);
-  //     // }
-  //   }
-  // }
+  
   async register() {
+
+    if (!!this.selectTable.state) {
+      this.f['state'].setValue(this.selectTable.state.stateName);
+    }
+    if (!!this.selectTable.district) {
+      this.f['district'].setValue(this.selectTable.district.districtName);
+    }
+    if (!!this.selectTable.tahsil) {
+      this.f['tahsil'].setValue(this.selectTable.tahsil.tahsilName);
+    }
+    if (!!this.selectTable.village) {
+      this.f['village'].setValue(this.selectTable.village.villageName);
+    }
     if (this.registrationForm.invalid) {
       this.toast.successToast('Please fill required fields!');
       return;
     }
-    let formValue = this.registrationForm.value;
-    if (!!this.selectTable.state) {
-      formValue.state = this.selectTable.state.stateName;
-    }
-    if (!!this.selectTable.district) {
-      formValue.district = this.selectTable.district.districtName;
-    }
-    if (!!this.selectTable.tahsil) {
-      formValue.tahsil = this.selectTable.tahsil.tahsilName;
-    }
-    if (!!this.selectTable.village) {
-      formValue.village = this.selectTable.village.villageName;
-    }
     await this.spinner.show();
-    this.service.register(formValue).subscribe(
+    this.service.register(this.registrationForm.value).subscribe(
       async (success: any) => {
         this.toast.successToast(success.message);
         this.registrationForm.reset();

@@ -16,37 +16,9 @@ import { AuthService } from 'src/app/service/auth/auth.service';
   styleUrls: ["./request.page.scss"],
 })
 export class RequestPage implements OnInit {
-  @ViewChild("selectableState") selectableState: any = IonicSelectableComponent;
-  @ViewChild("selectableCity") selectableCity: any = IonicSelectableComponent;
-  states: any = [
-    {
-      id: 1,
-      stateName: 'Andhra Pradesh',
-    },
-    {
-      id: 2,
-      stateName: 'Arunachal Pradesh',
-    },
-    {
-      id: 3,
-      stateName: 'Assam',
-    },
-  ];
-  district: any = [
-    {
-      id: 2,
-      districtName: 'Anantapur',
-      stateId: 1,
-      districtTahsil: [],
-    },
 
-    {
-      id: 14,
-      districtName: 'YSR Kadapa',
-      stateId: 1,
-      districtTahsil: [],
-    },
-  ];
+  states: any = [];
+  district: any = [];
   tehsil: any = [];
   village: any = [];
   selectTable = {
@@ -58,7 +30,7 @@ export class RequestPage implements OnInit {
   isFemale: boolean = false;
   isCity: boolean = false;
   bloodGroup: any = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
-  bloodType:any = [];
+  bloodType:any = ["REGULAR"];
   units: any = [1,2,3,4,5,6,7,8,9,10];
   hemoglobin:any=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
   constructor(
@@ -67,7 +39,6 @@ export class RequestPage implements OnInit {
     private toast: ToastService,
     private spinner: LoaderService,
     private modalController: ModalController,
-    private restService: RestService,
     private authService: AuthService,
 
   ) {}
@@ -77,10 +48,12 @@ export class RequestPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    // this.service.getAllState().subscribe((success: any) => {
-    //   // this.states = success;
-    //   // console.log('this.listData-----', this.states);
-    // });
+    console.log("inside request form---");
+    
+    this.authService.getAllState().subscribe((success: any) => {
+      this.states = success;
+      console.log('this.listData-----', this.states);
+    });
   }
 
   bloodRequestForm = new FormGroup({
@@ -95,11 +68,13 @@ export class RequestPage implements OnInit {
     units: new FormControl("", [Validators.required]),
     state: new FormControl("", [Validators.required]),
     district:  new FormControl("", [Validators.required]),
-    tehsil :  new FormControl(""),
+    tahsil :  new FormControl(""),
     village :  new FormControl(""),
     gender: new FormControl("", [Validators.required]),
     fatherOrHusband: new FormControl(""),
     bloodGroup: new FormControl("", [Validators.required]),
+    bloodType: new FormControl("", [Validators.required]),
+
   });
 
   get f() {
@@ -142,6 +117,19 @@ export class RequestPage implements OnInit {
   }
 
   async create() {
+
+    if (!!this.selectTable.state) {
+      this.f['state'].setValue(this.selectTable.state.stateName);
+    }
+    if (!!this.selectTable.district) {
+      this.f['district'].setValue(this.selectTable.district.districtName);
+    }
+    if (!!this.selectTable.tahsil) {
+      this.f['tahsil'].setValue(this.selectTable.tahsil.tahsilName);
+    }
+    if (!!this.selectTable.village) {
+      this.f['village'].setValue(this.selectTable.village.villageName);
+    }
     if (this.bloodRequestForm.invalid) {
       console.log(this.bloodRequestForm.controls);
 
@@ -189,9 +177,7 @@ export class RequestPage implements OnInit {
   }
 
  
-  setCity(city: any) {
-    this.f["city"].setValue(city.value.name);
-  }
+
 
   checkGender() {
     console.log("this.f[].value", this.f["gender"].value);
