@@ -1,7 +1,13 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
-    <ion-back-button slot="start" (click)="navigate()" default-href=""></ion-back-button>
-    <ion-title class="ion-justify-content-center">{{'donate' | translate}}</ion-title>
+    <ion-back-button
+      slot="start"
+      (click)="navigate()"
+      default-href=""
+    ></ion-back-button>
+    <ion-title class="ion-justify-content-center"
+      >{{'donate' | translate}}</ion-title
+    >
   </ion-toolbar>
 </ion-header>
 
@@ -15,7 +21,11 @@
               <ion-label position="floating" labelPlacement="stacked">
                 {{'Name' | translate }}
               </ion-label>
-              <ion-input placeholder="Full Name" formControlName="name"></ion-input>
+              <ion-input
+                [readonly]="true"
+                placeholder="Full Name"
+                formControlName="name"
+              ></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -23,55 +33,135 @@
           <ion-col size="12">
             <ion-item fill="outline" class="input">
               <ion-label position="floating" labelPlacement="stacked">
-                {{'age' | translate }}</ion-label>
-              <ion-input placeholder="Age" label-placement="floating" formControlName="age" type="number"></ion-input>
+                {{'age' | translate }}</ion-label
+              >
+              <ion-input
+                placeholder="Age"
+                label-placement="floating"
+                formControlName="age"
+                type="number"
+              ></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
             <ion-item fill="outline">
-              <ion-select aria-label="Fruit" interface="action-sheet" placeholder="{{'select gender' | translate}}"
-                formControlName="gender" (ionChange)="checkGender()">
+              <ion-select
+                aria-label="Fruit"
+                interface="action-sheet"
+                placeholder="{{'select gender' | translate}}"
+                formControlName="gender"
+                (ionChange)="checkGender()"
+              >
                 <ion-select-option value="MALE">Male</ion-select-option>
                 <ion-select-option value="FEMALE">Female</ion-select-option>
               </ion-select>
             </ion-item>
           </ion-col>
         </ion-row>
-        <ion-row *ngIf="isFemale" class="ion-align-items-center ion-justify-content-center">
+        <ion-row
+          *ngIf="isFemale"
+          class="ion-align-items-center ion-justify-content-center"
+        >
           <ion-col size="12">
             <ion-item fill="outline" class="input" lines="none">
-              <ion-label position="floating" lablePlacement="stacked">Father/Husband</ion-label>
-              <ion-input placeholder="Father/Husband" formControlName="fatherOrHusband"></ion-input>
+              <ion-label position="floating" lablePlacement="stacked"
+                >Father/Husband</ion-label
+              >
+              <ion-input
+                placeholder="Father/Husband"
+                formControlName="fatherOrHusband"
+              ></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
             <ion-item fill="outline">
-              <ion-label *ngIf="!f['donationDate'].value" position="floating" labelPlacement="stacked">{{'donationDate'
-                | translate }}</ion-label>
+              <ion-label
+                *ngIf="!f['donationDate'].value"
+                position="floating"
+                labelPlacement="stacked"
+                >{{'donationDate' | translate }}</ion-label
+              >
               <p class="ion-margin-end">{{f['donationDate'].value | date}}</p>
-              <ion-icon slot="end" color="primary" name="calendar-outline" datetime="datetime" class="ion-margin-top"
-                (click)="openCalender('donationDate')"></ion-icon>
+              <ion-icon
+                slot="end"
+                color="primary"
+                name="calendar-outline"
+                datetime="datetime"
+                class="ion-margin-top"
+                (click)="openCalender('donationDate')"
+              ></ion-icon>
             </ion-item>
           </ion-col>
         </ion-row>
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
             <ion-item fill="outline" class="input">
-              <ion-label position="floating" labelPlacement="stacked">{{'mobileNo' | translate }}</ion-label>
-              <ion-input placeholder="mobileNo" formControlName="mobileNo" type="number"></ion-input>
+              <ion-label position="floating" labelPlacement="stacked"
+                >{{'mobileNo' | translate }}</ion-label
+              >
+              <ion-input
+                [readonly]="true"
+                placeholder="mobileNo"
+                formControlName="mobileNo"
+                type="number"
+              ></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
             <ion-item fill="outline">
-              <ion-select aria-label="Fruit" interface="action-sheet" placeholder="{{'select bloodgroup' | translate}}"
-                formControlName="bloodGroup">
-                <ion-select-option *ngFor="let item of bloodGroup" value="{{item}}">{{item}}</ion-select-option>
+              <ion-label position="floating" labelPlacement="stacked"
+                >{{'bloodgroup' | translate }}</ion-label
+              >
+              <ion-input
+                [readonly]="true"
+                placeholder="Blood Group"
+                formControlName="bloodGroup"
+              ></ion-input>
+              <!-- <ion-select
+              
+                aria-label="Fruit"
+                interface="action-sheet"
+                placeholder="{{'select bloodgroup' | translate}}"
+                formControlName="bloodGroup"
+              >
+                <ion-select-option
+                
+                  *ngFor="let item of bloodGroup"
+                  value="{{item}}"
+                  >{{item}}</ion-select-option
+                >
+              </ion-select> -->
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col size="12">
+            <ion-item fill="outline" class="input">
+              <!-- <ion-label position="floating" labelPlacement="stacked"
+                >{{'hemoglobin' | translate }}</ion-label
+              >
+              <ion-input
+                placeholder="hemoglobin"
+                formControlName="hemoglobin"
+              ></ion-input> -->
+              <ion-select
+                aria-label="Hemoglobin"
+                interface="action-sheet"
+                placeholder="Select Hemoglobin"
+                formControlName="hemoglobin"
+              >
+                <ion-select-option
+                  *ngFor="let item of hemoglobin"
+                  value="{{item}}"
+                  >{{item}}</ion-select-option
+                >
               </ion-select>
             </ion-item>
           </ion-col>
@@ -80,8 +170,15 @@
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
             <ion-item fill="outline" class="input">
-              <ion-label position="floating" labelPlacement="stacked">{{'hemoglobin' | translate }}</ion-label>
-              <ion-input placeholder="hemoglobin" formControlName="hemoglobin"></ion-input>
+              <ion-label position="floating" labelPlacement="stacked">
+                {{'state' | translate }}</ion-label
+              >
+              <ion-input
+                [readonly]="true"
+                placeholder="State"
+                label-placement="floating"
+                formControlName="state"
+              ></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -90,8 +187,14 @@
           <ion-col size="12">
             <ion-item fill="outline" class="input">
               <ion-label position="floating" labelPlacement="stacked">
-                {{'state' | translate }}</ion-label>
-              <ion-input placeholder="State" label-placement="floating" formControlName="state"></ion-input>
+                {{'District' | translate }}</ion-label
+              >
+              <ion-input
+                [readonly]="true"
+                placeholder="District"
+                label-placement="floating"
+                formControlName="district"
+              ></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -100,8 +203,14 @@
           <ion-col size="12">
             <ion-item fill="outline" class="input">
               <ion-label position="floating" labelPlacement="stacked">
-                {{'District' | translate }}</ion-label>
-              <ion-input placeholder="District" label-placement="floating" formControlName="district"></ion-input>
+                {{'Tahsil' | translate }}</ion-label
+              >
+              <ion-input
+                [readonly]="true"
+                placeholder="Tahsil"
+                label-placement="floating"
+                formControlName="tehsil"
+              ></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -110,18 +219,14 @@
           <ion-col size="12">
             <ion-item fill="outline" class="input">
               <ion-label position="floating" labelPlacement="stacked">
-                {{'Tahsil' | translate }}</ion-label>
-              <ion-input placeholder="Tahsil" label-placement="floating" formControlName="tehsil"></ion-input>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-
-        <ion-row class="ion-align-items-center ion-justify-content-center">
-          <ion-col size="12">
-            <ion-item fill="outline" class="input">
-              <ion-label position="floating" labelPlacement="stacked">
-                {{'Village' | translate }}</ion-label>
-              <ion-input placeholder="Village" label-placement="floating" formControlName="village"></ion-input>
+                {{'Village' | translate }}</ion-label
+              >
+              <ion-input
+                [readonly]="true"
+                placeholder="Village"
+                label-placement="floating"
+                formControlName="village"
+              ></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -376,70 +481,84 @@
 
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
-            <ion-checkbox formControlName="illness" justify="start" labelPlacement="end">Do you have any type of
-              illness</ion-checkbox>
+            <ion-checkbox
+              formControlName="illness"
+              justify="start"
+              labelPlacement="end"
+              >Do you have any type of illness</ion-checkbox
+            >
           </ion-col>
           <ion-col size="1">
-            <ion-checkbox formControlName="illness" justify="start" labelPlacement="end">
-
+            <ion-checkbox
+              [(ngModel)]="isTermsAgreed"
+              [ngModelOptions]="{standalone: true}"
+              justify="start"
+              labelPlacement="end"
+            >
             </ion-checkbox>
-
           </ion-col>
           <ion-col size="11">
-            I agree to the <span (click)="handleModal(true)">Terms and Condition</span> of Donation
+            I agree to the
+            <ion-text color="primary"
+              ><span (click)="handleModal(true)"
+                >Terms and Condition</span
+              ></ion-text
+            >
+            of Donation
             <!-- <ion-icon name="information-circle-outline" class="info-terms" color="dark"></ion-icon> -->
           </ion-col>
         </ion-row>
 
-        <ion-modal [isOpen]="setModal" [backdropDismiss]="false" id="example-modal">
+        <ion-modal
+          [isOpen]="setModal"
+          [backdropDismiss]="false"
+          id="example-modal"
+        >
           <ng-template>
-           
-      
-              <ion-list class="top-sec text-end">
-                <ion-icon
-                  color="light"
-                  slot="end"
-                  (click)="handleModal(false)"
-                  name="close-circle"
-                ></ion-icon>
+            <ion-grid class="ion-padding">
+              <ion-list class="top-sec">
+                <ion-text> Terms And Conditions </ion-text>
               </ion-list>
-      
-              <ion-grid>
-                <form  >
-                  <ion-row class="ion-padding-vertical property-row">
-                    <ion-col size="10">
-                      <ion-item>
-                        <ion-label>Due date</ion-label>
-                       
-                        <ion-icon
-                          slot="end"
-                          color="secondary"
-                          name="calendar-outline"
-                          datetime="datetime"
-                          class="ion-margin-top" 
-                        ></ion-icon>
-                      </ion-item>
-                    </ion-col>
-                    <ion-col size="10">
-                      <ion-item>
-                        <ion-input
-                          class="text-start"
-                          placeholder="Appraisal fees $" 
-                        ></ion-input>
-                      </ion-item>
-                    </ion-col>
-                    <ion-col size="11">
-                      <ion-button  color="secondary"
-                        >Add To Market Place</ion-button
-                      >
-                    </ion-col>
-                  </ion-row>
-                </form>
-              </ion-grid>
+              <ion-list>
+                <ion-text> 1] You weigh at least 50 kg. </ion-text>
+              </ion-list>
+              <ion-list>
+                <ion-text>
+                  2] You cannot donate if you have a cold, flu,stomach bug or
+                  any other infection.
+                </ion-text>
+              </ion-list>
+              <ion-list>
+                <ion-text> 3] You are aged between 18 and 65. </ion-text>
+              </ion-list>
+
+              <ion-list>
+                <ion-text>
+                  4] Travel to areas where mosquito-borne infections are
+                  endemic, e.g. malaria,
+                </ion-text>
+              </ion-list>
+
+              <ion-list>
+                <ion-text>
+                  5] Following pregnancy, the deferral period should last as
+                  many months as the duration of the pregnancy.
+                </ion-text>
+              </ion-list>
+
+              <ion-list>
+                <ion-button
+                  expand="block"
+                  class="button"
+                  color="primary"
+                  (click)="acceptTermsAndCond()"
+                  >Accept & Continue</ion-button
+                >
+              </ion-list>
+            </ion-grid>
             <!-- </ion-content> -->
           </ng-template>
         </ion-modal>
-
 
         <!-- <ion-row class="ion-align-items-center ion-justify-content-center ion-margin-bottom">
           <ion-col size="12">
@@ -477,10 +596,19 @@
           </ion-col>
         </ion-row> -->
 
-        <ion-row class="ion-align-items-center ion-justify-content-center ion-margin-top">
+        <ion-row
+          class="ion-align-items-center ion-justify-content-center ion-margin-top"
+        >
           <ion-col size="12">
-            <ion-button expand="block" shape="round" class="button ion-padding" color="primary"
-              [disabled]="!isTermsAgreed" (click)="create()">{{'submit'| translate}}</ion-button>
+            <ion-button
+              expand="block"
+              shape="round"
+              class="button ion-padding"
+              color="primary"
+              [disabled]="!isTermsAgreed"
+              (click)="create()"
+              >{{'submit'| translate}}</ion-button
+            >
           </ion-col>
         </ion-row>
       </ion-grid>

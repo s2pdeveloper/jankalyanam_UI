@@ -11,11 +11,14 @@
     --border-radius: 6px;
     --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
     .top-sec {
-      background-color: var(--ion-color-secondary);
-      ion-icon {
-        margin: 0rem 0.4rem;
-        font-size: 22px;
+      // background-color: var(--ion-color-primary);
+      text-align: center;
+      color:  var(--ion-color-primary);
+      // padding: 0.5rem;
+      ion-text{
+        font-size: 1rem;
       }
+  
     }
     ion-icon {
       font-size: 22px;

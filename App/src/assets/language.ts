@@ -21,6 +21,8 @@ export const languageConst={
       "District": "District",
       "Tahsil": "Tahsil",
       "Village": "Village",
+      "bloodgroup":"Blood Group",
+      "DOB":"DOB"
 
 
     },

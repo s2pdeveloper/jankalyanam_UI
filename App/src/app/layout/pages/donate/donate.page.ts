@@ -32,7 +32,10 @@ export class DonatePage implements OnInit {
   disabledCity: Boolean = true;
   isCity: boolean = false;
   translatedName: string = '';
-  setModal:boolean=false
+  setModal: boolean = false; 
+  hemoglobin:any=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
+
+
   constructor(
     private service: BloodDonationService,
     private router: Router,
@@ -67,7 +70,7 @@ export class DonatePage implements OnInit {
       Validators.minLength(10),
     ]),
     name: new FormControl('', [Validators.required]),
-    state: new FormControl('', [Validators.required]),
+    state: new FormControl(),
     bloodGroup: new FormControl('', [Validators.required]),
     district: new FormControl(),
     tehsil: new FormControl(),
@@ -212,5 +215,11 @@ export class DonatePage implements OnInit {
 
   handleModal(modalValue: boolean) {
     this.setModal = modalValue;
+  }
+
+  acceptTermsAndCond() {
+    this.isTermsAgreed = true;
+    this.setModal = false
+    
   }
 }
