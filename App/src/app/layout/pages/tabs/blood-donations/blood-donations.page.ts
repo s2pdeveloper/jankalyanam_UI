@@ -7,8 +7,11 @@ import { DonationHistoryComponent } from "src/app/shared/models/donation-history
 import { BloodDonationService } from "src/app/service/donation/donation.service";
 import { DATE_PIPE_DEFAULT_OPTIONS } from "@angular/common";
 import { LoaderService } from "src/app/service/loader.service";
-import { IonModal } from "@ionic/angular";
+import { IonModal, ModalController } from "@ionic/angular";
 import { OverlayEventDetail } from '@ionic/core/components';
+import { CalenderComponent } from 'src/app/shared/models/calender/calender.component';
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+
 @Component({
   selector: "app-blood-donations",
   templateUrl: "./blood-donations.page.html",
@@ -42,11 +45,23 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
     private service: BloodDonationService,
     private localStorage: StorageService,
     private spinner: LoaderService,
-    private toast: ToastService
+    private toast: ToastService,
+    private modalController: ModalController,
+
   ) {}
 
   ngOnInit() {}
 
+  bloodDonateFilter = new FormGroup({
+    donationDate: new FormControl('', [Validators.required]),
+    bloodGroup: new FormControl('', [Validators.required]),
+    Bloodbankname: new FormControl('', [Validators.required]),
+   
+  });
+
+  get f() {
+    return this.bloodDonateFilter.controls;
+  }
 
   ionViewWillEnter() {
     this.historyPage = 0;
@@ -316,34 +331,50 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
 
  
   //for multiple select of filter tabs
-
- 
-
   toggleBloodGroup(group: string) {
     if (this.selectedBloodGroups.includes(group)) {
       this.selectedBloodGroups = this.selectedBloodGroups.filter(g => g !== group);
     } else {
       this.selectedBloodGroups.push(group);
     }
-  }
-
+  };
   toggleBloodType(type: string) {
     if (this.selectedBloodTypes.includes(type)) {
       this.selectedBloodTypes = this.selectedBloodTypes.filter(t => t !== type);
     } else {
       this.selectedBloodTypes.push(type);
     }
-  }
-
-  
+  };
   onHospitalChange(event: any) {
     this.selectedHospitals = event.detail.value;
-  }
-
+  };
   clearSelections() {
     this.selectedBloodGroups = [];
     this.selectedBloodTypes = [];
     this.selectedHospitals = [];
+  };
+
+  //calender
+  async openCalender(field: any) {
+    let date = this.f[field].value
+      ? new Date(this.f[field].value).toISOString()
+      : new Date().toISOString();
+    const modal: any = await this.modalController.create({
+      component: CalenderComponent,
+      cssClass: 'calender-model',
+      componentProps: {
+        date,
+      },
+    });
+
+    await modal.present();
+    await modal.onWillDismiss().then((data: any) => {
+      console.log('data---', data);
+
+      if (data.data && data.data.date) {
+        this.f[field].setValue(data.data.date);
+      }
+    });
   }
   
 }

@@ -10,9 +10,90 @@
         <ion-col>
           <ion-title>Blood-Requests</ion-title>
         </ion-col>
+        <ion-col>
+          <img class="filter-btn" src="../../../../../assets/filter.png" alt="filter" id="open-modal" expand="block">
+          <ion-content class="ion-padding">
+            <p>{{ message }}</p>
+            <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
+              <ng-template>
+                <ion-header>
+                  <ion-toolbar color="primary" style="display: flex; justify-content: space-between; align-items: center;">
+                    <ion-title style="flex-grow: 1; text-align: center;">Apply Filter</ion-title>
+                    <ion-buttons slot="end" style="position: absolute; right: 0;">
+                      <ion-button (click)="cancel()">Cancel</ion-button>
+                    </ion-buttons>
+                  </ion-toolbar>                  
+                </ion-header>
+                <ion-content class="ion-padding">
+                  <ion-item>
+                    <ion-grid>
+                      <ion-row class="ion-padding-bottom">
+                        <ion-label>Blood Group</ion-label>
+                      </ion-row>
+                      <ion-row class="ion-padding-bottom">
+                        <ion-button 
+                          size="small" 
+                          fill="outline" 
+                          *ngFor="let group of bloodGroup" 
+                          [ngClass]="{'selected': selectedBloodGroups.includes(group)}"
+                          (click)="toggleBloodGroup(group)">
+                          {{group}}
+                        </ion-button>
+                      </ion-row>
+                      <ion-row class="ion-padding-bottom">
+                        <ion-label>Blood Type</ion-label>
+                      </ion-row>
+                      <ion-row class="ion-padding-bottom">
+                        <ion-button 
+                          size="small" 
+                          fill="outline" 
+                          *ngFor="let type of bloodType" 
+                          [ngClass]="{'selected': selectedBloodTypes.includes(type)}"
+                          (click)="toggleBloodType(type)">
+                          {{type}}
+                        </ion-button>
+                      </ion-row>
+                      <ion-row class="ion-padding-bottom">
+                        <ion-label>Hospital Name</ion-label>
+                      </ion-row>
+                      <ion-row class="ion-padding-bottom">
+                        <ion-col size="12">
+                          <ion-item class="input-class mt-3" lines="none">
+                            <ion-input label-placement="stacked" type="text" placeholder="Enter Hospital Name Here">
+                            </ion-input>
+                          </ion-item>
+                        </ion-col>
+                      </ion-row>
+                
+                    </ion-grid>
+                  </ion-item>
+                </ion-content>
+                <ion-footer>
+                  <ion-toolbar>
+                    <ion-grid>
+                      <ion-row>
+                        <ion-col class="ion-padding ion-text-center">
+                          <ion-button (click)="clearSelections()">
+                            Clear
+                          </ion-button>
+                        </ion-col>
+                        <ion-col class="ion-padding ion-text-center">
+                          <ion-button (click)="confirm()" [strong]="true">
+                            Confirm
+                          </ion-button>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-toolbar>
+                </ion-footer>
+              </ng-template>
+            </ion-modal>
+          </ion-content>
+        </ion-col>
         <ion-col size="auto" (click)="refreshData()">
           <img class="refresh-btn" src="../../../../../assets/new-refresh.png" alt="">
         </ion-col>
+
       </ion-row>
     </ion-grid>
   </ion-toolbar>
@@ -44,6 +125,8 @@
           </ion-segment-button>
         </ion-segment>
       </ion-item>
+    <ion-searchbar></ion-searchbar>
+
       <div [ngSwitch]="activeSegment">
         <!-- Define Role -->
         <div *ngSwitchCase="'list'">
@@ -158,13 +241,6 @@
                         </div>
                       </div>
                     </ion-col>
-                    <ion-col size="3" class=" ion-text-center ion-no-padding"
-                      [ngClass]="{'status-pending': l?.status == 'PENDING','status-allocated' : l?.status == 'ALLOCATED','status-received': l.status== 'RECEIVED','status-done' : l?.status == 'DONE','status-accepted' : l.status == 'ACCEPTED' ,'statusdoclose': l.status=='CLOSE'}"
-                    >
-                      <ion-label class="">{{l?.status}}</ion-label>
-                    </ion-col>
-                  </ion-row>
-                  <ion-row class="ion-justify-content-center">
                     <ion-col
                       class="ion-text-end"
                       *ngIf="user.role == 'ADMIN' &&  l.status == 'PENDING'"
@@ -173,6 +249,15 @@
                         Accept
                       </ion-button>
                     </ion-col>
+                   
+                  </ion-row>
+                  <ion-row class="ion-justify-content-end">
+                    <ion-col size="3" class=" ion-text-center ion-no-padding"
+                    [ngClass]="{'status-pending': l?.status == 'PENDING','status-allocated' : l?.status == 'ALLOCATED','status-received': l.status== 'RECEIVED','status-done' : l?.status == 'DONE','status-accepted' : l.status == 'ACCEPTED' ,'statusdoclose': l.status=='CLOSE'}"
+                  >
+                    <ion-label class="">{{l?.status}}</ion-label>
+                  </ion-col>
+                    
                     <ion-col
                       class="ion-text-end"
                       *ngIf="l.status != 'PENDING' && !!l.acceptor"
