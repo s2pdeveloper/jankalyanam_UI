@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { ModalService } from "src/app/service/modal.service";
 import { DonationDetailsComponent } from "src/app/shared/models/donation-details/donation-details.component";
 import { DonationHistoryComponent } from "src/app/shared/models/donation-history/donation-history.component";
@@ -13,6 +13,10 @@ import { AdminRequestMylistComponent } from "src/app/shared/models/admin-request
 import { AdminRequestActiveComponent } from "src/app/shared/models/admin-request-active/admin-request-active.component";
 import { SessionStorageService } from "src/app/core/services/session-storage.service";
 import { NoDataComponent } from "src/app/shared/models/no-data/no-data.component";
+import { IonModal, ModalController } from "@ionic/angular";
+import { OverlayEventDetail } from '@ionic/core/components';
+
+
 @Component({
   selector: "app-blood-requests",
   templateUrl: "./blood-requests.page.html",
@@ -37,6 +41,12 @@ export class BloodRequestsPage implements OnInit {
   myListCount: number = 0;
   // count: number = 0;
   loader = false;
+  bloodGroup: any = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
+  bloodType = ['Type1', 'Type2', 'Type3'];
+  hospitalName = ['Hospital A', 'Hospital B', 'Hospital C'];
+  selectedBloodGroups: string[] = [];
+  selectedBloodTypes: string[] = [];
+  selectedHospitals: string[] = [];
 
   constructor(
     private router: Router,
@@ -378,4 +388,53 @@ export class BloodRequestsPage implements OnInit {
       }
     );
   }
+
+  // search model
+  @ViewChild(IonModal) modal: IonModal;
+
+  message = 'This modal example uses triggers to automatically open a modal when the button is clicked.';
+  name: string;
+
+  cancel() {
+  //  this.clearSelections();
+    this.modal.dismiss(null, 'cancel');
+  }
+
+  confirm() {
+    this.modal.dismiss(this.name, 'confirm');
+  }
+
+  onWillDismiss(event: Event) {
+    const ev = event as CustomEvent<OverlayEventDetail<string>>;
+    if (ev.detail.role === 'confirm') {
+      this.message = `Hello, ${ev.detail.data}!`;
+    }
+  }
+
+  //for multiple select of filter tabs
+  toggleBloodGroup(group: string) {
+    if (this.selectedBloodGroups.includes(group)) {
+      this.selectedBloodGroups = this.selectedBloodGroups.filter(g => g !== group);
+    } else {
+      this.selectedBloodGroups.push(group);
+    }
+  };
+  toggleBloodType(type: string) {
+    if (this.selectedBloodTypes.includes(type)) {
+      this.selectedBloodTypes = this.selectedBloodTypes.filter(t => t !== type);
+    } else {
+      this.selectedBloodTypes.push(type);
+    }
+  };
+  onHospitalChange(event: any) {
+    this.selectedHospitals = event.detail.value;
+  };
+  clearSelections() {
+    this.selectedBloodGroups = [];
+    this.selectedBloodTypes = [];
+    this.selectedHospitals = [];
+  };
+
+
+
 }
