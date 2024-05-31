@@ -13,7 +13,6 @@
         <ion-col>
           <img class="filter-btn" src="../../../../../assets/filter.png" alt="filter" id="open-modal" expand="block">
           <ion-content class="ion-padding">
-            <p>{{ message }}</p>
             <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
               <ng-template>
                 <ion-header>
@@ -59,7 +58,7 @@
                       <ion-row class="ion-padding-bottom">
                         <ion-col size="12">
                           <ion-item class="input-class mt-3" lines="none">
-                            <ion-input label-placement="stacked" type="text" placeholder="Enter Hospital Name Here">
+                            <ion-input label-placement="stacked" type="text" placeholder="Enter Hospital Name Here" [(ngModel)]="hospitalName">
                             </ion-input>
                           </ion-item>
                         </ion-col>
@@ -125,7 +124,7 @@
           </ion-segment-button>
         </ion-segment>
       </ion-item>
-    <ion-searchbar></ion-searchbar>
+    <ion-searchbar show-clear-button="always"  [debounce]="1000" (ionInput)="searchResult($event)"></ion-searchbar>
 
       <div [ngSwitch]="activeSegment">
         <!-- Define Role -->

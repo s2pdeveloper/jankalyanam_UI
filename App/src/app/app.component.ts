@@ -9,6 +9,7 @@ import { AuthService } from "./service/auth/auth.service";
 import { AdvertisementService } from "./service/advertisement/advertisement.service";
 import { ToastService } from "./core/services";
 import { SessionStorageService } from "./core/services/session-storage.service";
+import { AppBackButtonService } from "./core/services/back-button.service";
 
 // register Swiper custom elements
 register();
@@ -28,6 +29,7 @@ loader = true;
     private storageService: StorageService,
     private statusBarService: StatusBarService,
     private cameraService: CameraService,
+    private backService:AppBackButtonService,
     private authService : AuthService,
     private router: Router,
     private sessionStorage: SessionStorageService,
@@ -86,6 +88,7 @@ loader = true;
     this.statusBarService.changeColor("#7e2212");
     this.pushNotificationService.registerForPushNotification();
     this.cameraService.requestPermission();
+    this.backService.backButtonFunc();
   
   
 }

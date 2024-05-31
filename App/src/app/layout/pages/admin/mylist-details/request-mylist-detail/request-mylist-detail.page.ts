@@ -109,7 +109,7 @@ export class RequestMylistDetailPage implements OnInit {
       group: this.data.bloodGroup
         .trim()
         .replace(/\+/g, "%2B")
-        .replace(/-/g, "%20-"),
+        .replace(/-/g, "%2D"),
     };
     this.donorService.getDonorList(params).subscribe({
       next: (res) => {

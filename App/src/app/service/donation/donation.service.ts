@@ -8,8 +8,8 @@ import { ApiService } from 'src/app/core/services';
 export class BloodDonationService {
   routes: any = {
     create: `donate`,
-    getAttenderListPath: (params: any) => `donate/attender-list?pageNo=${params.pageNo}&pageSize=${params.pageSize}&sortBy=${params.sortBy}&search=${params.search}&type=${params.type}`,
-    getAdminListPath: (params: any) => `donate/admin-list?pageNo=${params.pageNo}&pageSize=${params.pageSize}&sortBy=${params.sortBy}&search=${params.search}&type=${params.type}`,
+    getAttenderListPath: (params: any) => `donate/attender-list?pageNo=${params.pageNo}&pageSize=${params.pageSize}&sortBy=${params.sortBy}&search=${params.search}&type=${params.type}&bloodBankName=${params.bloodBankName}&bloodGroup=${params.bloodGroup}&donationDate=${params.donationDate}`,
+    getAdminListPath: (params: any) => `donate/admin-list?pageNo=${params.pageNo}&pageSize=${params.pageSize}&sortBy=${params.sortBy}&search=${params.search}&type=${params.type}&bloodBankName=${params.bloodBankName}&bloodGroup=${params.bloodGroup}&donationDate=${params.donationDate}`,
     allocatePath:(id:any) => `donate/update/${id}`,
     statusUpdatePath:(id:any,status:any) => `donate/updateStatus?id=${id}&status=${status}`,
     getDonorListPath: (params: any) => `donate/blood-donor?pageNo=${params.pageNo}&pageSize=${params.pageSize}&sortBy=${params.sortBy}&group=${params.group}`,

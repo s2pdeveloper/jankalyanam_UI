@@ -9,8 +9,8 @@ import { ApiService } from 'src/app/core/services';
 export class BloodRequestService {
   routes: any = {
     create: 'blood-request',
-    getAttenderListPath: (params: any) => `blood-request/attender-list?pageNo=${params.pageNo}&pageSize=${params.pageSize}&sortBy=${params.sortBy}&search=${params.search}&type=${params.type}`,
-    getAdminListPath: (params: any) => `blood-request/admin-list?pageNo=${params.pageNo}&pageSize=${params.pageSize}&sortBy=${params.sortBy}&search=${params.search}&type=${params.type}`,
+    getAttenderListPath: (params: any) => `blood-request/attender-list?pageNo=${params.pageNo}&pageSize=${params.pageSize}&sortBy=${params.sortBy}&search=${params.search}&type=${params.type}&bloodGroup=${params.bloodGroup}&bloodType=${params.bloodType}&hospitalName=${params.hospitalName}`,
+    getAdminListPath: (params: any) => `blood-request/admin-list?pageNo=${params.pageNo}&pageSize=${params.pageSize}&sortBy=${params.sortBy}&search=${params.search}&type=${params.type}&bloodGroup=${params.bloodGroup}&bloodType=${params.bloodType}&hospitalName=${params.hospitalName}`,
     statusUpdatePath:(id:any,status:any) => `blood-request/update?id=${id}&status=${status}`,
     allocatePath:(id:any) => `blood-request/update/${id}`,
   };

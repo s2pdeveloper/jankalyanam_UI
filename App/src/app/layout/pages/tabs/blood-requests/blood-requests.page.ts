@@ -9,7 +9,6 @@ import { StorageService } from "src/app/core/services/local-storage.service";
 import { LoaderService } from "src/app/service/loader.service";
 import { ToastService } from "src/app/core/services/toast.service";
 import { forkJoin } from "rxjs/internal/observable/forkJoin";
-import { AdminRequestMylistComponent } from "src/app/shared/models/admin-request-mylist/admin-request-mylist.component";
 import { AdminRequestActiveComponent } from "src/app/shared/models/admin-request-active/admin-request-active.component";
 import { SessionStorageService } from "src/app/core/services/session-storage.service";
 import { NoDataComponent } from "src/app/shared/models/no-data/no-data.component";
@@ -42,11 +41,10 @@ export class BloodRequestsPage implements OnInit {
   // count: number = 0;
   loader = false;
   bloodGroup: any = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
-  bloodType = ['Type1', 'Type2', 'Type3'];
-  hospitalName = ['Hospital A', 'Hospital B', 'Hospital C'];
+  bloodType = ['REGULAR'];
   selectedBloodGroups: string[] = [];
   selectedBloodTypes: string[] = [];
-  selectedHospitals: string[] = [];
+  hospitalName: any =  "";
 
   constructor(
     private router: Router,
@@ -66,6 +64,10 @@ export class BloodRequestsPage implements OnInit {
     this.latestPage = 0;
     this.historyPage = 0;
     this.mylistPage = 0;
+    this.selectedBloodGroups = [];
+    this.selectedBloodTypes = [];
+    this.hospitalName = '';
+    this.search ='';
     this.user = this.localStorage.get("user");
     console.log("this.user------", this.user);
 
@@ -122,11 +124,21 @@ export class BloodRequestsPage implements OnInit {
     if (!event) {
       this.loader = true;
     }
+
+    const transformedBloodGroups = this.selectedBloodGroups.map(bloodGroup => 
+      bloodGroup
+          .trim()
+          .replace(/\+/g, "%2B")
+          .replace(/-/g, "%2D")
+  );
     let params = {
       pageNo: status === "HISTORY" ? this.historyPage : this.latestPage,
       pageSize: this.pageSize,
       search: this.search,
       sortBy: this.sortBy,
+      bloodGroup:transformedBloodGroups,
+      bloodType:this.selectedBloodTypes,
+      hospitalName:this.hospitalName
     };
 
     this.service.getAllAttenderList(params, status).subscribe(
@@ -181,6 +193,12 @@ export class BloodRequestsPage implements OnInit {
     if (!event) {
       this.loader = true;
     }
+    const transformedBloodGroups = this.selectedBloodGroups.map(bloodGroup => 
+      bloodGroup
+          .trim()
+          .replace(/\+/g, "%2B")
+          .replace(/-/g, "%2D")
+      );
 
     let params = {
       pageNo:
@@ -192,6 +210,9 @@ export class BloodRequestsPage implements OnInit {
       pageSize: this.pageSize,
       search: this.search,
       sortBy: this.sortBy,
+      bloodGroup:transformedBloodGroups,
+      bloodType:this.selectedBloodTypes,
+      hospitalName:this.hospitalName
     };
     this.service.getAllAdminList(params, status).subscribe(
       async (res) => {
@@ -249,7 +270,10 @@ export class BloodRequestsPage implements OnInit {
   }
 
   async refreshData() {
-  
+    this.selectedBloodGroups = [];
+    this.selectedBloodTypes = [];
+    this.hospitalName = '';
+    this.search ='';
     switch (this.activeSegment) {
       case "history":
         this.historyPage = 0;
@@ -389,6 +413,7 @@ export class BloodRequestsPage implements OnInit {
     );
   }
 
+
   // search model
   @ViewChild(IonModal) modal: IonModal;
 
@@ -400,8 +425,24 @@ export class BloodRequestsPage implements OnInit {
     this.modal.dismiss(null, 'cancel');
   }
 
+  getData(){
+    this.historyPage = 0;
+    this.latestPage = 0;
+    this.mylistPage = 0;
+    if (this.user.role == "ADMIN") {
+      this.getAllAdminList("ACTIVE", null);
+      this.getAllAdminList("HISTORY", null);
+      this.getAllAdminList("MYLIST", null);
+    }
+   else {
+      this.getAllAttenderList("ACTIVE", null);
+      this.getAllAttenderList("HISTORY", null);
+    }
+  }
   confirm() {
     this.modal.dismiss(this.name, 'confirm');
+    this.getData();
+
   }
 
   onWillDismiss(event: Event) {
@@ -426,15 +467,17 @@ export class BloodRequestsPage implements OnInit {
       this.selectedBloodTypes.push(type);
     }
   };
-  onHospitalChange(event: any) {
-    this.selectedHospitals = event.detail.value;
-  };
+
   clearSelections() {
     this.selectedBloodGroups = [];
     this.selectedBloodTypes = [];
-    this.selectedHospitals = [];
+    this.hospitalName = '';
   };
 
+  searchResult(event){
+    this.search = event.target.value;
+    this.getData();
 
+  }
 
 }

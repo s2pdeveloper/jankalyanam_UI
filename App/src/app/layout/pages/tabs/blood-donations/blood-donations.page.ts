@@ -34,11 +34,9 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
   loader = true;
   loaderDisabled = false;
   bloodGroup: any = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
-  bloodType = ['Type1', 'Type2', 'Type3'];
-  hospitalName = ['Hospital A', 'Hospital B', 'Hospital C'];
   selectedBloodGroups: string[] = [];
-  selectedBloodTypes: string[] = [];
-  selectedHospitals: string[] = [];
+  bloodBankName: any = "";
+  donationDate: any = "";
   constructor(
     private router: Router,
     private modalService: ModalService,
@@ -52,20 +50,13 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
 
   ngOnInit() {}
 
-  bloodDonateFilter = new FormGroup({
-    donationDate: new FormControl('', [Validators.required]),
-    bloodGroup: new FormControl('', [Validators.required]),
-    Bloodbankname: new FormControl('', [Validators.required]),
-   
-  });
-
-  get f() {
-    return this.bloodDonateFilter.controls;
-  }
 
   ionViewWillEnter() {
     this.historyPage = 0;
     this.latestPage = 0;
+    this.bloodBankName ='';
+    this.selectedBloodGroups = [];
+    this.donationDate = '';
     this.user = this.localStorage.get("user");
     if (this.user.role == "ATTENDER") {
       this.getAllAttenderList("ACTIVE");
@@ -88,14 +79,20 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
       if(!event){
         this.loader = true;
       }
+      const transformedBloodGroups = this.selectedBloodGroups.map(bloodGroup => 
+        bloodGroup
+            .trim()
+            .replace(/\+/g, "%2B")
+            .replace(/-/g, "%2D")
+    );
       let params = {
         pageNo: status === "HISTORY" ? this.historyPage : this.latestPage,
         pageSize: this.pageSize,
         search: this.search,
         sortBy: this.sortBy,
-        bloodGroup:this.selectedBloodGroups,
-        bloodType:this.selectedBloodTypes,
-        hospitalName:this.selectedHospitals
+        bloodGroup:transformedBloodGroups,
+        bloodBankName:this.bloodBankName,
+        donationDate:this.donationDate
       };
 
       this.service.getAllAttenderList(params, status).subscribe(
@@ -154,15 +151,27 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
     if(!event){
       this.loader = true;
     }
-   
+    // this.data.bloodGroup
+    //     .trim()
+    //     .replace(/\+/g, "%2B")
+    //     .replace(/-/g, "%20-"),
+    // }
+    const transformedBloodGroups = this.selectedBloodGroups.map(bloodGroup => 
+      bloodGroup
+          .trim()
+          .replace(/\+/g, "%2B")
+          .replace(/-/g, "%2D")
+  );
+  console.log(this.selectedBloodGroups,transformedBloodGroups,this.bloodBankName,this.donationDate);
+  
     let params = {
       pageNo: status === "HISTORY" ? this.historyPage : this.latestPage,
       pageSize: this.pageSize,
       search: this.search,
       sortBy: this.sortBy,
-      bloodGroup:this.selectedBloodGroups,
-      bloodType:this.selectedBloodTypes,
-      hospitalName:this.selectedHospitals
+      bloodGroup:transformedBloodGroups,
+      bloodBankName:this.bloodBankName,
+      donationDate:this.donationDate
     };
     this.service.getAllAdminList(params, status).subscribe(
       async (res) => {
@@ -212,6 +221,9 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
   }
  
   async refreshData() {
+    this.bloodBankName ='';
+    this.donationDate ='';
+    this.selectedBloodGroups = [];
      switch (this.activeSegment) {
       case "history":
         this.historyPage = 0;
@@ -308,17 +320,29 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
   name: string;
 
   cancel() {
-   this.clearSelections();
+  //  this.clearSelections();
     this.modal.dismiss(null, 'cancel');
   }
 
+  getData(){
+    this.historyPage = 0;
+    this.latestPage = 0;
+    if (this.user.role == "ADMIN") {
+      this.getAllAdminList("ACTIVE", null);
+      this.getAllAdminList("HISTORY", null);
+    }
+   else {
+      this.getAllAttenderList("ACTIVE", null);
+      this.getAllAttenderList("HISTORY", null);
+    }
+  }
+
   confirm() {
-    console.log("this.selectedHospitals---",this.selectedHospitals)
-    console.log( this.selectedBloodGroups,
-      this.selectedBloodTypes ,
-      this.selectedHospitals);
-    
+    console.log("  bloodBankName",this.bloodBankName,
+    "donationDate:",this.donationDate , "bloodGroup ",this.selectedBloodGroups)
     this.modal.dismiss(this.name, 'confirm');
+    this.getData();
+   
   }
 
   onWillDismiss(event: Event) {
@@ -338,26 +362,19 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
       this.selectedBloodGroups.push(group);
     }
   };
-  toggleBloodType(type: string) {
-    if (this.selectedBloodTypes.includes(type)) {
-      this.selectedBloodTypes = this.selectedBloodTypes.filter(t => t !== type);
-    } else {
-      this.selectedBloodTypes.push(type);
-    }
-  };
-  onHospitalChange(event: any) {
-    this.selectedHospitals = event.detail.value;
-  };
+
+
   clearSelections() {
     this.selectedBloodGroups = [];
-    this.selectedBloodTypes = [];
-    this.selectedHospitals = [];
-  };
+    this.bloodBankName = '';
+    this.donationDate = '';
+
+  }
 
   //calender
   async openCalender(field: any) {
-    let date = this.f[field].value
-      ? new Date(this.f[field].value).toISOString()
+    let date = field.value
+      ? new Date(field.value).toISOString()
       : new Date().toISOString();
     const modal: any = await this.modalController.create({
       component: CalenderComponent,
@@ -372,7 +389,8 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
       console.log('data---', data);
 
       if (data.data && data.data.date) {
-        this.f[field].setValue(data.data.date);
+        // this.f[field].setValue(data.data.date);
+        this.donationDate = data.data.date;
       }
     });
   }
