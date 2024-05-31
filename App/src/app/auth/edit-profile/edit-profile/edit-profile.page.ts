@@ -6,6 +6,8 @@ import { AuthService } from 'src/app/service/auth/auth.service';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { CalenderComponent } from 'src/app/shared/models/calender/calender.component';
+import { of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-edit-profile',
@@ -14,18 +16,19 @@ import { CalenderComponent } from 'src/app/shared/models/calender/calender.compo
 })
 export class EditProfilePage implements OnInit {
   userData: any;
-  isCity: boolean = false; 
+  isCity: boolean = false;
   bloodGroup: any = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
   states: any = [];
   district: any = [];
   tehsil: any = [];
   village: any = [];
   selectTable = {
-    state: { id: '', stateName: '' },
-    district: { id: '', districtName: '' },
-    tahsil: { id: '', tahsilName: '' },
-    village: { id: '', villageName: '' },
+    state: null,
+    district: null,
+    tahsil: null,
+    village: null,
   };
+  loader: boolean = false;
 
   constructor(
     private storage: StorageService,
@@ -33,22 +36,28 @@ export class EditProfilePage implements OnInit {
     private service: AuthService,
     private toast: ToastService,
     private restService: RestService,
-    private modalController: ModalController,
-    
-
+    private modalController: ModalController
   ) {}
 
   ngOnInit() {}
 
   ionViewWillEnter() {
-    this.service.getAllState().subscribe((success: any) => {
-      this.states = success;
-    });
+    this.loader = true;
 
-    this.userData = this.storage.get('user');
-    console.log('this.userData in edit----', this.userData);
-    this.getByIdData(this.userData.id);
-    console.log('this.userData.id', this.userData.id);
+    this.service.getAllState().subscribe(
+      (success: any) => {
+        this.states = success;
+        this.userData = this.storage.get('user');
+        this.getByIdData(this.userData.id);
+        this.loader = false;
+      },
+      (error: any) => {
+        this.loader = false;
+      }
+    );
+
+    // this.userData = this.storage.get('user');
+    // this.getByIdData(this.userData.id);
     // this.states = this.restService.getStatesOfCountry('IN');
   }
   editRegistrationForm = new FormGroup({
@@ -63,7 +72,7 @@ export class EditProfilePage implements OnInit {
     state: new FormControl('', [Validators.required]),
     district: new FormControl(),
     tehsil: new FormControl(),
-    village: new FormControl(), 
+    village: new FormControl(),
     DOB: new FormControl(),
   });
 
@@ -81,47 +90,67 @@ export class EditProfilePage implements OnInit {
 
     await modal.present();
     await modal.onWillDismiss().then((data: any) => {
-      console.log('data---', data);
-
       if (data.data && data.data.date) {
         this.f[field].setValue(data.data.date);
       }
     });
   }
 
-  // {
-  //   "DOB": "string",
-  //   "bloodGroup": "string",
-  //   "createdAt": "2024-05-30T11:46:12.438Z",
-  //   "district": "string",
-  //   "dob": "string",
-  //   "email": "string",
-  //   "firstName": "string",
-  //   "id": 0,
-  //   "image": "string",
-  //   "lastName": "string",
-  //   "mobileNo": 0,
-  //   "pincode": 0,
-  //   "role": "ADMIN",
-  //   "state": "string",
-  //   "status": "ACTIVE",
-  //   "tahsil": "string",
-  //   "token": "string",
-  //   "updatedAt": "2024-05-30T11:46:12.438Z",
-  //   "village": "string"
-  // }
-
   get f() {
     return this.editRegistrationForm.controls;
   }
   getByIdData(id: any) {
     this.service.profile(id).subscribe((success: any) => {
-      console.log('success getByIdData', success);
-      this.selectTable.state.stateName = success.state
-      this.selectTable.district.districtName = success.district
-      this.selectTable.tahsil.tahsilName = success.tahsil
-      this.selectTable.village.villageName = success.village
+      if (success.state && this.states) {
+        this.selectTable.state = this.states.find(
+          (x) => x.stateName == success.state
+        );
+      }
+      if (success.district && this.selectTable.state) {
+        this.service
+          .getDistrictByStateId(this.selectTable.state.id)
+          .pipe(
+            switchMap((districts) => {
+              this.district = districts;
+              this.selectTable.district = districts.find(
+                (x) => x.districtName == success.district
+              );
 
+              return this.selectTable.district
+                ? this.service.getTahsilByDistrictId(
+                    this.selectTable.district.id
+                  )
+                : of(null);
+            }),
+            switchMap((tahsils) => {
+              if (tahsils) {
+                this.tehsil = tahsils;
+                if (success.tahsil) {
+                  this.selectTable.tahsil = tahsils.find(
+                    (x) => x.tehsilName == success.tehsil
+                  );
+                }
+
+                return this.selectTable.tahsil
+                  ? this.service.getVillageByTahsilId(
+                      this.selectTable.tahsil.id
+                    )
+                  : of(null);
+              }
+              return of(null);
+            })
+          )
+          .subscribe((villages) => {
+            if (villages) {
+              this.village = villages;
+              if (success.village) {
+                this.selectTable.village = villages.find(
+                  (x) => x.villageName == success.village
+                );
+              }
+            }
+          });
+      }
       this.editRegistrationForm.patchValue(success);
     });
   }
@@ -129,7 +158,6 @@ export class EditProfilePage implements OnInit {
   update() {
     let formData = this.editRegistrationForm.value;
     this.service.updateUser(formData.id, formData).subscribe((success: any) => {
-      console.log('success of update', success);
       this.toast.successToast('Profile Updated Successfully');
       this.router.navigate(['/auth/profile']);
     });
