@@ -8,78 +8,56 @@
 <ion-content [fullscreen]="true">
   <div class="card">
     <form [formGroup]="loginForm">
-   
-        <ion-grid>
-          <ion-row class="ion-align-items-center ion-justify-content-center">
-            <ion-col class="logo">
-              <img src="../../../assets/bloodLogo.jpg" alt="LOGO" />
-            </ion-col>
-          </ion-row>
-          <ion-row
-            class="ion-align-items-center ion-justify-content-center ion-margin-bottom"
-          >
-            <ion-label class="text">Log In</ion-label>
-          </ion-row>
-          <ion-row class="ion-align-items-center ion-justify-content-center">
-            <ion-col size="10">
-              <ion-item fill="outline" class="input">
-                <ion-label position="floating" label Placement="stacked"
-                  >Mobile Number</ion-label
-                >
-                <ion-input
-                  placeholder="Mobile Number"
-                  formControlName="mobileNo"
-                ></ion-input>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-          <ion-row class="ion-align-items-center ion-justify-content-center">
-            <ion-col size="10">
-              <ion-item fill="outline" class="input">
-                <ion-label position="floating">Password</ion-label>
-                <ion-input
-                  type="password"
-                  placeholder="Password"
-                  formControlName="password"
-                ></ion-input>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-       
-          <!-- <ion-row class="ion-align-items-center ion-justify-content-center">
+
+      <ion-grid>
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col class="logo">
+            <img src="../../../assets/bloodLogo.jpg" alt="LOGO" />
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center ion-justify-content-center ion-margin-bottom">
+          <ion-label class="text">Log In</ion-label>
+        </ion-row>
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col size="10">
+            <ion-item class="input input-class">
+              <!-- <ion-label position="floating" label Placement="stacked">Mobile Number</ion-label> -->
+              <ion-input label="Mobile Number" label-placement="stacked" placeholder="Mobile Number"
+                formControlName="mobileNo"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col size="10">
+            <ion-item class="input input-class">
+              <!-- <ion-label position="floating">Password</ion-label> -->
+              <ion-input label="Password" label-placement="stacked" type="password" placeholder="Password"
+                formControlName="password"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <!-- <ion-row class="ion-align-items-center ion-justify-content-center">
             <ion-button
               fill="clear"
               (click)="$event.stopPropagation();navigateTo('auth/forgot-password')"
               >Forget Password?</ion-button
             >
           </ion-row> -->
-          <ion-row class="ion-align-items-center ion-justify-content-center">
-            <ion-col size="10">
-              <ion-button
-                expand="block"
-                shape="round"
-                class="button ion-padding"
-                color="primary"
-                (click)="login()"
-                >Sign In</ion-button
-              >
-            </ion-col>
-          </ion-row>
-          <ion-row class="ion-align-items-center ion-justify-content-center">
-            <ion-button
-              fill="clear"
-              (click)="$event.stopPropagation();navigateTo('auth/register')"
-              >Not having an account? Register</ion-button
-            >
-          </ion-row>
-          <ion-row class="ion-align-items-center ion-justify-content-center">
-            <ion-button
-              fill="clear"
-              (click)="navigateTo('auth/forgot-password')"
-              >Forgot Password?</ion-button
-            >
-          </ion-row> 
-        </ion-grid>
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-col size="10">
+            <ion-button expand="block" shape="round" class="button ion-padding" color="primary" (click)="login()">Sign
+              In</ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-button fill="clear" (click)="$event.stopPropagation();navigateTo('auth/register')">Not having an account?
+            Register</ion-button>
+        </ion-row>
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <ion-button fill="clear" (click)="navigateTo('auth/forgot-password')">Forgot Password?</ion-button>
+        </ion-row>
+      </ion-grid>
     </form>
   </div>
 </ion-content>

@@ -477,7 +477,8 @@ export class BloodRequestsPage implements OnInit {
   searchResult(event){
     this.search = event.target.value;
     this.getData();
-
   }
 
+
+ 
 }
