@@ -241,7 +241,12 @@
                     >Allocate</ion-button
                   >
                 </ion-col>
-                <ion-col *ngIf="data.bloodBankName">
+                <ion-col size="6" *ngIf="data.bloodBankName">
+                  <ion-button expand="block" (click)="edit = !edit"
+                    >Cancel</ion-button
+                  >
+                </ion-col>
+                <ion-col size="6" *ngIf="data.bloodBankName">
                   <ion-button expand="block" (click)="allocate()"
                     >Re-Allocate</ion-button
                   >
@@ -319,7 +324,7 @@
               </ion-row>
               <ion-row>
                 <ion-col class="ion-text-center" *ngIf="!data.donor">
-                  <ion-button (click)="allocate()">Allocate</ion-button>
+                  <ion-button [disabled]="!f['donorId'].value" (click)="allocate()">Allocate</ion-button>
                 </ion-col>
                 <ion-col class="ion-text-center" *ngIf="!!data.donor">
                   <ion-button (click)="allocate()">Re-Allocate</ion-button>

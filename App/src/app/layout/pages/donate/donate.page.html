@@ -29,7 +29,7 @@
               <!-- <ion-label position="floating" labelPlacement="stacked">
                 {{'age' | translate }}</ion-label>
               <ion-input placeholder="Age" label-placement="floating" formControlName="age" type="number"></ion-input> -->
-              <ion-input label="{{'age' | translate }}" label-placement="floating" [readonly]="true" type="text" placeholder="Age"
+              <ion-input label="{{'age' | translate }}" label-placement="floating" type="text" placeholder="Age"
               formControlName="age">
             </ion-input>
             </ion-item>
@@ -49,7 +49,7 @@
         <ion-row *ngIf="isFemale" class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
             <ion-item class="input input-class" lines="none">
-              <ion-input label="Father/Husband" label-placement="floating" [readonly]="true" type="text" placeholder="Father/Husband"
+              <ion-input label="Father/Husband" label-placement="floating"   type="text" placeholder="Father/Husband"
               formControlName="fatherOrHusband"></ion-input>
             </ion-item>
           </ion-col>

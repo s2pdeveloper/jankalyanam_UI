@@ -13,14 +13,13 @@
         <ion-col>
           <img class="filter-btn" src="../../../../../assets/filter.png" alt="filter" id="open-modal" expand="block">
           <ion-content class="ion-padding">
-            <p>{{ message }}</p>
             <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
               <ng-template>
                 <ion-header>
                   <ion-toolbar color="primary" style="display: flex; justify-content: space-between; align-items: center;">
-                    <ion-title style="flex-grow: 1; text-align: center;">Apply Filter</ion-title>
+                    <ion-title style="flex-grow: 1; text-align: start;">Apply Filter</ion-title>
                     <ion-buttons slot="end" style="position: absolute; right: 0;">
-                      <ion-button (click)="cancel()">Cancel</ion-button>
+                      <ion-button style="font-size: 14px;"  (click)="cancel()">Cancel</ion-button>
                     </ion-buttons>
                   </ion-toolbar>                  
                 </ion-header>
@@ -83,14 +82,14 @@
                 <ion-footer>
                   <ion-toolbar>
                     <ion-grid>
-                      <ion-row>
-                        <ion-col class="ion-padding ion-text-center">
-                          <ion-button (click)="clearSelections()">
+                      <ion-row class="ion-padding-horizontal">
+                        <ion-col class="ion-text-center">
+                          <ion-button expand="block" (click)="clearSelections()">
                             Clear
                           </ion-button>
                         </ion-col>
-                        <ion-col class="ion-padding ion-text-center">
-                          <ion-button (click)="confirm()" [strong]="true">
+                        <ion-col class="ion-text-center">
+                          <ion-button expand="block" (click)="confirm()" [strong]="true">
                             Confirm
                           </ion-button>
                         </ion-col>

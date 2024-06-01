@@ -21,7 +21,7 @@ export class DonationDetailsComponent implements OnInit {
   edit: boolean = false;
   openAccordion = '';
   loader = true;
-  profile: string = null;
+  donorImage: string = null;
   userData: any;
   constructor(
     private router: Router,
@@ -32,34 +32,35 @@ export class DonationDetailsComponent implements OnInit {
     private spinner: LoaderService,
     private cameraService: CameraService,
     private authService: AuthService,
-    
-  ) {}
+
+  ) { }
 
 
   ngOnInit() {
     // this.f['donationDate'].setValue( this.data.donationDate);
 
   }
-  
+
   ionViewWillEnter() {
-   
+
     this.user = this.localStorage.get("user");
     this.edit = this.data.bloodBankName == null ? true : false;
-    if(this.user.role == 'ADMIN'){
+    this.donorImage = this.data?.image ? this.data?.image : null;
+    if (this.user.role == 'ADMIN') {
       this.openAccordion = !!this.data.bloodRequest ? 'second' : 'first';
-    }else{
-      this.openAccordion = !!this.data.bloodRequest ? 'second' : (!!this.data.location ?'first' : 'third');
+    } else {
+      this.openAccordion = !!this.data.bloodRequest ? 'second' : (!!this.data.location ? 'first' : 'third');
     }
-  
-    if(this.edit){
+
+    if (this.edit) {
       this.bloodDonateForm.controls.donationDate.setValue(new Date(this.data.donationDate.split('-').reverse().join('-')).toISOString());
     }
 
     this.userData = this.localStorage.get("user");
-    if (this.userData.id) {
-      this.getByIdData(this.userData.id);
-    }
-    
+    // if (this.userData.id) {
+    //   this.getByIdData(this.userData.id);
+    // }
+
   }
   bloodDonateForm = new FormGroup({
     location: new FormControl("", [Validators.required]),
@@ -76,14 +77,14 @@ export class DonationDetailsComponent implements OnInit {
   }
 
   async openCalender(date: any) {
-    console.log("date",date);
-    
+    console.log("date", date);
+
     date = date ? date : new Date().toISOString()
     const modal: any = await this.modalController.create({
       component: CalenderComponent,
       cssClass: "calender-model",
       componentProps: {
-      date:date
+        date: date
       },
     });
 
@@ -99,13 +100,13 @@ export class DonationDetailsComponent implements OnInit {
 
   async allocate() {
     // this.bloodDonateForm.value.status = 'ALLOCATED';
-    
+
     this.f["status"].setValue("ALLOCATED");
     if (this.bloodDonateForm.invalid) {
       console.log(this.bloodDonateForm.controls);
 
       this.toast.errorToast("Please fill required fields!");
-      
+
       return;
     }
     this.edit = !this.edit;
@@ -131,15 +132,32 @@ export class DonationDetailsComponent implements OnInit {
     );
   }
 
-  async editData(){
+  async editData() {
     this.edit = !this.edit;
     this.bloodDonateForm.patchValue(this.data);
     this.bloodDonateForm.controls.donationDate.setValue(new Date(this.data.donationDate.split('-').reverse().join('-')).toISOString());
-    
+
 
   }
   // status update by attender
   async statusUpdate(status: any) {
+
+    if (status == 'CANCEL' && !!this.data.bloodRequest) {
+
+      this.data.donationDate = this.data.donationDate.split('-').reverse().join()
+
+      let isValid = this.checkDonationGap(this.data.donationDate)
+      console.log("isValid----",isValid);
+      
+      if (isValid) {
+        this.toast.errorToast("Contact admin for cancelling request");
+
+        return
+      }
+
+
+    }
+
     this.loader = true;
     // await this.spinner.showLoader();
     this.data.status = status;
@@ -148,6 +166,9 @@ export class DonationDetailsComponent implements OnInit {
         this.toast.successToast(success.message);
         // await this.spinner.hideLoader();
         this.loader = false;
+        if (status == 'CANCEL'){
+          this.modalController.dismiss("CANCEL");
+        }
       },
       async (error: any) => {
         this.loader = false;
@@ -173,31 +194,47 @@ export class DonationDetailsComponent implements OnInit {
       `image/${image.format}`
     );
     const formData = new FormData();
-    formData.append("id", this.userData.id);
+    formData.append("id", this.data.id);
     formData.append(
       "image",
       imageBlob,
-      `${this.userData.firstName}_${this.userData.id}`
+      `${this.data.firstName}_${this.data.id}`
     );
-    this.authService.updateImage(formData).subscribe(
+    this.service.uploadImage(formData).subscribe(
       (success: any) => {
-        this.profile = success.image;
+        this.donorImage = success.image;
       },
       (error) => {
         this.toast.errorToast(error.message);
       }
     );
   }
-  getByIdData(id: any) {
-    this.authService.profile(id).subscribe(
-      (success: any) => {
-        this.user = success;
-        this.profile = success.image;
-      },
-      (error) => {
-        this.toast.errorToast(error.message);
-      }
-    );
+  // getByIdData(id: any) {
+  //   this.authService.profile(id).subscribe(
+  //     (success: any) => {
+  //       this.user = success;
+  //       this.profile = success.image;
+  //     },
+  //     (error) => {
+  //       this.toast.errorToast(error.message);
+  //     }
+  //   );
+  // }
+
+  checkDonationGap(donationDate) {
+    // Get the current date and time
+    let currentdate = new Date();
+
+    let currentdateIST: any = new Date(currentdate.toLocaleString("en-US", { timeZone: "Asia/Kolkata" }));
+
+
+    let timeDifference = Math.abs(donationDate - currentdateIST);
+
+    let hoursDifference = timeDifference / (1000 * 60 * 60);
+
+    console.log("hoursDifference----",hoursDifference);
+    
+    return hoursDifference <= 10;
   }
- 
+
 }

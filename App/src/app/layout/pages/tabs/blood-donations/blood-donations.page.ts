@@ -249,12 +249,21 @@ export class BloodDonationsPage implements OnInit, OnDestroy {
   }
 
   openModel(key: string, data: any) {
+    let modalRef;
     switch (key) {
       case "history":
         this.modalService.openModal(DonationHistoryComponent, { data: data });
         break;
       case "latest":
-        this.modalService.openModal(DonationDetailsComponent, { data: data });
+       modalRef = this.modalService.openModal(DonationDetailsComponent, { data: data });
+       modalRef.result.then(
+        (data) => {
+          if(data == 'CANCEL'){
+            this.activeSegment = "HISTORY";
+            this.refreshData()
+          }
+        }
+      );
         break;
       default:
         break;

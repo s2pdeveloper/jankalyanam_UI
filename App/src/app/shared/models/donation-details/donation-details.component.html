@@ -134,7 +134,12 @@
                         >Allocate</ion-button
                       >
                     </ion-col>
-                    <ion-col *ngIf="data.location">
+                    <ion-col size="6" *ngIf="data.location">
+                      <ion-button expand="block" (click)="edit = !edit"
+                        >Cancel</ion-button
+                      >
+                    </ion-col>
+                    <ion-col size="6" *ngIf="data.location">
                       <ion-button expand="block" (click)="allocate()"
                         >Re-Allocate</ion-button
                       >
@@ -359,27 +364,45 @@
       <ion-accordion value="fourth" *ngIf="data?.user?.id == user.id && (data.status == 'ACCEPTED' || data.status == 'DONE')">
         <ion-item slot="header" color="light">
           <i class="fa-solid fa-user"></i>
-          <ion-label class="ion-padding-horizontal">Upload Image</ion-label>
+          <ion-label class="ion-padding-horizontal">Upload Image While Donating</ion-label>
         </ion-item>
         <div class="ion-padding" slot="content">
           <ion-card>
             <ion-card-content>
+              
+              
               <ion-item lines="none" class="margin-img">
-                <ion-avatar class="avatar border-color-7">
+                <!-- <ion-avatar class="avatar border-color-7"> -->
                   <img
                     class="profile-img"
-                    *ngIf="!profile"
+                    *ngIf="!donorImage"
                     src="../../../../assets/icon/73-730477_first-name-profile-image-placeholder-png.png"
                     alt="mainPofile"
                   />
-                  <img *ngIf="!!profile" src="{{profile}}" alt="mainPofile" />
-                  <ion-icon name="camera" class="overlay-icon" (click)="uploadFile()"></ion-icon>
-                </ion-avatar>
+                  <img *ngIf="!!donorImage" src="{{donorImage}}" alt="mainPofile" />
+                  
+                <!-- </ion-avatar> -->
               </ion-item>
+              <ion-row class="ion-justify-content-end">
+                <ion-icon name="camera" class="cam-icon" (click)="uploadFile()"></ion-icon>
+              </ion-row>
             </ion-card-content>
           </ion-card>
         </div>
       </ion-accordion>
     </ion-accordion-group>
+
+ 
   <!-- </ng-template> -->
 </ion-content>
+
+<ion-footer *ngIf="data.status == 'PENDING' || data.status == 'ALLOCATED' || data.status == 'ACCEPTED'">
+  <ion-toolbar >
+    <ion-row class="ion-padding-horizontal ion-justify-content-center">
+      <ion-col size="10">
+        <ion-button (click)="statusUpdate('CANCEL')"  expand="block">Cancel Request</ion-button>
+
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

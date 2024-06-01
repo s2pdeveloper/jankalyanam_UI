@@ -73,6 +73,7 @@ export class DonatePage implements OnInit {
     state: new FormControl(),
     bloodGroup: new FormControl('', [Validators.required]),
     district: new FormControl(),
+    fatherOrHusband: new FormControl(""),
     tehsil: new FormControl(),
     village: new FormControl(),
   });
