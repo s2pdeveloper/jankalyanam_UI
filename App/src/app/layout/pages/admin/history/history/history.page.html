@@ -54,10 +54,25 @@
                     <ion-label>: {{data?.state}}</ion-label>
                   </ion-col>
                 </ion-row>
-                <ion-row>
+             
+                <ion-row *ngIf="!!data.district">
+                  <ion-col size="12" >
+                    <ion-label class="head">District</ion-label>
+                    <ion-label> : {{data?.district}}</ion-label>
+                  </ion-col>
+                </ion-row>
+
+                <ion-row *ngIf="!!data.tahsil">
+                  <ion-col size="12" >
+                    <ion-label class="head">Tehsil</ion-label>
+                    <ion-label> : {{data?.tahsil}}</ion-label>
+                  </ion-col>
+                </ion-row>
+
+                <ion-row *ngIf="!!data.village">
                   <ion-col size="12">
-                    <ion-label class="head">City</ion-label>
-                    <ion-label>: {{data?.city}}</ion-label>
+                    <ion-label class="head">Village</ion-label>
+                    <ion-label> : {{data?.village}}</ion-label>
                   </ion-col>
                 </ion-row>
                
@@ -67,6 +82,7 @@
                     <ion-label>: {{data?.fatherOrHusband}}</ion-label>
                   </ion-col>
                 </ion-row>
+
                 <ion-row>
                   <ion-col size="12">
                     <ion-label class="head">Hemoglobin</ion-label>
@@ -74,12 +90,6 @@
                   </ion-col>
                 </ion-row>
                
-                <ion-row>
-                  <ion-col size="12">
-                    <ion-label class="head">Location</ion-label>
-                    <ion-label>: {{data?.location}}</ion-label>
-                  </ion-col>
-                </ion-row>
                 <ion-row>
                   <ion-col size="12">
                     <ion-label class="head">Mobile Number</ion-label>
@@ -139,9 +149,9 @@
                     <ion-label> : {{data?.acceptor?.state}}</ion-label>
                   </ion-col>
 
-                  <ion-col size="12" *ngIf="!!data?.acceptor?.city">
-                    <ion-label class="head">City</ion-label>
-                    <ion-label> : {{data?.acceptor?.city}}</ion-label>
+                  <ion-col size="12" *ngIf="!!data?.acceptor?.district">
+                    <ion-label class="head">District</ion-label>
+                    <ion-label> : {{data?.acceptor?.district}}</ion-label>
                   </ion-col>
 
                   <ion-col size="12">
@@ -220,9 +230,19 @@
                     <ion-label> : {{data?.donor?.state}}</ion-label>
                   </ion-col>
 
-                  <ion-col size="12">
-                    <ion-label class="head">City</ion-label>
-                    <ion-label> : {{data?.donor?.city}}</ion-label>
+                  <ion-col size="12" *ngIf="!!data?.donor?.district">
+                    <ion-label class="head">District</ion-label>
+                    <ion-label> : {{data?.donor?.district}}</ion-label>
+                  </ion-col>
+
+                  <ion-col size="12" *ngIf="!!data?.donor?.tahsil">
+                    <ion-label class="head">Tehsil</ion-label>
+                    <ion-label> : {{data?.donor?.tahsil}}</ion-label>
+                  </ion-col>
+
+                  <ion-col size="12" *ngIf="!!data?.donor?.village">
+                    <ion-label class="head">Village</ion-label>
+                    <ion-label> : {{data?.donor?.village}}</ion-label>
                   </ion-col>
 
                   <ion-col size="12">

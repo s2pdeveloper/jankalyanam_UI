@@ -68,10 +68,9 @@ export class EditProfilePage implements OnInit {
     mobileNo: new FormControl('', [Validators.required]),
     pincode: new FormControl('', [Validators.required]),
     bloodGroup: new FormControl('', [Validators.required]),
-
     state: new FormControl('', [Validators.required]),
     district: new FormControl(),
-    tehsil: new FormControl(),
+    tahsil: new FormControl(),
     village: new FormControl(),
     DOB: new FormControl(),
   });
@@ -159,6 +158,8 @@ export class EditProfilePage implements OnInit {
     let formData = this.editRegistrationForm.value;
     this.service.updateUser(formData.id, formData).subscribe((success: any) => {
       this.toast.successToast('Profile Updated Successfully');
+      success.token = this.userData.token;
+      this.storage.set('user', success);
       this.router.navigate(['/auth/profile']);
     });
   }

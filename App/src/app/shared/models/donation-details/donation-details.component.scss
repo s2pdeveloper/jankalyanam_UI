@@ -21,11 +21,11 @@ ion-card-title{
 
 }
 .overlay-icon {
-    position: absolute;
-    top: 85%;
-    left: 25%;
-    transform: translate(-50%, -50%);
-    font-size: 2rem;
+  position: absolute;
+  bottom: 10%;
+  left: 95%;
+  transform: translate(-95%, -10%);
+  font-size: 2.5rem;
   }
   .margin-top {
     margin-top: 11px;
@@ -58,5 +58,24 @@ ion-card-title{
   }
   .fontSize {
     font-size: 1.15rem;
+  }
+
+  .donorImg{
+    min-width: 10rem;
+  }
+  .donarImag-sec{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    img{
+       width: 10rem;
+     height: 10rem;
+    }
+    // background-color: #f79e33;
+    //  width: 10rem;
+    //  height: 10rem;
+    // border-radius: 50%;
   }
   

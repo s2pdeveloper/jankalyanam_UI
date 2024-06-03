@@ -228,10 +228,22 @@
                     <ion-label>: {{data?.bloodRequest?.state}}</ion-label>
                   </ion-col>
                 </ion-row>
-                <ion-row>
+                <ion-row *ngIf="!!data?.bloodRequest.district">
                   <ion-col size="12">
-                    <ion-label class="head">City</ion-label>
-                    <ion-label>: {{data?.bloodRequest?.city}}</ion-label>
+                    <ion-label class="head">District</ion-label>
+                    <ion-label>: {{data?.bloodRequest?.district}}</ion-label>
+                  </ion-col>
+                </ion-row>
+                <ion-row *ngIf="!!data?.bloodRequest.tahsil">
+                  <ion-col size="12">
+                    <ion-label class="head">Tehsil</ion-label>
+                    <ion-label>: {{data?.bloodRequest?.tahsil}}</ion-label>
+                  </ion-col>
+                </ion-row>
+                <ion-row *ngIf="!!data?.bloodRequest.village">
+                  <ion-col size="12">
+                    <ion-label class="head">Village</ion-label>
+                    <ion-label>: {{data?.bloodRequest?.village}}</ion-label>
                   </ion-col>
                 </ion-row>
                 <ion-row *ngIf="data?.bloodRequest?.gender == 'FEMALE'">
@@ -297,7 +309,25 @@
           <ion-card>
             <ion-card-content>
               <ion-grid>
-                <ion-row>
+
+                <ion-row class="ion-justify-content-center">
+                  <ion-col  size="10" class="ion-text-center donarImag-sec ">
+                    <!-- <ion-card class="donarImag-sec ion-text-center"> -->
+                      
+                         
+                        <img  src="{{donorImage ?? '../../../../assets/photo_2983067.png' }}" alt="mainPofile" class="donorImg" />
+                        <ion-icon name="add-circle" class="overlay-icon"></ion-icon>
+                        <!-- <ion-icon name="camera-outline"  color=light size="large"></ion-icon> -->
+                        <!-- <ion-text color="light">
+                          Upload Image While Donating
+                        </ion-text> -->
+
+                    <!-- </ion-card> -->
+
+                        
+                  </ion-col>
+
+
                   <ion-col size="12">
                     <ion-label class="head">Name</ion-label>
                     <ion-label> : {{data?.name}}</ion-label>
@@ -318,9 +348,19 @@
                     <ion-label> : {{data?.state}}</ion-label>
                   </ion-col>
 
-                  <ion-col size="12">
-                    <ion-label class="head">City</ion-label>
-                    <ion-label> : {{data?.city}}</ion-label>
+                  <ion-col size="12" *ngIf="!!data.district">
+                    <ion-label class="head">District</ion-label>
+                    <ion-label> : {{data?.district}}</ion-label>
+                  </ion-col>
+  
+                  <ion-col size="12" *ngIf="!!data.tahsil">
+                    <ion-label class="head">Tehsil</ion-label>
+                    <ion-label> : {{data?.tahsil}}</ion-label>
+                  </ion-col>
+  
+                  <ion-col size="12" *ngIf="!!data.village">
+                    <ion-label class="head">Village</ion-label>
+                    <ion-label> : {{data?.village}}</ion-label>
                   </ion-col>
 
                   <ion-col size="12">
