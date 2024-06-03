@@ -8,7 +8,7 @@
           <ion-back-button default-href="/layout/home"></ion-back-button>
         </ion-col>
         <ion-col size="6">
-          <ion-title class="ion-no-padding">Blood-Requests</ion-title>
+          <ion-title class="ion-no-padding">{{'bloodRequest' | translate}}</ion-title>
         </ion-col>
         <ion-col size="2">
           <img class="filter-btn" src="../../../../../assets/filter.png" alt="filter" id="blood-modal" expand="block"  >
@@ -17,9 +17,9 @@
               <ng-template>
                 <ion-header>
                   <ion-toolbar color="primary" style="display: flex; justify-content: space-between; align-items: center;">
-                    <ion-title style="flex-grow: 1; text-align: start;">Apply Filter</ion-title>
+                    <ion-title style="flex-grow: 1; text-align: start;">{{'applyFilter' | translate}}</ion-title>
                     <ion-buttons slot="end" style="position: absolute; right: 0;">
-                      <ion-button style="font-size: 14px;"  (click)="cancel()">Cancel</ion-button>
+                      <ion-button style="font-size: 14px;"  (click)="cancel()">{{'cancel' | translate}}</ion-button>
                     </ion-buttons>
                   </ion-toolbar>                  
                 </ion-header>
@@ -27,7 +27,7 @@
                   <ion-item>
                     <ion-grid>
                       <ion-row class="ion-padding-bottom">
-                        <ion-label>Blood Group</ion-label>
+                        <ion-label>{{'bloodGroup' | translate}}</ion-label>
                       </ion-row>
                       <ion-row class="ion-padding-bottom">
                         <ion-button 
@@ -40,7 +40,7 @@
                         </ion-button>
                       </ion-row>
                       <ion-row class="ion-padding-bottom">
-                        <ion-label>Blood Type</ion-label>
+                        <ion-label>{{'seleteBloodType' | translate}}</ion-label>
                       </ion-row>
                       <ion-row class="ion-padding-bottom">
                         <ion-button 
@@ -53,12 +53,12 @@
                         </ion-button>
                       </ion-row>
                       <ion-row class="ion-padding-bottom">
-                        <ion-label>Hospital Name</ion-label>
+                        <ion-label>{{'hospitalName' | translate}}</ion-label>
                       </ion-row>
                       <ion-row class="ion-padding-bottom">
                         <ion-col size="12">
                           <ion-item class="input-class mt-3" lines="none">
-                            <ion-input label-placement="stacked" type="text" placeholder="Enter Hospital Name Here" [(ngModel)]="hospitalName">
+                            <ion-input label-placement="stacked" type="text" placeholder="{{'enterHospitalName' | translate}}" [(ngModel)]="hospitalName">
                             </ion-input>
                           </ion-item>
                         </ion-col>
@@ -73,12 +73,12 @@
                       <ion-row class="ion-padding-horizontal">
                         <ion-col class="ion-text-center">
                           <ion-button expand="block" (click)="clearSelections()">
-                            Clear
+                            {{'clear' | translate}}
                           </ion-button>
                         </ion-col>
                         <ion-col  class="ion-text-center">
                           <ion-button expand="block" (click)="confirm()" [strong]="true">
-                            Confirm
+                            {{'confirm' | translate}}
                           </ion-button>
                         </ion-col>
                       </ion-row>
@@ -107,19 +107,19 @@
       <ion-item class="mt-2" lines="none">
         <ion-segment [(ngModel)]="activeSegment" [scrollable]="true">
           <ion-segment-button value="list" *ngIf="user.role == 'ADMIN'">
-            <ion-label class="ion-text-capitalize">My List</ion-label>
+            <ion-label class="ion-text-capitalize">{{'myList' | translate}}</ion-label>
           </ion-segment-button>
 
           <ion-segment-button value="latest">
-            <ion-label class="ion-text-capitalize">Active</ion-label>
+            <ion-label class="ion-text-capitalize">{{'active' | translate}}</ion-label>
           </ion-segment-button>
           <!-- Define Role Below -->
           <ion-segment-button value="history">
             <ion-label *ngIf="user.role != 'ADMIN'" class="ion-text-capitalize"
-              >History</ion-label
+              >{{'history' | translate}}</ion-label
             >
             <ion-label *ngIf="user.role == 'ADMIN'" class="ion-text-capitalize"
-              >History Admin</ion-label
+              >{{'adminHistory' | translate}}</ion-label
             >
           </ion-segment-button>
         </ion-segment>

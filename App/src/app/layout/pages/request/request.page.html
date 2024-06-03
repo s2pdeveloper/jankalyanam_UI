@@ -12,25 +12,27 @@
       <ion-grid>
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
-            <ion-item  class="input input-class ">
+            <ion-item class="input input-class ">
               <!-- <ion-label  position="floating" lablePlacement="stacked">Name</ion-label> -->
-              <ion-input label="Name" label-placement="stacked" placeholder="Full Name" formControlName="name"></ion-input>
+              <ion-input label="{{'Name' | translate}}" label-placement="stacked" placeholder="{{'Name' | translate}}"
+                formControlName="name"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
-            <ion-item  class="input input-class ">
+            <ion-item class="input input-class ">
               <!-- <ion-label position="floating" lablePlacement="stacked">Age</ion-label> -->
-              <ion-input label="Age" label-placement="stacked" placeholder="Age" formControlName="age" type="number"></ion-input>
+              <ion-input label="{{'age' | translate}}" label-placement="stacked" placeholder="{{'age' | translate}}" formControlName="age"
+                type="number"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
 
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
-            <ion-item  lines="none" class="input-class" >
-              <ion-select aria-label="Gender" interface="action-sheet" placeholder="Select Gender"
+            <ion-item lines="none" class="input-class">
+              <ion-select aria-label="Gender" interface="action-sheet" placeholder="{{'gender' | translate}}"
                 formControlName="gender" (ionChange)="checkGender()">
                 <ion-select-option value="MALE">Male</ion-select-option>
                 <ion-select-option value="FEMALE">Female</ion-select-option>
@@ -41,18 +43,18 @@
 
         <ion-row *ngIf="isFemale" class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
-            <ion-item  class="input input-class ">
+            <ion-item class="input input-class ">
               <!-- <ion-label position="floating" lablePlacement="stacked">Father/Husband</ion-label> -->
-              <ion-input label="Father/Husband" label-placement="stacked" placeholder="Father/Husband" formControlName="fatherOrHusband"></ion-input>
+              <ion-input label="Father/Husband" label-placement="stacked" placeholder="Father/Husband"
+                formControlName="fatherOrHusband"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
 
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
-            <ion-item  class="input input-class ">
-              <ion-label *ngIf="!f['bloodRequireDate'].value" position="floating" lablePlacement="stacked">Blood Require
-                Date</ion-label>
+            <ion-item class="input input-class ">
+              <ion-label *ngIf="!f['bloodRequireDate'].value" position="floating" lablePlacement="stacked">{{'RequireDate'| translate}}</ion-label>
               <p class="ion-margin-end">
                 {{f['bloodRequireDate'].value | date}}
               </p>
@@ -63,9 +65,10 @@
         </ion-row>
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
-            <ion-item  class="input input-class ">
+            <ion-item class="input input-class ">
               <!-- <ion-label position="floating" lablePlacement="stacked">Mobile Number</ion-label> -->
-              <ion-input label="Mobile Number" label-placement="stacked" placeholder="mobileNo" formControlName="mobileNo" type="number"></ion-input>
+              <ion-input label="{{'mobileNo'| translate}}" label-placement="stacked" placeholder="{{'mobileNo'| translate}}"
+                formControlName="mobileNo" type="number"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -85,16 +88,17 @@
         </ion-row> -->
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
-            <ion-item  class="input input-class ">
+            <ion-item class="input input-class ">
               <!-- <ion-label position="floating" lablePlacement="stacked">Hospital Name</ion-label> -->
-              <ion-input label="Hospital Name" label-placement="stacked" placeholder="Hospital Name" formControlName="hospitalName"></ion-input>
+              <ion-input label="{{'select bloodgroup'| translate}}" label-placement="stacked" placeholder="{{'select bloodgroup'| translate}}"
+                formControlName="hospitalName"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
-            <ion-item  lines="none" class="input-class" >
-              <ion-select aria-label="bloodGroup" interface="action-sheet" placeholder="Select Blood Group"
+            <ion-item lines="none" class="input-class">
+              <ion-select aria-label="bloodGroup" interface="action-sheet" placeholder="{{'select bloodgroup'| translate}}"
                 formControlName="bloodGroup">
 
                 <ion-select-option *ngFor="let item of bloodGroup" value="{{item}}">{{item}}</ion-select-option>
@@ -104,8 +108,8 @@
         </ion-row>
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
-            <ion-item  lines="none" class="input-class" >
-              <ion-select aria-label="Blood Type" interface="action-sheet" placeholder="Select Blood Type"
+            <ion-item lines="none" class="input-class">
+              <ion-select aria-label="Blood Type" interface="action-sheet" placeholder="{{'seleteBloodType'| translate}}"
                 formControlName="bloodType">
 
                 <ion-select-option *ngFor="let item of bloodType" value="{{item}}">{{item}}</ion-select-option>
@@ -115,8 +119,8 @@
         </ion-row>
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
-            <ion-item  lines="none" class="input-class" >
-              <ion-select aria-label="Hemoglobin" interface="action-sheet" placeholder="Select Hemoglobin"
+            <ion-item lines="none" class="input-class">
+              <ion-select aria-label="Hemoglobin" interface="action-sheet" placeholder="{{'hemoglobin'| translate}}"
                 formControlName="hemoglobin">
 
                 <ion-select-option *ngFor="let item of hemoglobin" value="{{item}}">{{item}}</ion-select-option>
@@ -126,8 +130,8 @@
         </ion-row>
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
-            <ion-item  lines="none" class="input-class" >
-              <ion-select aria-label="Units" interface="action-sheet" placeholder="Select Units"
+            <ion-item lines="none" class="input-class">
+              <ion-select aria-label="Units" interface="action-sheet" placeholder="{{'selectUnits'| translate}}"
                 formControlName="units">
 
                 <ion-select-option *ngFor="let item of units" value="{{item}}">{{item}}</ion-select-option>
@@ -257,8 +261,8 @@
         <!-- state -->
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
-            <ion-item class="input-class" >
-               <ion-label position="floating" labelPlacement="stacked">{{'State'}}
+            <ion-item class="input-class">
+              <ion-label position="floating" labelPlacement="stacked">{{'state'| translate}}
               </ion-label>
               <ionic-selectable [(ngModel)]="selectTable.state" [ngModelOptions]="{standalone: true}"
                 class="ion-text-capilatize" [items]="states" itemTextField="stateName" itemValueField="id"
@@ -272,8 +276,8 @@
         <!-- state ends -->
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
-            <ion-item class="input-class" >
-               <ion-label position="floating" labelPlacement="stacked">District
+            <ion-item class="input-class">
+              <ion-label position="floating" labelPlacement="stacked">{{'District'| translate}}
               </ion-label>
               <ionic-selectable [(ngModel)]="selectTable.district" [ngModelOptions]="{standalone: true}"
                 class="ion-text-capilatize" [items]="district" itemTextField="districtName" itemValueField="id"
@@ -285,8 +289,8 @@
         </ion-row>
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
-            <ion-item class="input-class" >
-               <ion-label position="floating" labelPlacement="stacked">Tehsil
+            <ion-item class="input-class">
+              <ion-label position="floating" labelPlacement="stacked">{{'Tahsil'| translate}}
               </ion-label>
               <ionic-selectable [(ngModel)]="selectTable.tahsil" [ngModelOptions]="{standalone: true}"
                 class="ion-text-capilatize" [items]="tehsil" itemTextField="tahsilName" itemValueField="id"
@@ -299,8 +303,8 @@
         </ion-row>
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
-            <ion-item class="input-class" >
-               <ion-label position="floating" labelPlacement="stacked">Village
+            <ion-item class="input-class">
+              <ion-label position="floating" labelPlacement="stacked">{{'Village'| translate}}
               </ion-label>
               <ionic-selectable [(ngModel)]="selectTable.village" [ngModelOptions]="{standalone: true}"
                 class="ion-text-capilatize" [items]="village" itemTextField="villageName" itemValueField="id"
@@ -313,9 +317,10 @@
 
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
-            <ion-item  class="input input-class ">
+            <ion-item class="input input-class ">
               <!-- <ion-label position="floating" lablePlacement="stacked">Illness</ion-label> -->
-              <ion-input label="Illness" label-placement="stacked" placeholder="illness" formControlName="illness"></ion-input>
+              <ion-input label="{{'illness'| translate}}" label-placement="stacked" placeholder="{{'illness'| translate}}"
+                formControlName="illness"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -323,7 +328,7 @@
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
             <ion-button expand="block" shape="round" class="button ion-padding" color="primary"
-              (click)="create()">Submit</ion-button>
+              (click)="create()">{{'submit'| translate}}</ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>

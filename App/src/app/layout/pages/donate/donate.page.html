@@ -15,9 +15,9 @@
               <!-- <ion-label position="floating" labelPlacement="stacked">
                 {{'Name' | translate }}
               </ion-label> -->
-              <ion-input label="{{ 'Name' | translate }}" label-placement="stacked" [readonly]="true" type="text" placeholder="Full name"
-                  formControlName="name">
-                </ion-input>
+              <ion-input label="{{ 'Name' | translate }}" label-placement="stacked" [readonly]="true" type="text"
+                placeholder="Full name" formControlName="name">
+              </ion-input>
               <!-- <ion-input aria-label="{{ 'Name' | translate }}" [readonly]="true" placeholder="Full Name"
                 formControlName="name"></ion-input> -->
             </ion-item>
@@ -30,8 +30,8 @@
                 {{'age' | translate }}</ion-label>
               <ion-input placeholder="Age" label-placement="floating" formControlName="age" type="number"></ion-input> -->
               <ion-input label="{{'age' | translate }}" label-placement="floating" type="text" placeholder="Age"
-              formControlName="age">
-            </ion-input>
+                formControlName="age">
+              </ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -49,8 +49,8 @@
         <ion-row *ngIf="isFemale" class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
             <ion-item class="input input-class" lines="none">
-              <ion-input label="Father/Husband" label-placement="floating"   type="text" placeholder="Father/Husband"
-              formControlName="fatherOrHusband"></ion-input>
+              <ion-input label="Father/Husband" label-placement="floating" type="text" placeholder="Father/Husband"
+                formControlName="fatherOrHusband"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -69,7 +69,8 @@
           <ion-col size="12">
             <ion-item class="input input-class">
               <!-- <ion-label position="floating" labelPlacement="stacked">{{'mobileNo' | translate }}</ion-label> -->
-              <ion-input label="{{'mobileNo' | translate }}" label-placement="floating" [readonly]="true" placeholder="mobileNo" formControlName="mobileNo" type="number"></ion-input>
+              <ion-input label="{{'mobileNo' | translate }}" label-placement="floating" [readonly]="true"
+                placeholder="mobileNo" formControlName="mobileNo" type="number"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -77,7 +78,8 @@
           <ion-col size="12">
             <ion-item class="input-class">
               <!-- <ion-label position="floating" labelPlacement="stacked">{{'bloodgroup' | translate }}</ion-label> -->
-              <ion-input label="{{'bloodgroup' | translate }}" label-placement="floating" [readonly]="true" placeholder="Blood Group" formControlName="bloodGroup"></ion-input>
+              <ion-input label="{{'bloodgroup' | translate }}" label-placement="floating" [readonly]="true"
+                placeholder="Blood Group" formControlName="bloodGroup"></ion-input>
               <!-- <ion-select
               
                 aria-label="Fruit"
@@ -106,7 +108,7 @@
                 placeholder="hemoglobin"
                 formControlName="hemoglobin"
               ></ion-input> -->
-              <ion-select aria-label="Hemoglobin" interface="action-sheet" placeholder="Select Hemoglobin"
+              <ion-select interface="action-sheet" placeholder="{{'hemoglobin' | translate }}"
                 formControlName="hemoglobin">
                 <ion-select-option *ngFor="let item of hemoglobin" value="{{item}}">{{item}}</ion-select-option>
               </ion-select>
@@ -119,8 +121,8 @@
             <ion-item class="input input-class">
               <!-- <ion-label position="floating" labelPlacement="stacked">
                 {{'state' | translate }}</ion-label> -->
-              <ion-input label="{{'state' | translate }}" label-placement="floating" [readonly]="true" placeholder="State" label-placement="floating"
-                formControlName="state"></ion-input>
+              <ion-input label="{{'state' | translate }}" label-placement="floating" [readonly]="true"
+                placeholder="State" label-placement="floating" formControlName="state"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -130,8 +132,8 @@
             <ion-item class="input input-class">
               <!-- <ion-label position="floating" labelPlacement="stacked">
                 {{'District' | translate }}</ion-label> -->
-              <ion-input label="{{'District' | translate }}" label-placement="floating" [readonly]="true" placeholder="District" label-placement="floating"
-                formControlName="district"></ion-input>
+              <ion-input label="{{'District' | translate }}" label-placement="floating" [readonly]="true"
+                placeholder="District" label-placement="floating" formControlName="district"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -141,8 +143,8 @@
             <ion-item class="input input-class">
               <!-- <ion-label position="floating" labelPlacement="stacked">
                 {{'Tahsil' | translate }}</ion-label> -->
-              <ion-input label="{{'Tahsil' | translate }}" label-placement="floating" [readonly]="true" placeholder="Tahsil" label-placement="floating"
-                formControlName="tehsil"></ion-input>
+              <ion-input label="{{'Tahsil' | translate }}" label-placement="floating" [readonly]="true"
+                placeholder="Tahsil" label-placement="floating" formControlName="tehsil"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -152,8 +154,8 @@
             <ion-item class="input input-class">
               <!-- <ion-label position="floating" labelPlacement="stacked">
                 {{'Village' | translate }}</ion-label> -->
-              <ion-input label="{{'Village' | translate }}" label-placement="floating" [readonly]="true" placeholder="Village" label-placement="floating"
-                formControlName="village"></ion-input>
+              <ion-input label="{{'Village' | translate }}" label-placement="floating" [readonly]="true"
+                placeholder="Village" label-placement="floating" formControlName="village"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -408,8 +410,9 @@
 
         <ion-row class="ion-align-items-center ion-justify-content-center">
           <ion-col size="12">
-            <ion-checkbox formControlName="illness" labelPlacement="end" justify="start" label="Do you have any type of illness">
-              Do you have any type ofillness
+            <ion-checkbox formControlName="illness" labelPlacement="end" justify="start"
+              label="Do you have any type of illness">
+              {{'anyIllness' | translate }}
             </ion-checkbox>
           </ion-col>
           <ion-col size="1">
@@ -418,9 +421,9 @@
             </ion-checkbox>
           </ion-col>
           <ion-col size="11">
-            I agree to the
-            <ion-text color="primary"><span (click)="handleModal(true)">Terms and Condition</span></ion-text>
-            of Donation
+            {{'line1' | translate }}
+            <ion-text color="primary"><span (click)="handleModal(true)">{{'line2' | translate }}</span></ion-text>
+            {{'line3' | translate }}
             <!-- <ion-icon name="information-circle-outline" class="info-terms" color="dark"></ion-icon> -->
           </ion-col>
         </ion-row>
@@ -429,7 +432,7 @@
           <ng-template>
             <ion-grid class="ion-padding">
               <ion-list class="top-sec">
-                <ion-text> Terms And Conditions </ion-text>
+                <ion-text> {{'line2' | translate }} </ion-text>
               </ion-list>
               <ion-list>
                 <ion-text> 1] You weigh at least 50 kg. </ion-text>
@@ -459,8 +462,7 @@
               </ion-list>
 
               <ion-list>
-                <ion-button expand="block" class="button" color="primary" (click)="acceptTermsAndCond()">Accept &
-                  Continue</ion-button>
+                <ion-button expand="block" class="button" color="primary" (click)="acceptTermsAndCond()">{{'acceptContinue' | translate}}</ion-button>
               </ion-list>
             </ion-grid>
             <!-- </ion-content> -->
