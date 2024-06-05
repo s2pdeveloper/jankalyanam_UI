@@ -1,11 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
-    <ion-back-button
-      slot="start"
-      default-href="/layout/home"
-      (click)="dismiss()"
-    ></ion-back-button>
-    <ion-title>Change Language</ion-title>
+    <ion-back-button slot="start" default-href="/layout/home" (click)="dismiss()"></ion-back-button>
+    <ion-title>{{'changeLanguage' | translate}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -13,15 +9,31 @@
   <ion-radio-group [(ngModel)]="currentLanguage" (ionChange)="change($event.detail.value)">
     <ion-card>
       <ion-card-content>
-        <ion-item lines="none">
-          <ion-radio value="en" ></ion-radio>
-          <ion-label class="ion-padding-horizontal">English</ion-label>
-        </ion-item>
-        <ion-item lines="none">
-          <ion-radio value="hi"></ion-radio>
-          <ion-label class="ion-padding-horizontal">Hindi</ion-label>
-        </ion-item>
-       
+        <ion-grid>
+          <ion-item lines="none">
+            <ion-row>
+              <ion-col>
+                <ion-radio value="en" aria-label="English"></ion-radio>
+              </ion-col>
+              <ion-col>
+                <div class="ion-padding-start">English</div>
+              </ion-col>
+            </ion-row>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-row>
+              <ion-col>
+                <ion-radio value="hi" aria-label="Hindi"></ion-radio>
+              </ion-col>
+              <ion-col>
+                <div class="ion-padding-start">Hindi</div>
+              </ion-col>
+            </ion-row>
+            
+           
+          </ion-item>
+        </ion-grid>
+
       </ion-card-content>
     </ion-card>
   </ion-radio-group>

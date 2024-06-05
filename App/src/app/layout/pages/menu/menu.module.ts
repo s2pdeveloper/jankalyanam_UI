@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { MenuPageRoutingModule } from './menu-routing.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 import { MenuPage } from './menu.page';
 
@@ -13,7 +14,7 @@ import { MenuPage } from './menu.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    MenuPageRoutingModule
+    MenuPageRoutingModule,SharedModule
   ],
   declarations: [MenuPage],
   exports:[MenuPage]

@@ -11,10 +11,10 @@ import { SessionStorageService } from "src/app/core/services/session-storage.ser
 })
 export class MenuPage implements OnInit {
   public appPages = [
-    { title: "Profile", url: "/auth/profile", icon: "person-circle" },
-    { title: "Change Language", url: "/layout/change-language", icon: "language" },
-    { title: "Change Password", url: "/auth/change-password", icon: "key" },
-    { title: "About", url: "/folder/outbox", icon: "information-circle" },
+    { title: "profile", url: "/auth/profile", icon: "person-circle" },
+    { title: "changeLanguage", url: "/layout/change-language", icon: "language" },
+    { title: "changePassword", url: "/auth/change-password", icon: "key" },
+    { title: "about", url: "/folder/outbox", icon: "information-circle" },
     // { title: 'Logout', url: '/auth/login', icon: 'log-out' },
   ];
   public labels = ["Family", "Friends", "Notes", "Work", "Travel", "Reminders"];

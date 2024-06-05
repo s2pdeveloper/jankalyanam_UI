@@ -22,7 +22,7 @@ export const languageConst={
       "Tahsil": "Tahsil",
       "Village": "Village",
       "bloodgroup":"Blood Group",
-      "DOB":"DOB",
+      "DOB":"Date of Birth",
       "anyIllness":"Do you have any type of illness",
       "line1":"  I agree to the",
       "line2":"Terms and Condition",
@@ -37,6 +37,7 @@ export const languageConst={
       "home":"Home",
       "donateBlood":"Donate Blood",
       "requestBlood":"Request Blood",
+      "bloodDonationHistory":"Blood Donation History",
       "latest" : "Latest",
       "history" : "History",
       "myList":"My List",
@@ -48,7 +49,25 @@ export const languageConst={
       "clear":"Clear",
       "enterHospitalName":"Enter Hospital Name Here",
       "bloodBankName" : "Blood Bank Name",
-      "enterBloodBankName":"Enter Blood Bank Name Here"
+      "enterBloodBankName":"Enter Blood Bank Name Here",
+      "logout":"Logout",
+      "profile":"Profile",
+      "changeLanguage":"Change Language",
+      "changePassword":"Change Password",
+      "about":"About",
+      "LOGOUT": "Logout",
+      "ARE_YOU_SURE_TO_LOGOUT": "Are you sure to logout?",
+      "CANCEL": "Cancel",
+      "OK": "OK",
+      "fullName" : "Full Name",
+      "email" :"Email",
+      "pincode":"Pincode",
+      "edit":"Edit",
+      "editProfile":"Edit-Profile",
+      "firstName":"First Name",
+      "lastName":"Last Name",
+      "update":"Update"
+      
 
 
 
@@ -93,8 +112,9 @@ export const languageConst={
       "bloodDonation":"रक्तदान",
       "bloodRequest" : "रक्त अनुरोध",
       "home":"घर",
-      "donateBlood":"रक्त दान करें",
+      "donateBlood":"रक्तदान करें",
       "requestBlood":"रक्त का अनुरोध करें",
+      "bloodDonationHistory":"रक्तदान इतिहास",
       "latest" : "नवीनतम",
       "history" : "इतिहास",
       "myList" : "मेरी सूची",
@@ -107,7 +127,27 @@ export const languageConst={
       "enterHospitalName":"यहां अस्पताल का नाम दर्ज करें",
       "bloodBankName" : "ब्लड बैंक का नाम",
       "enterBloodBankName":"यहां ब्लड बैंक का नाम दर्ज करें",
-      "bloodDonationDate" : 'रक्त दान दिनांक'
+      "bloodDonationDate" : 'रक्त दान दिनांक',
+      "logout":"लॉग आउट",
+      "profile":"प्रोफ़ाइल",
+      "changeLanguage":"भाषा बदलें",
+      "changePassword":"पासवर्ड बदलें",
+      "about":"हमारे बारे में",
+      "LOGOUT": "लॉग आउट",
+      "ARE_YOU_SURE_TO_LOGOUT": "क्या आप वाकई लॉग आउट करना चाहते हैं?",
+      "CANCEL": "रद्द करें",
+      "OK": "ठीक है",
+      "fullName" : "पूरा नाम",
+      "email" :"ईमेल",
+      "DOB":"जन्म की तारीख",
+      "edit":"संपादन करना",
+      "editProfile":"प्रोफ़ाइल संपादित करें",
+      "firstName":"पहला नाम",
+      "lastName":"उपनाम",
+      "update":"अद्यतन"
+      
+      
+
 
 
 

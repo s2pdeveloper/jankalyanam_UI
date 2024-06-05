@@ -3,7 +3,7 @@
     <ion-buttons class="color-light" slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title class="ion-justify-content-center">Home</ion-title>
+    <ion-title class="ion-justify-content-center">{{'home' | translate}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -39,7 +39,7 @@
           <ion-card (click)="navigateTo('/layout/donate')">
             <img src="../../../../assets/donate.jpg" alt="donate" />
             <ion-card-header>
-              <ion-card-title>Donate Blood</ion-card-title>
+              <ion-card-title>{{'donateBlood' | translate}}</ion-card-title>
             </ion-card-header>
           </ion-card>
         </ion-col>
@@ -47,7 +47,7 @@
           <ion-card (click)="navigateTo('/layout/request')">
             <img src="../../../../assets/need.png" alt="donate" />
             <ion-card-header>
-              <ion-card-title>Request Blood</ion-card-title>
+              <ion-card-title>{{'requestBlood' | translate}}</ion-card-title>
             </ion-card-header>
           </ion-card>
         </ion-col>
@@ -65,7 +65,7 @@
   <ion-item>
     <ion-card>
       <ion-item>
-        <ion-lable> Blood Donation History </ion-lable>
+        <ion-lable>{{'bloodDonationHistory' | translate}}</ion-lable>
       </ion-item>
       <ion-item>
         <img src="../../../../assets/graph.png" alt="" />

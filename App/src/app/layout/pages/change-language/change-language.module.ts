@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -13,7 +14,7 @@ import { ChangeLanguagePage } from './change-language.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    ChangeLanguagePageRoutingModule
+    ChangeLanguagePageRoutingModule,SharedModule
   ],
   declarations: [ChangeLanguagePage]
 })
