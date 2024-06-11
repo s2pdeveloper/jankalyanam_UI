@@ -66,8 +66,21 @@ export const languageConst={
       "editProfile":"Edit-Profile",
       "firstName":"First Name",
       "lastName":"Last Name",
-      "update":"Update"
-      
+      "update":"Update",
+      "details":"Details",
+      "bloodBankDetails":"Blood Bank Details",
+      "personalDetails":"Personal Details",
+      "uploadImageWhileDonating":"Upload Image While Donating",
+      "cancelRequest" :" Cancel Request",
+      "location":"Location",
+      "accept":"Accept",
+      "done":"Done",
+      "allocate":"Allocate",
+      "Re-Allocate":"Re-Allocate",
+      "beneficiary":"Beneficiary",
+      "Father/Husband":"Father/Husband",
+      "units":"Units",
+      "donor":"Donor"
 
 
 
@@ -144,7 +157,23 @@ export const languageConst={
       "editProfile":"प्रोफ़ाइल संपादित करें",
       "firstName":"पहला नाम",
       "lastName":"उपनाम",
-      "update":"अद्यतन"
+      "update":"अद्यतन",
+      "details":"विवरण",
+      "bloodBankDetails":"ब्लड बैंक विवरण",
+      "personalDetails":"व्यक्तिगत विवरण",
+      "uploadImageWhileDonating" : "दान करते समय छवि अपलोड करें",
+      "cancelRequest" : "अनुरोध को रद्द करें",
+      "location" :"जगह",
+      "accept":"स्वीकार करें",
+      "done":"हो गया",
+      "allocate":"का आवंटन",
+      "Re-Allocate":"पुन: आवंटित",
+      "beneficiary":"लाभार्थी",
+      "Father/Husband":"पिता/पति",
+      "units":"इकाइयों",
+      "donor":"दाता"
+
+
       
       
 

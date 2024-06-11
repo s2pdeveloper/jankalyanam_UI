@@ -17,6 +17,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
     SharedModule
   ],
   declarations: [BloodDonationsPage],
-  exports:[]
+  exports: []
 })
-export class BloodDonationsPageModule {}
+export class BloodDonationsPageModule { }
