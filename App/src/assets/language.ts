@@ -80,7 +80,13 @@ export const languageConst={
       "beneficiary":"Beneficiary",
       "Father/Husband":"Father/Husband",
       "units":"Units",
-      "donor":"Donor"
+      "donor":"Donor",
+      "requestDetails":"Request Details",
+      "acceptorDetails":"Acceptor Details",
+      "donorDetails":"Donor Details",
+      "Received":"Received",
+      "bloodDonar":"Blood Donar"
+
 
 
 
@@ -171,7 +177,12 @@ export const languageConst={
       "beneficiary":"लाभार्थी",
       "Father/Husband":"पिता/पति",
       "units":"इकाइयों",
-      "donor":"दाता"
+      "donor":"दाता",
+      "requestDetails":"अनुरोध विवरण",
+      "acceptorDetails":"स्वीकर्ता विवरण",
+      "donorDetails":"दाता विवरण",
+      "Received":"प्राप्त",
+      "bloodDonar":"रक्त दाता"
 
 
       

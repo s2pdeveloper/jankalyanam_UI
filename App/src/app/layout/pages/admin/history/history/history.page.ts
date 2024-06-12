@@ -5,6 +5,7 @@ import { BloodDonationService } from 'src/app/service/donation/donation.service'
 import { Location } from "@angular/common";
 import { Route, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
+
 @Component({
   selector: 'app-history',
   templateUrl: './history.page.html',
