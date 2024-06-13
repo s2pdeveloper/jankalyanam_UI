@@ -1,24 +1,16 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
-    <ion-back-button
-      slot="start"
-      default-href=""
-      (click)="back()"
-    ></ion-back-button>
-    <ion-title> My List</ion-title>
+    <ion-back-button slot="start" default-href="" (click)="back()"></ion-back-button>
+    <ion-title> {{"myList" | translate}}</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
   <!-- <ion-accordion-group value="first" class="ion-padding"> -->
-  <ion-accordion-group
-    [value]="providedBy ? (providedBy == 'DONOR' ? 'third' : 'second') : 'first'"
-  >
+  <ion-accordion-group [value]="providedBy ? (providedBy == 'DONOR' ? 'third' : 'second') : 'first'">
     <ion-accordion value="first">
       <ion-item slot="header" color="light">
         <i class="fa-solid fa-file-lines"></i>
-        <ion-label class="ion-padding-horizontal"
-          >Blood Request Details</ion-label
-        >
+        <ion-label class="ion-padding-horizontal">{{"bloodRequestDetails" | translate}}</ion-label>
       </ion-item>
       <ng-container *ngIf="data">
         <div class="ion-padding accordion-collapsed" slot="content">
@@ -27,87 +19,87 @@
               <ion-grid>
                 <ion-row>
                   <ion-col size="12">
-                    <ion-label class="head">Name</ion-label>
+                    <ion-label class="head">{{"Name" | translate}}</ion-label>
                     <ion-label>: {{data?.name}}</ion-label>
                   </ion-col>
                 </ion-row>
                 <ion-row>
                   <ion-col size="12">
-                    <ion-label class="head">Age</ion-label>
+                    <ion-label class="head">{{"age" | translate}}</ion-label>
                     <ion-label>: {{data?.age}}</ion-label>
                   </ion-col>
                 </ion-row>
                 <ion-row>
                   <ion-col size="12">
-                    <ion-label class="head">Gender</ion-label>
+                    <ion-label class="head">{{"gender" | translate}}</ion-label>
                     <ion-label>: {{data?.gender}}</ion-label>
                   </ion-col>
                 </ion-row>
                 <ion-row>
                   <ion-col size="12">
-                    <ion-label class="head">Blood Group</ion-label>
+                    <ion-label class="head">{{"bloodGroup" | translate}}</ion-label>
                     <ion-label>: {{data?.bloodGroup}}</ion-label>
                   </ion-col>
                 </ion-row>
                 <ion-row>
                   <ion-col size="12">
-                    <ion-label class="head">Blood Require Date</ion-label>
+                    <ion-label class="head">{{"RequireDate" | translate}}</ion-label>
                     <ion-label>: {{data?.bloodRequireDate}}</ion-label>
                   </ion-col>
                 </ion-row>
                 <ion-row>
                   <ion-col size="12">
-                    <ion-label class="head">State</ion-label>
+                    <ion-label class="head">{{"state" | translate}}</ion-label>
                     <ion-label>: {{data?.state}}</ion-label>
                   </ion-col>
                 </ion-row>
                 <ion-row *ngIf="!!data?.district">
-                  <ion-col size="12" >
-                    <ion-label class="head">District</ion-label>
+                  <ion-col size="12">
+                    <ion-label class="head">{{"District" |  translate}}</ion-label>
                     <ion-label> : {{data?.district}}</ion-label>
                   </ion-col>
                 </ion-row>
 
                 <ion-row *ngIf="!!data?.tahsil">
-                  <ion-col size="12" >
-                    <ion-label class="head">Tehsil</ion-label>
+                  <ion-col size="12">
+                    <ion-label class="head">{{"Tahsil" |  translate}}</ion-label>
                     <ion-label> : {{data?.tahsil}}</ion-label>
                   </ion-col>
                 </ion-row>
 
                 <ion-row *ngIf="!!data?.village">
                   <ion-col size="12">
-                    <ion-label class="head">Village</ion-label>
+                    <ion-label class="head">{{"Village" | translate}}</ion-label>
                     <ion-label> : {{data?.village}}</ion-label>
                   </ion-col>
                 </ion-row>
                 <ion-row>
                   <ion-col size="12">
-                    <ion-label class="head">Father or Husband</ion-label>
+                    <ion-label class="head">{{"Father/Husband" | translate}}</ion-label>
                     <ion-label>: {{data?.fatherOrHusband}}</ion-label>
                   </ion-col>
                 </ion-row>
                 <ion-row>
                   <ion-col size="12">
-                    <ion-label class="head">Hemoglobin</ion-label>
+                    <ion-label class="head">{{"hemoglobin" | translate}}</ion-label>
                     <ion-label>: {{data?.hemoglobin}}</ion-label>
                   </ion-col>
                 </ion-row>
                 <ion-row>
                   <ion-col size="12">
-                    <ion-label class="head">Illness</ion-label>
+                    <ion-label class="head">{{"illness" | translate}}</ion-label>
                     <ion-label>: {{data?.illness}}</ion-label>
                   </ion-col>
                 </ion-row>
                 <ion-row>
                   <ion-col size="12">
-                    <ion-label class="head">Mobile Number</ion-label>
+                    <ion-label class="head">{{"mobileNo" | translate}}</ion-label>
                     <ion-label>: {{data?.mobileNo}}</ion-label>
                   </ion-col>
                 </ion-row>
                 <ion-row>
                   <ion-col size="12">
-                    <ion-label class="head">Units</ion-label>
+                    <ion-label class="head">{{"units" | translate}}</ion-label>
                     <ion-label>: {{data?.units}}</ion-label>
                   </ion-col>
                 </ion-row>
@@ -115,19 +107,11 @@
                 <ion-row>
                   <ion-col size="8">
                     <ion-item fill="outline" lines="none">
-                      <ion-select
-                        aria-label="Fruit"
-                        interface="popover"
-                        placeholder="Select Mode"
-                        [(ngModel)]="providedBy"
-                        [ngModelOptions]="{standalone: true}"
-                        [disabled]="isDisabled"
-                      >
-                        <ion-select-option value="BLOOD_BANK"
-                          >Blood Bank
+                      <ion-select aria-label="Fruit" interface="popover" placeholder="Select Mode"
+                        [(ngModel)]="providedBy" [ngModelOptions]="{standalone: true}" [disabled]="isDisabled">
+                        <ion-select-option value="BLOOD_BANK">{{"bloodBank" | translate}}
                         </ion-select-option>
-                        <ion-select-option value="DONOR"
-                          >Donor
+                        <ion-select-option value="DONOR">{{"donor" | translate}}
                         </ion-select-option>
                       </ion-select>
                     </ion-item>
@@ -142,24 +126,17 @@
     <ion-accordion value="second" *ngIf="providedBy == 'BLOOD_BANK'">
       <ion-item slot="header" color="light">
         <i class="fa-solid fa-file-lines"></i>
-        <ion-label class="ion-padding-horizontal">Blood Bank Details</ion-label>
+        <ion-label class="ion-padding-horizontal">{{"bloodBankDetails" | translate}}</ion-label>
       </ion-item>
       <div class="ion-padding accordion-collapsed" slot="content">
         <ion-card>
           <ion-card-content>
             <form [formGroup]="bloodRequestAllocateForm" *ngIf="edit">
-              <ion-row
-                class="ion-align-items-center ion-justify-content-center"
-              >
+              <ion-row class="ion-align-items-center ion-justify-content-center">
                 <ion-col size="12">
-                  <ion-label position="floating" lablePlacement="stacked"
-                    >Blood Bank</ion-label
-                  >
+                  <ion-label position="floating" lablePlacement="stacked">{{"bloodBank" | translate}}</ion-label>
                   <ion-item fill="outline" class="input">
-                    <ion-input
-                      placeholder="Blood Bank"
-                      formControlName="bloodBankName"
-                    ></ion-input>
+                    <ion-input placeholder="Blood Bank" formControlName="bloodBankName"></ion-input>
                   </ion-item>
                 </ion-col>
               </ion-row>
@@ -194,50 +171,29 @@
                   </ion-col>
                 </ion-row> -->
 
-              <ion-row
-                class="ion-align-items-center ion-justify-content-center"
-              >
+              <ion-row class="ion-align-items-center ion-justify-content-center">
                 <ion-col size="12">
                   <ion-item fill="outline">
-                    <ion-label position="floating" lablePlacement="stacked"
-                      >State
+                    <ion-label position="floating" lablePlacement="stacked">{{"state" | translate}}
                     </ion-label>
-                    <ionic-selectable
-                      class="ion-text-capilatize"
-                      [(ngModel)]="selectTable.state"
-                      [ngModelOptions]="{standalone: true}"
-                      [items]="states"
-                      itemTextField="name"
-                      itemValueField="name"
-                      [canSearch]="true"
-                      (onChange)="getCity($event)"
-                      [hasConfirmButton]="true"
-                      [hasInfiniteScroll]="true"
-                    >
+                    <ionic-selectable class="ion-text-capilatize" [(ngModel)]="selectTable.state"
+                      [ngModelOptions]="{standalone: true}" [items]="states" itemTextField="name" itemValueField="name"
+                      [canSearch]="true" (onChange)="getCity($event)" [hasConfirmButton]="true"
+                      [hasInfiniteScroll]="true">
                     </ionic-selectable>
                   </ion-item>
                 </ion-col>
               </ion-row>
-              <ion-row
-                class="ion-align-items-center ion-justify-content-center"
-              >
+              <ion-row class="ion-align-items-center ion-justify-content-center">
                 <ion-col size="12" class="ion-justify-content-between">
                   <ion-item fill="outline">
                     <ion-label position="floating" lablePlacement="stacked">
-                      City
+                      {{"city" | translate}}
                     </ion-label>
-                    <ionic-selectable
-                      class="ion-text-capilatize"
-                      [(ngModel)]="selectTable.city"
-                      [ngModelOptions]="{standalone: true}"
-                      [items]="cities"
-                      itemTextField="name"
-                      itemValueField="name"
-                      [canSearch]="true"
-                      [hasConfirmButton]="true"
-                      [hasInfiniteScroll]="true"
-                      (onChange)="setCity($event)"
-                    >
+                    <ionic-selectable class="ion-text-capilatize" [(ngModel)]="selectTable.city"
+                      [ngModelOptions]="{standalone: true}" [items]="cities" itemTextField="name" itemValueField="name"
+                      [canSearch]="true" [hasConfirmButton]="true" [hasInfiniteScroll]="true"
+                      (onChange)="setCity($event)">
                     </ionic-selectable>
                   </ion-item>
                 </ion-col>
@@ -245,48 +201,37 @@
 
               <ion-row class="ion-text-center">
                 <ion-col *ngIf="!data.bloodBankName">
-                  <ion-button expand="block" (click)="allocate()"
-                    >Allocate</ion-button
-                  >
+                  <ion-button expand="block" (click)="allocate()">{{"allocate" | translate}}</ion-button>
                 </ion-col>
                 <ion-col size="6" *ngIf="data.bloodBankName">
-                  <ion-button expand="block" (click)="edit = !edit"
-                    >Cancel</ion-button
-                  >
+                  <ion-button expand="block" (click)="edit = !edit">{{"cancel" | translate}}</ion-button>
                 </ion-col>
                 <ion-col size="6" *ngIf="data.bloodBankName">
-                  <ion-button expand="block" (click)="allocate()"
-                    >Re-Allocate</ion-button
-                  >
+                  <ion-button expand="block" (click)="allocate()">{{"Re-Allocate" | translate}}</ion-button>
                 </ion-col>
               </ion-row>
             </form>
 
             <ion-grid *ngIf="!edit">
               <ion-item class="ion-no-padding ion-no-margin" lines="none">
-                <ion-icon
-                  *ngIf="data.status != 'DONE' && data.status != 'RECEIVED'"
-                  slot="end"
-                  color="primary"
-                  name="create-outline"
-                  (click)="editData()"
-                ></ion-icon>
+                <ion-icon *ngIf="data.status != 'DONE' && data.status != 'RECEIVED'" slot="end" color="primary"
+                  name="create-outline" (click)="editData()"></ion-icon>
               </ion-item>
               <ion-row>
                 <ion-col size="12">
-                  <ion-label class="head">Blood Bank Name </ion-label>
+                  <ion-label class="head">{{"bloodBankName" |translate}} </ion-label>
                   <ion-label> : {{data?.bloodBankName}} </ion-label>
                 </ion-col>
               </ion-row>
               <ion-row>
                 <ion-col size="12">
-                  <ion-label class="head">State </ion-label>
+                  <ion-label class="head">{{"state" | translate}} </ion-label>
                   <ion-label> : {{data?.bankState}} </ion-label>
                 </ion-col>
               </ion-row>
               <ion-row>
                 <ion-col size="12">
-                  <ion-label class="head">City </ion-label>
+                  <ion-label class="head">{{"city" | translate}} </ion-label>
                   <ion-label> : {{data?.bankCity}} </ion-label>
                 </ion-col>
               </ion-row>
@@ -299,56 +244,43 @@
     <ion-accordion value="third" *ngIf="providedBy == 'DONOR'">
       <ion-item slot="header" color="light">
         <i class="fa-solid fa-droplet"></i>
-        <ion-label class="ion-padding-horizontal">Blood Donar</ion-label>
+        <ion-label class="ion-padding-horizontal">{{"bloodDonar" | translate}}</ion-label>
       </ion-item>
       <div class="ion-padding" slot="content">
         <ion-card>
           <ion-card-content>
-          
+
             <ng-container *ngIf="donorEdit" noDataLatest>
-              <ion-row *ngIf="donorData.length != 0"
-                class="ion-align-items-center ion-justify-content-center"
-              >
+              <ion-row *ngIf="donorData.length != 0" class="ion-align-items-center ion-justify-content-center">
                 <ion-col size="8">
                   <ion-item fill="outline" lines="none" label="Select Option">
-                    <ion-label class="box-text" position="stacked"
-                      >Select Option</ion-label
-                    >
-                    <ionic-selectable
-                      class="ion-text-capilatize"
-                      [items]="donorData"
-                      [(ngModel)]="selectTable.donor"
-                      [ngModelOptions]="{standalone: true}"
-                      itemTextField="name"
-                      itemValueField="id"
-                      [canSearch]="true"
-                      (onChange)="selectDonor($event)"
-                      [hasConfirmButton]="true"
-                      [hasInfiniteScroll]="true"
-                    >
+                    <ion-label class="box-text" position="stacked">Select Option</ion-label>
+                    <ionic-selectable class="ion-text-capilatize" [items]="donorData" [(ngModel)]="selectTable.donor"
+                      [ngModelOptions]="{standalone: true}" itemTextField="name" itemValueField="id" [canSearch]="true"
+                      (onChange)="selectDonor($event)" [hasConfirmButton]="true" [hasInfiniteScroll]="true">
                     </ionic-selectable>
                   </ion-item>
                 </ion-col>
               </ion-row>
               <ion-row>
                 <ion-col class="ion-text-center" *ngIf="!data.donor">
-                  <ion-button [disabled]="!f['donorId'].value" (click)="allocate()">Allocate</ion-button>
+                  <ion-button [disabled]="!f['donorId'].value" (click)="allocate()">{{"allocate" | translate}}</ion-button>
                 </ion-col>
                 <ion-col class="ion-text-center" *ngIf="!!data.donor">
-                  <ion-button (click)="allocate()">Re-Allocate</ion-button>
+                  <ion-button (click)="allocate()">{{"Re-Allocate" | translate}}</ion-button>
                 </ion-col>
               </ion-row>
 
               <ion-row>
                 <ion-col class="ion-text-center">
                   <ion-label>
-                    Create New Donar
+                    {{"createNewDonar" | translate}}
                   </ion-label>
                 </ion-col>
               </ion-row>
               <ion-row>
                 <ion-col class="ion-text-center">
-                  <ion-button (click)="navigate()">New Donar</ion-button>
+                  <ion-button (click)="navigate()">{{"newDonar" | translate}}</ion-button>
                 </ion-col>
               </ion-row>
 
@@ -357,86 +289,83 @@
                 <ion-button>Submit</ion-button>
               </ion-col>
             </ion-row> -->
-          
+
               <ng-container *ngIf="!!donor">
                 <ion-grid>
                   <ion-row>
                     <ion-col size="12">
-                      <ion-label class="head">Name</ion-label>
+                      <ion-label class="head">{{"Name" | translate}}</ion-label>
                       <ion-label>: {{donor?.name}}</ion-label>
                     </ion-col>
                   </ion-row>
                   <ion-row>
                     <ion-col size="12">
-                      <ion-label class="head">Gender</ion-label>
+                      <ion-label class="head">{{"gender" | translate}}</ion-label>
                       <ion-label>: {{donor?.gender}}</ion-label>
                     </ion-col>
                     <ion-col size="12">
-                      <ion-label class="head">Age</ion-label>
+                      <ion-label class="head">{{"age" | translate}}</ion-label>
                       <ion-label>: {{donor?.age}}</ion-label>
                     </ion-col>
                   </ion-row>
                   <ion-row>
                     <ion-col size="12">
-                      <ion-label class="head">State</ion-label>
+                      <ion-label class="head">{{"state" | translate}}</ion-label>
                       <ion-label>: {{donor?.state}}</ion-label>
                     </ion-col>
 
                     <ion-col size="12" *ngIf="!!donor?.district">
-                      <ion-label class="head">District</ion-label>
+                      <ion-label class="head">{{"District" | translate}}</ion-label>
                       <ion-label>: {{donor?.district}}</ion-label>
                     </ion-col>
                   </ion-row>
                   <ion-row>
                     <ion-col size="12" *ngIf="!!donor?.tahsil">
-                      <ion-label class="head">Tehsil</ion-label>
+                      <ion-label class="head">{{"Tahsil"  | translate}}</ion-label>
                       <ion-label>: {{donor?.tahsil}}</ion-label>
                     </ion-col>
 
                     <ion-col size="12" *ngIf="!!donor?.village">
-                      <ion-label class="head">Village</ion-label>
+                      <ion-label class="head">{{"Village" | translate}}</ion-label>
                       <ion-label>: {{donor?.village}}</ion-label>
                     </ion-col>
 
                   </ion-row>
                   <ion-row>
                     <ion-col size="12">
-                      <ion-label class="head">Blood Group</ion-label>
+                      <ion-label class="head">{{"bloodGroup" | translate}}</ion-label>
                       <ion-label>: {{donor?.bloodGroup}}</ion-label>
                     </ion-col>
 
                     <ion-col size="12">
-                      <ion-label class="head">Hemoglobin</ion-label>
+                      <ion-label class="head">{{"hemoglobin" | translate}}</ion-label>
                       <ion-label>: {{donor?.hemoglobin}}</ion-label>
                     </ion-col>
                   </ion-row>
                   <ion-row>
                     <ion-col size="12">
-                      <ion-label class="head">Mobile Number</ion-label>
+                      <ion-label class="head">{{"mobileNo" | translate}}</ion-label>
                       <ion-label>: {{donor?.mobileNo}}</ion-label>
                     </ion-col>
                   </ion-row>
                   <ion-row>
                     <ion-col size="12">
-                      <ion-label class="head">Donation Date</ion-label>
+                      <ion-label class="head">{{"donationDate" | translate}}</ion-label>
                       <ion-label>: {{donor?.donationDate}}</ion-label>
                     </ion-col>
                   </ion-row>
                   <ion-row *ngIf="donor.gender == 'FEMALE'">
                     <ion-col size="12">
-                      <ion-label class="head">Father/Husband</ion-label>
+                      <ion-label class="head">{{"Father/Husband" | translate}}</ion-label>
                       <ion-label>: {{donor?.fatherOrHusband}}</ion-label>
                     </ion-col>
                   </ion-row>
 
                   <ion-row>
                     <ion-col size="12">
-                      <ion-icon
-                        *ngIf="donor?.illness"
-                        name="checkbox"
-                      ></ion-icon>
+                      <ion-icon *ngIf="donor?.illness" name="checkbox"></ion-icon>
                       <ion-icon *ngIf="!donor?.illness" name="close"></ion-icon>
-                      <ion-label class="head donor-illness">Illness</ion-label>
+                      <ion-label class="head donor-illness">{{"illness" | translate}}</ion-label>
                     </ion-col>
                   </ion-row>
                 </ion-grid>
@@ -445,93 +374,88 @@
             <ng-template #noDataLatest>
               <app-no-data></app-no-data>
             </ng-template>
-          
+
             <ng-container *ngIf="!!donor && !donorEdit">
               <ion-item class="ion-no-padding ion-no-margin" lines="none">
-                <ion-icon
-                  *ngIf="data.status != 'DONE' && data.status != 'RECEIVED'"
-                  slot="end"
-                  color="primary"
-                  name="create-outline"
-                  (click)="donorEditData()"
-                ></ion-icon>
+                <ion-icon *ngIf="data.status != 'DONE' && data.status != 'RECEIVED'" slot="end" color="primary"
+                  name="create-outline" (click)="donorEditData()"></ion-icon>
               </ion-item>
               <ion-grid>
                 <ion-row>
                   <ion-col size="12">
-                    <ion-label class="head">Name</ion-label>
+                    <ion-label class="head">{{"Name" | translate}}</ion-label>
                     <ion-label>: {{donor?.name}}</ion-label>
                   </ion-col>
                 </ion-row>
                 <ion-row>
                   <ion-col size="12">
-                    <ion-label class="head">Gender</ion-label>
+                    <ion-label class="head">{{"gender" | translate}}</ion-label>
                     <ion-label>: {{donor?.gender}}</ion-label>
                   </ion-col>
                   <ion-col size="12">
-                    <ion-label class="head">Age</ion-label>
+                    <ion-label class="head">{{"age" | translate}}</ion-label>
                     <ion-label>: {{donor?.age}}</ion-label>
                   </ion-col>
                 </ion-row>
                 <ion-row>
                   <ion-col size="12">
-                    <ion-label class="head">State</ion-label>
+                    <ion-label class="head">{{"state" | translate}}</ion-label>
                     <ion-label>: {{donor?.state}}</ion-label>
                   </ion-col>
 
                   <ion-col size="12" *ngIf="!!donor?.district">
-                    <ion-label class="head">District</ion-label>
+                    <ion-label class="head">{{"District" | translate}}</ion-label>
                     <ion-label>: {{donor?.district}}</ion-label>
                   </ion-col>
                 </ion-row>
                 <ion-row>
                   <ion-col size="12" *ngIf="!!donor?.tahsil">
-                    <ion-label class="head">Tehsil</ion-label>
+                    <ion-label class="head">{{"Tahsil" | translate}}</ion-label>
                     <ion-label>: {{donor?.tahsil}}</ion-label>
                   </ion-col>
 
                   <ion-col size="12" *ngIf="!!donor?.village">
-                    <ion-label class="head">Village</ion-label>
+                    <ion-label class="head">{{"Village" | translate}}</ion-label>
                     <ion-label>: {{donor?.village}}</ion-label>
                   </ion-col>
 
                 </ion-row>
                 <ion-row>
                   <ion-col size="12">
-                    <ion-label class="head">Blood Group</ion-label>
+                    <ion-label class="head">{{"bloodGroup" | translate}}</ion-label>
                     <ion-label>: {{donor?.bloodGroup}}</ion-label>
                   </ion-col>
 
                   <ion-col size="12">
-                    <ion-label class="head">Hemoglobin</ion-label>
+                    <ion-label class="head">{{"hemoglobin" | translate}}</ion-label>
                     <ion-label>: {{donor?.hemoglobin}}</ion-label>
                   </ion-col>
                 </ion-row>
                 <ion-row>
                   <ion-col size="12">
-                    <ion-label class="head">Mobile Number</ion-label>
+                    <ion-label class="head">{{"mobileNo" | translate}}</ion-label>
                     <ion-label>: {{donor?.mobileNo}}</ion-label>
                   </ion-col>
                 </ion-row>
                 <ion-row>
                   <ion-col size="12">
-                    <ion-label class="head">Donation Date</ion-label>
+                    <ion-label class="head">{{"donationDate" | translate}}</ion-label>
                     <ion-label>: {{donor?.donationDate}}</ion-label>
                   </ion-col>
                 </ion-row>
                 <ion-row *ngIf="donor.gender == 'FEMALE'">
                   <ion-col size="12">
-                    <ion-label class="head">Father/Husband</ion-label>
+                    <ion-label class="head">{{"Father/Husband" | translate}}</ion-label>
                     <ion-label>: {{donor.fatherOrHusband}}</ion-label>
                   </ion-col>
                 </ion-row>
 
-              
+
                 <ion-row>
                   <ion-col size="12">
                     <ion-icon *ngIf="donor?.illness" name="checkbox"></ion-icon>
                     <ion-icon *ngIf="!donor?.illness" name="close"></ion-icon>
-                    <ion-label class="head donor-illness">Illness</ion-label>
+                    <ion-label class="head donor-illness">{{"illness" | translate}}</ion-label>
                   </ion-col>
                 </ion-row>
               </ion-grid>

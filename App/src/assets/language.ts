@@ -85,7 +85,12 @@ export const languageConst={
       "acceptorDetails":"Acceptor Details",
       "donorDetails":"Donor Details",
       "Received":"Received",
-      "bloodDonar":"Blood Donar"
+      "bloodDonar":"Blood Donar",
+      "bloodRequestDetails":"Blood Request Details",
+      "bloodBank":"Blood Bank",
+      "createNewDonar":"Create New Donar",
+      "newDonar":"New Donar"
+
 
 
 
@@ -182,7 +187,11 @@ export const languageConst={
       "acceptorDetails":"स्वीकर्ता विवरण",
       "donorDetails":"दाता विवरण",
       "Received":"प्राप्त",
-      "bloodDonar":"रक्त दाता"
+      "bloodDonar":"रक्त दाता",
+      "bloodRequestDetails":"रक्त अनुरोध विवरण",
+      "bloodBank":"रक्त बैंक",
+      "createNewDonar":"नया डोनर बनाएं",
+      "newDonar":"नया डोनर"
 
 
       
